@@ -1,0 +1,18 @@
+//
+//  DZHtmlLabel.h
+//  DiscuzQ
+//
+//  Created by WebersonGao on 2020/5/26.
+//  Copyright © 2020 WebersonGao. All rights reserved.
+//
+
+#import <DTCoreText/DTCoreText.h>
+#import "DZHtmlUtils.h"
+
+@interface DZHtmlLabel : DTAttributedLabel
+
+
+-(void)updateHtml:(NSAttributedString *)attributeString rect:(CGRect)viewRect;
+
+@end
+
