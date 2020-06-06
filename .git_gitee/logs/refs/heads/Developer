@@ -7,3 +7,4 @@
 e217d2c44c7b62d8aada4f0d093f48faaeef947a 3a2a0ae3926aac27493ff7e793fdfd883007d04d Gao <gao@btbk.org> 1591355486 +0800	commit: 少用圆角，少裁剪，才能六六六
 3a2a0ae3926aac27493ff7e793fdfd883007d04d c5f331161391a2dfbc0d7f36c366a5878cd05169 Gao <gao@btbk.org> 1591414141 +0800	pull --log origin Developer: Fast-forward
 c5f331161391a2dfbc0d7f36c366a5878cd05169 7b14555a3e1a3ab9ca823271b8211461faa627a7 Gao <gao@btbk.org> 1591420692 +0800	commit: 尽量少写代码
+7b14555a3e1a3ab9ca823271b8211461faa627a7 8153e0b81c7f3269b2e8566ab99adb83761013ad Gao <gao@btbk.org> 1591421048 +0800	commit: 从gitee和Github之前来回流窜，舒服
