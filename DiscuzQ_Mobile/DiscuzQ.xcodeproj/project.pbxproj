@@ -105,7 +105,9 @@
 		7099DC1024680BD0001A5585 /* DZUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7099DC0F24680BD0001A5585 /* DZUserViewController.m */; };
 		709C7BFF247C19A0002AF8F6 /* DZUserTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 709C7BFE247C19A0002AF8F6 /* DZUserTabController.m */; };
 		709C7C02247C311E002AF8F6 /* DZOtherScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 709C7C01247C311E002AF8F6 /* DZOtherScrollView.m */; };
+		709CBF77248B52980015243A /* DZDPostCellStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 709CBF76248B52980015243A /* DZDPostCellStyle.m */; };
 		709E5FA2246FEAC200EB5DDC /* DZMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 709E5FA1246FEAC200EB5DDC /* DZMessageListCell.m */; };
+		70A2898D248A821A00D650E6 /* DZThreadToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A2898C248A821A00D650E6 /* DZThreadToolBar.m */; };
 		70A3B6DF24793874009AF098 /* DZThreadAComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3B6DE24793874009AF098 /* DZThreadAComment.m */; };
 		70A3B6E224793D70009AF098 /* DZThreadVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3B6E124793D70009AF098 /* DZThreadVideo.m */; };
 		70A3B6E524793D91009AF098 /* DZThreadNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A3B6E424793D91009AF098 /* DZThreadNormal.m */; };
@@ -654,8 +656,12 @@
 		709C7BFE247C19A0002AF8F6 /* DZUserTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZUserTabController.m; sourceTree = "<group>"; };
 		709C7C00247C311E002AF8F6 /* DZOtherScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZOtherScrollView.h; sourceTree = "<group>"; };
 		709C7C01247C311E002AF8F6 /* DZOtherScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZOtherScrollView.m; sourceTree = "<group>"; };
+		709CBF75248B52980015243A /* DZDPostCellStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZDPostCellStyle.h; sourceTree = "<group>"; };
+		709CBF76248B52980015243A /* DZDPostCellStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZDPostCellStyle.m; sourceTree = "<group>"; };
 		709E5FA0246FEAC100EB5DDC /* DZMessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZMessageListCell.h; sourceTree = "<group>"; };
 		709E5FA1246FEAC200EB5DDC /* DZMessageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZMessageListCell.m; sourceTree = "<group>"; };
+		70A2898B248A821A00D650E6 /* DZThreadToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadToolBar.h; sourceTree = "<group>"; };
+		70A2898C248A821A00D650E6 /* DZThreadToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadToolBar.m; sourceTree = "<group>"; };
 		70A3B6DD24793874009AF098 /* DZThreadAComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadAComment.h; sourceTree = "<group>"; };
 		70A3B6DE24793874009AF098 /* DZThreadAComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadAComment.m; sourceTree = "<group>"; };
 		70A3B6E024793D70009AF098 /* DZThreadVideo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadVideo.h; sourceTree = "<group>"; };
@@ -1701,6 +1707,8 @@
 			children = (
 				70806B8F24795DC5002CF14E /* DZDiscoverTool.h */,
 				70806B9024795DC5002CF14E /* DZDiscoverTool.m */,
+				709CBF75248B52980015243A /* DZDPostCellStyle.h */,
+				709CBF76248B52980015243A /* DZDPostCellStyle.m */,
 				706357D9247AA36100F0F4FD /* DZThreadListStyle.h */,
 				706357DA247AA36100F0F4FD /* DZThreadListStyle.m */,
 				7010C7892480231F0017E552 /* DZThreadDetailStyle.h */,
@@ -1951,6 +1959,15 @@
 				700DE2982468329000A3AB0A /* View */,
 			);
 			path = DZ_User;
+			sourceTree = "<group>";
+		};
+		70A2898A248A81E300D650E6 /* HeadDetail */ = {
+			isa = PBXGroup;
+			children = (
+				70A2898B248A821A00D650E6 /* DZThreadToolBar.h */,
+				70A2898C248A821A00D650E6 /* DZThreadToolBar.m */,
+			);
+			path = HeadDetail;
 			sourceTree = "<group>";
 		};
 		70A3B6DA24793828009AF098 /* ThreadCell */ = {
@@ -2289,6 +2306,7 @@
 			isa = PBXGroup;
 			children = (
 				704F7A44247E4CF6000A8158 /* Comment */,
+				70A2898A248A81E300D650E6 /* HeadDetail */,
 				70CFDE2D2474D8100097B3CD /* DZThreadPostCell.h */,
 				70CFDE2E2474D8100097B3CD /* DZThreadPostCell.m */,
 				704F7A41247E4A49000A8158 /* DZThreadDetailHeader.h */,
@@ -2636,8 +2654,8 @@
 		70FBB89D24288B0E00BE854E /* PRNetWorkErrorView */ = {
 			isa = PBXGroup;
 			children = (
-				70FBB89E24288B0E00BE854E /* PRNetWorkErrorView.m */,
 				70FBB89F24288B0E00BE854E /* PRNetWorkErrorView.h */,
+				70FBB89E24288B0E00BE854E /* PRNetWorkErrorView.m */,
 			);
 			path = PRNetWorkErrorView;
 			sourceTree = "<group>";
@@ -3306,12 +3324,12 @@
 		70FBBA9924288B0E00BE854E /* DZLoading */ = {
 			isa = PBXGroup;
 			children = (
-				70FBBA9A24288B0E00BE854E /* LoadingAniView.m */,
 				70FBBA9B24288B0E00BE854E /* DZShadowView.h */,
-				70FBBA9C24288B0E00BE854E /* DZAppLoadingView.h */,
-				70FBBA9D24288B0E00BE854E /* DZAppLoadingView.mm */,
 				70FBBA9E24288B0E00BE854E /* DZShadowView.mm */,
 				70FBBA9F24288B0E00BE854E /* LoadingAniView.h */,
+				70FBBA9A24288B0E00BE854E /* LoadingAniView.m */,
+				70FBBA9C24288B0E00BE854E /* DZAppLoadingView.h */,
+				70FBBA9D24288B0E00BE854E /* DZAppLoadingView.mm */,
 			);
 			path = DZLoading;
 			sourceTree = "<group>";
@@ -3319,10 +3337,10 @@
 		70FBBAA024288B0E00BE854E /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				70FBBAA624288B0E00BE854E /* DZNavItemButton.h */,
-				70FBBAA224288B0E00BE854E /* DZNavItemButton.m */,
 				70FBBAA524288B0E00BE854E /* DZNavigationBar.h */,
 				70FBBAA324288B0E00BE854E /* DZNavigationBar.m */,
+				70FBBAA624288B0E00BE854E /* DZNavItemButton.h */,
+				70FBBAA224288B0E00BE854E /* DZNavItemButton.m */,
 				70FBBAA424288B0E00BE854E /* UIBarButtonItem+Utils.h */,
 				70FBBAA124288B0E00BE854E /* UIBarButtonItem+Utils.m */,
 			);
@@ -3957,8 +3975,8 @@
 		70FBBC8424288B0F00BE854E /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
-				70FBBC8524288B0F00BE854E /* DZMonitorKeyboard.m */,
 				70FBBC8624288B0F00BE854E /* DZMonitorKeyboard.h */,
+				70FBBC8524288B0F00BE854E /* DZMonitorKeyboard.m */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -4493,6 +4511,7 @@
 				70B6B8432486A67500B18B37 /* DZMyThreadListView.m in Sources */,
 				70FBBE4C24288B1000BE854E /* DZUpdateAlertView.m in Sources */,
 				70880AF42468FA6500F433C0 /* DZNotiItem.m in Sources */,
+				709CBF77248B52980015243A /* DZDPostCellStyle.m in Sources */,
 				7062A8B7246E6AE600E0C60D /* DZUserModel.m in Sources */,
 				700BF89E247D0D6B00798D37 /* DZShareCenter.mm in Sources */,
 				707CDF032466ACEE000B6F7F /* DZMsgDetailCell.m in Sources */,
@@ -4617,6 +4636,7 @@
 				70C4F7D22471A973004AE00B /* DZThreadBottomBar.m in Sources */,
 				70885A242472FE3700F9475D /* DZQCateModel.m in Sources */,
 				70FBBE3124288B1000BE854E /* UIColor+More.m in Sources */,
+				70A2898D248A821A00D650E6 /* DZThreadToolBar.m in Sources */,
 				70FBBDC024288B1000BE854E /* DZSearchHistoryController.m in Sources */,
 				70FBBDC424288B1000BE854E /* DZSearchBar.m in Sources */,
 				70FBBCCA24288B0F00BE854E /* DZSecAuthModel.m in Sources */,

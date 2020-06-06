@@ -20,7 +20,6 @@ typedef void(^PRStateBlock)(id data,BOOL bSuccess);
 #define KRoot_Domainkey     @"root_domain"
 
 #define KTest_UserName     @"iOSUser"
-//#define KTest_UserName     @"webersongao"
 #define KTest_PassWord     @"dz516680"
 
 

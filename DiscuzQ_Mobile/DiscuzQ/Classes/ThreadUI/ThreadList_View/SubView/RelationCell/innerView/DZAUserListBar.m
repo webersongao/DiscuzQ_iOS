@@ -47,7 +47,7 @@
     [super layoutSubviews];
     self.nameLabel.left = kMargin15;
     self.nameLabel.centerY = self.height/2.f;
-    self.UserList.frame = CGRectMake(self.nameLabel.right + kMargin15, 0, self.width-CGRectGetMaxX(self.nameLabel.frame)-kMargin30, self.height);
+    self.UserList.frame = CGRectMake(self.nameLabel.right + kMargin10, 0, self.width-CGRectGetMaxX(self.nameLabel.frame)-kMargin25, self.height);
 }
 
 -(DZLabel *)nameLabel{

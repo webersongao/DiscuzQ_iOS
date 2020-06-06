@@ -13,15 +13,9 @@
 
 @protocol DZPicSquareDelegate <NSObject>
 @optional
-- (void)collectionView:(DZPicSquareView *)collectionView didSelectItemCell:(DZPicSquareCell *)itemCell;
+- (void)collectionView:(DZPicSquareView *)collectionView squarDidSelectItem:(DZPicSquareCell *)itemCell;
 
-- (void)collectionView:(DZPicSquareView *)collectionView longPressItemCell:(DZPicSquareCell *)itemCell;
-
-- (void)collectionView:(DZPicSquareView *)collectionView scrollDidScroll:(CGFloat)offsetY;
-
-- (void)collectionViewWillBeginDragging;
-
-- (void)collectionViewDidEndScroll;
+- (void)collectionView:(DZPicSquareView *)collectionView squareCcrollDidScroll:(CGFloat)offsetY;
 
 @end
 

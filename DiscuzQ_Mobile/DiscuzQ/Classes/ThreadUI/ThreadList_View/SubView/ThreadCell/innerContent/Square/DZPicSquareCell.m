@@ -20,7 +20,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.clipsToBounds = YES;
         [self addSubview:self.imagePic];
+        self.backgroundColor = KRandom_Color;
     }
     return self;
 }
@@ -40,6 +42,7 @@
 -(UIImageView *)imagePic{
     if (!_imagePic) {
         _imagePic = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _imagePic.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imagePic;
 }

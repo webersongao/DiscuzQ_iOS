@@ -16,10 +16,8 @@
     [self formartThreadContentString:dataModel];
     
     // 计算布局样式
-    DZThreadListStyle *localStyle = [self canculateContentListStyle:dataModel];
+    return [self canculateContentListStyle:dataModel];
     
-    
-    return localStyle;
 }
 
 
@@ -35,10 +33,7 @@
 // 计算 空间高度 宽度等
 + (DZThreadListStyle *)canculateContentListStyle:(DZQDataThread *)dataModel{
     
-    CGFloat cellWidth = KScreenWidth;
-    CGFloat cellContenMaxWidth = KScreenWidth - kMargin30;
-    
-    DZThreadListStyle *threadStyle = [[DZThreadListStyle new] DHeadStyle:dataModel cellWidth:cellWidth maxWidth:cellContenMaxWidth];
+    DZThreadListStyle *threadStyle = [[DZThreadListStyle new] DHeadStyle:dataModel cellWidth:dz_CellWidth maxWidth:dz_CellMaxContentWidth];
     
     // 第一部分 用户基本信息
 //    style.frame_user = [DZDUserStyle DUserStyle:cellWidth basic:NO];
@@ -46,7 +41,7 @@
 //
 //
 //    // 第一部分 主题内容高度
-//    style.frame_content = [DZDContentStyle DThreadContentStyleWithMaxW:cellContenMaxWidth dataModel:dataModel];
+//    style.frame_content = [DZDContentStyle DThreadContentStyleWithMaxW:cellContenMaxWidth cellWidth:cellWidth dataModel:dataModel];
 //    style.kf_content = CGRectMake(0, CGRectGetMaxY(style.kf_head), cellWidth, style.frame_content.kf_ContentHeight);
 //
 //

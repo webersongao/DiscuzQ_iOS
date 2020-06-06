@@ -97,13 +97,13 @@
     DZMediaViewController *HomeVC = [[DZMediaViewController alloc] init];
     DZUserViewController *UserVC = [[DZUserViewController alloc] init];
     
-    [self addChildVc:testVC title:@"Demo纵横文学Demo" image:@"tabbar_homem" selectedImage:@"tabbar_homes"];
+    [self addChildVc:testVC title:@"霸道总裁爱上我" image:@"tabbar_homem" selectedImage:@"tabbar_homes"];
 
-//    [self addChildVc:DisVC title:@"Discover" image:@"tabbar_forumm" selectedImage:@"tabbar_fourms"];
+    [self addChildVc:DisVC title:@"Discover" image:@"tabbar_forumm" selectedImage:@"tabbar_fourms"];
 //
 //    [self addChildVc:HomeVC title:@"短视频" image:DZQ_icon selectedImage:DZQ_icon];
-//
-//    [self addChildVc:UserVC title:@"我的" image:DZQ_icon selectedImage:DZQ_icon];
+
+    [self addChildVc:UserVC title:@"我的" image:DZQ_icon selectedImage:DZQ_icon];
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {

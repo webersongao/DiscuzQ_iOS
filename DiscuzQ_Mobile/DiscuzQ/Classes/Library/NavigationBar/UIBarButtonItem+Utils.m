@@ -3,7 +3,7 @@
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2019/4/4.
-//  Copyright © 2019 ZHWenXue. All rights reserved.
+//  Copyright © 2019 DouMaoKeji. All rights reserved.
 //
 
 #import "UIBarButtonItem+Utils.h"

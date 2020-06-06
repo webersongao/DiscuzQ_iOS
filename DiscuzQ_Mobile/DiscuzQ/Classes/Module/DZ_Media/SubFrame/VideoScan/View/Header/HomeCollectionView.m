@@ -12,6 +12,7 @@ static NSString * const cellIdentifier = @"DZThreadCell";
 
 @interface HomeCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
+@property(nonatomic,strong) UIView * bottomLine;
 @property(nonatomic,strong,readonly) NSArray <DZQDataCate *> *dataArray;
 
 @end

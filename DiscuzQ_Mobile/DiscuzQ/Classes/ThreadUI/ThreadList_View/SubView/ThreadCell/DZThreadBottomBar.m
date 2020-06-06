@@ -11,10 +11,6 @@
 
 @interface DZThreadBottomBar ()
 
-@property (nonatomic, strong) UIButton *likeButton;  //!< 点赞数
-@property (nonatomic, strong) UIButton *replyButton;  //!< 回复数
-@property (nonatomic, strong) UIButton *shareButton;  //!< 浏览数
-@property (nonatomic, strong) UIView *sepLine;  //!< 分割线
 @end
 
 @implementation DZThreadBottomBar
@@ -26,7 +22,7 @@
         [self addSubview:self.likeButton];
         [self addSubview:self.replyButton];
         [self addSubview:self.shareButton];
-        [self addSubview:self.sepLine];
+        [self addSubview:self.bottomLine];
     }
     return self;
 }
@@ -37,11 +33,11 @@
     self.shareButton.frame = layout.kf_right;
     self.replyButton.frame = layout.kf_center;
     
-    self.sepLine.frame = layout.kf_barLine;
+    self.bottomLine.frame = layout.kf_barLine;
 }
 
 
--(void)configBarAction:(id)target like:(SEL)likeSel reply:(SEL)replySel share:(SEL)shareSel{
+-(void)configToolBarAction:(id)target like:(SEL)likeSel reply:(SEL)replySel share:(SEL)shareSel{
    
     [self.likeButton addTarget:target action:likeSel forControlEvents:UIControlEventTouchUpInside];
     [self.replyButton addTarget:target action:replySel forControlEvents:UIControlEventTouchUpInside];
@@ -75,12 +71,15 @@
     return _shareButton;
 }
 
--(UIView *)sepLine{
-    if (!_sepLine) {
-        _sepLine = [[UIView alloc] init];
-        _sepLine.backgroundColor = KGroupLine_Color;
+-(UIView *)bottomLine{
+    if (!_bottomLine) {
+        _bottomLine = [[UIView alloc] initWithFrame:CGRectZero];
+        _bottomLine.backgroundColor = KLine_Color;
     }
-    return _sepLine;
+    return _bottomLine;
 }
+
+
+
 
 @end

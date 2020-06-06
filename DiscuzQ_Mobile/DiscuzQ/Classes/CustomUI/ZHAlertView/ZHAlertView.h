@@ -1,9 +1,9 @@
 //
 //  ZHAlertView.h
-//  ZongHeng
+//  DouMaoKeji
 //
-//  Created by 王充 on 17/9/29.
-//  Copyright © 2015年 李贺. All rights reserved.
+//  Created by DouMao on 17/9/29.
+//  Copyright © 2015年 DouMao. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

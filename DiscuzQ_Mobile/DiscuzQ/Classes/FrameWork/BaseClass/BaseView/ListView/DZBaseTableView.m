@@ -2,8 +2,8 @@
 //  DZBaseTableView.m
 //  DiscuzQ
 //
-//  Created by 孙震 on 2019/5/13.
-//  Copyright © 2019 ZHWenXue. All rights reserved.
+//  Created by Haoren on 2019/5/13.
+//  Copyright © 2019 DouMaoKeji. All rights reserved.
 //
 
 #import "DZBaseTableView.h"

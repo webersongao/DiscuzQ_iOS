@@ -1,9 +1,9 @@
 //
 //  ZHAlertView.m
-//  ZongHeng
+//  DouMaoKeji
 //
-//  Created by 王充 on 17/10/29.
-//  Copyright © 2015年 李贺. All rights reserved.
+//  Created by DouMao on 17/10/29.
+//  Copyright © 2015年 DouMao. All rights reserved.
 //
 
 #import "ZHAlertView.h"

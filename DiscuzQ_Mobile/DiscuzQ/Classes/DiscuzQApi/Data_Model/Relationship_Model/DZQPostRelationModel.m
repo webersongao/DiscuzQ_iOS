@@ -14,15 +14,19 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"user" : [DZQDataUser class],
              @"thread" : [DZQDataThread class],
+             @"replyUser" : [DZQDataUser class],
              @"likedUsers" : [DZQDataUser class],
-             @"mentionUsers" : [DZQDataUser class],
              @"images" : [DZQDataAttachment class],
              @"attachments" : [DZQDataAttachment class]
     };
 }
 
-
-
-
++ (instancetype)relationModelWithDictionary:(NSDictionary *)dictionary{
+    
+    DZQPostRelationModel *localModel = [DZQPostRelationModel yy_modelWithDictionary:dictionary];
+    
+    return localModel;
+    
+}
 
 @end

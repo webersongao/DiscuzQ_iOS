@@ -9,9 +9,6 @@
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
 
-#undef DLog
-#define KSLog(...)
-
 @interface EFSQLiteHelper () {
     NSUInteger _version;
     NSString *_path;
@@ -143,11 +140,11 @@ static IllegalDatabaseVersionFoundHandler sHandler;
 
 - (void)inDatabase:(void (^)(FMDatabase *db))block
 {
-    KSLog("read db %@", self)
+//    KSLog("read db %@", self)
     @synchronized (self) {
-        KSLog("open db %@", self)
+//        KSLog("open db %@", self)
         FMDatabase *db = [self database];
-        KSLog("end open db %@", self)
+//        KSLog("end open db %@", self)
         block(db);
 //        KSLog("end read db %@", self)
 

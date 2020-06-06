@@ -31,6 +31,7 @@
              KDZQMapKey(DZQ_Topic_list,@"list") : kWrapper([DZQThreadRelationModel class], [DZQDataConvert new]),
              KDZQMapKey(DZQ_Cate_list,@"list") : kWrapper([DZQSuperRelation class], [DZQDataConvert new]),
              KDZQMapKey(DZQ_Site_forum,@"forum") : kWrapper([DZQSuperRelation class], [DZQDataConvert new]),
+             KDZQMapKey(DZQ_Comment_list,@"list") : kWrapper([DZQPostRelationModel class], [DZQDataConvert new]),
              
 //             KDZQMapKey(DZQ_Site_setlogo,@"logo") : kWrapper([DZQSuperRelation class], [DZQDataConvert new]),
              

@@ -97,7 +97,7 @@
 -(UIImageView *)userTag{
     if (!_userTag) {
         _userTag = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _userTag.image = KImageNamed(@"check_select");
+        _userTag.image = KImageNamed(@"dz_user_real");
     }
     return _userTag;
 }
@@ -116,7 +116,7 @@
     return _timeLabel;
 }
 
-//
+
 -(UIImageView *)threadTag{
     if (!_threadTag) {
         _threadTag = [[UIImageView alloc] initWithFrame:CGRectZero];

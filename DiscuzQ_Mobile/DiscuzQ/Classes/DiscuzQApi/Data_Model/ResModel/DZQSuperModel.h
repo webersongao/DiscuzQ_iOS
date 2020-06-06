@@ -11,6 +11,11 @@
 #import "DZQBaseModel.h"
 #import "NSObject+Super.h"
 
+// 无特殊情况，一般都是屏幕宽度
+#define dz_CellWidth KScreenWidth
+// 无特殊情况，一般都是屏幕宽度 - 30 （两个边距）
+#define dz_CellMaxContentWidth ((KScreenWidth) - kMargin30)
+
 @class DZQSuperData;
 
 @interface DZQStyle : NSObject

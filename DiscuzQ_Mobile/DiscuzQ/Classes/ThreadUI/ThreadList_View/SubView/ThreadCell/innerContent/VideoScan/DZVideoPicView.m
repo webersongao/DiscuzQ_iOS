@@ -10,7 +10,7 @@
 
 @interface DZVideoPicView ()
 
-@property(nonatomic,strong)UIImageView *coverImage;
+@property(nonatomic,strong)UIImageView *videoCoverImage;
 @property(nonatomic,strong)UIImageView *playStateIcon;
 
 @end
@@ -21,6 +21,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.clipsToBounds = YES;
         [self config_videoPreview];
         self.userInteractionEnabled = NO;
     }
@@ -28,7 +29,7 @@
 }
 
 -(void)config_videoPreview{
-    [self addSubview:self.coverImage];
+    [self addSubview:self.videoCoverImage];
     [self addSubview:self.playStateIcon];
 }
 
@@ -36,13 +37,13 @@
 
 -(void)update_videoCover:(DZQDataVideo *)dataVideo{
     
-    [self.coverImage dz_setImageWithURL:dataVideo.attributes.cover_url];
+    [self.videoCoverImage dz_setImageWithURL:dataVideo.attributes.cover_url];
 }
 
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.coverImage.frame = self.bounds;
+    self.videoCoverImage.frame = self.bounds;
     self.playStateIcon.center = CGPointMake(self.width/2.f, self.height/2.f);
 }
 
@@ -55,15 +56,14 @@
     return _playStateIcon;
 }
 
--(UIImageView *)coverImage{
-    if (!_coverImage) {
-        _coverImage = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _coverImage.contentMode = UIViewContentModeScaleAspectFill;
-        _coverImage.backgroundColor = [UIColor blackColor];
-        _coverImage.userInteractionEnabled = YES;
-        _coverImage.clipsToBounds = YES;
+-(UIImageView *)videoCoverImage{
+    if (!_videoCoverImage) {
+        _videoCoverImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _videoCoverImage.contentMode = UIViewContentModeScaleAspectFill;
+        _videoCoverImage.backgroundColor = [UIColor blackColor];
+        _videoCoverImage.userInteractionEnabled = YES;
     }
-    return _coverImage;
+    return _videoCoverImage;
 }
 
 

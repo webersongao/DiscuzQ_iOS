@@ -42,7 +42,7 @@ static FMDatabase *_db;
 - (void)openDB {
     
     // 拼接数据库存储地址
-    NSString *dataPath = [[DZFileManager shareInstance] databaseFilePath:@"Discuz_Q_Mobile.sqlite"];
+    NSString *dataPath = [[DZFileManager shareInstance] databaseFilePath:@"Discuz_Q_Mobile.footMark.sqlite"];
     _db = [FMDatabase databaseWithPath:dataPath];
     KSLog(@"%@",dataPath);
     if ([_db open]) {

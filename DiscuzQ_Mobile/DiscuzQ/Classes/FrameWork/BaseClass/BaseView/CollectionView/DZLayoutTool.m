@@ -7,6 +7,10 @@
 //
 
 #import "DZLayoutTool.h"
+
+#define  kDis_PicCellWH     ((KScreenWidth - kMargin30 - kMargin10)/3.0)   // 首页发现列表 图片cell宽高
+
+
 @implementation DZLayoutTool
 
 // 默认 列表 布局
@@ -29,7 +33,6 @@
     gridLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     gridLayout.itemSize = CGSizeMake(kCellWidth, kCellHeight);
     gridLayout.minimumLineSpacing = kItemSpacing;
-    gridLayout.minimumInteritemSpacing = kLineSpacing;
     gridLayout.sectionInset = UIEdgeInsetsMake(0,kCellMargins, 0, kCellMargins);
     return gridLayout;
 }

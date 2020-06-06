@@ -28,7 +28,6 @@
 @interface HomeCollectionView : UICollectionView
 
 
-@property(nonatomic,strong) UIView * bottomLine;
 @property(nonatomic,weak) id<HeaderCollectionDelegate> headerDelegate;
 
 

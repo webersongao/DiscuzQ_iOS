@@ -11,9 +11,14 @@
 
 @interface DZThreadBottomBar : UIView
 
+@property (nonatomic, strong) UIButton *likeButton;  //!< 点赞数
+@property (nonatomic, strong) UIButton *replyButton;  //!< 回复数
+@property (nonatomic, strong) UIButton *shareButton;  //!< 浏览数
+@property (nonatomic, strong) UIView *bottomLine;  //!< 分割线
+
 -(void)updateBottombarLayout:(DZDToolBarStyle *)modelLayout;
 
--(void)configBarAction:(id)target like:(SEL)likeSel reply:(SEL)replySel share:(SEL)shareSel;
+-(void)configToolBarAction:(id)target like:(SEL)likeSel reply:(SEL)replySel share:(SEL)shareSel;
 
 
 @end

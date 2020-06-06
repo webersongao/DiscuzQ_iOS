@@ -19,7 +19,7 @@
     
     
     // 第一部分 主题内容高度
-    self.frame_content = [DZDContentStyle  DThreadContentStyleWithMaxW:cellContenMaxWidth dataModel:dataModel];
+    self.frame_content = [DZDContentStyle  DThreadContentStyleWithMaxW:cellContenMaxWidth cellWidth:cellWidth dataModel:dataModel];
     self.kf_content = CGRectMake(0, CGRectGetMaxY(self.kf_head), cellWidth, self.frame_content.kf_ContentHeight);
     
     
@@ -60,28 +60,13 @@
 }
 
 
+
+
 @end
 
 
-@implementation DZDPostCellStyle
 
 
-// 计算评论内容 frame
-+(instancetype)DPostCellStyle:(CGFloat)cellWidth maxWidth:(CGFloat)contenMaxWidth dataModel:(DZQDataPost *)dataModel{
-    
-    DZDPostCellStyle *postStyle = [[DZDPostCellStyle alloc] init];
-    
-    postStyle.frame_post_user = [DZDUserStyle DUserStyle:cellWidth basic:YES];
-    postStyle.frame_post_content = [DZDContentStyle DPostContentStyleWithMaxW:contenMaxWidth dataModel:dataModel];
-    postStyle.frame_post_toolBar = [DZDToolBarStyle DToolBarStyle:cellWidth];
-    
-    postStyle.kf_post_user = CGRectMake(0, 0, cellWidth, postStyle.frame_post_user.kf_UserHeight);
-    postStyle.kf_post_content = CGRectMake(0, CGRectGetMaxY(postStyle.kf_post_user), cellWidth, postStyle.frame_post_content.kf_ContentHeight);
-    postStyle.kf_post_toolBar = CGRectMake(0, CGRectGetMaxY(postStyle.kf_post_content), cellWidth, postStyle.frame_post_toolBar.kf_ToolBarHeight);
-    
-    postStyle.kf_post_CellHeight = CGRectGetHeight(postStyle.kf_post_user) + CGRectGetHeight(postStyle.kf_post_content) + CGRectGetHeight(postStyle.kf_post_toolBar);
-    
-    return postStyle;
-}
 
-@end
+
+

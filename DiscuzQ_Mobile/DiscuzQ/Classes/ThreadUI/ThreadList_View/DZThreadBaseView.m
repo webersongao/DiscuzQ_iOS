@@ -68,7 +68,7 @@
     
     [self.userHeader configHeadAction:target avatar:avatarSel more:moreSel];
     
-    [self.bottomToolBar configBarAction:target like:likeSel reply:replySel share:shareSel];
+    [self.bottomToolBar configToolBarAction:target like:likeSel reply:replySel share:shareSel];
     
 }
 

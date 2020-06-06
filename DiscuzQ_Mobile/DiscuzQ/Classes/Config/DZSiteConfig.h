@@ -24,6 +24,7 @@
 
 #else //测试环境
 #define DZQ_BASEURL      @"https://discuz.chat"
+//#define DZQ_BASEURL      @"https://www.bushcraftcn.com"
 #endif
 
 
@@ -35,7 +36,7 @@
 #define DZ_company_Name  @"北京抖猫科技有限公司" // 公司
 #define DZ_APP_Name      @"抖猫社区"
 #define DZ_Empty_image   @"empty_icon" // 无数据显示图片
-#define DZ_Logo_image    @"DZQ_logo" // 登录、注册页APP名称图片
+#define DZ_Logo_image    @"" // @"DZQ_logo" // 登录、注册页APP名称图片
 #define DZ_Main_Color    KGreen_Color // 主题色 mRGBColor(220, 130, 0)
 #define DZ_bbs_rule      checkTwoStr(@"bbsrule_", @"discuz") // 网站服务条款txt名字
 #define DZ_Navi_Logo      checkTwoStr(DZQ_BASEURL, @"/static/images/logo.png") // 网站默认Logo

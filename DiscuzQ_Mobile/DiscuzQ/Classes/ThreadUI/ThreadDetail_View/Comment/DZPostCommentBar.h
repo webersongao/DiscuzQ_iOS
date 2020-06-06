@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DZDListStyle.h"
+#import "DZThreadBottomBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DZPostCommentBar : UIView
+@interface DZPostCommentBar : DZThreadBottomBar
 
--(void)updateCommentBar:(DZDToolBarStyle *)toolLayout;
+-(void)updateCommentBar:(NSString *)timeString layout:(DZDToolBarStyle *)toolLayout;
 
 
 @end

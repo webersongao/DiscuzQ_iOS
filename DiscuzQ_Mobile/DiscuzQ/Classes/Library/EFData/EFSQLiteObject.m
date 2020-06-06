@@ -3,9 +3,6 @@
 //
 // To change the template use AppCode | Preferences | File Templates.
 //
-#undef DLog
-
-#define KSLog(...)
 
 #import <objc/runtime.h>
 #import "EFSQLiteObject.h"
@@ -98,7 +95,7 @@
 
 - (void)registerForKVO
 {
-    KSLog("register");
+//    KSLog("register");
     _isKVORegistered = YES;
     NSArray *observableKeypaths = self.fieldsForPersistence;
     for (KeyValuePair *pair in observableKeypaths) {
@@ -107,7 +104,7 @@
 }
 
 - (void)unregisterFromKVO {
-    KSLog("unregister");
+//    KSLog("unregister");
     _isKVORegistered = NO;
     NSArray *observableKeypaths = self.fieldsForPersistence;
     for (KeyValuePair *pair in observableKeypaths) {

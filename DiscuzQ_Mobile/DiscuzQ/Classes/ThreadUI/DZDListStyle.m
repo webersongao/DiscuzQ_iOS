@@ -20,7 +20,7 @@
         
         userStyle.kf_avatar = CGRectMake(kMargin15, kMargin5, 34, 34);
         userStyle.kf_userName = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar) + kMargin10, kMargin15, 150, 14);
-        userStyle.kf_userTag = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar)-10, CGRectGetMaxY(userStyle.kf_avatar)-10, 10, 10);
+        userStyle.kf_userTag = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar)-15, CGRectGetMaxY(userStyle.kf_avatar)-15, 15, 15);
         userStyle.kf_time = CGRectMake(cellWidth-kMargin15 - 180, kMargin15, 180, 14);
         userStyle.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(userStyle.kf_avatar)+kMargin5, cellWidth, 0.5);
         
@@ -40,7 +40,7 @@
         userStyle.kf_threadTag = CGRectMake(cellWidth-kMargin15-kMargin10-(20 * 2), CGRectGetMinX(userStyle.kf_avatar), 20, 18);
         
         userStyle.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(userStyle.kf_avatar)+kMargin10, cellWidth, 0.5);
-
+        
     }
     
     userStyle.kf_UserHeight = CGRectGetMaxY(userStyle.kf_bottomLine);
@@ -52,9 +52,55 @@
 @end
 
 
+@implementation DZDGridItemStyle
+
++(instancetype)DGridItemStyleWithCount:(NSInteger)allCount superWidth:(CGFloat)superWidth{
+    
+    DZDGridItemStyle *itemStyle = [[DZDGridItemStyle alloc] init];
+    
+    itemStyle.itemSize = [DZDGridItemStyle DGridItemHeightWithCount:allCount superWidth:superWidth];
+    
+    return itemStyle;
+}
+
++(CGSize)DGridItemHeightWithCount:(NSInteger)allCount superWidth:(CGFloat)superWidth{
+    
+    CGFloat superGridH = 0;
+    CGFloat superGridW = 0;
+    
+    if (allCount == 1) {
+        
+        superGridW = superWidth;
+        superGridH = superWidth * KImageWHOneRatio;
+        
+    }else if (allCount == 2 || allCount == 4){
+        
+        superGridW = (superWidth - kMargin5)/2.0;
+        superGridH = superGridW * KImageWHTwoRatio;
+        
+    }else{
+        
+        superGridW = (superWidth - kMargin10)/3.0;
+        superGridH = superGridW;
+    }
+    
+    return CGSizeMake(superGridW, superGridH);
+}
+
+
+@end
+
+
 @implementation DZDGridStyle
 
-+(instancetype)DGridImageStyle:(NSInteger)thumCount{
++(instancetype)DGridImageStyle:(NSArray<DZQDataAttachment *> *)dataImage cellWidth:(CGFloat)cellWidth{
+    
+    
+    CGFloat superWidth = cellWidth - kMargin30;
+    
+    for (DZQDataAttachment *imageAttach in dataImage) {
+        imageAttach.styleModel = [DZDGridItemStyle DGridItemStyleWithCount:dataImage.count superWidth:superWidth];
+    }
     
     DZDGridStyle *grid = [[DZDGridStyle alloc] init];
     
@@ -62,11 +108,15 @@
     grid.minimumLine = kMargin5-1;
     // 列间距 (左右间隔)
     grid.minimumInteritem = kMargin5-1;
-    grid.itemSize = CGSizeMake(kDis_PicCellWH, kDis_PicCellWH);
-    grid.gridEdge = UIEdgeInsetsMake(kMargin10, 0, kMargin10, 0);
+    
+    // (最多三张图，间距为5 合计为10)
+    CGFloat itemWH = (superWidth - kMargin10)/3.0;
+    grid.defaultItemSize = CGSizeMake(itemWH, itemWH);
+    
+    grid.gridEdge = UIEdgeInsetsZero;
     
     
-    return thumCount ? grid : nil;
+    return dataImage.count ? grid : nil;
 }
 
 @end
@@ -77,27 +127,27 @@
 @implementation DZDContentStyle
 
 // 计算主题（帖子）内容 frame
-+(instancetype)DThreadContentStyleWithMaxW:(CGFloat)maxWidth dataModel:(DZQDataThread *)dataModel{
++(instancetype)DThreadContentStyleWithMaxW:(CGFloat)maxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel{
     
     NSString *contentHtml = dataModel.relationships.firstPost.attributes.contentHtml;
-    CGFloat localOneH = [self canculateContentDetailHeight:dataModel maxW:maxWidth font:k_One_fontSize];
+    CGFloat localOneH = [self canculateContentDetailHeight:dataModel cellWidth:cellWidth maxW:maxWidth font:k_One_fontSize];
     
     DZDContentStyle *contentStyle = [self inner_contentStyle:contentHtml localOneH:localOneH contentMaxW:maxWidth font:KBoldFont(k_One_fontSize)];
     
-    contentStyle.kf_squareGrid = [DZDGridStyle DGridImageStyle:dataModel.relationships.firstPost.relationships.images.count];
+    contentStyle.kf_squareGrid = [DZDGridStyle DGridImageStyle:dataModel.relationships.firstPost.relationships.images cellWidth:cellWidth];
     
     return contentStyle;
 }
 
 // 计算评论内容 frame
-+(instancetype)DPostContentStyleWithMaxW:(CGFloat)maxWidth dataModel:(DZQDataPost *)dataModel{
++(instancetype)DPostContentStyleWithMaxW:(CGFloat)maxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataPost *)dataModel{
     
     NSString *contentHtml = dataModel.attributes.contentHtml;
-    CGFloat localOneH = [self canculatePostContentHeight:dataModel];
+    CGFloat localOneH = [self canculatePostContentHeight:dataModel cellWidth:cellWidth];
     
     DZDContentStyle *contentStyle = [self inner_contentStyle:contentHtml localOneH:localOneH contentMaxW:maxWidth font:KFont(14.f)];
     
-    contentStyle.kf_squareGrid = [DZDGridStyle DGridImageStyle:dataModel.relationships.images.count];
+    contentStyle.kf_squareGrid = [DZDGridStyle DGridImageStyle:dataModel.relationships.images cellWidth:cellWidth];
     
     return contentStyle;
 }
@@ -124,7 +174,7 @@
 }
 
 // 返回的 只有第一部分的高度
-+ (CGFloat)canculateContentDetailHeight:(DZQDataThread *)dataModel maxW:(CGFloat)maxWidth font:(CGFloat)titleSize{
++ (CGFloat)canculateContentDetailHeight:(DZQDataThread *)dataModel cellWidth:(CGFloat)cellWidth maxW:(CGFloat)maxWidth font:(CGFloat)titleSize{
     
     // 文章类型(0 普通 1 长文 2 视频)
     CGFloat oneHeight = 0;
@@ -134,16 +184,15 @@
         // 第一部分 只能是 图片
         NSInteger imageCount = dataModel.relationships.firstPost.relationships.images.count;
         
-        CGFloat imageHeight = ((int)(ceilf(imageCount/3.f))) * (kDis_PicCellWH + kMargin5)+kMargin15;
+        oneHeight = [self imageSquareHeight:imageCount cellWidth:cellWidth];
         
-        oneHeight = imageCount ? imageHeight : 0;
         
     }else if (modelType == 1){
         // 长文章 的标题
         oneHeight = [NSString cacaulteStringHeight:dataModel.attributes.title fontSize:titleSize width:maxWidth lineSpacing:5];
     }else if (modelType == 2){
         // 视频预览图
-        CGFloat videoHeight = (maxWidth/1920.0)*1080.0;  // 视频宽高比 1920 x 1080
+        CGFloat videoHeight = maxWidth * KVideoWHRatio;  // 视频宽高比 1920 x 1080
         
         oneHeight = dataModel.relationships.threadVideo.attributes.cover_url.length ? videoHeight : 0;
     }
@@ -153,17 +202,29 @@
 }
 
 // 返回的 只有第一部分的高度
-+ (CGFloat)canculatePostContentHeight:(DZQDataPost *)dataModel{
++ (CGFloat)canculatePostContentHeight:(DZQDataPost *)dataModel cellWidth:(CGFloat)cellWidth{
     
     // 回复内容（目前只支持 图片回复）
     
     NSInteger imageCount = dataModel.relationships.images.count;
     
-    CGFloat imageHeight = ((int)(ceilf(imageCount/3.f))) * (kDis_PicCellWH + kMargin5)+kMargin15;
+    return [self imageSquareHeight:imageCount cellWidth:cellWidth];
+}
+
+
++(CGFloat)imageSquareHeight:(NSInteger)imageCount cellWidth:(CGFloat)cellWidth{
     
-    CGFloat oneHeight = imageCount ? imageHeight : 0;
+    CGFloat sqareHeight = 0;
     
-    return oneHeight;
+    CGSize itemSize = [DZDGridItemStyle DGridItemHeightWithCount:imageCount superWidth:(cellWidth - kMargin30)];
+    
+    NSInteger lineNum = ((int)(ceilf(imageCount/3.f)));
+    
+    CGFloat imageHeight = ((lineNum * itemSize.height) + ((lineNum - 1) * kMargin5));
+    
+    sqareHeight = imageCount ? imageHeight : 0;
+    
+    return sqareHeight;
 }
 
 @end

@@ -27,9 +27,9 @@ static NSString * const cellIdentifier = @"DZPicSquareCell";
         self.delegate = self;
         self.dataSource = self;
         [self configHomeCollectionView];
+        self.backgroundColor = KLine_Color;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
-        self.backgroundColor = [UIColor whiteColor];
         [self registerClass:[DZPicSquareCell class] forCellWithReuseIdentifier:cellIdentifier];
     }
     return self;
@@ -55,17 +55,6 @@ static NSString * const cellIdentifier = @"DZPicSquareCell";
     [self reloadSections:[NSIndexSet indexSetWithIndex:0]];
 }
 
-
-/// 长按手势
--(void)lonePressRecognizerAction:(UILongPressGestureRecognizer *)longPressGes{
-    if (longPressGes.state == UIGestureRecognizerStateBegan) {
-        NSIndexPath *indexPath = [self indexPathForItemAtPoint:[longPressGes locationInView:self]];
-        DZPicSquareCell *cell = (DZPicSquareCell *)[self cellForItemAtIndexPath:indexPath];
-        if (cell && self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionView:longPressItemCell:)]) {
-            [self.imgDelegate collectionView:self longPressItemCell:cell];
-        }
-    }
-}
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -76,7 +65,7 @@ static NSString * const cellIdentifier = @"DZPicSquareCell";
     DZPicSquareCell *homeCell = (DZPicSquareCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     [homeCell updatePicSquareCell:self.dataArray[indexPath.item]];
-
+    
     return homeCell;
 }
 
@@ -86,62 +75,49 @@ static NSString * const cellIdentifier = @"DZPicSquareCell";
     
     DZPicSquareCell *itemCell = (DZPicSquareCell *)[self cellForItemAtIndexPath:indexPath];
     
-    if (self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionView:didSelectItemCell:)]) {
-        [self.imgDelegate collectionView:self didSelectItemCell:itemCell];
+    if (self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionView:squarDidSelectItem:)]) {
+        [self.imgDelegate collectionView:self squarDidSelectItem:itemCell];
     }
+    
 }
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
     CGFloat offsetY = scrollView.contentOffset.y;
-    if (self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionView:scrollDidScroll:)]) {
-        [self.imgDelegate collectionView:self scrollDidScroll:offsetY];
+    if (self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionView:squareCcrollDidScroll:)]) {
+        [self.imgDelegate collectionView:self squareCcrollDidScroll:offsetY];
     }
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    if (self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionView:scrollDidScroll:)]) {
-        [self.imgDelegate collectionViewWillBeginDragging];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    if (self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionViewDidEndScroll)]) {
-        [self.imgDelegate collectionViewDidEndScroll];
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (!decelerate) {
-        if (self.imgDelegate && [self.imgDelegate respondsToSelector:@selector(collectionViewDidEndScroll)]) {
-            [self.imgDelegate collectionViewDidEndScroll];
-        }
-    }
-}
 
 
 #pragma mark   /********************* UICollectionViewDelegateFlowLayout 布局 *************************/
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake(kDis_PicCellWH, kDis_PicCellWH);
+    DZDGridItemStyle *itemStyle = (DZDGridItemStyle *)self.dataArray[indexPath.row].styleModel;
+    if (itemStyle && [itemStyle isKindOfClass:[DZDGridItemStyle class]]) {
+        return itemStyle.itemSize;
+    }else{
+        return self.gridStyle.defaultItemSize;
+    }
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
-    return UIEdgeInsetsMake(kMargin10,0, kMargin10, 0);
+    return self.gridStyle.gridEdge;
     
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     
-    return kMargin5-1;  // 行间距 (上下间隔)
+    return self.gridStyle.minimumLine;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     
-    return kMargin5-1;  // 列间距 (左右间隔)
+    return self.gridStyle.minimumInteritem;
 }
 
 //- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{

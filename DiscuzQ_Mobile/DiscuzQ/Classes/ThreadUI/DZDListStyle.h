@@ -9,6 +9,11 @@
 #import "DZQSuperModel.h"
 #import "DZHtmlItem.h"
 
+#define KImageWHOneRatio   (9.0/16.0)  // 单张 图片宽高比
+#define KImageWHTwoRatio   (4.0/5.0)  // 两张 图片宽高比
+
+#define KVideoWHRatio   (1080.0/1920.0)  // 视频宽高比 1920 x 1080
+
 @interface DZDUserStyle : DZQStyle
 
 // 用户信息展示区（含用户名，昵称，分组 ，置顶，更多 以及 认证标识）
@@ -32,14 +37,24 @@
 
 @end
 
+@interface DZDGridItemStyle : DZQStyle
+
+@property (nonatomic, assign) CGSize itemSize;  //!< 单元格大小(自由组合)
+
++(CGSize)DGridItemHeightWithCount:(NSInteger)allCount superWidth:(CGFloat)superWidth;
+
++(instancetype)DGridItemStyleWithCount:(NSInteger)allCount superWidth:(CGFloat)superWidth;
+
+@end
+
 @interface DZDGridStyle : DZQStyle
 
-@property (nonatomic, assign) CGSize itemSize;  //!< 单元格大小
+@property (nonatomic, assign) CGSize defaultItemSize;  //!< 单元格大小(均等大小)
 @property (nonatomic, assign) UIEdgeInsets gridEdge;  //!< 组间距
 @property (nonatomic, assign) CGFloat minimumLine;  //!< // 行间距 (上下间隔)
 @property (nonatomic, assign) CGFloat minimumInteritem;  //!< // 列间距 (左右间隔)
 
-+(instancetype)DGridImageStyle:(NSInteger)thumCount;
++(instancetype)DGridImageStyle:(NSArray<DZQDataAttachment *> *)dataImage cellWidth:(CGFloat)cellWidth;
 
 @end
 
@@ -58,9 +73,9 @@
 @property(nonatomic,assign) CGFloat kf_ContentHeight;
 
 // 计算评论内容 frame
-+(instancetype)DPostContentStyleWithMaxW:(CGFloat)contenMaxWidth dataModel:(DZQDataPost *)dataModel;
++(instancetype)DPostContentStyleWithMaxW:(CGFloat)contenMaxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataPost *)dataModel;
 // 计算主题（帖子）内容 frame
-+(instancetype)DThreadContentStyleWithMaxW:(CGFloat)contenMaxWidth dataModel:(DZQDataThread *)dataModel;
++(instancetype)DThreadContentStyleWithMaxW:(CGFloat)contenMaxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel;
 
 @end
 

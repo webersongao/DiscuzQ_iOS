@@ -144,22 +144,22 @@ static NSString * DZQ_Topic_list =    @"/api/threads";
 ///// 分享主题时获取主题信息接口[单条]
 //static NSString * DZQ_Site_check =  @"/api/check";
 
-/*
+
 //=========== 回复 =========
-/// 删除回复接口[批量]
-static NSString * DZQ_Comment_check =  @"/api/check";
-/// 修改回复接口[批量]
-static NSString * DZQ_Comment_check =  @"/api/check";
-/// 创建回复接口
-static NSString * DZQ_Comment_check =  @"/api/check";
-/// 删除回复接口[单个]
-static NSString * DZQ_Comment_check =  @"/api/check";
+///// 删除回复接口[批量]
+//static NSString * DZQ_Comment_check =  @"/api/posts/batch";
+///// 修改回复接口[批量]
+//static NSString * DZQ_Comment_check =  @"/api/posts/batch";
+///// 创建回复接口
+//static NSString * DZQ_Comment_check =  @"/api/posts";
+///// 删除回复接口[单个]
+//static NSString * DZQ_Comment_check =  @"/api/posts";
 /// 查询回复接口[列表]
-static NSString * DZQ_Comment_check =  @"/api/check";
-/// 修改回复接口[单条]
-static NSString * DZQ_Comment_check =  @"/api/check";
-/// 查询我点赞的帖子接口[列表]
-static NSString * DZQ_Comment_check =  @"/api/check";
+static NSString * DZQ_Comment_list =  @"/api/posts";
+///// 修改回复接口[单条]
+//static NSString * DZQ_Comment_check =  @"/api/posts";
+///// 查询我点赞的帖子接口[列表]
+//static NSString * DZQ_Comment_check =  @"/api/likes";
 
 
 
@@ -177,7 +177,7 @@ static NSString * DZQ_Comment_check =  @"/api/check";
 //static NSString * DZQ_Site_check =  @"/api/check";
 
 
-
+/*
 //=========== 敏感词 =========
 /// 创建敏感词接口[单条]
 static NSString * DZQ_Site_check =  @"/api/check";

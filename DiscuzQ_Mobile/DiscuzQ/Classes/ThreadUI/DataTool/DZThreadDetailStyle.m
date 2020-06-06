@@ -13,39 +13,51 @@
 
 +(DZThreadDetailStyle *)inner_dataStyle:(DZQDataThread *)dataModel{
     
-    DZThreadDetailStyle *localStyle = [[DZThreadDetailStyle alloc] init];
-    
     // 前端展示 字段 格式化
-    [self formartThreadPostContentString:dataModel detailStyle:localStyle];
+    [self formartThreadPostContentString:dataModel];
     
     // 计算布局样式
-    [self canculateContentDetailStyle:dataModel detailStyle:localStyle];
+    return [self canculateContentDetailStyle:dataModel];
     
-    
-    return localStyle;
 }
 
 // 数据显示 格式化
-+ (void)formartThreadPostContentString:(DZQDataThread *)dataModel detailStyle:(DZThreadDetailStyle *)style{
++ (void)formartThreadPostContentString:(DZQDataThread *)dataModel{
     
-    dataModel.attributes.createdAt = [dataModel.attributes.createdAt dateFormatWithAccurate:unAccurate];;
-    dataModel.attributes.updatedAt = [dataModel.attributes.createdAt dateFormatWithAccurate:unAccurate];;
+    // 在详情页 不再计算评论信息 UI布局
+    dataModel.relationships.posts = nil;
+    
+    // 格式化
+    dataModel.attributes.createdAt = [dataModel.attributes.createdAt dateFormatWithAccurate:unAccurate];
+    dataModel.attributes.updatedAt = [dataModel.attributes.updatedAt dateFormatWithAccurate:unAccurate];
     
     for (DZQDataPost *dataPost in dataModel.relationships.posts) {
         
-        dataPost.attributes.createdAt = [dataPost.attributes.createdAt dateFormatWithAccurate:unAccurate];;
-        dataPost.attributes.updatedAt = [dataPost.attributes.createdAt dateFormatWithAccurate:unAccurate];;
+        dataPost.attributes.createdAt = [dataPost.attributes.createdAt dateFormatWithAccurate:unAccurate];
+        dataPost.attributes.updatedAt = [dataPost.attributes.updatedAt dateFormatWithAccurate:unAccurate];
     }
     
 }
 
 // 计算 空间高度 宽度等
-+ (void)canculateContentDetailStyle:(DZQDataThread *)dataModel detailStyle:(DZThreadDetailStyle *)style{
++ (instancetype)canculateContentDetailStyle:(DZQDataThread *)dataModel{
     
-    CGFloat cellWidth = KScreenWidth;
-    CGFloat cellContenMaxWidth = cellWidth - kMargin30;
+    DZThreadDetailStyle *threadStyle = [self DThreadDetailStyle:dz_CellWidth maxWidth:dz_CellMaxContentWidth dataModel:dataModel];
     
-    style.frame_detail_Head =  [[DZDHeadStyle new] DHeadStyle:dataModel cellWidth:cellWidth maxWidth:cellContenMaxWidth];
+    
+    return threadStyle;
+    
+}
+
+
+
+// 计算评论内容 frame
++(instancetype)DThreadDetailStyle:(CGFloat)cellWidth maxWidth:(CGFloat)contenMaxWidth dataModel:(DZQDataThread *)dataModel{
+    
+    
+    DZThreadDetailStyle *style = [[DZThreadDetailStyle alloc] init];
+    
+    style.frame_detail_Head =  [[DZDHeadStyle new] DHeadStyle:dataModel cellWidth:cellWidth maxWidth:contenMaxWidth];
     
     style.kf_Header = CGRectMake(0, 0, cellWidth, style.frame_detail_Head.kf_HeadSize.height);
     
@@ -56,15 +68,13 @@
     
     // 计算各个回复cell的布局
     for (DZQDataPost *dataPost in dataModel.relationships.posts) {
-
-        dataPost.styleModel = [DZDPostCellStyle DPostCellStyle:cellWidth maxWidth:cellContenMaxWidth dataModel:dataPost];
+        
+        dataPost.styleModel = [DZDPostCellStyle DPostCellStyle:cellWidth maxWidth:contenMaxWidth dataModel:dataPost];
         
     }
     
+    return style;
+
 }
-
-
-
-
 
 @end

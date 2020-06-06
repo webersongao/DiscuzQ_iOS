@@ -57,8 +57,8 @@
 // 注册
 - (IBAction)registerAction:(UIButton *)sender {
     
-    [[DZNetCenter center] dzx_notiListWithTypeFilter:@"replied" completion:^(NSArray<DZQDataNoti *> * _Nonnull varModel, BOOL hasMore, BOOL success) {
-        KSLog(@"通知信息获取成功");
+    [[DZNetCenter center] dzx_PostListWithThreadId:@"2837" page:1 completion:^(NSArray<DZQDataPost *> *postArr,BOOL hasMore) {
+        KSLog(@"查询回复接口[列表] 获取成功");
     }];
     
 }
@@ -66,9 +66,9 @@
 // 阅读
 - (IBAction)readerAction:(UIButton *)sender {
     
-    DZTabItem *item01 = [[DZTabItem alloc] initWithTitle:@"腾讯文学" class:[DZBaseViewController class]];
-    DZTabItem *item02 = [[DZTabItem alloc] initWithTitle:@"百度文学" class:[DZBaseViewController class]];
-    DZTabItem *item03 = [[DZTabItem alloc] initWithTitle:@"阿里文学" class:[DZBaseViewController class]];
+    DZTabItem *item01 = [[DZTabItem alloc] initWithTitle:@"腾讯柯基" class:[DZBaseViewController class]];
+    DZTabItem *item02 = [[DZTabItem alloc] initWithTitle:@"百度辣鸡" class:[DZBaseViewController class]];
+    DZTabItem *item03 = [[DZTabItem alloc] initWithTitle:@"阿里粑粑" class:[DZBaseViewController class]];
     
     NSArray *tabArray = @[item01,item02,item03];
     DZRootPostTabController *PostTab = [[DZRootPostTabController alloc] initWithTabArr:tabArray];

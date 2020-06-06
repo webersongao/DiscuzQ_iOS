@@ -10,11 +10,7 @@
 
 @interface DZPostCommentBar ()
 
-@property (nonatomic, strong) UIButton *likeButton;  //!< 点赞
-@property (nonatomic, strong) UIButton *replyButton;  //!< 评论
-@property (nonatomic, strong) DZLabel *timeLabel;  //!< 回复发布时间
-@property (nonatomic, strong) UIView *bottomLine;  //!< 属性注释
-
+@property (nonatomic, strong) DZLabel *timeLabel;  //!< 回复发布时间（在左侧）
 @end
 
 
@@ -34,52 +30,35 @@
 -(void)config_CommentBar{
     
     [self addSubview:self.timeLabel];
-    [self addSubview:self.likeButton];
-    [self addSubview:self.replyButton];
-    [self addSubview:self.bottomLine];
+    [self.shareButton removeFromSuperview];
+    
+    self.likeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    self.replyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 
--(void)updateCommentBar:(DZDToolBarStyle *)toolLayout{
+-(void)updateCommentBar:(NSString *)timeString layout:(DZDToolBarStyle *)toolLayout{
     
+    self.timeLabel.text = timeString;
+    
+    
+    
+    // 更新布局
     self.timeLabel.frame = toolLayout.kf_left;
     self.likeButton.frame = toolLayout.kf_center;
     self.replyButton.frame = toolLayout.kf_right;
     self.bottomLine.frame = toolLayout.kf_barLine;
+    
 }
 
-
-- (UIButton *)likeButton{
-    if (!_likeButton) {
-        _likeButton = [UIButton ButtonNormalWithFrame:CGRectZero title:@"" titleFont:KFont(12) titleColor:KColor(K2A2C2F_Color, 1.0) normalImgPath:@"dz_list_praise_n" touchImgPath:@"dz_list_praise_f" isBackImage:NO];
-        [_likeButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsImageLeft imageTitleSpace:5];
-        _likeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    }
-    return _likeButton;
-}
-
-- (UIButton *)replyButton{
-    if (!_replyButton) {
-        _replyButton = [UIButton ButtonNormalWithFrame:CGRectZero title:@"" titleFont:KFont(12) titleColor:KColor(K2A2C2F_Color, 1.0) normalImgPath:@"dz_list_comment" touchImgPath:@"dz_list_comment" isBackImage:NO];
-        [_replyButton layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsImageLeft imageTitleSpace:5];
-        _replyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    }
-    return _replyButton;
-}
 
 - (DZLabel *)timeLabel{
     if (!_timeLabel) {
-        _timeLabel = [DZLabel dz_labelWithFrame:CGRectZero title:@"" titleColor:KGray_Color font:KFont(12.f) textAlignment:NSTextAlignmentRight];
+        _timeLabel = [DZLabel dz_labelWithFrame:CGRectZero title:@"" titleColor:KGray_Color font:KFont(14.f) textAlignment:NSTextAlignmentLeft];
     }
     return _timeLabel;
 }
 
 
--(UIView *)bottomLine{
-    if (!_bottomLine) {
-        _bottomLine = [[UIView alloc] initWithFrame:CGRectZero];
-        _bottomLine.backgroundColor = KLine_Color;
-    }
-    return _bottomLine;
-}
+
 
 @end

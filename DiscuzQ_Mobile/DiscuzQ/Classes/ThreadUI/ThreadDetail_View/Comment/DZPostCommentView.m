@@ -47,7 +47,7 @@
     
     [self.postContent updateThreadNormal:dataPost.relationships style:postStyle.frame_post_content];
     
-    [self.postToolBar updateCommentBar:postStyle.frame_post_toolBar];
+    [self.postToolBar updateCommentBar:@"" layout:postStyle.frame_post_toolBar];
     
     [self layoutMyCommentView:postStyle];
 }

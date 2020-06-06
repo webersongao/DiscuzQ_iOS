@@ -8,6 +8,7 @@
 
 #import "DZQSuperModel.h"
 #import "DZDDetailStyle.h"
+#import "DZDPostCellStyle.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

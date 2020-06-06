@@ -9,13 +9,13 @@
 #import "DZThreadDetailHeader.h"
 #import "DZThreadHead.h"
 #import "DZThreadContent.h"
-#import "DZThreadBottomBar.h"
+#import "DZThreadToolBar.h"
 
 @interface DZThreadDetailHeader ()
 
 @property (nonatomic, strong) DZThreadHead *userHeader;  //!< 用户信息
 @property (nonatomic, strong) DZThreadContent *thredCoreView;  //!< 核心帖子内容
-@property (nonatomic, strong) DZThreadBottomBar *bottomToolBar;  //!< 转评赞 工具条
+@property (nonatomic, strong) DZThreadToolBar *bottomToolBar;  //!< 转评赞 工具条
 
 @end
 
@@ -45,7 +45,7 @@
     
     [self.thredCoreView updateThreadContent:dataModel contentStyle:layout];
     
-    [self.bottomToolBar updateBottombarLayout:layout.frame_toolBar];
+    [self.bottomToolBar updateDetailToolBar:layout.frame_toolBar];
     
     // 更新布局
     [self layoutDetailHeader:layout];
@@ -76,9 +76,9 @@
     return _thredCoreView;
 }
 
--(DZThreadBottomBar *)bottomToolBar{
+-(DZThreadToolBar *)bottomToolBar{
     if (!_bottomToolBar) {
-        _bottomToolBar = [[DZThreadBottomBar alloc] initWithFrame:CGRectZero];
+        _bottomToolBar = [[DZThreadToolBar alloc] initWithFrame:CGRectZero];
     }
     return _bottomToolBar;
 }

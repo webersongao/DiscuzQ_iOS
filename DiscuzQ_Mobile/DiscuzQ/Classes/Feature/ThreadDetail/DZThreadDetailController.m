@@ -33,8 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"主题详情";
-    self.title = @"超级医生在都市";
+    self.title = @"详情";
     [self config_DetailController];
     [self loadThreadDetailinfomation];
 }
@@ -52,8 +51,8 @@
     
     KWEAKSELF
     self.detailView.mj_footer = [DZRefreshFooter footerWithRefreshingBlock:^{
-//        weakSelf.postPage++;
-//        [weakSelf loadThreadDetailinfomation];
+        //        weakSelf.postPage++;
+        //        [weakSelf loadThreadDetailinfomation];
     }];
     
 }
@@ -70,6 +69,7 @@
 -(void)updateDetailView:(DZQDataThread *)dataModel state:(BOOL)success{
     if (success) {
         [self.detailView updateThreadDetail:dataModel];
+        self.title = dataModel.attributes.title.length ? dataModel.attributes.title : @"详情";
     }else{
         [DZMobileCtrl showAlertError:@"数据异常,请稍后重试"];
     }

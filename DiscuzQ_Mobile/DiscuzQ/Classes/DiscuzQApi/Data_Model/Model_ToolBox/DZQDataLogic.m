@@ -224,19 +224,23 @@
         bodyModel.type_id = [dataModel stringForKey:@"id"];
         
         // 2、处理 attributes
-        NSString *data_type = [dataModel stringForKey:@"type"];
-        Class attributeClass = [self.Maper modelClassForKey:data_type];
-        if (!attributeClass) { KSLog(@"WBS %@ 接口 attributes 模型未实现 该项数据丢弃",urlCtrl); continue; }
-        
-        NSDictionary *data_attributes = [dataModel dictionaryForKey:@"attributes"];
-        bodyModel.attributes = [attributeClass yy_modelWithDictionary:data_attributes];
+        {
+            NSString *data_type = [dataModel stringForKey:@"type"];
+            Class attributeClass = [self.Maper modelClassForKey:data_type];
+            if (!attributeClass) { KSLog(@"WBS %@ 接口 attributes 模型未实现 该项数据丢弃",urlCtrl); continue; }
+            
+            NSDictionary *data_attributes = [dataModel dictionaryForKey:@"attributes"];
+            bodyModel.attributes = [attributeClass yy_modelWithDictionary:data_attributes];
+        }
         
         // 3、处理 relationships
-        Class relateClass = [self.Maper relationClassForUrlKey:urlCtrl];
-        if (!relateClass) { KSLog(@"WBS %@ 接口 relationships 模型未实现",urlCtrl); relateClass = nil; }
-        
-        NSDictionary *data_relationships = [dataModel dictionaryForKey:@"relationships"];
-        bodyModel.relationships = [relateClass dz_modelWithDictionary:data_relationships];
+        {
+            Class relateClass = [self.Maper relationClassForUrlKey:urlCtrl];
+            if (!relateClass) { KSLog(@"WBS %@ 接口 relationships 模型未实现",urlCtrl); relateClass = nil; }
+            
+            NSDictionary *data_relationships = [dataModel dictionaryForKey:@"relationships"];
+            bodyModel.relationships = [relateClass dz_modelWithDictionary:data_relationships];
+        }
         
         // 回归合并到数组
         [localBodyArray addObject:bodyModel];

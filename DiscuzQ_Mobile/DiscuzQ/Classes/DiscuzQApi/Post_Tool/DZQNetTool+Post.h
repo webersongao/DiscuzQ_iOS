@@ -14,6 +14,11 @@
 @interface DZQNetTool (Post)
 
 
+/// 查询 回复 接口[列表]
+-(void)dz_PostListWithQuery:(NSString *)query success:(PRCompleteBlock)success failure:(PRFailureBlock)failure;
+
+
+
 
 @end
 

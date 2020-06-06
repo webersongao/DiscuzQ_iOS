@@ -10,8 +10,9 @@
 
 @interface DZDiscoverTool : NSObject
 
-+(NSArray<DZQDataThread *>*)discoverResData:(DZQResModel *)resModel style:(Class)styleCls;
++(NSArray<DZQDataPost *>*)post_dataPostResData:(DZQResModel *)resModel style:(Class)styleCls;
 
++(NSArray<DZQDataThread *>*)thead_dataThreadResData:(DZQResModel *)resModel style:(Class)styleCls;
 
 
 
