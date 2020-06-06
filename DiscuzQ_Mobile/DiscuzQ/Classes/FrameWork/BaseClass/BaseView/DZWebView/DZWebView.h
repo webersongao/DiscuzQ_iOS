@@ -49,5 +49,7 @@ typedef enum : NSUInteger {
 
 - (void)dz_registerHandler:(NSString*)handlerName handler:(WVJBHandler)handler;
 
+- (void)dz_loadHTMLString:(NSString *)htmlString baseURL:(NSString *)urlString back:(backStringBlock)backBlock;
+
 @end
 

@@ -12,9 +12,11 @@
 #import "NSObject+Super.h"
 
 // 无特殊情况，一般都是屏幕宽度
+#define dz_CellMargin 15.0
+// 无特殊情况，一般都是屏幕宽度
 #define dz_CellWidth KScreenWidth
 // 无特殊情况，一般都是屏幕宽度 - 30 （两个边距）
-#define dz_CellMaxContentWidth ((KScreenWidth) - kMargin30)
+#define dz_CellMaxContentWidth ((KScreenWidth) - (15.0 * 2.0))
 
 @class DZQSuperData;
 

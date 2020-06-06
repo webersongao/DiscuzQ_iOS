@@ -10,7 +10,11 @@
 
 @interface DZThreadDetailListView : DZBaseTableView
 
--(void)updateThreadDetail:(DZQDataThread *)dataModel;
+-(void)updateThreadHeadDetail:(DZQDataThread *)dataModel;
+
+-(void)updateThreadPostDetail:(NSArray<DZQDataPost *> *)dataPostList;
+
+
 
 @end
 

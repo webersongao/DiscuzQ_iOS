@@ -31,6 +31,7 @@
 		706313FF246F9A360039C9FE /* DZQNetTool+Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 706313FE246F9A360039C9FE /* DZQNetTool+Post.m */; };
 		70631402246F9A4C0039C9FE /* DZQNetTool+Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 70631401246F9A4C0039C9FE /* DZQNetTool+Site.m */; };
 		706357DB247AA36100F0F4FD /* DZThreadListStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 706357DA247AA36100F0F4FD /* DZThreadListStyle.m */; };
+		70716311248B93C2000BE2AA /* DZDContentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 70716310248B93C2000BE2AA /* DZDContentStyle.m */; };
 		707213D224877CA200D2C660 /* DZThreadDetailSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 707213D124877CA200D2C660 /* DZThreadDetailSection.m */; };
 		707469A92480F9BC005F887E /* DZMediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 707469A82480F9BC005F887E /* DZMediaPlayer.m */; };
 		707469AC2480F9DC005F887E /* DZMediaCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 707469AB2480F9DC005F887E /* DZMediaCenter.m */; };
@@ -506,6 +507,8 @@
 		70631401246F9A4C0039C9FE /* DZQNetTool+Site.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DZQNetTool+Site.m"; sourceTree = "<group>"; };
 		706357D9247AA36100F0F4FD /* DZThreadListStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadListStyle.h; sourceTree = "<group>"; };
 		706357DA247AA36100F0F4FD /* DZThreadListStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadListStyle.m; sourceTree = "<group>"; };
+		7071630F248B93C2000BE2AA /* DZDContentStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZDContentStyle.h; sourceTree = "<group>"; };
+		70716310248B93C2000BE2AA /* DZDContentStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZDContentStyle.m; sourceTree = "<group>"; };
 		707213D024877CA200D2C660 /* DZThreadDetailSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadDetailSection.h; sourceTree = "<group>"; };
 		707213D124877CA200D2C660 /* DZThreadDetailSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadDetailSection.m; sourceTree = "<group>"; };
 		707469A72480F9BC005F887E /* DZMediaPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZMediaPlayer.h; sourceTree = "<group>"; };
@@ -1510,6 +1513,17 @@
 			path = DZQModel;
 			sourceTree = "<group>";
 		};
+		70716312248B94E8000BE2AA /* DZ_Content */ = {
+			isa = PBXGroup;
+			children = (
+				70AE9BC1247D779C00F8CA2D /* DZHtmlItem.h */,
+				70AE9BC2247D779C00F8CA2D /* DZHtmlItem.m */,
+				7071630F248B93C2000BE2AA /* DZDContentStyle.h */,
+				70716310248B93C2000BE2AA /* DZDContentStyle.m */,
+			);
+			path = DZ_Content;
+			sourceTree = "<group>";
+		};
 		707469A62480F979005F887E /* DZPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2026,15 +2040,6 @@
 			path = innerView;
 			sourceTree = "<group>";
 		};
-		70AE9BC0247D777D00F8CA2D /* ItemModel */ = {
-			isa = PBXGroup;
-			children = (
-				70AE9BC1247D779C00F8CA2D /* DZHtmlItem.h */,
-				70AE9BC2247D779C00F8CA2D /* DZHtmlItem.m */,
-			);
-			path = ItemModel;
-			sourceTree = "<group>";
-		};
 		70C1E4E8246AB36A00DE8521 /* M_NetCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2393,6 +2398,7 @@
 				70FBB8EF24288B0E00BE854E /* Module */,
 				70FBBACB24288B0E00BE854E /* Feature */,
 				70FBBA3324288B0E00BE854E /* Library */,
+				70716312248B94E8000BE2AA /* DZ_Content */,
 				707CDF052466B114000B6F7F /* DiscuzQApi */,
 				70CFDE282474D6EF0097B3CD /* ThreadUI */,
 				707469A62480F979005F887E /* DZPlayer */,
@@ -2860,7 +2866,6 @@
 			isa = PBXGroup;
 			children = (
 				7010C785247ED1EC0017E552 /* ActionCenter */,
-				70AE9BC0247D777D00F8CA2D /* ItemModel */,
 				70FBB8FD24288B0E00BE854E /* DZDiscoverController.h */,
 				70FBB8FF24288B0E00BE854E /* DZDiscoverController.m */,
 				70FBB8FC24288B0E00BE854E /* DZDiscoverCateController.h */,
@@ -4331,6 +4336,7 @@
 				70885A322472FE3700F9475D /* DZQDataLogic.m in Sources */,
 				706357DB247AA36100F0F4FD /* DZThreadListStyle.m in Sources */,
 				70FBBE2224288B1000BE854E /* AppDelegate+SDK.m in Sources */,
+				70716311248B93C2000BE2AA /* DZDContentStyle.m in Sources */,
 				7095F6E12473B92F00384012 /* DZQProfileRelationModel.m in Sources */,
 				70FBBE2024288B1000BE854E /* AppDelegate+Global.m in Sources */,
 				707CDF302466B2DA000B6F7F /* DZQNetTool+Notification.m in Sources */,

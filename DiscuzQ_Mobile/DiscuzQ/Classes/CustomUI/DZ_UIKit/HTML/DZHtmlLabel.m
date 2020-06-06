@@ -34,7 +34,7 @@
     
     self.attributedString = attributeString;
     self.htmlString = attributeString.string;
-    self.viewMaxRect = CGRectMake(kMargin15, viewRect.origin.y, KScreenWidth-kMargin30, CGFLOAT_HEIGHT_UNKNOWN);
+    self.viewMaxRect = CGRectMake(dz_CellMargin, viewRect.origin.y, dz_CellWidth, CGFLOAT_HEIGHT_UNKNOWN);
 }
 
 
@@ -47,7 +47,8 @@
         DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
         imageView.delegate = self;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
-        imageView.image = [(DTImageTextAttachment *)attachment image];
+        UIImage *localImage = [(DTImageTextAttachment *)attachment image];
+        imageView.image = localImage;
         imageView.url = attachment.contentURL;
         if ([imageURL containsString:@"gif"]) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

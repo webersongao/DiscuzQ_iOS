@@ -190,6 +190,18 @@
     [self loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
 }
 
+- (void)dz_loadHTMLString:(NSString *)htmlString baseURL:(NSString *)urlString back:(backStringBlock)backBlock{
+
+    // 无数据的时候显示
+    if (!htmlString.length) {
+        backBlock ? backBlock(@"网页数据异常或无法解析，请稍后重试") : nil;
+        return;
+    }
+    
+    [self loadHTMLString:htmlString baseURL:[NSURL URLWithString:urlString]];
+}
+
+
 - (void)dz_registerHandler:(NSString*)handlerName handler:(WVJBHandler)handler{
     [self.jsBridge registerHandler:handlerName handler:handler];
 }

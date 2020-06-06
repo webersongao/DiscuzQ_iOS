@@ -96,9 +96,8 @@
  firstPost.mentionUsers    users    array    否    主题@用户
  posts.mentionUsers    users    array    否    回复@用户
  */
--(void)dzx_threadOneWithThreadId:(NSString *)thread_id page:(NSInteger)page completion:(void (^)(DZQDataThread *threadData,BOOL success))completion{
+-(void)dzx_threadOneWithThreadId:(NSString *)thread_id completion:(void (^)(DZQDataThread *threadData,BOOL success))completion{
     
-    page = (page <= 0) ? 1 : page;
     NSString *defaultStr = @"user,firstPost,threadVideo,firstPost.images,firstPost.attachments,posts,posts.user,posts.thread,posts.images";
     NSString *query = [NSString stringWithFormat:@"include=%@,firstPost.likedUsers,rewardedUsers",defaultStr];
     [[DZQNetTool shared] dz_threadOneWithSubCtrl:thread_id query:query success:^(DZQResModel *resModel, BOOL success) {
@@ -160,33 +159,6 @@
 }
 
 
-/// 获取 单一主题详细信息(复合型接口，支持上拉刷新更多)
--(void)dzx_threadOneDeatilWithThreadId:(NSString *)thread_id postPage:(NSInteger)postPage completion:(void (^)(DZQDataThread *threadData,BOOL hasMore))completion{
-    
-    postPage = (postPage <= 0) ? 1 : postPage;
-    NSString *defaultStr = @"user,firstPost,threadVideo,firstPost.images,firstPost.attachments,posts,posts.user,posts.thread,posts.images";
-    NSString *query = [NSString stringWithFormat:@"include=%@,firstPost.likedUsers,rewardedUsers",defaultStr];
-    KWEAKSELF
-    [[DZQNetTool shared] dz_threadOneWithSubCtrl:thread_id query:query success:^(DZQResModel *resModel, BOOL success) {
-        dispatch_async(self.formartQueue, ^{
-            NSArray *dataArray = [DZDiscoverTool thead_dataThreadResData:resModel style:[DZThreadDetailStyle class]];
-            [weakSelf dzx_PostListWithThreadId:thread_id page:postPage completion:^(NSArray<DZQDataPost *> * _Nonnull postArr, BOOL hasMore) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (completion) {
-                        DZQDataThread *dataThread = dataArray.firstObject;
-                        dataThread.relationships.posts = postArr;
-                        completion(dataThread,hasMore);
-                    }
-                });
-            }];
-        });
-    } failure:^(NSError *error) {
-        if (completion) {
-            completion(nil,NO);
-        }
-    }];
-    
-}
 
 
 

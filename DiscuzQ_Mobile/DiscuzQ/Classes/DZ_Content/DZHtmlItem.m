@@ -19,6 +19,8 @@
     item.maxRect = maxRect;
     item.screen_html = [self regularEmojiExpression:origin_html];
     
+//    item.screen_html = [self regularImageAttributedExpression:item.screen_html];
+    
     CGSize textSize = [DZHtmlUtils getAttributedTextHeightHtml:item.screen_html withMaxRect:maxRect];
     
     item.frame = CGRectMake(maxRect.origin.x, maxRect.origin.y, maxRect.size.width, textSize.height);
@@ -28,7 +30,7 @@
     return item;
 }
 
-
+// 对emoji图片额外处理
 +(NSString *)regularEmojiExpression:(NSString *)htmlString{
     
     NSError* error = nil;
@@ -38,6 +40,23 @@
     NSString *styleCssString = [NSString stringWithFormat:@"$1<img src=\"$2/emoji/$3\" style=\"width:%.fpx; height:%.fpx;\" alt=\"$4",scaleWH,scaleWH];
         
     NSRegularExpression* exp = [[NSRegularExpression alloc] initWithPattern:@"(.*?)<img src=\\\"(.*?)/emoji/(.*?)\\\" alt=\\\"(.*?)" options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSString* expstr = [exp stringByReplacingMatchesInString:htmlString options:0 range:NSMakeRange(0, htmlString.length) withTemplate:styleCssString];
+    
+    return expstr;
+}
+
+// 对 富文本 图片额外处理 (目前只支持 站内图片)
++(NSString *)regularImageAttributedExpression:(NSString *)htmlString{
+    
+    NSError* error = nil;
+    htmlString = checkNull(htmlString);
+    CGFloat scaleWH = 100;
+    NSString *lcoalHost = [NSURL URLWithString:DZQ_BASEURL].host ?: @"iOSSDK_DomainError.com";
+    NSString *styleCssString = [NSString stringWithFormat:@"$1<img src=\"$2/%@/$3\" style=\"width:%.fpx; height:%.fpx;\" alt=\"$4",lcoalHost,scaleWH,scaleWH];
+        
+    NSString *regexString = [NSString stringWithFormat:@"(.*?)<img src=\\\"(.*?)/%@/(.*?)\\\" alt=\\\"(.*?)",lcoalHost];
+    NSRegularExpression* exp = [[NSRegularExpression alloc] initWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:&error];
     
     NSString* expstr = [exp stringByReplacingMatchesInString:htmlString options:0 range:NSMakeRange(0, htmlString.length) withTemplate:styleCssString];
     

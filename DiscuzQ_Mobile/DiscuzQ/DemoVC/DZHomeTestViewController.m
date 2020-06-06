@@ -48,7 +48,7 @@
 //搜索
 - (IBAction)searchAction:(UIButton *)sender {
     
-    [[DZNetCenter center] dzx_threadOneWithThreadId:@"2845" page:0 completion:^(DZQDataThread * _Nonnull threadData, BOOL success) {
+    [[DZNetCenter center] dzx_threadOneWithThreadId:@"3057" completion:^(DZQDataThread * _Nonnull threadData, BOOL success) {
         KSLog(@"主题信息获取成功");
     }];
     
@@ -150,8 +150,8 @@
 // 详情页 接口
 - (IBAction)siriInputAction:(UIButton *)sender {
     
-    NSString *threadId = @"561";    // 多文字，少图片
-//    NSString *threadId = @"3045";    // 富文本 多图片
+//    NSString *threadId = @"561";    // 多文字，少图片
+    NSString *threadId = @"3057";    // 富文本 多图片
 //    NSString *threadId = @"2314";  // 文章
 //    NSString *threadId = @"3054";  // 视频
     [[DZMobileCtrl sharedCtrl] PushToThreadDetailController:threadId];

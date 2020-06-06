@@ -16,8 +16,8 @@
 
 
 @property (nonatomic, strong) DZQDataThread *dataModel;  //!< 属性注释
-//@property (nonatomic, strong) DZThreadDetailStyle *detailStyle;  //!< 属性注释
 @property (nonatomic, strong) NSArray<DZQDataPost *> *dataList;  //!< 属性注释
+
 @property (nonatomic, strong) DZThreadDetailHeader *headerView;  //!< 属性注释
 
 @end
@@ -48,18 +48,23 @@
     return nil;
 }
 
--(void)updateThreadDetail:(DZQDataThread *)dataModel{
+-(void)updateThreadHeadDetail:(DZQDataThread *)dataModel{
     
-    DZQThreadRelationModel *relation = dataModel.relationships;
-    self.dataList = relation.posts;
     self.dataModel = dataModel;
-    
     [self.headerView updateDetailHead:dataModel layout:self.detailStyle.frame_detail_Head];
     
-//    [self beginUpdates];
+    //    [self beginUpdates];
     self.headerView.frame = self.detailStyle.kf_Header;
     [self setTableHeaderView:self.headerView];
-//    [self endUpdates];
+    //    [self endUpdates];
+}
+
+-(void)updateThreadPostDetail:(NSArray<DZQDataPost *> *)dataPostList{
+    
+    // 必须有帖子主题内容之后才可以刷新评论
+    if (self.dataModel && self.dataModel.type_id.length) {
+        self.dataList = [dataPostList copy];
+    }
     
     [self reloadData];
 }
@@ -74,9 +79,9 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     DZThreadDetailSection *Header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DZThreadDetailSection"];
-
+    
     [Header updateSectionLike:self.dataModel.relationships.firstPost.relationships.likedUsers reward:self.dataModel.relationships.rewardedUsers layout:self.detailStyle.frame_detail_Section];
-
+    
     return Header;
 }
 
