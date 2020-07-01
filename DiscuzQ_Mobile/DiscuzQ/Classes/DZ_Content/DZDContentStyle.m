@@ -13,9 +13,9 @@
 @implementation DZDContentStyle
 
 // 计算主题（帖子）内容 frame
-+(instancetype)DThreadContentStyleWithMaxW:(CGFloat)maxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel{
++(instancetype)DThreadContentStyleWithMaxW:(CGFloat)maxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel isDetail:(BOOL)isDetail{
     
-    NSString *contentHtml = dataModel.relationships.firstPost.attributes.contentHtml;
+    NSString *contentHtml = isDetail ? dataModel.relationships.firstPost.attributes.contentHtml : dataModel.relationships.firstPost.attributes.summary;
     CGFloat localOneH = [self canculateContentDetailHeight:dataModel cellWidth:cellWidth maxW:maxWidth font:k_One_fontSize];
     
     DZDContentStyle *contentStyle = [self inner_contentStyle:contentHtml localOneH:localOneH contentMaxW:maxWidth font:KBoldFont(k_One_fontSize)];
@@ -62,18 +62,11 @@
 // 返回的 只有第一部分的高度
 + (CGFloat)canculateContentDetailHeight:(DZQDataThread *)dataModel cellWidth:(CGFloat)cellWidth maxW:(CGFloat)maxWidth font:(CGFloat)titleSize{
     
-    // 文章类型(0 普通 1 长文 2 视频)
+    // 文章类型(0 普通 1 长文 2 视频 3 图片)
     CGFloat oneHeight = 0;
     NSInteger modelType = dataModel.attributes.type;
     
-    if (modelType == 0) {
-        // 第一部分 只能是 图片
-        NSInteger imageCount = dataModel.relationships.firstPost.relationships.images.count;
-        
-        oneHeight = [self imageSquareHeight:imageCount cellWidth:cellWidth];
-        
-        
-    }else if (modelType == 1){
+    if (modelType == 1){
         // 长文章 的标题
         oneHeight = [NSString cacaulteStringHeight:dataModel.attributes.title fontSize:titleSize width:maxWidth lineSpacing:5];
     }else if (modelType == 2){
@@ -81,6 +74,11 @@
         CGFloat videoHeight = maxWidth * KVideoWHRatio;  // 视频宽高比 1920 x 1080
         
         oneHeight = dataModel.relationships.threadVideo.attributes.cover_url.length ? videoHeight : 0;
+    }else if (modelType == 3 || modelType == 0) {
+        // 第一部分 只能是 图片
+        NSInteger imageCount = dataModel.relationships.firstPost.relationships.images.count;
+        
+        oneHeight = [self imageSquareHeight:imageCount cellWidth:cellWidth];
     }
     
     // 只返回第一个 高度

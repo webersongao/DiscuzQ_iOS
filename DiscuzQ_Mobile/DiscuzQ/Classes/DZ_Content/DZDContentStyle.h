@@ -26,10 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign) CGFloat kf_ContentHeight;
 
-// 计算评论内容 frame
+// 计算 评论内容 frame
 +(instancetype)DPostContentStyleWithMaxW:(CGFloat)contenMaxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataPost *)dataModel;
+
+
 // 计算主题（帖子）内容 frame
-+(instancetype)DThreadContentStyleWithMaxW:(CGFloat)contenMaxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel;
++(instancetype)DThreadContentStyleWithMaxW:(CGFloat)maxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel isDetail:(BOOL)isDetail;
 
 @end
 

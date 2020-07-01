@@ -12,9 +12,9 @@
 #import "DZThreadPostCell.h"
 #import "DZThreadDetailStyle.h"
 
-@interface DZThreadDetailListView ()<UITableViewDelegate,UITableViewDataSource>
+@interface DZThreadDetailListView ()<UITableViewDelegate,UITableViewDataSource,DZHtmlItemDelegate>
 
-
+@property (nonatomic, strong) dispatch_queue_t reloadQueue;  //!< 属性注释
 @property (nonatomic, strong) DZQDataThread *dataModel;  //!< 属性注释
 @property (nonatomic, strong) NSArray<DZQDataPost *> *dataList;  //!< 属性注释
 
@@ -28,6 +28,7 @@
     self = [super initWithFrame:frame style:style];
     if (self) {
         [self config_ThreadDetailListView];
+        self.reloadQueue = dispatch_queue_create("com.reloadDetail", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -51,6 +52,9 @@
 -(void)updateThreadHeadDetail:(DZQDataThread *)dataModel{
     
     self.dataModel = dataModel;
+    
+    self.detailStyle.frame_detail_Head.frame_content.kf_twoItem.htmlDelagate = self;
+    
     [self.headerView updateDetailHead:dataModel layout:self.detailStyle.frame_detail_Head];
     
     //    [self beginUpdates];
@@ -111,6 +115,21 @@
     //    DZQDataPost *dataPost = self.dataList[indexPath.row];
     
     KSLog(@"WBS 跳转 评论详情? 还是 ？");
+    
+}
+
+
+#pragma mark DZHtmlItemDelegate
+
+-(void)refreshThreadCurrentHtmlView:(NSString *)htmlString{
+    
+    dispatch_async(self.reloadQueue, ^{
+        self.dataModel.relationships.firstPost.attributes.contentHtml = htmlString;
+        [self.detailStyle reloadThreadDetailWithDataModel:self.dataModel];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateThreadHeadDetail:self.dataModel];
+        });
+    });
     
 }
 

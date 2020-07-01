@@ -97,6 +97,7 @@
             postArray = nil;
         }
     }
+    self.detailView.mj_footer.hidden = NO;
     if (hasMore) {
         [self.detailView.mj_footer endRefreshing];
     }else{
@@ -111,6 +112,7 @@
 -(DZThreadDetailListView *)detailView{
     if (!_detailView) {
         _detailView = [[DZThreadDetailListView alloc] initWithFrame:KView_OutNavi_Bounds style:UITableViewStyleGrouped];
+        _detailView.mj_footer.hidden = YES;
     }
     return _detailView;
 }

@@ -42,7 +42,9 @@
     [self layoutVideoSubview:localStyle.frame_content];
     
     [self.videoView update_videoCover:self.dataVideo];
-    [self.contentLabel updateHtml:localStyle.frame_content.kf_twoItem.attributedString rect:localStyle.frame_content.kf_twoItem.maxRect];
+    
+    [self.contentLabel updateContent_Html:localStyle.frame_content.kf_twoItem];
+
 }
 
 -(void)layoutVideoSubview:(DZDContentStyle *)layout{

@@ -25,7 +25,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.userInteractionEnabled = NO;
         [self addSubview:self.videoView];
         [self addSubview:self.normalTopic];
         [self addSubview:self.articleView];
@@ -40,20 +39,20 @@
     [self.normalTopic updateThreadNormal:Model.relationships.firstPost.relationships style:contentStyle.frame_content];
     [self.articleView updateThreadArticle:Model style:contentStyle];
     
-    [self layoutContentSubviews:Model.attributes.type];
+    [self layoutContentSubviews:Model.attributes.type frame:contentStyle.kf_content];
     
 }
 
-// 文章类型(0 普通 1 长文 2 视频)
--(void)layoutContentSubviews:(NSInteger)frametype{
+// 文章类型(0 普通 1 长文 2 视频 3 图片)
+-(void)layoutContentSubviews:(NSInteger)frametype frame:(CGRect)frame{
     
-    self.articleView.frame = self.bounds;
-    self.normalTopic.frame = self.bounds;
-    self.videoView.frame = self.bounds;
+    self.articleView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    self.normalTopic.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    self.videoView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     
-    self.normalTopic.hidden = (frametype == 0) ? NO : YES;
     self.articleView.hidden = (frametype == 1) ? NO : YES;
     self.videoView.hidden = (frametype == 2) ? NO : YES;
+    self.normalTopic.hidden = (frametype == 0 || frametype == 3) ? NO : YES;
     
 }
 

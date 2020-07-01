@@ -35,8 +35,8 @@
 
 -(void)updateAUserListBar:(NSArray<DZQDataUser *> *)userList name:(NSString *)nameString{
     
-    self.nameLabel.text = nameString;
     [self.UserList updateUserListView:userList];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@:(%ld)",nameString,userList.count];
     
     [self.nameLabel sizeToFit];
     self.nameLabel.hidden = userList.count ? NO : YES;

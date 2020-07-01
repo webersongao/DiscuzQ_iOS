@@ -41,14 +41,15 @@
 
 -(void)updateDetailHead:(DZQDataThread *)dataModel layout:(DZDHeadStyle *)layout{
     
+    // 更新布局
+    [self layoutDetailHeader:layout];
+    
     [self.userHeader updateThreadUserBar:dataModel style:layout];
     
     [self.thredCoreView updateThreadContent:dataModel contentStyle:layout];
     
     [self.bottomToolBar updateDetailToolBar:layout.frame_toolBar];
-    
-    // 更新布局
-    [self layoutDetailHeader:layout];
+
 }
 
 -(void)layoutDetailHeader:(DZDHeadStyle *)layout{

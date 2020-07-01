@@ -47,7 +47,7 @@ target 'DiscuzQ' do
   pod 'IQKeyboardManager'
   pod 'WebViewJavascriptBridge'
   pod 'PYSearch' # 搜索控制器
-#  pod 'TYSnapshotScroll'  # 一键截图
+  pod 'TYSnapshotScroll'  # 一键截图
   
   pod 'ZFPlayer' # 视频播放器 https://www.jianshu.com/p/c5b71a0c6038
   pod 'ZFPlayer/AVPlayer'

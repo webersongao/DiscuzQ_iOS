@@ -42,7 +42,7 @@
     
     [self.imageSquare updateSquareUrlList:relateModel.images grid:localStyle.kf_squareGrid];
     
-    [self.contentLabel updateHtml:localStyle.kf_twoItem.attributedString rect:localStyle.kf_twoItem.maxRect];
+    [self.contentLabel updateContent_Html:localStyle.kf_twoItem];
     
 }
 

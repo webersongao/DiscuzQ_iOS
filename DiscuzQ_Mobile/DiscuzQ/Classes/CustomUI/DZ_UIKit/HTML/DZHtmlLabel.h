@@ -8,11 +8,12 @@
 
 #import <DTCoreText/DTCoreText.h>
 #import "DZHtmlUtils.h"
+#import "DZHtmlItem.h"
 
 @interface DZHtmlLabel : DTAttributedLabel
 
+-(void)updateContent_Html:(DZHtmlItem *)htmlItem;
 
--(void)updateHtml:(NSAttributedString *)attributeString rect:(CGRect)viewRect;
 
 @end
 

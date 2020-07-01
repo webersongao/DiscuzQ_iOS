@@ -41,7 +41,8 @@
     
     self.titleLabel.text = Model.attributes.title;
     
-    [self.contentLabel updateHtml:localStyle.frame_content.kf_twoItem.attributedString rect:localStyle.frame_content.kf_twoItem.maxRect];
+    [self.contentLabel updateContent_Html:localStyle.frame_content.kf_twoItem];
+
 }
 
 
@@ -50,6 +51,7 @@
     self.titleLabel.font = layout.kf_oneFont;
     self.titleLabel.frame = layout.kf_oneFrame;
     self.contentLabel.frame = layout.kf_twoFrame;
+    
 }
 
 

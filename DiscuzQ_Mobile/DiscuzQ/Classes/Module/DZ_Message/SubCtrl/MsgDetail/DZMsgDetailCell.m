@@ -41,7 +41,7 @@
     DZNotiListStyle *notiStyle = (DZNotiListStyle *)NotiModel.styleModel;
     [self updateDetailCellLayout:notiStyle];
     
-    [self.contenLabel updateHtml:notiStyle.kf_twoItem.attributedString rect:notiStyle.kf_twoItem.maxRect];
+    [self.contenLabel updateContent_Html:notiStyle.kf_twoItem];
     [self.userBar updateUserBar:NotiModel.attributes.user_name avatar:NotiModel.attributes.user_avatar time:notiStyle.kf_timeString real:NO style:notiStyle.frame_Noti_user];
 }
 
