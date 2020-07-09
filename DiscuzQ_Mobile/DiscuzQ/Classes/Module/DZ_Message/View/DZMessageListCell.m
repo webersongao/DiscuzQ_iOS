@@ -97,7 +97,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = KFont(16);
-        _titleLabel.textColor = KBlack_Color;
+        _titleLabel.textColor = KTitle_Color;
     }
     return _titleLabel;
 }
@@ -110,8 +110,8 @@
 
 - (UILabel *)numberLabel {
     if (!_numberLabel) {
-        _numberLabel = [UILabel labelWithFrame:CGRectMake(0, 0, 15, 15) title:@"" titleColor:[UIColor whiteColor] fontSize:12];
-        _numberLabel.backgroundColor = [UIColor redColor];
+        _numberLabel = [UILabel labelWithFrame:CGRectMake(0, 0, 15, 15) title:@"" titleColor:KWhite_Color fontSize:12];
+        _numberLabel.backgroundColor = KDebug_Color;
         _numberLabel.clipsToBounds = YES;
         _numberLabel.layer.cornerRadius = 7.5;
     }

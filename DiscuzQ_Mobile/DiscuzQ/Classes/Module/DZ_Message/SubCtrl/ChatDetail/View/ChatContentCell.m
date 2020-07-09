@@ -61,7 +61,7 @@
     
     [self.mcontainView addSubview:self.messageLabel];
     self.messageLabel.userInteractionEnabled = YES;
-    self.messageLabel.textColor = K_Color_MainTitle;
+    self.messageLabel.textColor = KTitle_Color;
     
 }
 

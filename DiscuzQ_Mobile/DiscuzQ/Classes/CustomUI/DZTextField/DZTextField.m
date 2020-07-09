@@ -28,7 +28,7 @@
 
 - (void)p_setDZTextField:(UIImage *)leftImg {
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     //用户名
     _inputField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) - 1)];
     _inputField.placeholder = @"请输入用户名";

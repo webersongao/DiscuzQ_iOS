@@ -67,7 +67,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString *forumId = [[self.dataSourceArr objectAtIndex:indexPath.row]objectForKey:@"id"];
-    [[DZMobileCtrl sharedCtrl] PushToForumCateController:forumId];
+//    [[DZMobileCtrl sharedCtrl] PushToForumCateController:forumId];
 }
 
 

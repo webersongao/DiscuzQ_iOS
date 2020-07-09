@@ -10,9 +10,9 @@
 
 @implementation DZQVideoModel
 
-+ (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"video_id":@"id"};
-}
+//+ (NSDictionary *)modelCustomPropertyMapper {
+//    return @{@"video_id":@"id"};
+//}
 
 @end
 

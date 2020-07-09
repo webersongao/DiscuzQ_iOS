@@ -19,7 +19,7 @@
 
 + (void)showAlertInfo:(NSString *)info;
 
-
++ (void)showMessage:(NSString *)message;
 
 @end
 

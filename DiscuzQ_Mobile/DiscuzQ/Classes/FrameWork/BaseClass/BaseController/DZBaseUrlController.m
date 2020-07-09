@@ -88,7 +88,7 @@
 - (DZWebView *)webView {
     if (_webView == nil) {
         _webView = [[DZWebView alloc] initWithFrame:KView_OutNavi_Bounds];
-        _webView.backgroundColor = [UIColor whiteColor];
+        _webView.backgroundColor = KWhite_Color;
         _webView.userInteractionEnabled = YES;
         _webView.WKBaseDelegate = self;
         [_webView setOpaque:NO];

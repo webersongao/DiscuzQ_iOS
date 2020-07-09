@@ -29,8 +29,8 @@
     self.detailBtn.titleLabel.textAlignment = NSTextAlignmentRight;
     self.detailBtn.titleLabel.font = KFont(14);
     
-    [self.detailBtn setTitleColor:K_Color_Theme forState:UIControlStateNormal];
-    [self.detailBtn setTitleColor:KBlack_Color forState:UIControlStateSelected];
+    [self.detailBtn setTitleColor:KGreen_Color forState:UIControlStateNormal];
+    [self.detailBtn setTitleColor:KTitle_Color forState:UIControlStateSelected];
     [self.detailBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 40, 0, -40)];
     [self.contentView addSubview:self.detailBtn];
     [self.detailBtn setTitle:@"绑定" forState:UIControlStateNormal];

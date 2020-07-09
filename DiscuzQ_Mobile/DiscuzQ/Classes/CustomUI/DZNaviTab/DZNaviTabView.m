@@ -52,7 +52,7 @@
         titleButton.tag = index + k_NaviTab_BtnTag;
         
         DZBaseViewController *tabCtrl = [tabItem.subCls new];
-        tabCtrl.view.backgroundColor = KRandom_Color;
+        tabCtrl.view.backgroundColor = KDebug_Color;
         tabItem.viewCtrl = tabCtrl;
     }
     

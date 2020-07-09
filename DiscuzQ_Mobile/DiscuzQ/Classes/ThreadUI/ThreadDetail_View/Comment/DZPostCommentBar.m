@@ -21,7 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self config_CommentBar];
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
     }
     return self;
 }
@@ -36,18 +36,25 @@
     self.replyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 
--(void)updateCommentBar:(NSString *)timeString layout:(DZDToolBarStyle *)toolLayout{
+-(void)updateCommentBar:(DZQDataPost *)dataPost layout:(DZDToolBarStyle *)toolLayout{
     
-    self.timeLabel.text = timeString;
+    self.timeLabel.text = dataPost.attributes.ip;
+    self.likeButton.selected = dataPost.attributes.isLiked;
+    [self.likeButton setTitle:checkInteger(dataPost.attributes.likeCount) forState:UIControlStateNormal];
+    [self.replyButton setTitle:checkInteger(dataPost.attributes.replyCount) forState:UIControlStateNormal];
     
+    [self layoutBarWithlayout:toolLayout];
+}
+
+// 更新布局
+-(void)layoutBarWithlayout:(DZDToolBarStyle *)toolLayout{
     
-    
-    // 更新布局
-    self.timeLabel.frame = toolLayout.kf_left;
-    self.likeButton.frame = toolLayout.kf_center;
-    self.replyButton.frame = toolLayout.kf_right;
+    self.likeButton.frame = toolLayout.kf_right;
+    self.replyButton.frame = toolLayout.kf_center;
     self.bottomLine.frame = toolLayout.kf_barLine;
     
+    self.likeButton.frame = CGRectMake(toolLayout.kf_right.origin.x, 0, toolLayout.kf_left.size.width-kMargin15, toolLayout.kf_left.size.height);
+    self.timeLabel.frame = CGRectMake(kMargin15, 0, toolLayout.kf_left.size.width-kMargin15, toolLayout.kf_left.size.height);
 }
 
 

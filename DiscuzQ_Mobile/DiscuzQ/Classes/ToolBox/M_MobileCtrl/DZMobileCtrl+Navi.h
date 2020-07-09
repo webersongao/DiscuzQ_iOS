@@ -10,6 +10,8 @@
 
 @class DZNotiItem;
 @class DZBaseAuthModel;
+@class DZThreadDetailController;
+
 @interface DZMobileCtrl (Navi)
 
 - (void)PopToPrevieousController:(BOOL)animated;
@@ -21,10 +23,10 @@
 - (void)PushToOtherUserController:(NSString *)userId;
 
 /// 帖子详情页
-- (void)PushToThreadDetailController:(NSString *)tid;
+- (DZThreadDetailController *)PushToThreadDetailController:(NSString *)tid;
 
 /// 分类板块 帖子列表
-- (void)PushToForumCateController:(NSString *)cate_id;
+- (void)PushToForumCateController:(DZQDataCate *)dataCate;
 
 
 - (void)PushToWebViewController:(NSString *)link;

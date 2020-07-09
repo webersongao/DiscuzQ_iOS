@@ -46,7 +46,7 @@ static CGFloat kToolBarH = 50;
 - (void)addChatView {
     self.chatTableView = [[DZBaseTableView alloc] init];
     self.chatTableView.frame = CGRectMake(0, KNavi_ContainStatusBar_Height, KScreenWidth, KScreenHeight - KNavi_ContainStatusBar_Height -kToolBarH);
-    self.chatTableView.backgroundColor = [UIColor whiteColor];
+    self.chatTableView.backgroundColor = KWhite_Color;
     self.chatTableView.delegate = self;
     self.chatTableView.dataSource = self;
     self.chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -24,7 +24,7 @@
     if (@available(iOS 11.0, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     
     IQPreviousNextView *contentView = [[IQPreviousNextView alloc] init];
     [self addSubview:contentView];
@@ -52,7 +52,7 @@
     
     self.newpasswordView = [[DZTextField alloc] initWithLeft:KImageNamed(@"log_p")];
     [contentView addSubview:self.newpasswordView];
-    self.newpasswordView.backgroundColor = [UIColor whiteColor];
+    self.newpasswordView.backgroundColor = KWhite_Color;
     self.newpasswordView.inputField.placeholder = @"新密码";
     self.newpasswordView.inputField.delegate = self;
     self.newpasswordView.inputField.secureTextEntry = YES;
@@ -84,7 +84,7 @@
     self.submitButton.cs_acceptEventInterval = 1;
     [self addSubview:self.submitButton];
     [self.submitButton setTitle:@"提交" forState:UIControlStateNormal];
-    self.submitButton.backgroundColor = K_Color_Theme;
+    self.submitButton.backgroundColor = KGreen_Color;
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView);
         make.top.equalTo(self.repassView.mas_bottom).offset(16);

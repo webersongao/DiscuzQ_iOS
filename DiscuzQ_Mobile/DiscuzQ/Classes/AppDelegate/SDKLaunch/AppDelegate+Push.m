@@ -1,5 +1,5 @@
 //
-//  AppDelegate+Push.m
+//  DZQDelegate+Push.m
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2018/2/1.
@@ -9,7 +9,7 @@
 #import "AppDelegate+Push.h"
 #import "DZPushCenter.h"
 
-@implementation AppDelegate (Push)
+@implementation DZQDelegate (Push)
 
 // 连接信鸽
 - (void)launchPushConfigration:(NSDictionary *)launchOptions {

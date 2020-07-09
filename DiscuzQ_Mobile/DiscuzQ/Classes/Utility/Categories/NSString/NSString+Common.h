@@ -49,16 +49,16 @@
 //-(CGFloat)textHeightWithSize:(CGSize)size font:(UIFont*)font;
 
 
-//- (CGSize)customSizeWithFont:(UIFont *)font;
+- (CGSize)customSizeWithFont:(UIFont *)font;
 //- (CGSize)customSizeWithFont:(UIFont *)font forWidth:(CGFloat)width lineBreakMode:(NSLineBreakMode)lineBreakMode;
 //// Single line, no wrapping. Truncation based on the NSLineBreakMode.
 //- (CGSize)customDrawAtPoint:(CGPoint)point withFont:(UIFont *)font;
 //
 //- (CGSize)customDrawAtPoint:(CGPoint)point forWidth:(CGFloat)width withFont:(UIFont *)font lineBreakMode:(NSLineBreakMode)lineBreakMode;
-//
-//- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
-//
-//- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode;
+
+- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+
+- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode;
 //
 //// Wrapping to fit horizontal and vertical size.
 //- (CGSize)customDrawInRect:(CGRect)rect withFont:(UIFont *)font;

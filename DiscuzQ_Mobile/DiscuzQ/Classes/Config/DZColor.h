@@ -10,30 +10,21 @@
 #ifndef Color_h
 #define Color_h
 
-//#define KRandom_Color        [UIColor whiteColor]
-
 #define mRGBColor(r, g, b)   [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 #define RGBACOLOR(r,g,b,a)   [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #define KRandom_Color        mRGBColor(arc4random_uniform(256),arc4random_uniform(256),arc4random_uniform(256))
 #define KColor(colorName,alphaValue)  [UIColor color16WithHexString:colorName alpha:alphaValue]
 
-#define K_Color_btn_user     [UIColor whiteColor]
-#define K_Color_NaviButton   KGreen_Color
-#define K_Color_Theme        KGreen_Color
-#define K_Color_NaviBar      [UIColor whiteColor]
-#define K_Color_NaviTitle    KGreen_Color
-#define K_Color_MainTitle    KBlack_Color
-
 #define K_Color_MainGray     mRGBColor(238, 238, 238)
 #define K_Color_Message      mRGBColor(102,102,102)
 #define K_Color_ToolBack     mRGBColor(209, 213, 218)
-#define K_Color_ToolBar      mRGBColor(236, 236, 236)
 #define K_Color_Disabled     mRGBColor(190, 190, 190)
 
 
 #define KFFCE2E_Color  @"#FFCE2E" //黄色
 #define KFD8D2F_Color  @"#FD8D2F"
 #define K2D3035_Color  @"#2D3035"
+#define KF9F9F9_Color  @"#F9F9F9" //
 #define K8D8E91_Color  @"#8D8E91"
 #define KFFFFFF_Color  @"#FFFFFF" // 白色
 #define KFF6565_Color  @"#FF6565"
@@ -57,13 +48,11 @@
 #define KD0D0D0_Color  @"#D0D0D0"
 #define KF5F6F8_Color  @"#F5F6F8"
 #define K4D5663_Color  @"#4D5663"
-#define KEBF9F6_Color  @"#EBF9F6"
 #define KFF7634_Color  @"#FF7634"
 #define K535B65_Color  @"#535B65"
 #define KAAAAAA_Color  @"#AAAAAA"
 #define K8E97A4_Color  @"#8E97A4"
 #define KBABCC4_Color  @"#BABCC4"
-#define KECECEC_Color  @"#ECECEC"
 #define KF63737_Color  @"#F63737"
 #define KD3D3D3_Color  @"#D3D3D3"
 #define K888888_Color  @"#888888"
@@ -113,8 +102,7 @@
 #define K4A4A4A_Color  @"#4A4A4A"
 #define KFEFEFE_Color  @"#FEFEFE"
 #define K454759_Color  @"#454759"
-
-
+#define KFD8230_Color  @"#FD8230"
 #define K241217_Color  @"#241217"
 
 
@@ -126,13 +114,22 @@
 #define KF5F5F5_Color  @"#F5F5F5"  // 深色 分割线(常用)
 #define KE2E2E5_Color  @"#E2E2E5"  // 浅 色 分割线(仅限导航条底部使用)
 
-// 常用文字颜色
+
+
+// 常用配置颜色
 #define KWhite_Color        KColor(KFFFFFF_Color, 1.0)
-#define KBlack_Color        KColor(K31323E_Color, 1.0) // 标题
+#define KBlack_Color        KColor(K000000_Color, 1.0)
+
+// 常用文字颜色
+#define KTitle_Color        KColor(K31323E_Color, 1.0) // 标题
 #define KGray_Color         KColor(K9A9AA7_Color, 1.0) // 浅色正文
 #define KContent_Color      KColor(K2A2C2F_Color, 1.0) // 正常正文颜色（常用）
 #define KLightGray_Color    KColor(K6A6C7A_Color, 1.0)
 #define KGreen_Color        KColor(K33C3A5_Color, 1.0)
+
+// 图片 高亮态 和 正常态 色值
+#define KHight_Color        KColor(KFD8230_Color, 1.0) // 点亮色（黄色253 130 48）: 71x71
+#define KNormal_Color       KColor(K9A9AA7_Color, 1.0) // 正常色（灰色154,154,167）: 54x54 (222222)
 
 // 多用来做背景色
 #define KLine_Color         KColor(KF5F5F5_Color, 1.0)

@@ -21,7 +21,7 @@
 
 - (void)createUI {
     self.timeLab = [[UILabel alloc] init];
-    self.timeLab.backgroundColor = [UIColor whiteColor];
+    self.timeLab.backgroundColor = KWhite_Color;
     self.timeLab.font = KFont(12);
     self.timeLab.textColor = KGray_Color;
     [self.contentView addSubview:self.timeLab];

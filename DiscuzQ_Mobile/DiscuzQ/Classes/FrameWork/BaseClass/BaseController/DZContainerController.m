@@ -161,9 +161,9 @@
         _segmentControl.borderType = DZSegmentedControlBorderTypeBottom | DZSegmentedControlBorderTypeTop;
         _segmentControl.borderColor = KLine_Color;
         _segmentControl.borderWidth = 0.5;
-        [_segmentControl setSelectionIndicatorColor:K_Color_Theme];
+        [_segmentControl setSelectionIndicatorColor:KGreen_Color];
         [_segmentControl setSelectionIndicatorHeight:2.0];
-        [_segmentControl setBackgroundColor:[UIColor whiteColor]];
+        [_segmentControl setBackgroundColor:KWhite_Color];
         _segmentControl.segmentWidthStyle = DZSegmentedControlSegmentWidthStyleFixed;
         _segmentControl.selectionStyle = DZSegmentedControlSelectionStyleTextWidthMorelittle;
         _segmentControl.selectionIndicatorLocation = DZSegmentedControlSelectionIndicatorLocationDown;
@@ -176,7 +176,7 @@
             NSAttributedString *attString = [[NSAttributedString alloc] init];
             attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName : KGray_Color,NSFontAttributeName:KFont(minsize)}];
             if (selected) {
-                attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName : K_Color_Theme,NSFontAttributeName:KBoldFont(maxsize)}];
+                attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName : KGreen_Color,NSFontAttributeName:KBoldFont(maxsize)}];
             }
             return attString;
         }];

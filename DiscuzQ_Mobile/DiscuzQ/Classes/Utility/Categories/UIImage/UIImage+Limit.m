@@ -10,7 +10,7 @@
 
 @implementation UIImage (Limit)
 
-- (NSData *)limitImageSize {
+- (NSData *)dz_limitImageSize {
     UIImage *image = self;
     float imageViewWidth = 1040.0;
     float imageViewHeight = 720.0;
@@ -24,7 +24,7 @@
     if ([imageData length] < M) {
         thumbImage = image;
     } else {
-        thumbImage = [image transformWithLockedRatioWidth:imageViewWidth
+        thumbImage = [image dz_transformWithLockedRatio:imageViewWidth
                                                 height:imageViewHeight
                                                 rotate:YES];
     }
@@ -42,7 +42,30 @@
     return data;
 }
 
-- (UIImage*)transformWithLockedRatioWidth:(CGFloat)width
+- (UIImage *)dz_imageWithAlpha:(CGFloat)alpha
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect area = CGRectMake(0, 0, self.size.width, self.size.height);
+    
+    CGContextScaleCTM(ctx, 1, -1);
+    CGContextTranslateCTM(ctx, 0, -area.size.height);
+    
+    CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
+    
+    CGContextSetAlpha(ctx, alpha);
+    
+    CGContextDrawImage(ctx, area, self.CGImage);
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+- (UIImage*)dz_transformWithLockedRatio:(CGFloat)width
                               height:(CGFloat)height rotate:(BOOL)rotate
 {
     UIImage *image = self;
@@ -67,11 +90,10 @@
         destHeight = sourceHeight * widthRatio;
     }
     
-    return [image transformWidth:destWidth height:destHeight rotate:rotate];
+    return [image dz_transform:destWidth height:destHeight rotate:rotate];
 }
 
-
-- (UIImage*)transformWidth:(CGFloat)width
+- (UIImage*)dz_transform:(CGFloat)width
                height:(CGFloat)height rotate:(BOOL)rotate
 {
     UIImage *image = self;
@@ -124,7 +146,6 @@
     
     return result;
 }
-
 
 @end
 

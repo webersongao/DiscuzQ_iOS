@@ -122,25 +122,33 @@
     if (direction == NaviDirectionLeft) {
         UIBarButtonItem *leftBtn;
         if (type == NaviItemText) {
-            leftBtn = [[UIBarButtonItem alloc] initWithTitle:titleOrImg style:UIBarButtonItemStylePlain target:self action:@selector(leftBarBtnClick)];
+           leftBtn = [[UIBarButtonItem alloc] initWithItemTitle:titleOrImg Layout:YES target:self action:@selector(leftBarBtnClick)];
+            
+//            leftBtn = [[UIBarButtonItem alloc] initWithTitle:titleOrImg style:UIBarButtonItemStylePlain target:self action:@selector(leftBarBtnClick)];
         } else {
-            leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:titleOrImg] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarBtnClick)];
+            leftBtn = [[UIBarButtonItem alloc] initWithItemImageName:titleOrImg target:self action:@selector(leftBarBtnClick)];
+            
+//            leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:titleOrImg] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarBtnClick)];
         }
-        self.dz_NavigationItem.leftBarButtonItem = leftBtn;
-        self.dz_NavigationItem.leftBarButtonItem.tintColor = K_Color_MainTitle;
+        [self dz_SetItem:leftBtn Layout:YES];
+//        self.dz_NavigationItem.leftBarButtonItem.tintColor = KTitle_Color;
     } else {
         UIBarButtonItem *rightBtn;
         if (type == NaviItemText) {
-            rightBtn = [[UIBarButtonItem alloc] initWithTitle:titleOrImg style:UIBarButtonItemStylePlain target:self action:@selector(rightBarBtnClick)];
+            rightBtn = [[UIBarButtonItem alloc] initWithItemTitle:titleOrImg Layout:YES target:self action:@selector(rightBarBtnClick)];
+            
+//            rightBtn = [[UIBarButtonItem alloc] initWithTitle:titleOrImg style:UIBarButtonItemStylePlain target:self action:@selector(rightBarBtnClick)];
         } else {
-            rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:titleOrImg] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarBtnClick)];
+            rightBtn = [[UIBarButtonItem alloc] initWithItemImageName:titleOrImg target:self action:@selector(rightBarBtnClick)];
+            
+//            rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:titleOrImg] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarBtnClick)];
         }
-        self.dz_NavigationItem.rightBarButtonItem = rightBtn;
-        self.dz_NavigationItem.rightBarButtonItem.tintColor = K_Color_MainTitle;
+        [self dz_SetItem:rightBtn Layout:NO];
+//        self.dz_NavigationItem.rightBarButtonItem.tintColor = KTitle_Color;
     }
 }
 
--(void)leftBarBtnClick{
+-(void)leftBarBtnClick {
     if (self.navigationController.viewControllers.count > 1) {
         [WBEmoticonInputView sharedView].hidden = YES;
         [self.navigationController popViewControllerAnimated:YES];
@@ -149,7 +157,7 @@
     }
 }
 
--(void)rightBarBtnClick {
+-(void)rightBarBtnClick{
     KSLog(@"you按钮");
 }
 

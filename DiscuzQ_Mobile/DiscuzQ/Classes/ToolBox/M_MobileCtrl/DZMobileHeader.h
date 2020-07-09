@@ -16,7 +16,7 @@
 #import "DZMobileCtrl+Config.h"
 #import "DZMobileCtrl+Tool.h"
 #import "DZMobileCtrl+Update.h"
-
+#import "DZMobileCtrl+HubView.h"
 
 
 

@@ -16,6 +16,9 @@
 
 @property (nonatomic, strong) UIImageView *naviLogo;  //!< 属性注释
 
+@property (nonatomic, strong) UIButton *leftButton;  //!< 属性注释
+@property (nonatomic, strong) UIButton *rightButton;  //!< 属性注释
+
 @end
 
 

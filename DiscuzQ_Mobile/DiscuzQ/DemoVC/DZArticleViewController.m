@@ -38,7 +38,7 @@
 -(WKWebView *)localWebView{
     if (!_localWebView) {
         _localWebView = [[WKWebView alloc] initWithFrame:KView_OutNavi_Bounds configuration:[self baseWebViewConfig]];
-        _localWebView.backgroundColor = KRandom_Color;
+        _localWebView.backgroundColor = KDebug_Color;
         _localWebView.navigationDelegate = self;
         _localWebView.UIDelegate = self;
     }

@@ -22,7 +22,7 @@
 
 - (void)configEmptyView {
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     self.emptyIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:DZ_Empty_image]];
     self.emptyIcon.frame = CGRectMake(0, 0, 160, 140);
     self.emptyIcon.center = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);

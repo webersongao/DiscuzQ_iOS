@@ -17,7 +17,7 @@
 #define UUPICKER_MINUTE 60
 
 #define UU_GRAY [UIColor redColor];
-#define UU_BLACK [UIColor blackColor];
+#define UU_BLACK KBlack_Color;
 
 
 @interface UUDatePicker ()
@@ -67,7 +67,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor =[UIColor whiteColor];
+        self.backgroundColor =KWhite_Color;
     }
     return self;
 }
@@ -75,7 +75,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor =[UIColor whiteColor];
+        self.backgroundColor =KWhite_Color;
     }
     return self;
 }
@@ -199,8 +199,8 @@
     label.text = name;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
-    label.textColor = [UIColor blackColor];
-    label.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    label.textColor = KBlack_Color;
+    label.layer.shadowColor = [KWhite_Color CGColor];
     label.layer.shadowOpacity = 0.5;
     label.layer.shadowRadius = 5;
     label.backgroundColor = [UIColor clearColor];
@@ -420,7 +420,7 @@
         customLabel.textAlignment = NSTextAlignmentCenter;
         [customLabel setFont:[UIFont systemFontOfSize:18]];
     }
-    UIColor *textColor = [UIColor blackColor];
+    UIColor *textColor = KBlack_Color;
     NSString *title;
     
     

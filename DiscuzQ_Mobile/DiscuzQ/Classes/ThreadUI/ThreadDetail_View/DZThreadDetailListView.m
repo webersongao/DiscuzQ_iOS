@@ -40,6 +40,13 @@
     self.tableHeaderView = self.headerView;
     [self registerClass:[DZThreadPostCell class] forCellReuseIdentifier:@"DZThreadPostCell"];
     [self registerClass:[DZThreadDetailSection class] forHeaderFooterViewReuseIdentifier:@"DZThreadDetailSection"];
+//    self.tabAnimated = [TABTableAnimated animatedWithCellClass:[DZThreadPostCell class] cellHeight:kCellHeight];
+    KWEAKSELF
+    self.headerView.playVideoBlock = ^(DZVideoPicView *button, DZQDataVideo *dataVideo) {
+        if (weakSelf.detailDelegate && [weakSelf.detailDelegate respondsToSelector:@selector(detaiVideoView:videoDidPlayClick:)]) {
+            [weakSelf.detailDelegate detaiVideoView:button videoDidPlayClick:dataVideo];
+        }
+    };
 }
 
 -(DZThreadDetailStyle *)detailStyle{
@@ -116,6 +123,13 @@
     
     KSLog(@"WBS 跳转 评论详情? 还是 ？");
     
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+   CGFloat offsetY = scrollView.contentOffset.y;
+    if (self.detailDelegate && [self.detailDelegate respondsToSelector:@selector(detailListView:scrollDidScroll:)]) {
+        [self.detailDelegate detailListView:self scrollDidScroll:offsetY];
+    }
 }
 
 

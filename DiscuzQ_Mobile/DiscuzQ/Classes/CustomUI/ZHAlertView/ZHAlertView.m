@@ -500,7 +500,7 @@ static CGFloat kAlertHeight = 136.f;
     UIView *superView = newSuperview;
     if (!self.backImageView) {
         self.backImageView = [[UIView alloc] initWithFrame:superView.bounds];
-        self.backImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        self.backImageView.backgroundColor = [KBlack_Color colorWithAlphaComponent:0.6];
         self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         self.backImageView.alpha = 0;
     }

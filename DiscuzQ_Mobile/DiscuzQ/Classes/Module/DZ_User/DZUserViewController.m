@@ -49,7 +49,7 @@
 -(void)config_UserView{
     self.title = @"我的";
     [self.view addSubview:self.listView];
-    self.listView.backgroundColor = [UIColor whiteColor];
+    self.listView.backgroundColor = KWhite_Color;
     [self configNaviBar:@"navi_bar_message" type:NaviItemImage Direction:NaviDirectionLeft];
     [self configNaviBar:@"navi_setting" type:NaviItemImage Direction:NaviDirectionRight];
 }

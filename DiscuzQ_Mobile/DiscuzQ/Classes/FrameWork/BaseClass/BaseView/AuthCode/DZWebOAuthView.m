@@ -28,7 +28,7 @@
     
     [self addSubview:self.textField];
     [self addSubview:self.codeWebview];
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
 }
 
 -(void)loadRequestWithCodeUrl:(NSString *)urlString{

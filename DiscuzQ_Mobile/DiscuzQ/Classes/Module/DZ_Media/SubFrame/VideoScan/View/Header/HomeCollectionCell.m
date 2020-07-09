@@ -52,7 +52,7 @@
 
 -(UILabel *)NameLabel{
     if (!_NameLabel) {
-        _NameLabel = [UILabel labelWithFrame:CGRectMake(0, kCellHeight-14.f, kCellWidth, 14.f) title:@"" titleColor:[UIColor blackColor] fontSize:13.f];
+        _NameLabel = [UILabel labelWithFrame:CGRectMake(0, kCellHeight-14.f, kCellWidth, 14.f) title:@"" titleColor:KBlack_Color fontSize:13.f];
     }
     return _NameLabel;
 }

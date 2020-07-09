@@ -21,6 +21,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) backButtonBlock rightBlock;  //!< 右侧按钮事件  默认为全选按钮 有selected状态
 @property (nonatomic, copy) backButtonBlock leftMainBlock;  //!< 左侧 或 唯一按钮 点击事件
 
+@property (nonatomic, copy) backButtonBlock centerBlock;  //!< 中间按钮 点击事件
+
 @property (nonatomic, assign,getter=isRightSelected) BOOL rightSelected;  //!< 属性注释
 
 - (instancetype)initWithFrame:(CGRect)frame Mode:(toolBarMode)Mode;

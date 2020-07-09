@@ -35,7 +35,7 @@
 - (void)sup_commitInit {
     
     self.contentView = [[UIView alloc] init];
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = KWhite_Color;
     [self addSubview:self.contentView];
     
     self.closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];

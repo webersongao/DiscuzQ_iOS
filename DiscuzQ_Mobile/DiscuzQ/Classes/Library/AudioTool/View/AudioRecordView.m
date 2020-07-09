@@ -31,7 +31,7 @@
 
 - (void)commitInit {
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KDebug_Color;
     
     self.timeLab = [[UILabel alloc] initWithFrame:CGRectMake((KScreenWidth - 100) / 2, 10, 100, 20)];
     self.timeLab.font = [UIFont systemFontOfSize:14];

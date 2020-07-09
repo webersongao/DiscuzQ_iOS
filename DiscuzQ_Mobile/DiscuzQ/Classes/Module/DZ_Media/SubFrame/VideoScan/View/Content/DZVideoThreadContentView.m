@@ -22,7 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self layoutThreadContentView];
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
     }
     return self;
 }

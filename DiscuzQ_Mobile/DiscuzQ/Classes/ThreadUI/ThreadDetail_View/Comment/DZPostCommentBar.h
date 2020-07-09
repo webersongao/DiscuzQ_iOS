@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DZPostCommentBar : DZThreadBottomBar
 
--(void)updateCommentBar:(NSString *)timeString layout:(DZDToolBarStyle *)toolLayout;
+-(void)updateCommentBar:(DZQDataPost *)dataPost layout:(DZDToolBarStyle *)toolLayout;
 
 
 @end

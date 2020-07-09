@@ -31,6 +31,7 @@
     localStyle.kf_oneFont = nil;
     
     localStyle.frame_Noti_user = [DZDUserStyle DUserStyle:cellWidth basic:YES];
+    localStyle.frame_Noti_user.nameAttributedString = [NSString attributeWithLineSpaceing:0 text:dataModel.attributes.user_name font:KFont(14.f)];
     
     localStyle.kf_oneFrame = CGRectMake(0, 0, cellWidth, localStyle.frame_Noti_user.kf_UserHeight);
     localStyle.kf_twoMaxRect = CGRectMake(leftX, CGRectGetHeight(localStyle.kf_oneFrame) + kMargin10, cellWidth-leftX-kMargin15, CGFLOAT_MAX);

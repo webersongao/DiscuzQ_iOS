@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
     }
     return self;
 }

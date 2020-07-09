@@ -127,11 +127,18 @@
     }
 }
 
+-(void)centerButtonAction:(UIButton *)button{
+    button.selected = !button.isSelected;
+    if (self.centerBlock) {
+        self.centerBlock(button);
+    }
+}
+
 
 -(void)layoutIBottomToolBar_naviStyle{
     
     self.toolTextLabel.font = KBoldFont(18.f);
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     [self.toolTextLabel setTextColor:KColor(K31323E_Color, 1.0)];
     [self.leftMainButton setTitleColor:KColor(K33C3A5_Color, 1.0) forState:UIControlStateNormal];
     [self.leftMainButton setTitleColor:KColor(K33C3A5_Color, 1.0) forState:UIControlStateHighlighted];
@@ -164,7 +171,7 @@
 -(void)layoutIBottomBar_CommentStyle{
     
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     [self.leftMainButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateNormal];
     [self.leftMainButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateHighlighted];
     [self.rightButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateNormal];
@@ -232,12 +239,19 @@
 
 -(UIButton *)rightButton{
     if (!_rightButton) {
-        _rightButton = [UIButton ButtonNormalWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) title:nil titleFont:KFont(16.f) titleColor:KColor(KFFFFFF_Color, 1.0) normalImgPath:@"dz_syncskip" touchImgPath:@"dz_syncskip" isBackImage:NO];
+        _rightButton = [UIButton ButtonNormalWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) title:nil titleFont:KFont(16.f) titleColor:KColor(KFFFFFF_Color, 1.0) normalImgPath:DZQ_icon touchImgPath:DZQ_icon isBackImage:NO picAlpha:1];
         [_rightButton addTarget:self action:@selector(rightButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightButton;
 }
 
+-(UIButton *)centerButton{
+    if (!_centerButton) {
+        _centerButton = [UIButton ButtonNormalWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) title:nil titleFont:KFont(16.f) titleColor:KColor(KFFFFFF_Color, 1.0) normalImgPath:DZQ_icon touchImgPath:DZQ_icon isBackImage:NO picAlpha:1];
+        [_centerButton addTarget:self action:@selector(centerButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _centerButton;
+}
 
 
 @end

@@ -8,6 +8,11 @@
 
 #import "DZMediaCenter.h"
 
+@interface DZMediaCenter ()
+
+
+@end
+
 @implementation DZMediaCenter
 
 +(instancetype)Center{
@@ -31,12 +36,22 @@
 
 
 -(void)config_mediaPlayer{
-    ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
-    /// 播放器相关
-    _Player = [DZMediaPlayer playerWithPlayerManager:playerManager containerView:nil];
-    /// 设置退到后台继续播放
-    _Player.pauseWhenAppResignActive = NO;
+    
+   
+    
 }
 
+
+
+
+
+
+- (ZFPlayerControlView *)controlView {
+    if (!_controlView) {
+        _controlView = [ZFPlayerControlView new];
+        _controlView.prepareShowLoading = YES;
+    }
+    return _controlView;
+}
 
 @end

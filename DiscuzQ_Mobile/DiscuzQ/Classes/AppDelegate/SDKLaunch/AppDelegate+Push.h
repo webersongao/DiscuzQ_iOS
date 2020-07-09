@@ -1,15 +1,15 @@
 //
-//  AppDelegate+Push.h
+//  DZQDelegate+Push.h
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2018/2/1.
 //  Copyright © 2018年 WebersonGao. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "DZQDelegate.h"
 #import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate (Push)<UNUserNotificationCenterDelegate>
+@interface DZQDelegate (Push)<UNUserNotificationCenterDelegate>
 
 
 /**

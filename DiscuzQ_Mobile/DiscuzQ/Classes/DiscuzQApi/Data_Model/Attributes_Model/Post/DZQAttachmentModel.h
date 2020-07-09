@@ -33,7 +33,7 @@
 @property (nonatomic, assign) BOOL isRemote;  //!< 属性注释
 @property (nonatomic, assign) NSInteger isApproved;  //!< 属性注释
 
-@property (nonatomic, copy) NSString *url;  //!< 属性注释
+@property (nonatomic, copy) NSString *url;  //!< 图片或者视频等附件原始路径
 @property (nonatomic, copy) NSString *attachment;  //!< 属性注释
 @property (nonatomic, copy) NSString *extension;  //!< 属性注释
 @property (nonatomic, copy) NSString *fileName;  //!< 属性注释

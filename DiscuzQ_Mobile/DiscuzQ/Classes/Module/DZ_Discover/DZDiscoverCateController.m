@@ -39,7 +39,7 @@
     self.view.frame = m_frame;
     [self configDiscoverCateCtrlAction];
     [self.view addSubview:self.listView];
-    self.view.backgroundColor = KRandom_Color;
+    self.view.backgroundColor = KDebug_Color;
     [self.dz_NavigationBar removeFromSuperview];
 }
 
@@ -88,6 +88,16 @@
     }
     [self.threadArray addObjectsFromArray:threadAray];
     [self.listView updateDiscoverListView:self.threadArray];
+}
+
+#pragma mark   /********************* 视频播放 *************************/
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.listView zf_filterShouldPlayCellWhileScrolled:^(NSIndexPath *indexPath) {
+        [[DZMediaCenter Center] playTheVideoAtIndexPath:indexPath scrollAnimated:NO];
+    }];
 }
 
 #pragma mark   /********************* 初始化 *************************/

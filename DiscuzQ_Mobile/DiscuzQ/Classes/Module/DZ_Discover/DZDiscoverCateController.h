@@ -6,11 +6,11 @@
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
 
-#import "DZBaseViewController.h"
+#import "DZPlayBaseViewController.h"
 
 @class DZBaseForumModel;
 
-@interface DZDiscoverCateController : DZBaseViewController
+@interface DZDiscoverCateController : DZPlayBaseViewController
 
 - (instancetype)initWithFrame:(CGRect)frame cate:(DZQDataCate *)model;
 

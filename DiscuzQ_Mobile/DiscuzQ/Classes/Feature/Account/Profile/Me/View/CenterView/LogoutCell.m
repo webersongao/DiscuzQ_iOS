@@ -26,7 +26,7 @@
 - (void)p_setupView {
     self.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.lab = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth / 2 - 100, 5, 200, 50)];
-    self.lab.backgroundColor = [UIColor whiteColor];
+    self.lab.backgroundColor = KWhite_Color;
     self.lab.textAlignment = NSTextAlignmentCenter;
     self.lab.font = KFont(17);
     self.lab.textColor = KGray_Color;

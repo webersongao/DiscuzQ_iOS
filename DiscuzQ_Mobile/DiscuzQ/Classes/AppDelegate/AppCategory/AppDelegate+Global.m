@@ -1,5 +1,5 @@
 //
-//  AppDelegate+Global.m
+//  DZQDelegate+Global.m
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2019/11/21.
@@ -8,7 +8,7 @@
 
 #import "AppDelegate+Global.h"
 
-@implementation AppDelegate (Global)
+@implementation DZQDelegate (Global)
 
 
 -(void)Global_loadForumGlobalInfofromServer{

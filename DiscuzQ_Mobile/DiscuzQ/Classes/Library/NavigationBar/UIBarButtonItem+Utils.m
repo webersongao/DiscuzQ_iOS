@@ -24,7 +24,7 @@
 
 - (UIBarButtonItem *)initWithItemTitle:(NSString *)itemTitle Layout:(BOOL)isLeft target:(id)target action:(SEL)action {
     
-    return [self initWithItemImageName:nil HighImageName:nil ItemTitle:itemTitle TitleColor:[UIColor blackColor] HighTitleColor:[UIColor blackColor] TitleFont:16 Bold:NO Layout:isLeft target:target action:action];
+    return [self initWithItemImageName:nil HighImageName:nil ItemTitle:itemTitle TitleColor:KTitle_Color HighTitleColor:KTitle_Color TitleFont:16 Bold:NO Layout:isLeft target:target action:action];
 }
 
 - (UIBarButtonItem *)initWithItemImageName:(NSString *)itemImageName HighImageName:(NSString *)highImageName ItemTitle:(NSString *)itemTitle TitleColor:(UIColor *)titleColor HighTitleColor:(UIColor *)highTitleColor TitleFont:(CGFloat)titleFont Bold:(BOOL)isBold Layout:(BOOL)isLeft target:(id)target action:(SEL)action {

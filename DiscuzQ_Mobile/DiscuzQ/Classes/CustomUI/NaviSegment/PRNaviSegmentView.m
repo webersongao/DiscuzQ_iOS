@@ -185,7 +185,7 @@
         _segmentView.titleFont = [UIFont systemFontOfSize:15.f];
         _segmentView.fixedLineWidth = 35 * 0.5;
         _segmentView.titleSelectFont = [UIFont boldSystemFontOfSize:15.f];
-        _segmentView.backgroundColor = [UIColor whiteColor];
+        _segmentView.backgroundColor = KWhite_Color;
         _segmentView.titleColor = KColor(@"#333333", 1);
         _segmentView.titleHightColor = KColor(@"#00BF99", 1);
         _segmentView.selectLineColor = KColor(@"#00BF99", 1);

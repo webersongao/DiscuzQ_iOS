@@ -44,7 +44,7 @@
     listLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     listLayout.minimumLineSpacing = kMargin5;  // 行间距 (上下间隔)
-    listLayout.minimumInteritemSpacing = 0;  // 列间距 (左右间隔)
+    listLayout.minimumInteritemSpacing = 50;  // 列间距 (左右间隔)
     listLayout.itemSize = CGSizeMake(kMargin30, kMargin30);
     listLayout.sectionInset = UIEdgeInsetsMake(kMargin5, 0, kMargin5, 0);
     

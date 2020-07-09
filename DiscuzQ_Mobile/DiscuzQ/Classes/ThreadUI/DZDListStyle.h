@@ -10,7 +10,7 @@
 
 #define KImageWHOneRatio   (9.0/16.0)  // 单张 图片宽高比
 #define KImageWHTwoRatio   (4.0/5.0)  // 两张 图片宽高比
-#define KVideoWHRatio   (1080.0/1920.0)  // 视频宽高比 1920 x 1080
+#define KVideoWHRatio      (1920.0/1080.0)  // 视频宽高比 1920 / 1080
 
 
 @interface DZDUserStyle : DZQStyle
@@ -26,7 +26,7 @@
 @property(nonatomic,assign) CGRect kf_postMore;
 @property(nonatomic,assign) CGRect kf_bottomLine;  // 可能用到的 分割线
 
-
+@property (nonatomic, strong) NSAttributedString *nameAttributedString;  //!< 作者名称的富文本显示
 @property(nonatomic,assign) CGFloat kf_UserHeight;
 
 

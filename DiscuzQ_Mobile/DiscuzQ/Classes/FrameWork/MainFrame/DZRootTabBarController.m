@@ -28,14 +28,14 @@
     [super viewDidLoad];
     
     self.delegate = self;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KWhite_Color;
     [[DZMobileCtrl sharedCtrl] cofigLocalDataInfo];
     
     [self addChildViewControllers];
     
-    self.tabBar.tintColor = K_Color_Theme;
+    self.tabBar.tintColor = KGreen_Color;
     self.tabBar.translucent = YES;
-    //    [[UINavigationBar appearance] setBarTintColor:K_Color_NaviBar];
+//        [[UINavigationBar appearance] setBarTintColor:KWhite_Color];
     self.selectedIndex = 0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ttsetSelectInex:) name:DZ_ConfigSelectedIndex_Notify object:nil];
@@ -97,13 +97,13 @@
     DZMediaViewController *HomeVC = [[DZMediaViewController alloc] init];
     DZUserViewController *UserVC = [[DZUserViewController alloc] init];
     
-    [self addChildVc:testVC title:@"霸道总裁爱上我" image:@"tabbar_homem" selectedImage:@"tabbar_homes"];
+//    [self addChildVc:testVC title:@"霸道总裁爱上我" image:@"tabbar_homem" selectedImage:@"tabbar_homes"];
 
     [self addChildVc:DisVC title:@"Discover" image:@"tabbar_forumm" selectedImage:@"tabbar_fourms"];
-//
-//    [self addChildVc:HomeVC title:@"短视频" image:DZQ_icon selectedImage:DZQ_icon];
-//
-//    [self addChildVc:UserVC title:@"我的" image:DZQ_icon selectedImage:DZQ_icon];
+
+    [self addChildVc:HomeVC title:@"短视频" image:DZQ_icon selectedImage:DZQ_icon];
+
+    [self addChildVc:UserVC title:@"我的" image:DZQ_icon selectedImage:DZQ_icon];
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {
@@ -116,9 +116,9 @@
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     // 设置文字的样式
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = KBlack_Color;
+    textAttrs[NSForegroundColorAttributeName] = KTitle_Color;
     NSMutableDictionary *selectTextAttrs = [NSMutableDictionary dictionary];
-    selectTextAttrs[NSForegroundColorAttributeName] = K_Color_Theme;
+    selectTextAttrs[NSForegroundColorAttributeName] = KGreen_Color;
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
     

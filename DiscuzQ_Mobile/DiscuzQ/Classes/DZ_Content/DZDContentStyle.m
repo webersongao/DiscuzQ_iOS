@@ -16,7 +16,8 @@
 +(instancetype)DThreadContentStyleWithMaxW:(CGFloat)maxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel isDetail:(BOOL)isDetail{
     
     NSString *contentHtml = isDetail ? dataModel.relationships.firstPost.attributes.contentHtml : dataModel.relationships.firstPost.attributes.summary;
-    CGFloat localOneH = [self canculateContentDetailHeight:dataModel cellWidth:cellWidth maxW:maxWidth font:k_One_fontSize];
+
+    CGFloat localOneH = [self canculateContentDetailHeight:dataModel cellWidth:cellWidth maxW:maxWidth font:k_One_fontSize isDetail:isDetail];
     
     DZDContentStyle *contentStyle = [self inner_contentStyle:contentHtml localOneH:localOneH contentMaxW:maxWidth font:KBoldFont(k_One_fontSize)];
     
@@ -60,7 +61,7 @@
 }
 
 // 返回的 只有第一部分的高度
-+ (CGFloat)canculateContentDetailHeight:(DZQDataThread *)dataModel cellWidth:(CGFloat)cellWidth maxW:(CGFloat)maxWidth font:(CGFloat)titleSize{
++ (CGFloat)canculateContentDetailHeight:(DZQDataThread *)dataModel cellWidth:(CGFloat)cellWidth maxW:(CGFloat)maxWidth font:(CGFloat)titleSize isDetail:(BOOL)isDetail{
     
     // 文章类型(0 普通 1 长文 2 视频 3 图片)
     CGFloat oneHeight = 0;
@@ -71,9 +72,9 @@
         oneHeight = [NSString cacaulteStringHeight:dataModel.attributes.title fontSize:titleSize width:maxWidth lineSpacing:5];
     }else if (modelType == 2){
         // 视频预览图
-        CGFloat videoHeight = maxWidth * KVideoWHRatio;  // 视频宽高比 1920 x 1080
-        
-        oneHeight = dataModel.relationships.threadVideo.attributes.cover_url.length ? videoHeight : 0;
+        CGFloat videoWHRatio = isDetail ? (dataModel.relationships.threadVideo.attributes.width / dataModel.relationships.threadVideo.attributes.height) : KVideoWHRatio;
+        CGFloat videoHeight = maxWidth / ((videoWHRatio > 0) ? videoWHRatio : KVideoWHRatio);
+        oneHeight = dataModel.relationships.threadVideo.attributes.media_url.length ? videoHeight : 0;
     }else if (modelType == 3 || modelType == 0) {
         // 第一部分 只能是 图片
         NSInteger imageCount = dataModel.relationships.firstPost.relationships.images.count;

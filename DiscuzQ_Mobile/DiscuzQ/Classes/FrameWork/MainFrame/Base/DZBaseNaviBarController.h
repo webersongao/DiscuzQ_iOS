@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "DZNavigationBar.h"
+#import "UIBarButtonItem+Utils.h"
 
 typedef NS_ENUM(NSInteger, DZNaviItemType) {
     DZNaviItemType_None,

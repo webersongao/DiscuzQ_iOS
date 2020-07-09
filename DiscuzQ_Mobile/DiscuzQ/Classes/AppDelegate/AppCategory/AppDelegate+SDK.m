@@ -1,5 +1,5 @@
 //
-//  AppDelegate+SDK.m
+//  DZQDelegate+SDK.m
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2019/11/14.
@@ -10,7 +10,7 @@
 #import "AppDelegate+Push.h"
 #import "AppDelegate+Speech.h"
 
-@implementation AppDelegate (SDK)
+@implementation DZQDelegate (SDK)
 
 
 -(void)launchSDKConfigWithOptions:(NSDictionary *)launchOptions{

@@ -56,5 +56,51 @@ NSUInteger DeviceSystemMajorVersion()
     
 }
 
++ (BOOL)screenIsPortrait
+{
+    
+    BOOL bPortrait = YES;//竖
+    
+    //UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    //int statusBarOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if ([UIDevice currentDevice].orientation == UIDeviceOrientationPortrait || [UIDevice currentDevice].orientation == UIDeviceOrientationPortraitUpsideDown)
+    {
+        //
+    }
+    else if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight)
+    {
+        bPortrait = NO;
+    }
+    else
+    {
+        if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
+        {
+            //
+        }
+        else
+        {
+            bPortrait = NO;
+        }
+        
+    }
+    return bPortrait;
+}
+
++ (BOOL)screenIsPortraitBystatusBarOrientation
+{
+    BOOL bPortrait = YES;
+    if([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait
+       || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        
+    }
+    else if([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft
+            || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        bPortrait = NO;
+    }
+    return bPortrait;
+}
 
 @end
