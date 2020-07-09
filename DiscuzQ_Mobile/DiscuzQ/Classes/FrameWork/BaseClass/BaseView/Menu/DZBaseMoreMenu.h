@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DZBaseMoreMenu : NSObject
 
-@property (nonatomic, assign) BOOL defaultType;
-
 + (instancetype)shareInstance;
 
 /**

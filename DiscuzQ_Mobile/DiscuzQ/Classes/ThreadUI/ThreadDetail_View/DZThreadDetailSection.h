@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
 -(void)updateSectionLike:(NSArray *)likedUser reward:(NSArray *)rewardUser layout:(DZDSectionStyle *)layout;
 
 

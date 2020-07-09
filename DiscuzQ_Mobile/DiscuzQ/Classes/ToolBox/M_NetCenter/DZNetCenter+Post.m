@@ -135,7 +135,7 @@
     
     page = (page <= 0) ? 1 : page;
     NSString *defaultStr = @"user,replyUser,images,thread";
-    NSString *query = [NSString stringWithFormat:@"filter[thread]=%@&include=%@&page[number]=%ld",thread_id,defaultStr,(long)page];
+    NSString *query = [NSString stringWithFormat:@"filter[thread]=%@&filter[isApproved]=1&filter[isDeleted]=no&include=%@&page[number]=%ld",thread_id,defaultStr,(long)page];
     
     [[DZQNetTool shared] dz_PostListWithQuery:query success:^(DZQResModel * resModel, BOOL success) {
         dispatch_async(self.formartQueue, ^{

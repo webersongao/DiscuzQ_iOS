@@ -11,6 +11,7 @@
 #import "DZSnapPreviewController.h"
 #import "UIAlertController+WKWebAlert.h"
 #import "UIAlertController+Extension.h"
+#import <TYSnapshotScroll/TYSnapshotScroll.h>
 
 @interface DZBaseUrlController ()<DZWebViewDelegate>
 
@@ -29,7 +30,6 @@
     [super viewDidLoad];
     
     self.moreMenu= [DZBaseMoreMenu shareInstance];
-    self.moreMenu.defaultType = YES;
     [self.view addSubview:self.webView];
     
     KWEAKSELF
@@ -41,6 +41,18 @@
     
     [self configNaviBar:@"navi_dzMore" type:NaviItemImage Direction:NaviDirectionRight];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarTappedAction:) name:DZ_StatusBarTap_Notify object:nil];
+}
+
+// 点击状态栏到顶部
+- (void)statusBarTappedAction:(NSNotification*)notification {
+    [self.webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+
+#pragma mark DZWebViewDelegate
+
+- (void)dz_mainwebView:(DZWebView *)webView didLoadMainTitle:(NSString *)title{
+    self.title = title;
 }
 
 - (void)dz_mainwebView:(DZWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation{
@@ -70,15 +82,13 @@
     } cancelHandle:nil];
 }
 
-// 点击状态栏到顶部
-- (void)statusBarTappedAction:(NSNotification*)notification {
-    [self.webView.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-}
+
+
 
 - (DZWebView *)webView {
     if (_webView == nil) {
         _webView = [[DZWebView alloc] initWithFrame:KView_OutNavi_Bounds];
-        _webView.backgroundColor = [UIColor whiteColor];
+        _webView.backgroundColor = KWhite_Color;
         _webView.userInteractionEnabled = YES;
         _webView.WKBaseDelegate = self;
         [_webView setOpaque:NO];
@@ -89,77 +99,62 @@
 -(void)rightBarBtnClick{
     
     KWEAKSELF
-    if (self.moreMenu.defaultType) {
-        NSMutableArray *buttonTitleArray = [NSMutableArray array];
-        [buttonTitleArray addObjectsFromArray:@[@"safari打开", @"复制链接", @"分享", @"截图", @"刷新"]];
-        [self.moreMenu defaultMenuShowInViewController:self title:@"更多" message:nil buttonTitleArray:buttonTitleArray buttonTitleColorArray:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
-            
-        } block:^(UIAlertController * _Nonnull alertController, UIAlertAction * _Nonnull action, NSInteger buttonIndex)
-         {
-            if (buttonIndex == 0)
+    NSMutableArray *buttonTitleArray = [NSMutableArray array];
+    [buttonTitleArray addObjectsFromArray:@[@"safari打开", @"复制链接", @"分享", @"截图", @"刷新"]];
+    [self.moreMenu defaultMenuShowInViewController:self title:@"更多" message:nil buttonTitleArray:buttonTitleArray buttonTitleColorArray:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
+        
+    } block:^(UIAlertController * _Nonnull alertController, UIAlertAction * _Nonnull action, NSInteger buttonIndex)
+     {
+        if (buttonIndex == 0)
+        {
+            if (weakSelf.urlString.length > 0)
             {
-                if (weakSelf.urlString.length > 0)
-                {
-                    /*! safari打开 */
-                    [self safariOpenURL:[NSURL URLWithString:weakSelf.urlString]];
-                    return;
-                }
-                else
-                {
-                    [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
-                }
+                /*! safari打开 */
+                [self safariOpenURL:[NSURL URLWithString:weakSelf.urlString]];
+                return;
+            } else {
+                [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
             }
-            else if (buttonIndex == 1)
+        }
+        else if (buttonIndex == 1)
+        {
+            /*! 复制链接 */
+            if (weakSelf.urlString.length > 0)
             {
-                /*! 复制链接 */
-                if (weakSelf.urlString.length > 0)
-                {
-                    [UIPasteboard generalPasteboard].string = weakSelf.urlString;
-                    return;
-                }
-                else
-                {
-                    [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
-                }
+                [UIPasteboard generalPasteboard].string = weakSelf.urlString;
+                return;
             }
-            else if (buttonIndex == 2)
+            else
             {
-                KSLog(@"WBS 点击了 2222222   ");
+                [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
             }
-            else if (buttonIndex == 3)
-            {
-                [weakSelf snapshotBtn];
-            }
-            else if (buttonIndex == 4)
-            {
-                /*! 刷新 */
-                [weakSelf.webView reloadFromOrigin];
-            }
-        }];
-    }else
-    {
-        [weakSelf.moreMenu customMenuShowInViewController:weakSelf
-                                                    title:@"更多"
-                                                  message:nil
-                                         buttonTitleArray:@[@"小护士",@"大领导"]
-                                    buttonTitleColorArray:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
-            
-        } block:^(UIAlertController * _Nonnull alertController, UIAlertAction * _Nonnull action, NSInteger buttonIndex)
-         {
-            KSLog(@"按钮我点击啦，你自己看着办");
-            //            weakSelf.menuBlock ? weekSelf.menuBlock(alertController, action, buttonIndex) : NULL;
-        }];
-    }
+        }
+        else if (buttonIndex == 2)
+        {
+            KSLog(@"WBS 分享按钮 点击了 2333333   ");
+        }
+        else if (buttonIndex == 3)
+        {
+            [weakSelf snapshotBtn];
+        }
+        else if (buttonIndex == 4)
+        {
+            /*! 刷新 */
+            [weakSelf.webView reloadFromOrigin];
+        }
+    }];
 }
 
 -(void)snapshotBtn{
     KWEAKSELF
-    //    [TYSnapshotScroll screenSnapshot:self.webView finishBlock:^(UIImage *snapShotImage) {
-    //        UIViewController *preVc = [[DZSnapPreviewController alloc] init:snapShotImage];
-    //        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:preVc];
-    //        nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    //        [weakSelf presentViewController:nc animated:YES completion:nil];
-    //    }];
+    [self.HUD showAnimated:YES];
+    [TYSnapshotScroll screenSnapshot:self.webView finishBlock:^(UIImage *snapShotImage) {
+        [self.HUD hideAnimated:YES];
+        UIViewController *preVc = [[DZSnapPreviewController alloc] init:snapShotImage];
+        UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:preVc];
+        naviVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [weakSelf presentViewController:naviVC animated:YES completion:nil];
+    }];
 }
 
 

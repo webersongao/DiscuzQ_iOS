@@ -19,7 +19,7 @@
 + (void)showStateWithTitle:(NSString *)StateTitle cancelTitle:(NSString *)cancelTitle Target:(id)target cancelAction:(SEL)cancelAction{
     
     UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(0, KNavi_ContainStatusBar_Height - KCenterBarHeight, KScreenWidth, KCenterBarHeight)];
-    infoView.backgroundColor = [UIColor whiteColor];
+    infoView.backgroundColor = KWhite_Color;
     
     UIImageView *actImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PRState_Loading_1"]];
     actImageView.frame = CGRectMake(kMargin20, (KCenterBarHeight - kMargin20)/2.0, kMargin20,kMargin20);

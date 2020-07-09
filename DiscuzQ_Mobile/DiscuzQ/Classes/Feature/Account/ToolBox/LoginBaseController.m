@@ -17,7 +17,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KWhite_Color;
     [self configNaviBar:@"navi_reader_down" type:NaviItemImage Direction:NaviDirectionLeft];
 }
 

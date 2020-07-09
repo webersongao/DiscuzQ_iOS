@@ -27,7 +27,7 @@
 
 
 - (void)setupViews {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     //    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.button];
@@ -82,7 +82,7 @@
     if (_textLab == nil) {
         _textLab = [[UILabel alloc] init];
         _textLab.font = KFont(15);
-        _textLab.textColor = K_Color_Theme;
+        _textLab.textColor = KGreen_Color;
     }
     return _textLab;
 }

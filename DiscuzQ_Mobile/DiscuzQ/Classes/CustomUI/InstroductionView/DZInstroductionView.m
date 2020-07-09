@@ -27,7 +27,7 @@
 
 - (void)commitInit {
     self.pagingEnabled = YES;
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     self.delegate = self;
     self.showsHorizontalScrollIndicator = NO;
     
@@ -50,7 +50,7 @@
             button.layer.borderWidth = 1.5;
             button.layer.cornerRadius = 10;
             [button setTitle:@"立即进入" forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [button setTitleColor:KWhite_Color forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
         }
         [self addSubview:imgV];
@@ -76,7 +76,7 @@
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(KScreenWidth / 2 - 30, KScreenHeight - 40, 60, 30)];
         _pageControl.currentPage = 0;
         _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-        _pageControl.currentPageIndicatorTintColor = K_Color_Theme;
+        _pageControl.currentPageIndicatorTintColor = KGreen_Color;
         [[[UIApplication sharedApplication].delegate window] addSubview:_pageControl];
     }
     return _pageControl;

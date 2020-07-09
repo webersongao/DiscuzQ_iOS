@@ -19,9 +19,9 @@
     if (isBasic) {
         
         userStyle.kf_avatar = CGRectMake(kMargin15, kMargin5, 34, 34);
-        userStyle.kf_userName = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar) + kMargin10, kMargin15, 150, 14);
+        userStyle.kf_userName = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar) + kMargin10, kMargin15, 230, 14);
         userStyle.kf_userTag = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar)-15, CGRectGetMaxY(userStyle.kf_avatar)-15, 15, 15);
-        userStyle.kf_time = CGRectMake(cellWidth-kMargin15 - 180, kMargin15, 180, 14);
+        userStyle.kf_time = CGRectMake(cellWidth-kMargin15 - 100, kMargin15, 100, 14);
         userStyle.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(userStyle.kf_avatar)+kMargin5, cellWidth, 0.5);
         
         userStyle.kf_grade = CGRectZero;
@@ -133,9 +133,9 @@
     barStyle.kf_left = CGRectMake(0, 0, (cellWidth)/3.0, kMiniBarHeight);
     barStyle.kf_center = CGRectMake((cellWidth)/3.0, 0, (cellWidth)/3.0, kMiniBarHeight);
     barStyle.kf_right = CGRectMake(((cellWidth)/3.0)*2.0, 0, (cellWidth)/3.0, kMiniBarHeight);
-    barStyle.kf_barLine = CGRectMake(0, CGRectGetMaxY(barStyle.kf_right), cellWidth, 1);
+    barStyle.kf_barLine = CGRectMake(0, CGRectGetMaxY(barStyle.kf_right), cellWidth, 10);
     
-    barStyle.kf_ToolBarHeight = CGRectGetHeight(barStyle.kf_right)+1;
+    barStyle.kf_ToolBarHeight = CGRectGetHeight(barStyle.kf_right)+CGRectGetHeight(barStyle.kf_barLine);
     
     return barStyle;
 }

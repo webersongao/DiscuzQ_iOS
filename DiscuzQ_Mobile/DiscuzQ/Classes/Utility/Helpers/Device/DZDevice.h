@@ -19,4 +19,7 @@
  */
 + (NSString*)getPreferredLanguage;
 
++ (BOOL)screenIsPortrait;
++ (BOOL)screenIsPortraitBystatusBarOrientation;
+
 @end

@@ -10,6 +10,7 @@
 #define DZMacro_h
 
 #import "PRLayouter.h"
+#import "DZQDelegate.h"
 
 #pragma mark - app名称
 
@@ -86,6 +87,7 @@
 #define checkInteger(__X__)     [NSString stringWithFormat:@"%ld",__X__]
 #define checkTwoStr(X,Y)        [NSString stringWithFormat:@"%@%@",X,Y]
 #define checkNull(__X__)        (__X__) == nil || [(__X__) isEqual:[NSNull null]] ? @"" : [NSString stringWithFormat:@"%@", (__X__)]
+#define kAPPDelegate    ((DZQDelegate *)[[UIApplication sharedApplication] delegate])
 
 #pragma mark - 网络请求超时时间
 #define TIMEOUT 30.0

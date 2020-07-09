@@ -19,7 +19,7 @@
     
     
     // 第一部分 主题内容高度
-    self.frame_content = [DZDContentStyle  DThreadContentStyleWithMaxW:cellContenMaxWidth cellWidth:cellWidth dataModel:dataModel];
+    self.frame_content = [DZDContentStyle  DThreadContentStyleWithMaxW:cellContenMaxWidth cellWidth:cellWidth dataModel:dataModel isDetail:YES];
     self.kf_content = CGRectMake(0, CGRectGetMaxY(self.kf_head), cellWidth, self.frame_content.kf_ContentHeight);
     
     
@@ -49,9 +49,9 @@
     CGFloat rewardH = rewardCount ? (kMargin30 + kMargin10) : 0;
     CGFloat bottomLineH = (likeCount || rewardCount) ? kMargin5 : 0;
      // 这个布局 跟  userListLayout  有密切关系 
-    style.kf_oneList = CGRectMake(0, CGRectGetMaxY(style.kf_Line), cellWidth, likeH);
-    style.kf_twoList = CGRectMake(0, CGRectGetMaxY(style.kf_oneList), cellWidth, rewardH);
-    style.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(style.kf_twoList), cellWidth, bottomLineH);
+    style.kf_listOne = CGRectMake(0, CGRectGetMaxY(style.kf_Line), cellWidth, likeH);
+    style.kf_listTwo = CGRectMake(0, CGRectGetMaxY(style.kf_listOne), cellWidth, rewardH);
+    style.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(style.kf_listTwo), cellWidth, bottomLineH);
     
     // 计算总的高度
     style.kf_SectionSize = CGSizeMake(cellWidth, CGRectGetMaxY(style.kf_bottomLine));

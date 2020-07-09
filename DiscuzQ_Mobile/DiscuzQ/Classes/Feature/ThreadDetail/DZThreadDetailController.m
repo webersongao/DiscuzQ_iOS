@@ -8,9 +8,10 @@
 
 #import "DZThreadDetailController.h"
 #import "DZThreadDetailListView.h"
+#import "DZThreadTHelper.h"
 #import "DZBottomToolBar.h"
 
-@interface DZThreadDetailController ()
+@interface DZThreadDetailController ()<detailListViewDelgate>
 
 @property (nonatomic, copy) NSString *thread_id;
 @property (nonatomic, assign) NSInteger postPage;
@@ -37,6 +38,7 @@
     self.title = @"详情";
     [self config_DetailController];
     [self loadThreadDetailinfomation];
+    self.detailView.mj_footer.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -50,12 +52,23 @@
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.bottomBar];
     self.postDataArray = [NSMutableArray array];
+    [self.dz_NavigationBar setNaviLogo:nil];
+    [self configNaviBar:@"dz_list_more" type:NaviItemImage Direction:NaviDirectionRight];
+    self.dz_NavigationBar.rightButton.alpha = 0;
     
     KWEAKSELF
     self.detailView.mj_footer = [DZRefreshFooter footerWithRefreshingBlock:^{
         weakSelf.postPage++;
         [weakSelf loadThreadPostWithPage:self.postPage completion:nil];
     }];
+    
+    self.bottomBar.leftMainBlock = ^(UIButton *button) {
+        [DZThreadTHelper thread_CommentCellAction:nil];
+    };
+    
+    self.bottomBar.rightBlock = ^(UIButton *button) {
+        [DZThreadTHelper thread_LikeCellAction:nil];
+    };
     
 }
 
@@ -64,7 +77,9 @@
     
     KWEAKSELF
     self.postPage = 1;
+    [[DZMobileCtrl sharedCtrl] showHub];
     [[DZNetCenter center] dzx_threadOneWithThreadId:self.thread_id completion:^(DZQDataThread * _Nonnull threadData, BOOL success) {
+        [[DZMobileCtrl sharedCtrl] hideHubView];
         if (success) {
             [weakSelf loadThreadPostWithPage:weakSelf.postPage completion:^(NSArray<DZQDataPost *> *postArr, BOOL hasMore) {
                 [weakSelf updateDetailView:threadData post:postArr more:hasMore];
@@ -97,6 +112,7 @@
             postArray = nil;
         }
     }
+    self.detailView.mj_footer.hidden = NO;
     if (hasMore) {
         [self.detailView.mj_footer endRefreshing];
     }else{
@@ -107,10 +123,36 @@
     
 }
 
+- (void)didMoveToParentViewController:(UIViewController *)parent {
+    if (!parent) {
+        if (self.detailVCPopCallback) {
+            self.detailVCPopCallback();
+        }
+    }
+}
+
+-(void)rightBarBtnClick{
+    
+    [DZThreadTHelper thread_MoreCellAction:nil];
+    
+}
+#pragma mark detailListViewDelgate
+
+- (void)detailListView:(DZThreadDetailListView *)detailListView scrollDidScroll:(CGFloat)offsetY{
+    UIButton *rightButton  = self.dz_NavigationBar.rightButton;
+    rightButton.alpha = offsetY / kToolBarHeight;
+}
+
+- (void)detaiVideoView:(DZVideoPicView *)videoView videoDidPlayClick:(DZQDataVideo *)dataVideo{
+    if (self.detailVCPlayCallback) {
+        self.detailVCPlayCallback(videoView);
+    }
+}
 
 -(DZThreadDetailListView *)detailView{
     if (!_detailView) {
         _detailView = [[DZThreadDetailListView alloc] initWithFrame:KView_OutNavi_Bounds style:UITableViewStyleGrouped];
+        _detailView.detailDelegate = self;
     }
     return _detailView;
 }

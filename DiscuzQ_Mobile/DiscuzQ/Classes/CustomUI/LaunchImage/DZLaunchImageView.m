@@ -68,7 +68,7 @@
     
     UIButton *wobutton = [UIButton buttonWithType:UIButtonTypeSystem];
     [wobutton setTitle:@"跳 过" forState:UIControlStateNormal];
-    [wobutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [wobutton setTitleColor:KWhite_Color forState:UIControlStateNormal];
     wobutton.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
     
     UILabel *timelabel = [[UILabel alloc] init];

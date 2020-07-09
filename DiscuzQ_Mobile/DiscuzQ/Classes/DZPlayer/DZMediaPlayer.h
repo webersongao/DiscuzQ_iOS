@@ -7,7 +7,9 @@
 //
 
 #import <ZFPlayer/ZFPlayer.h>
-#import <ZFAVPlayerManager.h>
+#import <ZFPlayer/ZFAVPlayerManager.h>
+#import <ZFPlayer/ZFPlayerControlView.h>
+#import <ZFPlayer/UIView+ZFFrame.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

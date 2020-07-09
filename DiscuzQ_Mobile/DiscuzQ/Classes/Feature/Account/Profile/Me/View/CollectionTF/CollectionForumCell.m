@@ -24,7 +24,7 @@
     
     self.textLab = [[UILabel alloc] init];
     self.textLab.font = KFont(17);
-    self.textLab.textColor = K_Color_MainTitle;
+    self.textLab.textColor = KTitle_Color;
     [self.contentView addSubview:self.textLab];
     
     self.cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];

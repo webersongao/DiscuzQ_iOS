@@ -27,12 +27,9 @@ typedef NS_ENUM(NSInteger,DZHtmlUrlType){
 
  @param url a标签链接
  @param identifier a标签的ID标识，唯一
- @param frame a标签所在位置
  @return 返回一个用于响应的Button
  */
-+ (DZHtmlButton *)getButtonWithURL:(NSString *)url
-                               withIdentifier:(NSString *)identifier
-                                        frame:(CGRect)frame;
++ (DZHtmlButton *)htmlButtonURL:(NSString *)url withIdentifier:(NSString *)identifier frame:(CGRect)frame;
 
 
 //打开链接

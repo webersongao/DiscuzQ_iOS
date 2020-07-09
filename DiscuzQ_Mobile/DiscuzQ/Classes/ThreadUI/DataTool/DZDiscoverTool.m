@@ -29,6 +29,7 @@
 }
 
 
+/// 处理 返回的主题评论数据
 +(NSArray<DZQDataPost *>*)post_dataPostResData:(DZQResModel *)resModel style:(Class)styleCls{
     
     NSMutableArray *threadArr = [NSMutableArray array];
@@ -40,7 +41,6 @@
         threadModel.attributes = (DZQPostModel *)body.attributes;
         threadModel.relationships = (DZQPostRelationModel *)body.relationships;
         threadModel.styleModel = [styleCls inner_dataStyle:threadModel];
-        
         [threadArr addObject:threadModel];
     }
     

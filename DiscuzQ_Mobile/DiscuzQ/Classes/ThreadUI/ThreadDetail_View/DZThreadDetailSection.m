@@ -24,7 +24,7 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
        [self config_DetailSection];
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
     }
     return self;
 }
@@ -42,8 +42,8 @@
 
 -(void)updateSectionLike:(NSArray<DZQDataUser *> *)likedUser reward:(NSArray<DZQDataUser *> *)rewardUser layout:(DZDSectionStyle *)layout{
   
-    [self.likeUserBar updateAUserListBar:likedUser name:@"点赞用户"];
-    [self.rewardUserBar updateAUserListBar:rewardUser name:@"打赏用户"];
+    [self.likeUserBar updateAUserListBar:likedUser name:@"点赞"];
+    [self.rewardUserBar updateAUserListBar:rewardUser name:@"打赏"];
     
     [self layoutThreadDetailSection:layout];
 }
@@ -52,8 +52,8 @@
 -(void)layoutThreadDetailSection:(DZDSectionStyle *)layout{
     
     self.sepLine.frame = layout.kf_Line;
-    self.likeUserBar.frame = layout.kf_oneList;
-    self.rewardUserBar.frame = layout.kf_twoList;
+    self.likeUserBar.frame = layout.kf_listOne;
+    self.rewardUserBar.frame = layout.kf_listTwo;
     self.bottoLine.frame = layout.kf_bottomLine;
 }
 

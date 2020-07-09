@@ -26,11 +26,14 @@
 //    "thumbUrl": "https://discuz.chat/storage/attachment/nPcasNXDOY7A14TS_thumb.png
 
 @property (nonatomic, assign) NSInteger order;  //!< 属性注释
-@property (nonatomic, assign) BOOL isGallery;  //!< 属性注释
+@property (nonatomic, assign) NSInteger type;  //!< 属性注释
+@property (nonatomic, assign) NSInteger type_id;  //!< 属性注释
+
+//@property (nonatomic, assign) BOOL isGallery;  //!< 属性注释
 @property (nonatomic, assign) BOOL isRemote;  //!< 属性注释
 @property (nonatomic, assign) NSInteger isApproved;  //!< 属性注释
 
-@property (nonatomic, copy) NSString *url;  //!< 属性注释
+@property (nonatomic, copy) NSString *url;  //!< 图片或者视频等附件原始路径
 @property (nonatomic, copy) NSString *attachment;  //!< 属性注释
 @property (nonatomic, copy) NSString *extension;  //!< 属性注释
 @property (nonatomic, copy) NSString *fileName;  //!< 属性注释
@@ -39,9 +42,6 @@
 
 @property (nonatomic, copy) NSString *fileType;  //!< 属性注释
 @property (nonatomic, copy) NSString *thumbUrl;  //!< 图片缩略图（fileType 为 图片时包含该字段）
-
-
-
 
 @end
 

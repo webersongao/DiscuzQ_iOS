@@ -25,7 +25,7 @@
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
-    hud.bezelView.color = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    hud.bezelView.color = [KBlack_Color colorWithAlphaComponent:0.2];
     hud.label.text = text;
     hud.label.numberOfLines = 0;
     if (icon.length > 0) {
@@ -99,7 +99,7 @@
     self.userInteractionEnabled = NO;
     self.mode = MBProgressHUDModeIndeterminate;
     self.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
-    self.bezelView.color = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+    self.bezelView.color = [KBlack_Color colorWithAlphaComponent:0.1];
 //    self.square = YES;        //设置显示框的高度和宽度一样
     self.hidden = NO;
     [self showAnimated:YES];

@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dz_NavigationItem.title = @"发送消息";
+    self.title = @"发送消息";
     [self config_SendMsgView];
     if ([DataCheck isValidString:self.uid]) {
         [self configNaviBar:@"取消" type:NaviItemText Direction:NaviDirectionLeft];
@@ -34,9 +34,9 @@
 -(void)config_SendMsgView{
     
     [self.view addSubview:self.bgScrollView];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KWhite_Color;
     UIView *userView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, KScreenWidth, 55)];
-    userView.backgroundColor = [UIColor whiteColor];
+    userView.backgroundColor = KWhite_Color;
     
     UILabel *peopleLable = [[UILabel alloc] initWithFrame:CGRectMake(kMargin15, 20, 55, 15)];
     peopleLable.text = @"收件人:";
@@ -162,7 +162,7 @@
     if (!_postButton) {
         _postButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_postButton setTitle:@"发送" forState:UIControlStateNormal];
-        [_postButton setBackgroundColor:K_Color_Theme];
+        [_postButton setBackgroundColor:KGreen_Color];
         [_postButton addTarget:self action:@selector(postData) forControlEvents:UIControlEventTouchUpInside];
         _postButton.frame = CGRectMake(10, self.messageTextView.bottom +kMargin40 ,KScreenWidth -20, 40);
         _postButton.layer.cornerRadius  = 4.0;

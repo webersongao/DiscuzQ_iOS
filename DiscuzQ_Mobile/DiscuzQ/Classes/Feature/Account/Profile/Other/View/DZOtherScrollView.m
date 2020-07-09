@@ -26,7 +26,7 @@
     if (self) {
         self.user_id = userId;
         [self config_OtherScrollView];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = KWhite_Color;
     }
     return self;
 }

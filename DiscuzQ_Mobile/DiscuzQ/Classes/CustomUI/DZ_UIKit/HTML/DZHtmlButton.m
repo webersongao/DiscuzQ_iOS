@@ -11,14 +11,14 @@
 @implementation DZHtmlButton
 
 #pragma mark - Life Cycle
-+ (DZHtmlButton *)getButtonWithURL:(NSString *)url
-                               withIdentifier:(NSString *)identifier
-                                        frame:(CGRect)frame{
+
++ (DZHtmlButton *)htmlButtonURL:(NSString *)url withIdentifier:(NSString *)identifier frame:(CGRect)frame{
     DZHtmlButton *button = [[DZHtmlButton alloc] initWithFrame:frame];
     button.url = url;
+    button.alpha = 0.5;
     button.identifier = identifier;
-    [button setTitleColor:KGreen_Color forState:UIControlStateNormal];
-    [button addTarget:button action:@selector(onBtnClick:) forControlEvents:UIControlEventAllEvents];
+//    button.backgroundColor = [UIColor purpleColor];
+    [button addTarget:button action:@selector(onBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
 
@@ -32,7 +32,6 @@
     }
     return DZHtmlUrl_Unknow;
 }
-
 
 #pragma mark - private Methods
 -(void)onBtnClick:(DZHtmlButton *)btn{

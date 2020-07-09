@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) CGRect kf_Header; // 内容高度
 @property(nonatomic,assign) CGRect kf_Section; // 内容高度
 
+
+-(void)reloadThreadDetailWithDataModel:(DZQDataThread *)dataModel;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,9 +14,13 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
     }
     return self;
+}
+
++ (CGSize)defaultCellSize{
+    return CGSizeMake(kCellWidth, kCellHeight);
 }
 
 @end

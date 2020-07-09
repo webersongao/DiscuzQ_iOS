@@ -36,7 +36,7 @@
     if (_rightBtn == nil) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _rightBtn.frame = CGRectMake(CGRectGetWidth(self.frame) - 60, 0, 60, CGRectGetHeight(self.frame));
-        [_rightBtn setTitleColor:K_Color_MainTitle forState:UIControlStateNormal];
+        [_rightBtn setTitleColor:KTitle_Color forState:UIControlStateNormal];
         _rightBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
         [_rightBtn setTitle:@"搜索" forState:UIControlStateNormal];
         [_rightBtn setTitle:@"取消" forState:UIControlStateSelected];

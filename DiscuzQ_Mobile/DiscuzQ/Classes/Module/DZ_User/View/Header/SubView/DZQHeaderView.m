@@ -56,7 +56,7 @@
 
 -(UIButton *)avatarView{
     if (!_avatarView) {
-        _avatarView = [UIButton ButtonNormalWithFrame:CGRectMake(kMargin15, (self.height-60)/2.0, 60, 60) title:nil titleFont:nil titleColor:nil normalImgPath:DZQ_icon touchImgPath:DZQ_icon isBackImage:YES];
+        _avatarView = [UIButton ButtonNormalWithFrame:CGRectMake(kMargin15, (self.height-60)/2.0, 60, 60) title:nil titleFont:nil titleColor:nil normalImgPath:DZQ_icon touchImgPath:DZQ_icon isBackImage:YES picAlpha:1];
         _avatarView.layer.cornerRadius = 10.f;
         _avatarView.layer.masksToBounds = YES;
     }
@@ -80,7 +80,7 @@
 
 -(UIButton *)rightSkipButton{
     if (!_rightSkipButton) {
-        _rightSkipButton = [UIButton ButtonTextWithFrame:CGRectMake(self.right - kMargin15 - 45, (self.height - 35)/2.f, 45, 32.f) titleStr:@" →_→" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KBoldFont(16) Radius:4.f Target:self action:nil];
+        _rightSkipButton = [UIButton ButtonTextWithFrame:CGRectMake(self.right - kMargin15 - 45, (self.height - 35)/2.f, 45, 32.f) titleStr:@" →_→" titleColor:KTitle_Color titleTouColor:KTitle_Color font:KBoldFont(16) Radius:4.f Target:self action:nil];
         _rightSkipButton.userInteractionEnabled = NO;
         _rightSkipButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }

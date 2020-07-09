@@ -20,7 +20,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self p_setupViews];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = KWhite_Color;
     }
     
     return self;
@@ -50,7 +50,7 @@
     self.appNameLabel.font = [UIFont boldSystemFontOfSize:31.0];
     [self.bgImageView addSubview:self.appNameLabel];
     self.appNameLabel.text = DZ_APP_Name;
-    self.appNameLabel.textColor = [UIColor blackColor];
+    self.appNameLabel.textColor = KBlack_Color;
     self.appNameLabel.textAlignment = NSTextAlignmentCenter;
     [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.logoView.mas_bottom).offset(30);

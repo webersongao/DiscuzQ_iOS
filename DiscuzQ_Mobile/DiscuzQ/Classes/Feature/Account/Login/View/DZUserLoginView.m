@@ -118,7 +118,7 @@
     
     UILabel *thirdLabel = [[UILabel alloc] init];
     thirdLabel.textAlignment = NSTextAlignmentCenter;
-    thirdLabel.backgroundColor = [UIColor whiteColor];
+    thirdLabel.backgroundColor = KWhite_Color;
     thirdLabel.textColor = KGray_Color;
     thirdLabel.text = @"第三方登录";
     thirdLabel.font = KFont(15);
@@ -211,7 +211,7 @@
         _loginBtn.cs_acceptEventInterval = 1;
         _loginBtn.layer.masksToBounds = YES;
         _loginBtn.layer.cornerRadius = 5.0;
-        _loginBtn.backgroundColor = K_Color_Theme;
+        _loginBtn.backgroundColor = KGreen_Color;
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     }
     return _loginBtn;
@@ -238,7 +238,7 @@
 -(UIView *)thirdView{
     if (!_thirdView) {
         _thirdView = [[UIView alloc] init];
-        _thirdView.backgroundColor = [UIColor whiteColor];
+        _thirdView.backgroundColor = KWhite_Color;
     }
     return _thirdView;
 }

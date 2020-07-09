@@ -1,5 +1,5 @@
 //
-//  AppDelegate+Local.m
+//  DZQDelegate+Local.m
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2018/2/1.
@@ -9,13 +9,13 @@
 #import "AppDelegate+Local.h"
 #import "UIAlertController+Extension.h"
 
-@interface AppDelegate()
+@interface DZQDelegate()
 
 @property (nonatomic, strong) CLLocationManager *localManager;
 
 @end
 
-@implementation AppDelegate (Local)
+@implementation DZQDelegate (Local)
 
 - (void)useLocal {
     self.localManager = [[CLLocationManager alloc] init];

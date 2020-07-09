@@ -16,9 +16,15 @@
 
 @property (nonatomic, copy) NSString *replyUserId;  //!< 所回复的用户 ID
 @property (nonatomic, copy) NSString *summary;  //!< 摘要
+@property (nonatomic, copy) NSString *summaryText;  //!< 摘要
 @property (nonatomic, copy) NSString *content;  //!< 内容
 @property (nonatomic, copy) NSString *contentHtml;  //!< html 内容
+
 @property (nonatomic, copy) NSString *ip;  //!< 发布 ip
+@property (nonatomic, copy) NSString *port;  //!< 端口
+
+@property (nonatomic, copy) NSString *longitude;  //!< 经度
+@property (nonatomic, copy) NSString *latitude;  //!< 维度
 
 @property (nonatomic, assign) NSInteger replyCount;  //!< 回复数
 @property (nonatomic, assign) NSInteger likeCount;  //!< 喜欢数
@@ -29,9 +35,10 @@
 
 @property (nonatomic, assign) BOOL isFirst;  //!< 是否首帖
 @property (nonatomic, assign) BOOL isComment;  //!< 是否是评论
-@property (nonatomic, assign) BOOL isApproved;  //!< 是否合法（0/1/2）(0 不合法 1 正常 2 忽略)
+@property (nonatomic, assign) NSInteger isApproved;  //!< 是否合法（0/1/2）(0 不合法 1 正常 2 忽略)
 
 @property (nonatomic, assign) BOOL isLiked;  //!< 是否喜欢
+@property (nonatomic, assign) BOOL isDeleted;  //!< 是否有权点赞
 
 @property (nonatomic, assign) BOOL canEdit;  //!< 是否有权编辑
 @property (nonatomic, assign) BOOL canApprove;  //!< 是否有权审核

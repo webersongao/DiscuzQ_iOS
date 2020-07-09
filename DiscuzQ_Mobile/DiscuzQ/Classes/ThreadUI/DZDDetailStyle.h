@@ -32,8 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DZDSectionStyle : DZQStyle
 
 @property(nonatomic,assign) CGRect kf_Line;
-@property(nonatomic,assign) CGRect kf_oneList;
-@property(nonatomic,assign) CGRect kf_twoList;
+@property(nonatomic,assign) CGRect kf_listOne;
+@property(nonatomic,assign) CGRect kf_listTwo;
 @property(nonatomic,assign) CGRect kf_bottomLine;
 
 @property(nonatomic,assign) CGSize kf_SectionSize;

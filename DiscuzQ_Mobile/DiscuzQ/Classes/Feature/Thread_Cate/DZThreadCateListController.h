@@ -11,7 +11,7 @@
 
 @interface DZThreadCateListController : DZBaseViewController
 
-@property (nonatomic ,copy) NSString *forumFid;
+@property (nonatomic ,strong) DZQDataCate *dataCate;
 
 @property (nonatomic, assign) NSInteger selectIndex;
 @property (nonatomic, strong) UIView *contentView;

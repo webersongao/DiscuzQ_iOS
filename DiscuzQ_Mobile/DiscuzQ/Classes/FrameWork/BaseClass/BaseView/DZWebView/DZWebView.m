@@ -9,12 +9,12 @@
 #import "DZWebView.h"
 #import "DZRefreshHeader.h"
 #import "PRNetWorkErrorView.h"
-#import "LoadingAniView.h"
+#import "DZLoadingAniView.h"
 
 @interface DZWebView ()<WKNavigationDelegate,WKUIDelegate,PRNetWorkErrorViewDelegate>
 {
     BOOL m_isWebReload;
-    LoadingAniView * m_actView;
+    DZLoadingAniView * m_actView;
 }
 @property(nonatomic,assign) WebCSSMode CssMode;
 @property (nonatomic, copy) NSString *urlLoad;  //!< 属性注释
@@ -51,7 +51,7 @@
 -(void)comfigBaseWebView{
     self.UIDelegate = self;
     self.navigationDelegate = self;
-    self.backgroundColor = KRandom_Color;
+    self.backgroundColor = KDebug_Color;
     self.urlCenter = [[DZWebUrlCenter alloc] init];
     self.jsBridge = [WebViewJavascriptBridge bridgeForWebView:self];
     [self.jsBridge setWebViewDelegate:self];
@@ -72,7 +72,7 @@
 -(void)setIsActionLoading:(BOOL)isActionLoading{
     _isActionLoading = isActionLoading;
     if (isActionLoading) {
-        m_actView = [[LoadingAniView alloc] initWithSuperView:self loadingType:PRLoadingViewNoramlType];
+        m_actView = [[DZLoadingAniView alloc] initWithSuperView:self loadingType:PRLoadingViewNoramlType];
     }else{
         m_actView = nil;
     }

@@ -23,13 +23,13 @@
 - (void)createUI {
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, KScreenWidth-25, 50)];
     self.titleLabel.font = KFont(14);
-    self.titleLabel.textColor = K_Color_MainTitle;
+    self.titleLabel.textColor = KTitle_Color;
     self.titleLabel.numberOfLines = 0;
     [self addSubview:self.titleLabel];
     
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.titleLabel.frame), self.titleLabel.frame.size.height, 100, 15)];
     self.nameLabel.font = KFont(12);//12
-    self.nameLabel.textColor = K_Color_Theme;
+    self.nameLabel.textColor = KGreen_Color;
     [self addSubview:self.nameLabel];
     
     self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.nameLabel.frame) + 5, self.titleLabel.frame.size.height, 120, 15)];

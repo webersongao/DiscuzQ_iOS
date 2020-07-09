@@ -26,12 +26,12 @@
 #import "DZDomainListController.h"
 #import "DZAboutController.h"
 #import "DZSiteInfoViewController.h"
-#import "DZThreadDetailController.h"
 #import "DZUsertermsController.h"
 #import "DZRegisterController.h"
 #import "DZRootPostTabController.h"
 #import "DZMyThreadListController.h"
 #import "DZMsgDetailListController.h"
+#import "DZThreadDetailController.h"
 
 @implementation DZMobileCtrl (Navi)
 
@@ -62,16 +62,17 @@
 }
 
 /// 帖子详情页
-- (void)PushToThreadDetailController:(NSString *)tid {
+- (DZThreadDetailController *)PushToThreadDetailController:(NSString *)tid {
     DZThreadDetailController *detailVC = [[DZThreadDetailController alloc] initWithThread:tid];
     [self.mainNavi pushViewController:detailVC animated:YES];
+    return detailVC;
 }
 
 /// 分类板块 帖子列表
-- (void)PushToForumCateController:(NSString *)cate_id {
-    DZThreadCateListController *lianMixVc = [[DZThreadCateListController alloc] init];
-    lianMixVc.forumFid = cate_id;
-    [self.mainNavi pushViewController:lianMixVc animated:YES];
+- (void)PushToForumCateController:(DZQDataCate *)dataCate {
+    DZThreadCateListController *CateVC = [[DZThreadCateListController alloc] init];
+    CateVC.dataCate = dataCate;
+    [self.mainNavi pushViewController:CateVC animated:YES];
 }
 
 - (void)PushToWebViewController:(NSString *)link {

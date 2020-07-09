@@ -1,7 +1,8 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-source 'https://cdn.cocoapods.org/'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 
 target 'DiscuzQ' do
@@ -47,12 +48,13 @@ target 'DiscuzQ' do
   pod 'IQKeyboardManager'
   pod 'WebViewJavascriptBridge'
   pod 'PYSearch' # 搜索控制器
-#  pod 'TYSnapshotScroll'  # 一键截图
+  pod 'TYSnapshotScroll'  # 一键截图
   
   pod 'ZFPlayer' # 视频播放器 https://www.jianshu.com/p/c5b71a0c6038
   pod 'ZFPlayer/AVPlayer'
   pod 'ZFPlayer/ControlView'
   
+  pod 'TABAnimated'  # 骨架屏
   pod 'YBImageBrowser' # 图片浏览器
   pod 'TZImagePickerController' # 图片选择器
   

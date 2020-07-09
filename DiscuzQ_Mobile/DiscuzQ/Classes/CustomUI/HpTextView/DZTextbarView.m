@@ -324,7 +324,7 @@ static CGFloat btn_width = 24.0;
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_sendBtn setTitle:@"跟帖" forState:UIControlStateNormal];
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        _sendBtn.titleLabel.textColor = [UIColor whiteColor];
+        _sendBtn.titleLabel.textColor = KWhite_Color;
         _sendBtn.frame = CGRectMake(CGRectGetMaxX(_faceBtn.frame)  + 10, 3, 60, 32);
         [_sendBtn setBackgroundImage:[UIImage imageWithColor:K_Color_Disabled] forState:UIControlStateDisabled];
         [_sendBtn setBackgroundImage:[UIImage imageWithColor:DZ_Main_Color] forState:UIControlStateNormal];

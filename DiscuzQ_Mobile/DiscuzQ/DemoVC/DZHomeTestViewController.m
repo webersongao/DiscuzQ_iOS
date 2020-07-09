@@ -14,6 +14,7 @@
 #import "DZPostSiriViewController.h"
 #import "DZRootPostTabController.h"
 #import "DZMediaPicker.h"
+#import "DZArticleViewController.h"
 
 @interface DZHomeTestViewController ()
 
@@ -150,10 +151,11 @@
 // 详情页 接口
 - (IBAction)siriInputAction:(UIButton *)sender {
     
-//    NSString *threadId = @"561";    // 多文字，少图片
-    NSString *threadId = @"3057";    // 富文本 多图片
-//    NSString *threadId = @"2314";  // 文章
-//    NSString *threadId = @"3054";  // 视频
+    //    NSString *threadId = @"561";    // 多文字，少图片
+//    NSString *threadId = @"3057";    // 富文本 多图片
+    NSString *threadId = @"2837";    // 富文本 超链接
+    //    NSString *threadId = @"2314";  // 文章
+    //    NSString *threadId = @"3054";  // 视频
     [[DZMobileCtrl sharedCtrl] PushToThreadDetailController:threadId];
 }
 
@@ -173,13 +175,11 @@
 // 分类列表 接口
 - (IBAction)siriUIInputAction:(UIButton *)sender {
     
-    [[DZNetCenter center] dzx_categoryListWithCompletion:^(NSArray<DZQDataCate *> * _Nonnull varModel, BOOL success) {
-        if (success) {
-            KSLog(@"WBS 分类 列表获取 成功");
-        }else{
-            KSLog(@"WBS 分类 列表获取 失败");
-        }
-    }];
+    DZArticleViewController *articleVC = [[DZArticleViewController alloc] init];
+    
+    articleVC.htmlString = @"<p><img src=\"https://discuz.chat/static/images/logo.png\" alt=\"\"></p>\n\n<p>以上是logo</p>\n\n<p>想加入官方微信群，请扫码：</p>\n\n<p><img src=\"https://discuz.chat/storage/attachment/nPcasNXDOY7A14TS_thumb.png\" alt=\"\"></p>\n\n<p>加微信好友，拉入官方微信群(每隔1-2天不定时登录此微信号处理)</p>\n\n<p>语法如下：</p>\n\n<pre><code>![](https://discuz.chat/static/images/logo.png)\n\n以上是logo\n\n想加入官方微信群，请扫码：\n\n![](https://discuz.chat/storage/attachment/nPcasNXDOY7A14TS_thumb.png)\n\n加微信好友，拉入官方微信群(每隔1-2天不定时登录此微信号处理)</code></pre>";
+    
+    [[DZMobileCtrl sharedCtrl] PushToController:articleVC];
     
 }
 

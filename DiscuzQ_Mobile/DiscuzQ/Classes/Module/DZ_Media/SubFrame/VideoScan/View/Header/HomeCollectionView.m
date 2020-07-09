@@ -28,7 +28,7 @@ static NSString * const cellIdentifier = @"DZThreadCell";
         [self configHomeCollectionView];
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = KDebug_Color;
         [self registerClass:[HomeCollectionCell class] forCellWithReuseIdentifier:cellIdentifier];
     }
     return self;

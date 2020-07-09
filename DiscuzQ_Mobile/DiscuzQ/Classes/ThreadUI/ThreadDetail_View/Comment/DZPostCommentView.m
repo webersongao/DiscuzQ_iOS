@@ -12,6 +12,7 @@
 #import "DZDDetailStyle.h"
 #import "DZBaseUserInfoBar.h"
 #import "DZPostCommentBar.h"
+#import "DZThreadTHelper.h"
 
 @interface DZPostCommentView ()
 
@@ -28,7 +29,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self config_CommentView];
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
     }
     return self;
 }
@@ -39,15 +40,17 @@
     [self addSubview:self.postUserbar];
     [self addSubview:self.postContent];
     [self addSubview:self.postToolBar];
+    
+    [self.postToolBar configToolBarAction:self like:@selector(likePostAction) reply:@selector(replyPostAction) share:nil];
 }
 
 -(void)updatePostComment:(DZQDataPost *)dataPost style:(DZDPostCellStyle *)postStyle{
     
-    [self.postUserbar updateUserBar:dataPost.relationships.user.attributes.username avatar:dataPost.relationships.user.attributes.avatarUrl time:dataPost.attributes.createdAt real:NO style:postStyle.frame_post_user];
+    [self.postUserbar updateUserBar:postStyle.frame_post_user.nameAttributedString avatar:dataPost.relationships.user.attributes.avatarUrl time:dataPost.attributes.createdAt real:NO style:postStyle.frame_post_user];
     
     [self.postContent updateThreadNormal:dataPost.relationships style:postStyle.frame_post_content];
     
-    [self.postToolBar updateCommentBar:@"" layout:postStyle.frame_post_toolBar];
+    [self.postToolBar updateCommentBar:dataPost layout:postStyle.frame_post_toolBar];
     
     [self layoutMyCommentView:postStyle];
 }
@@ -57,6 +60,17 @@
     self.postUserbar.frame = postStyle.kf_post_user;
     self.postContent.frame = postStyle.kf_post_content;
     self.postToolBar.frame = postStyle.kf_post_toolBar;
+    
+}
+
+-(void)likePostAction{
+    
+    [DZThreadTHelper thread_LikeCellAction:nil];
+}
+
+-(void)replyPostAction{
+    
+    [DZThreadTHelper thread_CommentCellAction:nil];
     
 }
 

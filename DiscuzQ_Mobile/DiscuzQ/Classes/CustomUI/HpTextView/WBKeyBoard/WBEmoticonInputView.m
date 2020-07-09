@@ -383,7 +383,7 @@
     btn.exclusiveTouch = YES;
     btn.size = CGSizeMake(kScreenWidth / _emoticonGroups.count, kToolbarHeight);
     btn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleColor:KWhite_Color forState:UIControlStateNormal];
     [btn setTitleColor:UIColorHex(5D5C5A) forState:UIControlStateSelected];
     
     UIImage *img;
@@ -486,7 +486,7 @@
         layer.size = CGSizeMake(width, height);
         layer.cornerRadius = 1;
         if (page - curGroupPageIndex == i) {
-            layer.backgroundColor = K_Color_Theme.CGColor;
+            layer.backgroundColor = KGreen_Color.CGColor;
 //            layer.backgroundColor = UIColorHex(fd8225).CGColor;
         } else {
             layer.backgroundColor = UIColorHex(dedede).CGColor;

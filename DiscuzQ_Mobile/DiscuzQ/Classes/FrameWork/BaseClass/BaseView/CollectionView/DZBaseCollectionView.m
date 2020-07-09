@@ -21,7 +21,7 @@
     self = [super initWithFrame:frame collectionViewLayout:[DZLayoutTool defaultLayout]];
     if (self) {
         [self layoutSubviewConfig];
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
         if (@available(iOS 11.0, *)) {
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {

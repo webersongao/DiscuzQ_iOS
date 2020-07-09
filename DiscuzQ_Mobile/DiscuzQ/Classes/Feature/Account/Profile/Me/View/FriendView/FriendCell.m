@@ -28,7 +28,7 @@
     
     self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.sendBtn.frame = CGRectMake(KScreenWidth - 55, 18, 45, 24);
-    [self.sendBtn setTitleColor:K_Color_NaviButton forState:UIControlStateNormal];
+    [self.sendBtn setTitleColor:KGreen_Color forState:UIControlStateNormal];
     self.sendBtn.highlighted = YES;
     self.sendBtn.titleLabel.font = KFont(12);
     [self.contentView addSubview:self.sendBtn];
@@ -49,7 +49,7 @@
     
     self.sendBtn.frame = CGRectMake(KScreenWidth - 60, 18, 50, 24);
     self.sendBtn.layer.borderWidth = 1.0;
-    self.sendBtn.layer.borderColor = K_Color_NaviButton.CGColor;
+    self.sendBtn.layer.borderColor = KGreen_Color.CGColor;
     self.sendBtn.layer.cornerRadius = 2.0;
 }
 

@@ -18,7 +18,7 @@
 }
 
 - (void)p_setupViews {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.headImageV = [[UIImageView alloc] initWithFrame:CGRectMake(11,11, 42, 42)];
     [self.contentView addSubview:self.headImageV];
@@ -29,14 +29,14 @@
     
     self.groupLabel = [[UILabel alloc] init];
     self.groupLabel.font = [UIFont systemFontOfSize:10.0];
-    self.groupLabel.textColor = [UIColor whiteColor];
+    self.groupLabel.textColor = KWhite_Color;
     self.groupLabel.backgroundColor = mRGBColor(253, 197, 78);
     self.groupLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.groupLabel];
     
     self.editHeadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.editHeadBtn.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [self.editHeadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.editHeadBtn setTitleColor:KBlack_Color forState:UIControlStateNormal];
     self.editHeadBtn.titleLabel.textColor = mRGBColor(131, 131, 131);
     self.editHeadBtn.backgroundColor = mRGBColor(249, 249, 249);
     [self.editHeadBtn setTitle:@"编辑头像" forState:UIControlStateNormal];

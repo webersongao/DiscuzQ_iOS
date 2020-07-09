@@ -18,8 +18,7 @@
 
 @interface DZThreadCateListController () <UITableViewDelegate, UITableViewDataSource>
 
-//YES代表能滑动
-@property (nonatomic, assign) BOOL canScroll;
+@property (nonatomic, assign) BOOL canScroll; //YES:可滑动
 @property (nonatomic, strong) DZThreadVarModel *VarModel;
 @property (nonatomic, strong) ForumContainListView *tableView;
 @property (nonatomic, strong) ForumThreadMixContainer *containVC;
@@ -35,10 +34,6 @@
 
 @implementation DZThreadCateListController
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -46,8 +41,18 @@
     self.canScroll = YES;
     [self dl_addNotification];
     
+    [self config_threadCateListCtrl];
+}
+
+
+-(void)config_threadCateListCtrl{
+    
     [self.view addSubview:self.tableView];
+    self.title = self.dataCate.attributes.name;
     self.tableView.tableHeaderView = self.headView;
+    [self.headView updateCateHeader:self.dataCate];
+    
+    [self.view addSubview:self.PostButton];
     
     KWEAKSELF;
     self.tableView.mj_header  = [DZRefreshHeader headerWithRefreshingBlock:^{
@@ -59,8 +64,6 @@
         }
         //        [weakSelf refreshData];
     }];
-    
-    [self.view addSubview:self.PostButton];
 }
 
 -(void)fastPostAction:(UIButton *)button{
@@ -130,7 +133,7 @@
         self.contentView = cell.contentView;
         self.containVC = [[ForumThreadMixContainer alloc] init];
         CGRect segmentRect = CGRectMake(0, 0, KScreenWidth, kToolBarHeight);
-        self.containVC.naviBackColor = [UIColor whiteColor];
+        self.containVC.naviBackColor = KDebug_Color;
         [self.containVC configSubControllers:self.ctvArr parentVC:self segmentRect:segmentRect];
     }
     
@@ -223,9 +226,8 @@
     if (_titleArr == nil) {
         _titleArr = [NSMutableArray array];
         [_titleArr addObject:[DZForTitleModel modelName:@"全部" type:DZ_ListAll]];
-        [_titleArr addObject:[DZForTitleModel modelName:@"最新" type:DZ_ListNew]];
-        [_titleArr addObject:[DZForTitleModel modelName:@"热门" type:DZ_ListHot]];
         [_titleArr addObject:[DZForTitleModel modelName:@"精华" type:DZ_ListBest]];
+        [_titleArr addObject:[DZForTitleModel modelName:@"已关注" type:DZ_ListFollow]];
     }
     return _titleArr;
 }
@@ -233,10 +235,14 @@
 -(UIButton *)PostButton{
     if (_PostButton == nil) {
         CGFloat btn_width = 50.0;
-        _PostButton = [UIButton ButtonNormalWithFrame:CGRectMake(KScreenWidth - btn_width - 15, KScreenHeight - btn_width - 15 - KNavi_ContainStatusBar_Height - 10, btn_width, btn_width) title:@"" titleFont:nil titleColor:nil normalImgPath:@"writePost" touchImgPath:@"writePost" isBackImage:YES];
+        _PostButton = [UIButton ButtonNormalWithFrame:CGRectMake(KScreenWidth - btn_width - 15, KScreenHeight - btn_width - 15 - KNavi_ContainStatusBar_Height - 10, btn_width, btn_width) title:@"" titleFont:nil titleColor:nil normalImgPath:@"writePost" touchImgPath:@"writePost" isBackImage:YES picAlpha:1];
         [_PostButton addTarget:self action:@selector(fastPostAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _PostButton;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(NSMutableArray<DZThreadListController *> *)ctvArr{
@@ -244,7 +250,7 @@
         _ctvArr = [NSMutableArray arrayWithCapacity:3];
         for (int idx = 0; idx < self.titleArr.count; idx++) {
             DZForTitleModel *obj = self.titleArr[idx];
-            DZThreadListController *listVc = [[DZThreadListController alloc] initWithType:obj.listType fid:self.forumFid order:idx];
+            DZThreadListController *listVc = [[DZThreadListController alloc] initWithType:obj.listType fid:self.dataCate.type_id order:idx];
             listVc.title = obj.name;
             listVc.dataBlockWhenAll = ^(DZThreadVarModel *varModel) {
                 [self subSendVarible:varModel];

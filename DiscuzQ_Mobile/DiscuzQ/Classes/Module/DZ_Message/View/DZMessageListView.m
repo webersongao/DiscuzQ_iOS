@@ -28,7 +28,7 @@
     
     self.delegate = self;
     self.dataSource = self;
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self registerClass:[DZMessageListCell class] forCellReuseIdentifier:@"DZMessageListCell"];
 }

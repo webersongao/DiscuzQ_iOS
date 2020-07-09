@@ -12,7 +12,7 @@
 // 需要继承自 DZQSuperAttribute
 @interface DZQThreadModel : DZQSuperAttribute
 
-@property (nonatomic, assign) NSInteger type;  //!< 文章类型(0 普通 1 长文 2 视频)
+@property (nonatomic, assign) NSInteger type;  //!< 文章类型(0 普通 1 长文 2 视频 3 图片)
 
 @property (nonatomic, copy) NSString *title;  //!< 长文主题 de 标题
 @property (nonatomic, assign) float price;  //!< 长文主题 de  主题价格

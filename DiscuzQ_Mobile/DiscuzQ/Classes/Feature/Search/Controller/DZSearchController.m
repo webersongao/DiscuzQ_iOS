@@ -35,7 +35,7 @@
     [self dz_SetNavigationTitleView:self.searchView];
     [self.searchView.searchBar becomeFirstResponder];
     
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = KWhite_Color;
     [self.tableView registerClass:[DZSearchListCell class] forCellReuseIdentifier:@"DZSearchListCell"];
     [self.searchView.rightBtn addTarget:self action:@selector(rightBarBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -97,7 +97,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = KWhite_Color;
     
     UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, KScreenWidth - 20, 39)];
     lab.textColor = [UIColor darkGrayColor];

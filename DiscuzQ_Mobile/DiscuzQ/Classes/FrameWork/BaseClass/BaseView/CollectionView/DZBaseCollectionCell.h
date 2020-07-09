@@ -12,6 +12,9 @@
 
 @interface DZBaseCollectionCell : UICollectionViewCell
 
+
++ (CGSize)defaultCellSize;
+
 @end
 
 

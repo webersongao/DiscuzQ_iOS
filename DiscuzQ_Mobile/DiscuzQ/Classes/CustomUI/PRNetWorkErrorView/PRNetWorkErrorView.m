@@ -99,7 +99,7 @@ NSString *const PRErrorViewDefaultNoDataTextString = @"暂无内容";
 }
 
 - (void)setupView {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     
     // 1. 背景View
     self.backgroundView = ({

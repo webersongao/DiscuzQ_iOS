@@ -10,9 +10,8 @@
 
 typedef enum : NSUInteger {
     DZ_ListAll,
-    DZ_ListNew,
-    DZ_ListHot,
-    DZ_ListBest
+    DZ_ListBest,
+    DZ_ListFollow
 } DZ_ListType;
 
 

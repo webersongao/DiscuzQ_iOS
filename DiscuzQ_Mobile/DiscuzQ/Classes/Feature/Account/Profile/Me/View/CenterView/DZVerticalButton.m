@@ -32,7 +32,7 @@
     
     self.textLabel = [[UILabel alloc] init];
     [self addSubview:self.textLabel];
-    self.textLabel.textColor = K_Color_MainTitle;
+    self.textLabel.textColor = KTitle_Color;
     self.textLabel.textAlignment = NSTextAlignmentCenter;
     self.textLabel.font = KFont(14);
 }

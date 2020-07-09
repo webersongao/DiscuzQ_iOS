@@ -57,10 +57,7 @@
     
     DZThreadDetailStyle *style = [[DZThreadDetailStyle alloc] init];
     
-    style.frame_detail_Head =  [[DZDHeadStyle new] DHeadStyle:dataModel cellWidth:cellWidth maxWidth:contenMaxWidth];
-    
-    style.kf_Header = CGRectMake(0, 0, cellWidth, style.frame_detail_Head.kf_HeadSize.height);
-    
+    style.frame_detail_Head = [style refreshThreadDetail:cellWidth maxWidth:contenMaxWidth dataModel:dataModel];
     
     style.frame_detail_Section = [DZDSectionStyle DSectionStyle:cellWidth like:dataModel.relationships.firstPost.relationships.likedUsers.count reward:dataModel.relationships.rewardedUsers.count];
     style.kf_Section = CGRectMake(0,0, cellWidth, style.frame_detail_Section.kf_SectionSize.height);
@@ -76,5 +73,26 @@
     return style;
 
 }
+
+
+
+
+-(DZDHeadStyle *)refreshThreadDetail:(CGFloat)cellWidth maxWidth:(CGFloat)contenMaxWidth dataModel:(DZQDataThread *)dataModel{
+    
+    DZDHeadStyle *frame_detail_Head =  [[DZDHeadStyle new] DHeadStyle:dataModel cellWidth:cellWidth maxWidth:contenMaxWidth];
+    
+    self.kf_Header = CGRectMake(0, 0, cellWidth, frame_detail_Head.kf_HeadSize.height);
+    
+    return frame_detail_Head;
+}
+
+
+// 下载图片之后，重新计算frame
+-(void)reloadThreadDetailWithDataModel:(DZQDataThread *)dataModel{
+
+    self.frame_detail_Head =  [self refreshThreadDetail:dz_CellWidth maxWidth:dz_CellMaxContentWidth dataModel:dataModel];
+    
+}
+
 
 @end

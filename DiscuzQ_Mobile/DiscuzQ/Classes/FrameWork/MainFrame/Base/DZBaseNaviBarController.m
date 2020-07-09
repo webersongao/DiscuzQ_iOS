@@ -8,7 +8,6 @@
 
 #import "DZBaseNaviBarController.h"
 #import "DZNavItemButton.h"
-#import "UIBarButtonItem+Utils.h"
 
 @interface DZBaseNaviBarController ()
 
@@ -19,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self dz_SetNavigationBar];
-    self.view.backgroundColor = KRandom_Color;
+    self.view.backgroundColor = KDebug_Color;
 }
 
 //重写系统设置title的setter

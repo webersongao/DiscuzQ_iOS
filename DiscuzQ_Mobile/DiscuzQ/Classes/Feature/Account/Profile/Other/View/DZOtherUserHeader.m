@@ -23,7 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self config_userHeader];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = KWhite_Color;
     }
     return self;
 }
@@ -60,16 +60,16 @@
 
 -(UILabel *)nameLabel{
     if (!_nameLabel) {
-        _nameLabel = [UILabel labelWithFrame:CGRectMake(self.width/2.0 - 100, self.height/2.0 + 5, 200, 25) title:@"---" titleColor:K_Color_MainTitle fontSize:17.f];
+        _nameLabel = [UILabel labelWithFrame:CGRectMake(self.width/2.0 - 100, self.height/2.0 + 5, 200, 25) title:@"---" titleColor:KTitle_Color fontSize:17.f];
     }
     return _nameLabel;
 }
 
 -(UILabel *)groupLabel{
     if (!_groupLabel) {
-        _groupLabel = [UILabel labelWithFrame:CGRectMake(self.nameLabel.left, self.nameLabel.bottom + kMargin10, self.nameLabel.width, 18) title:@"新手上路" titleColor:K_Color_btn_user fontSize:13.f];
+        _groupLabel = [UILabel labelWithFrame:CGRectMake(self.nameLabel.left, self.nameLabel.bottom + kMargin10, self.nameLabel.width, 18) title:@"新手上路" titleColor:KWhite_Color fontSize:13.f];
         _groupLabel.textAlignment = NSTextAlignmentCenter;
-        _groupLabel.backgroundColor = K_Color_Theme;
+        _groupLabel.backgroundColor = KGreen_Color;
         _groupLabel.layer.masksToBounds = YES;
         _groupLabel.layer.cornerRadius = 2;
     }

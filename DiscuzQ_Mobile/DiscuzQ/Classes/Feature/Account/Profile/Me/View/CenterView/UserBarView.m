@@ -28,7 +28,7 @@
 }
 
 - (void)initCommit {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     
     NSArray *arr = @[@"主题",@"关注",@"粉丝数",@"我的收藏"];
     

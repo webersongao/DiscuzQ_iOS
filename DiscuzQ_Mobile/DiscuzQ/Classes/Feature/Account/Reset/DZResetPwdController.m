@@ -20,7 +20,7 @@
     
     [super viewDidLoad];
     [self.view addSubview:self.resetView];
-    self.dz_NavigationItem.title = @"修改密码";
+    self.title = @"修改密码";
     
     [_resetView.submitButton addTarget:self action:@selector(submitButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
