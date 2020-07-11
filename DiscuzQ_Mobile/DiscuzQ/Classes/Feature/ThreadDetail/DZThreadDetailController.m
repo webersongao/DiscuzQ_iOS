@@ -152,7 +152,6 @@
 -(DZThreadDetailListView *)detailView{
     if (!_detailView) {
         _detailView = [[DZThreadDetailListView alloc] initWithFrame:KView_OutNavi_Bounds style:UITableViewStyleGrouped];
-        _detailView.mj_footer.hidden = YES;
         _detailView.detailDelegate = self;
     }
     return _detailView;

@@ -49,6 +49,16 @@
 }
 
 
+// 主题 分类相关板块
++ (void)thread_CategoryCenterCellAction:(DZQDataUser *)postModel{
+    KSLog(@"WBS 分类~~~");
+}
+
+// 主题 附件 被点击
++ (void)thread_attachFileCellTapAction:(DZQDataUser *)postModel{
+    KSLog(@"WBS 附件 被点击~~~");
+}
+
 // 主题管理（更多）
 + (void)thread_MoreCellAction:(DZQPostModel *)postModel{
     

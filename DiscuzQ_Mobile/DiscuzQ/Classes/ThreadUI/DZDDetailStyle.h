@@ -29,16 +29,43 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface DZDPayStyle : DZQStyle
+
+@property(nonatomic,assign) CGRect kf_PayButton;
+@property(nonatomic,assign) CGRect kf_infoLabel;
+
+@property (nonatomic, assign) CGSize UitemSize;  //!< 单元格大小(均等大小)
+@property (nonatomic, assign) UIEdgeInsets USectionEdge;  //!< 组间距
+@property (nonatomic, assign) CGFloat UMinimumLine;  //!< // 行间距 (上下间隔)
+@property (nonatomic, assign) CGFloat UMinimumInteritem;  //!< // 列间距 (左右间隔)
+
+@property(nonatomic,assign) CGRect kf_PayUserList; // 打赏或付费用户列表
+@property(nonatomic,assign) CGRect kf_foldButton;
+
+@property(nonatomic,assign) CGSize kf_PayViewSize;
+
++(instancetype)DZQPayStyle:(CGFloat)cellWidth payOrReward:(NSInteger)payOrReCount;
+
+@end
+
+
+
 @interface DZDSectionStyle : DZQStyle
+
+@property (nonatomic, strong) DZDPayStyle *frame_PayView;  //!< 打赏，支付详情区域
+@property (nonatomic, strong) DZDToolBarStyle *frame_toolBar;  //!< 转评赞 工具条
+
+@property(nonatomic,assign) CGRect kf_PayView;
+@property(nonatomic,assign) CGRect kf_toolBar;
 
 @property(nonatomic,assign) CGRect kf_Line;
 @property(nonatomic,assign) CGRect kf_listOne;
-@property(nonatomic,assign) CGRect kf_listTwo;
 @property(nonatomic,assign) CGRect kf_bottomLine;
 
 @property(nonatomic,assign) CGSize kf_SectionSize;
 
-+(instancetype)DSectionStyle:(CGFloat)cellWidth like:(NSInteger)likeCount reward:(NSInteger)rewardCount;
++(instancetype)DSectionStyle:(CGFloat)cellWidth like:(NSInteger)likeCount payOrReward:(NSInteger)payOrReward;
 
 @end
 

@@ -59,7 +59,7 @@
     self.threadCountLabel.frame = CGRectMake(self.width - 90 - kMargin15, (self.height/2.f)-6, 90, 12.f);
     
     self.sepLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - 5, KScreenWidth, 5)];
-    self.sepLine.backgroundColor = KGroupLine_Color;
+    self.sepLine.backgroundColor = KLine_Color;
     [self addSubview:self.sepLine];
     
 }

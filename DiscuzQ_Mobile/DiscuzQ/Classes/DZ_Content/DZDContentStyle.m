@@ -16,7 +16,6 @@
 +(instancetype)DThreadContentStyleWithMaxW:(CGFloat)maxWidth cellWidth:(CGFloat)cellWidth dataModel:(DZQDataThread *)dataModel isDetail:(BOOL)isDetail{
     
     NSString *contentHtml = isDetail ? dataModel.relationships.firstPost.attributes.contentHtml : dataModel.relationships.firstPost.attributes.summary;
-
     CGFloat localOneH = [self canculateContentDetailHeight:dataModel cellWidth:cellWidth maxW:maxWidth font:k_One_fontSize isDetail:isDetail];
     
     DZDContentStyle *contentStyle = [self inner_contentStyle:contentHtml localOneH:localOneH contentMaxW:maxWidth font:KBoldFont(k_One_fontSize)];
@@ -74,6 +73,7 @@
         // 视频预览图
         CGFloat videoWHRatio = isDetail ? (dataModel.relationships.threadVideo.attributes.width / dataModel.relationships.threadVideo.attributes.height) : KVideoWHRatio;
         CGFloat videoHeight = maxWidth / ((videoWHRatio > 0) ? videoWHRatio : KVideoWHRatio);
+        
         oneHeight = dataModel.relationships.threadVideo.attributes.media_url.length ? videoHeight : 0;
     }else if (modelType == 3 || modelType == 0) {
         // 第一部分 只能是 图片

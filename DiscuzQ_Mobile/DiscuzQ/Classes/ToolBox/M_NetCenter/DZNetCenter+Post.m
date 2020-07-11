@@ -99,7 +99,7 @@
 -(void)dzx_threadOneWithThreadId:(NSString *)thread_id completion:(void (^)(DZQDataThread *threadData,BOOL success))completion{
     
     NSString *defaultStr = @"user,firstPost,threadVideo,firstPost.images,firstPost.attachments,posts,posts.user,posts.thread,posts.images";
-    NSString *query = [NSString stringWithFormat:@"include=%@,firstPost.likedUsers,rewardedUsers",defaultStr];
+    NSString *query = [NSString stringWithFormat:@"include=%@,category,firstPost.likedUsers,rewardedUsers,paidUsers",defaultStr];
     [[DZQNetTool shared] dz_threadOneWithSubCtrl:thread_id query:query success:^(DZQResModel *resModel, BOOL success) {
         dispatch_async(self.formartQueue, ^{
             NSArray *dataArray = [DZDiscoverTool thead_dataThreadResData:resModel style:[DZThreadDetailStyle class]];

@@ -18,6 +18,10 @@
 		700DE2A82468341700A3AB0A /* DZQToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 700DE2A72468341700A3AB0A /* DZQToolBarView.m */; };
 		700FED45247C381000896085 /* DZViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 700FED44247C381000896085 /* DZViewHelper.m */; };
 		7010C78B2480231F0017E552 /* DZThreadDetailStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7010C78A2480231F0017E552 /* DZThreadDetailStyle.m */; };
+		70241A6824B75645002BE50F /* DZCashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70241A6724B75645002BE50F /* DZCashButton.m */; };
+		70241A6B24B757E2002BE50F /* DZThreadCashPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70241A6A24B757E2002BE50F /* DZThreadCashPayView.m */; };
+		70241A6E24B75F43002BE50F /* DZUserPayListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70241A6D24B75F43002BE50F /* DZUserPayListView.m */; };
+		70241A7524B88C7B002BE50F /* DZThreadCateBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 70241A7424B88C7B002BE50F /* DZThreadCateBar.m */; };
 		702C30EB247D1F1B000B7D88 /* DZQGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 702C30EA247D1F1B000B7D88 /* DZQGroupModel.m */; };
 		703F23BF247E0D240087DDE6 /* DZNaviTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 703F23BE247E0D240087DDE6 /* DZNaviTabView.m */; };
 		7044068A24B4828F008C2BAE /* DZThreadStickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7044068924B4828F008C2BAE /* DZThreadStickView.m */; };
@@ -85,6 +89,7 @@
 		70806858247EC99800DD05E6 /* DZVideoPicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70806857247EC99800DD05E6 /* DZVideoPicView.m */; };
 		70806B9124795DC5002CF14E /* DZDiscoverTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 70806B9024795DC5002CF14E /* DZDiscoverTool.m */; };
 		7081E0232477ACC800EC32DB /* NSObject+Super.m in Sources */ = {isa = PBXBuildFile; fileRef = 7081E0222477ACC800EC32DB /* NSObject+Super.m */; };
+		7083FE88247901CB005E9753 /* DZThreadPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083FE87247901CB005E9753 /* DZThreadPostView.m */; };
 		7087F154247444BD00DDD8F4 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7087F153247444BD00DDD8F4 /* SearchModel.m */; };
 		70880AF42468FA6500F433C0 /* DZNotiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 70880AF32468FA6500F433C0 /* DZNotiItem.m */; };
 		70885A212472FE3700F9475D /* DZQThreadRelationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 708859EB2472FE3700F9475D /* DZQThreadRelationModel.m */; };
@@ -138,8 +143,6 @@
 		70B6B84024868CB000B18B37 /* DZNotiListStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B6B83F24868CB000B18B37 /* DZNotiListStyle.m */; };
 		70B6B8432486A67500B18B37 /* DZMyThreadListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B6B8422486A67500B18B37 /* DZMyThreadListView.m */; };
 		70B6B8462488034B00B18B37 /* DZDDetailStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B6B8452488034B00B18B37 /* DZDDetailStyle.m */; };
-		70B9646824B7147500E97FA7 /* DZThreadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B9646524B7147400E97FA7 /* DZThreadCellView.m */; };
-		70B9646924B7147500E97FA7 /* DZThreadPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B9646724B7147500E97FA7 /* DZThreadPostView.m */; };
 		70BC9789248119310070FC5F /* DZQPostRelationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BC9788248119310070FC5F /* DZQPostRelationModel.m */; };
 		70BDDC9424879AFA007A4E7F /* DZDListStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BDDC9324879AFA007A4E7F /* DZDListStyle.m */; };
 		70C4F7B42471A973004AE00B /* ForumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F7462471A972004AE00B /* ForumModel.m */; };
@@ -166,6 +169,7 @@
 		70C4F7CE2471A973004AE00B /* DZThreadReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F78A2471A973004AE00B /* DZThreadReplyModel.m */; };
 		70C4F7CF2471A973004AE00B /* DZAttachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F78B2471A973004AE00B /* DZAttachModel.m */; };
 		70C4F7D02471A973004AE00B /* DZThreadVarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F78E2471A973004AE00B /* DZThreadVarModel.m */; };
+		70C4F7D12471A973004AE00B /* DZThreadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F7942471A973004AE00B /* DZThreadCellView.m */; };
 		70C4F7D22471A973004AE00B /* DZThreadBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F7972471A973004AE00B /* DZThreadBottomBar.m */; };
 		70C4F7D32471A973004AE00B /* DZThreadHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F7992471A973004AE00B /* DZThreadHead.m */; };
 		70C4F7D42471A973004AE00B /* DZThreadAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C4F79C2471A973004AE00B /* DZThreadAUser.m */; };
@@ -455,6 +459,14 @@
 		700FED44247C381000896085 /* DZViewHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZViewHelper.m; sourceTree = "<group>"; };
 		7010C7892480231F0017E552 /* DZThreadDetailStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadDetailStyle.h; sourceTree = "<group>"; };
 		7010C78A2480231F0017E552 /* DZThreadDetailStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadDetailStyle.m; sourceTree = "<group>"; };
+		70241A6624B75645002BE50F /* DZCashButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZCashButton.h; sourceTree = "<group>"; };
+		70241A6724B75645002BE50F /* DZCashButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZCashButton.m; sourceTree = "<group>"; };
+		70241A6924B757E2002BE50F /* DZThreadCashPayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadCashPayView.h; sourceTree = "<group>"; };
+		70241A6A24B757E2002BE50F /* DZThreadCashPayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadCashPayView.m; sourceTree = "<group>"; };
+		70241A6C24B75F43002BE50F /* DZUserPayListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZUserPayListView.h; sourceTree = "<group>"; };
+		70241A6D24B75F43002BE50F /* DZUserPayListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZUserPayListView.m; sourceTree = "<group>"; };
+		70241A7324B88C7A002BE50F /* DZThreadCateBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadCateBar.h; sourceTree = "<group>"; };
+		70241A7424B88C7B002BE50F /* DZThreadCateBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadCateBar.m; sourceTree = "<group>"; };
 		702C30E9247D1F1B000B7D88 /* DZQGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZQGroupModel.h; sourceTree = "<group>"; };
 		702C30EA247D1F1B000B7D88 /* DZQGroupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZQGroupModel.m; sourceTree = "<group>"; };
 		703F23BD247E0D240087DDE6 /* DZNaviTabView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZNaviTabView.h; sourceTree = "<group>"; };
@@ -593,6 +605,8 @@
 		7081A19C24851500005B9149 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		7081E0212477ACC800EC32DB /* NSObject+Super.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Super.h"; sourceTree = "<group>"; };
 		7081E0222477ACC800EC32DB /* NSObject+Super.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Super.m"; sourceTree = "<group>"; };
+		7083FE86247901CB005E9753 /* DZThreadPostView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZThreadPostView.h; sourceTree = "<group>"; };
+		7083FE87247901CB005E9753 /* DZThreadPostView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZThreadPostView.m; sourceTree = "<group>"; };
 		7087F152247444BD00DDD8F4 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
 		7087F153247444BD00DDD8F4 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
 		70880AF22468FA6500F433C0 /* DZNotiItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZNotiItem.h; sourceTree = "<group>"; };
@@ -700,10 +714,6 @@
 		70B6B8422486A67500B18B37 /* DZMyThreadListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZMyThreadListView.m; sourceTree = "<group>"; };
 		70B6B8442488034B00B18B37 /* DZDDetailStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZDDetailStyle.h; sourceTree = "<group>"; };
 		70B6B8452488034B00B18B37 /* DZDDetailStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZDDetailStyle.m; sourceTree = "<group>"; };
-		70B9646424B7147400E97FA7 /* DZThreadPostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZThreadPostView.h; sourceTree = "<group>"; };
-		70B9646524B7147400E97FA7 /* DZThreadCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZThreadCellView.m; sourceTree = "<group>"; };
-		70B9646624B7147500E97FA7 /* DZThreadCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZThreadCellView.h; sourceTree = "<group>"; };
-		70B9646724B7147500E97FA7 /* DZThreadPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZThreadPostView.m; sourceTree = "<group>"; };
 		70BC9787248119310070FC5F /* DZQPostRelationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZQPostRelationModel.h; sourceTree = "<group>"; };
 		70BC9788248119310070FC5F /* DZQPostRelationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZQPostRelationModel.m; sourceTree = "<group>"; };
 		70BDDC9224879AFA007A4E7F /* DZDListStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZDListStyle.h; sourceTree = "<group>"; };
@@ -756,6 +766,8 @@
 		70C4F78E2471A973004AE00B /* DZThreadVarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZThreadVarModel.m; sourceTree = "<group>"; };
 		70C4F78F2471A973004AE00B /* DZThreadListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZThreadListModel.h; sourceTree = "<group>"; };
 		70C4F7902471A973004AE00B /* DZThreadLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZThreadLayout.h; sourceTree = "<group>"; };
+		70C4F7932471A973004AE00B /* DZThreadCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZThreadCellView.h; sourceTree = "<group>"; };
+		70C4F7942471A973004AE00B /* DZThreadCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZThreadCellView.m; sourceTree = "<group>"; };
 		70C4F7962471A973004AE00B /* DZThreadAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZThreadAUser.h; sourceTree = "<group>"; };
 		70C4F7972471A973004AE00B /* DZThreadBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZThreadBottomBar.m; sourceTree = "<group>"; };
 		70C4F7982471A973004AE00B /* DZPicSquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZPicSquareView.h; sourceTree = "<group>"; };
@@ -1403,6 +1415,15 @@
 			path = OtherTerms;
 			sourceTree = "<group>";
 		};
+		70241A6F24B761C0002BE50F /* HSection */ = {
+			isa = PBXGroup;
+			children = (
+				70241A6C24B75F43002BE50F /* DZUserPayListView.h */,
+				70241A6D24B75F43002BE50F /* DZUserPayListView.m */,
+			);
+			path = HSection;
+			sourceTree = "<group>";
+		};
 		70496E8424ADCF2800B297E0 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1954,10 +1975,10 @@
 		709991AE24AEE02A000C140A /* CellBase */ = {
 			isa = PBXGroup;
 			children = (
-				70B9646624B7147500E97FA7 /* DZThreadCellView.h */,
-				70B9646524B7147400E97FA7 /* DZThreadCellView.m */,
-				70B9646424B7147400E97FA7 /* DZThreadPostView.h */,
-				70B9646724B7147500E97FA7 /* DZThreadPostView.m */,
+				7083FE86247901CB005E9753 /* DZThreadPostView.h */,
+				7083FE87247901CB005E9753 /* DZThreadPostView.m */,
+				70C4F7932471A973004AE00B /* DZThreadCellView.h */,
+				70C4F7942471A973004AE00B /* DZThreadCellView.m */,
 				7044068824B4828F008C2BAE /* DZThreadStickView.h */,
 				7044068924B4828F008C2BAE /* DZThreadStickView.m */,
 			);
@@ -1998,8 +2019,14 @@
 		70A2898A248A81E300D650E6 /* HeadDetail */ = {
 			isa = PBXGroup;
 			children = (
+				70241A6624B75645002BE50F /* DZCashButton.h */,
+				70241A6724B75645002BE50F /* DZCashButton.m */,
+				70241A7324B88C7A002BE50F /* DZThreadCateBar.h */,
+				70241A7424B88C7B002BE50F /* DZThreadCateBar.m */,
 				70A2898B248A821A00D650E6 /* DZThreadToolBar.h */,
 				70A2898C248A821A00D650E6 /* DZThreadToolBar.m */,
+				70241A6924B757E2002BE50F /* DZThreadCashPayView.h */,
+				70241A6A24B757E2002BE50F /* DZThreadCashPayView.m */,
 			);
 			path = HeadDetail;
 			sourceTree = "<group>";
@@ -2336,6 +2363,7 @@
 		70CFDE292474D7680097B3CD /* ThreadDetail_View */ = {
 			isa = PBXGroup;
 			children = (
+				70241A6F24B761C0002BE50F /* HSection */,
 				704F7A44247E4CF6000A8158 /* Comment */,
 				70A2898A248A81E300D650E6 /* HeadDetail */,
 				70CFDE2D2474D8100097B3CD /* DZThreadPostCell.h */,
@@ -3319,9 +3347,9 @@
 				70FBBAC524288B0E00BE854E /* DZMobileCtrl+Navi.m */,
 				70FBBABE24288B0E00BE854E /* DZMobileCtrl+Alert.h */,
 				70FBBAC624288B0E00BE854E /* DZMobileCtrl+Alert.mm */,
-				70FBBAC424288B0E00BE854E /* DZMobileCtrl+Tool.h */,
 				706F0B1124ADAEEA009D1A5F /* DZMobileCtrl+HubView.h */,
 				706F0B1224ADAEEA009D1A5F /* DZMobileCtrl+HubView.mm */,
+				70FBBAC424288B0E00BE854E /* DZMobileCtrl+Tool.h */,
 				70FBBABC24288B0E00BE854E /* DZMobileCtrl+Tool.m */,
 				70FBBAC224288B0E00BE854E /* DZMobileCtrl+Local.h */,
 				70FBBAC724288B0E00BE854E /* DZMobileCtrl+Local.m */,
@@ -4223,7 +4251,6 @@
 				70FBBE3324288B1000BE854E /* Palette.m in Sources */,
 				70E30A91246DAC240098FA71 /* DZNetCenter+Site.m in Sources */,
 				70FBBCB324288B0F00BE854E /* DZAuthCodeView.m in Sources */,
-				70B9646924B7147500E97FA7 /* DZThreadPostView.m in Sources */,
 				70FBBCCB24288B0F00BE854E /* DZBaseNavigationController.m in Sources */,
 				70D5F7592486630100DED984 /* DZPostNormalController.m in Sources */,
 				70C4F7D52471A973004AE00B /* DZPicSquareView.m in Sources */,
@@ -4243,7 +4270,6 @@
 				70885A312472FE3700F9475D /* DZQMaper.m in Sources */,
 				70FBBD1D24288B0F00BE854E /* DZHorizontalButton.m in Sources */,
 				70FBBE2424288B1000BE854E /* AppDelegate+Update.m in Sources */,
-				70B9646824B7147500E97FA7 /* DZThreadCellView.m in Sources */,
 				70FBBD9724288B1000BE854E /* UIBarButtonItem+Utils.m in Sources */,
 				70FBBE3024288B1000BE854E /* UIControl+DelayEnable.m in Sources */,
 				70FBBD2D24288B0F00BE854E /* TextIconModel.m in Sources */,
@@ -4317,6 +4343,7 @@
 				70FBBD0224288B0F00BE854E /* DZOtherUserController.m in Sources */,
 				70FBBCC624288B0F00BE854E /* DZBaseThread.m in Sources */,
 				707CDF272466B280000B6F7F /* DZQNetTool+OAuth.m in Sources */,
+				7083FE88247901CB005E9753 /* DZThreadPostView.m in Sources */,
 				707CDF512466B6EA000B6F7F /* DZQNetTool+Finance.m in Sources */,
 				70885A2D2472FE3700F9475D /* DZQResModel.m in Sources */,
 				70FBBDBE24288B1000BE854E /* DZSiriTool.m in Sources */,
@@ -4362,6 +4389,7 @@
 				70C94BBF247F9F3B00071DC8 /* DZMediaPicker.m in Sources */,
 				70C4F7B82471A973004AE00B /* HomeCollectionCell.m in Sources */,
 				70FBBCA424288B0F00BE854E /* PRNaviTabManager.m in Sources */,
+				70241A6E24B75F43002BE50F /* DZUserPayListView.m in Sources */,
 				70FBBE4624288B1000BE854E /* MBProgressHUD+Add.m in Sources */,
 				70FBBE2E24288B1000BE854E /* UIButton+ImageTitleSpacing.m in Sources */,
 				70FBBE5024288B1000BE854E /* DZArchieverTool.m in Sources */,
@@ -4434,6 +4462,7 @@
 				70FBBD8B24288B1000BE854E /* DZSegmentedControl.m in Sources */,
 				70FBBE5724288B1000BE854E /* DZEmailHelper.m in Sources */,
 				70C4F7B92471A973004AE00B /* HomeCollectionView.m in Sources */,
+				70241A6824B75645002BE50F /* DZCashButton.m in Sources */,
 				70FBBD2124288B0F00BE854E /* AllOneButtonCell.m in Sources */,
 				707469AC2480F9DC005F887E /* DZMediaCenter.m in Sources */,
 				70C4F7DC2471A973004AE00B /* DZForumCateHeader.m in Sources */,
@@ -4476,6 +4505,7 @@
 				70FBBD8624288B1000BE854E /* EFSQLiteObject.m in Sources */,
 				70FBBCB124288B0F00BE854E /* EmptyAlertView.m in Sources */,
 				703F23BF247E0D240087DDE6 /* DZNaviTabView.m in Sources */,
+				70241A7524B88C7B002BE50F /* DZThreadCateBar.m in Sources */,
 				707CDEC42466991F000B6F7F /* PRBaiduHttpClient.m in Sources */,
 				70FBBCBD24288B0F00BE854E /* DZBaseTableView.m in Sources */,
 				70496E8724ADCF4200B297E0 /* DZSkinHelper.m in Sources */,
@@ -4491,6 +4521,7 @@
 				70FBBD1C24288B0F00BE854E /* MyReplyViewControllerCell.m in Sources */,
 				70FBBDDA24288B1000BE854E /* DZAboutController.m in Sources */,
 				700BF8A1247D0D6B00798D37 /* DZDefaultShareView.mm in Sources */,
+				70C4F7D12471A973004AE00B /* DZThreadCellView.m in Sources */,
 				70C94BB8247F5D7100071DC8 /* DZCacheManager.m in Sources */,
 				70C4F7B52471A973004AE00B /* DZVideoSquareController.m in Sources */,
 				709C7C02247C311E002AF8F6 /* DZOtherScrollView.m in Sources */,
@@ -4575,6 +4606,7 @@
 				707F419A247A203A00CC0136 /* DZLabel.m in Sources */,
 				70A3B6EF24793F6A009AF098 /* DZAPostComment.m in Sources */,
 				70885A292472FE3700F9475D /* DZUserItemModel.m in Sources */,
+				70241A6B24B757E2002BE50F /* DZThreadCashPayView.m in Sources */,
 				70FBBC8C24288B0F00BE854E /* BaseUser.m in Sources */,
 				70885A212472FE3700F9475D /* DZQThreadRelationModel.m in Sources */,
 				70FBBD9224288B1000BE854E /* UIView+PRLayouter.m in Sources */,
@@ -4711,9 +4743,9 @@
 			baseConfigurationReference = ABCEAFE1CF72665BD9871769 /* Pods-DiscuzQ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QSWR73PPN;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6343ZXBTP5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzQ/Classes/Config/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/DiscuzQ/MainConfig/Info.plist";
@@ -4726,9 +4758,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DiscuzQ/Classes/Library/AudioTool/lame",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de99mo.discuzQ.iOS5;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.discuz.ios;
 				PRODUCT_NAME = ZHDemo;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = DiscuzQ_Dev_Provisioning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4738,9 +4770,9 @@
 			baseConfigurationReference = 52D69AB1E82628B1EFA2E76D /* Pods-DiscuzQ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QSWR73PPN;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6343ZXBTP5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzQ/Classes/Config/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/DiscuzQ/MainConfig/Info.plist";
@@ -4753,9 +4785,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DiscuzQ/Classes/Library/AudioTool/lame",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de99mo.discuzQ.iOS5;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.discuz.ios;
 				PRODUCT_NAME = ZHDemo;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = DiscuzQ_Dev_Provisioning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

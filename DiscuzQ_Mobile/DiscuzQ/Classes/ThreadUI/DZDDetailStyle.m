@@ -23,7 +23,7 @@
     self.kf_content = CGRectMake(0, CGRectGetMaxY(self.kf_head), cellWidth, self.frame_content.kf_ContentHeight);
     
     
-    //    // 第三部分 转评赞 工具条
+    // 第三部分 转评赞 工具条
     self.frame_toolBar = [DZDToolBarStyle DToolBarStyle:cellWidth];
     self.kf_toolBar = CGRectMake(0, CGRectGetMaxY(self.kf_content), cellWidth, self.frame_toolBar.kf_ToolBarHeight);
     
@@ -37,21 +37,66 @@
 @end
 
 
+@implementation DZDPayStyle
+
++(instancetype)DZQPayStyle:(CGFloat)cellWidth payOrReward:(NSInteger)payOrReCount{
+    
+    DZDPayStyle *style = [[DZDPayStyle alloc] init];
+    
+    style.kf_PayButton = CGRectMake((cellWidth - 100)/2.0, 0, 100, kMargin35);
+    style.kf_infoLabel = CGRectMake(kMargin15, CGRectGetMaxY(style.kf_PayButton)+kMargin20, cellWidth-kMargin30, kMargin20);
+    
+    // 行间距 (上下间隔)
+    style.UMinimumLine = kMargin5;
+    // 列间距 (左右间隔)
+    style.UMinimumInteritem = kMargin5;
+    // (最多三张图，间距为5 合计为10)
+    CGFloat itemWH = kToolBarHeight/2.0;
+    style.USectionEdge = UIEdgeInsetsZero;
+    CGFloat selfMaxW = (cellWidth - kMargin30);
+    
+    style.UitemSize = CGSizeMake(itemWH, itemWH);
+    // 一行多少个
+    CGFloat columnNumber = (selfMaxW / (style.UMinimumInteritem + itemWH));
+    // 多少行（最多3行）
+    NSInteger rowNumber = ((ceilf(payOrReCount/columnNumber)) > 3) ? 3 : ceilf(payOrReCount/columnNumber);
+    
+    CGFloat listHeight = ((rowNumber * (itemWH + style.UMinimumLine)) - style.UMinimumInteritem);
+    
+    style.kf_PayUserList = CGRectMake(0, CGRectGetMaxY(style.kf_infoLabel) + kMargin10, selfMaxW, listHeight);
+    
+    CGFloat foldBtnHeight = (rowNumber > 3) ? kMargin30 : 0;
+    // 超过3行，才显示展开按钮
+    style.kf_foldButton = CGRectMake(selfMaxW/2.0, CGRectGetMaxY(style.kf_PayUserList) + kMargin10, kMargin30, foldBtnHeight);
+    
+    style.kf_PayViewSize = CGSizeMake(cellWidth, (payOrReCount ? CGRectGetMaxY(style.kf_foldButton) : CGRectGetMaxY(style.kf_PayButton)) + kMargin5);
+    
+    return style;
+}
+
+@end
+
+
+
 @implementation DZDSectionStyle
 
-+(instancetype)DSectionStyle:(CGFloat)cellWidth like:(NSInteger)likeCount reward:(NSInteger)rewardCount{
++(instancetype)DSectionStyle:(CGFloat)cellWidth like:(NSInteger)likeCount payOrReward:(NSInteger)payOrReward{
     
     DZDSectionStyle *style = [[DZDSectionStyle alloc] init];
     
-    style.kf_Line = CGRectMake(0, 0, cellWidth, kMargin10);
+    style.frame_PayView = [DZDPayStyle DZQPayStyle:cellWidth payOrReward:payOrReward];
+    style.kf_PayView = CGRectMake(kMargin15, kMargin10, cellWidth-kMargin30, style.frame_PayView.kf_PayViewSize.height);
+    
+    style.frame_toolBar = [DZDToolBarStyle DToolBarStyle:cellWidth];
+    style.kf_toolBar = CGRectMake(0, CGRectGetMaxY(style.kf_PayView)+kMargin5, cellWidth, style.frame_toolBar.kf_ToolBarHeight);
+    
+    style.kf_Line = CGRectMake(0, CGRectGetMaxY(style.kf_toolBar), cellWidth, kMargin10);
     
     CGFloat likeH = likeCount ? (kMargin30 + kMargin10) : 0;
-    CGFloat rewardH = rewardCount ? (kMargin30 + kMargin10) : 0;
-    CGFloat bottomLineH = (likeCount || rewardCount) ? kMargin5 : 0;
+    CGFloat bottomLineH = (likeCount || payOrReward) ? kMargin5 : 0;
      // 这个布局 跟  userListLayout  有密切关系 
     style.kf_listOne = CGRectMake(0, CGRectGetMaxY(style.kf_Line), cellWidth, likeH);
-    style.kf_listTwo = CGRectMake(0, CGRectGetMaxY(style.kf_listOne), cellWidth, rewardH);
-    style.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(style.kf_listTwo), cellWidth, bottomLineH);
+    style.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(style.kf_listOne), cellWidth, bottomLineH);
     
     // 计算总的高度
     style.kf_SectionSize = CGSizeMake(cellWidth, CGRectGetMaxY(style.kf_bottomLine));

@@ -23,6 +23,7 @@
 @property (nonatomic, strong) DZQDataVideo *threadVideo;  //!< 视频(列表接口 和 详情接口)
 @property (nonatomic, strong) NSArray<DZQDataPost *> *posts;  //!< 主题回复信息(详情接口)
 
+@property (nonatomic, strong) NSArray<DZQDataUser *> *paidUsers;  //!< 付费主题的用户（列表接口,详情接口）
 @property (nonatomic, strong) NSArray<DZQDataUser *> *rewardedUsers;  //!< 打赏主题的用户（列表接口,详情接口）
 
 

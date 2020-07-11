@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DZBaseCollectionCell.h"
 
 typedef NS_ENUM(NSInteger, DZRefreshState) {
     DZRefreshStateNone = 1,

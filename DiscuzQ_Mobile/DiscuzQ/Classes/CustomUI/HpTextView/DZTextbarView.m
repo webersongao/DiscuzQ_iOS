@@ -253,7 +253,7 @@ static CGFloat btn_width = 24.0;
         _textView.returnKeyType = UIReturnKeyDefault; //just as an example
         _textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _textView.backgroundColor = K_Color_MainGray;
+        _textView.backgroundColor = KLightGray_Color;
         _textView.layer.masksToBounds = YES;
         _textView.layer.cornerRadius = 17;
         
@@ -326,7 +326,7 @@ static CGFloat btn_width = 24.0;
         _sendBtn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
         _sendBtn.titleLabel.textColor = KWhite_Color;
         _sendBtn.frame = CGRectMake(CGRectGetMaxX(_faceBtn.frame)  + 10, 3, 60, 32);
-        [_sendBtn setBackgroundImage:[UIImage imageWithColor:K_Color_Disabled] forState:UIControlStateDisabled];
+        [_sendBtn setBackgroundImage:[UIImage imageWithColor:KDisabled_Color] forState:UIControlStateDisabled];
         [_sendBtn setBackgroundImage:[UIImage imageWithColor:DZ_Main_Color] forState:UIControlStateNormal];
         _sendBtn.enabled = NO;
         _sendBtn.layer.masksToBounds = YES;

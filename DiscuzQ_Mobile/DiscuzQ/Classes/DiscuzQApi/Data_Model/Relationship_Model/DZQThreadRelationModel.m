@@ -15,6 +15,7 @@
     return @{@"user" : [DZQDataUser class],
              @"posts" : [DZQDataPost class],
              @"category" : [DZQDataCate class],
+             @"paidUsers" : [DZQDataUser class],
              @"firstPost" : [DZQDataPost class],
              @"threadVideo" : [DZQDataVideo class],
              @"rewardedUsers" : [DZQDataUser class],

@@ -102,10 +102,6 @@
     //拼接公共上行
     URLString = [self appendCommonParamsUrl:URLString];
     
-#ifndef MACRO_PRODUCT
-    [self rebuiltUrlParams:parameters url:URLString];
-#endif
-    
     long tag = [self baidu_innerRequestWithUrl:URLString urlTag:urlTag method:method reponseType:reponseType parameters:parameters success:success failure:failure cancel:cancel];
     return tag;
 }
@@ -269,7 +265,7 @@
 
 -(void)rebuiltUrlParams:(NSDictionary *)rootDictionary url:(NSString *)requestUrl{
     
-    KSLog(@"请求链接：requestURL is \n\n %@ \n\n",[DataCheck rebuiltParams:rootDictionary url:requestUrl]);
+    KSLog(@"Discuz Q 请求链接：requestURL is \n\n %@ \n\n",[DataCheck rebuiltParams:rootDictionary url:requestUrl]);
 }
 
 /**
@@ -325,6 +321,11 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
                            cancel:(void (^)(void))cancel
 {
+    
+    #ifndef MACRO_PRODUCT
+        [self rebuiltUrlParams:parameters url:url];
+    #endif
+    
     //处理响应数据类型配置
     AFHTTPSessionManager *httpSessionManager = [self baidu_ManagerWithResType:reponseType];
     

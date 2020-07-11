@@ -54,12 +54,13 @@
 // 计算评论内容 frame
 +(instancetype)DThreadDetailStyle:(CGFloat)cellWidth maxWidth:(CGFloat)contenMaxWidth dataModel:(DZQDataThread *)dataModel{
     
-    
     DZThreadDetailStyle *style = [[DZThreadDetailStyle alloc] init];
     
     style.frame_detail_Head = [style refreshThreadDetail:cellWidth maxWidth:contenMaxWidth dataModel:dataModel];
     
-    style.frame_detail_Section = [DZDSectionStyle DSectionStyle:cellWidth like:dataModel.relationships.firstPost.relationships.likedUsers.count reward:dataModel.relationships.rewardedUsers.count];
+    NSInteger payOrReward = dataModel.attributes.rewardedCount + dataModel.attributes.paidCount;
+    style.frame_detail_Section = [DZDSectionStyle DSectionStyle:cellWidth like:dataModel.relationships.firstPost.relationships.likedUsers.count payOrReward:payOrReward];
+    
     style.kf_Section = CGRectMake(0,0, cellWidth, style.frame_detail_Section.kf_SectionSize.height);
     
     
@@ -81,7 +82,9 @@
     
     DZDHeadStyle *frame_detail_Head =  [[DZDHeadStyle new] DHeadStyle:dataModel cellWidth:cellWidth maxWidth:contenMaxWidth];
     
-    self.kf_Header = CGRectMake(0, 0, cellWidth, frame_detail_Head.kf_HeadSize.height);
+    // 如果不含有分类，下面减少分类条间距
+    CGFloat cateMargin = dataModel.relationships.category.attributes.name.length ? 0 : frame_detail_Head.frame_toolBar.kf_ToolBarHeight;
+    self.kf_Header = CGRectMake(0, 0, cellWidth, frame_detail_Head.kf_HeadSize.height - cateMargin);
     
     return frame_detail_Head;
 }

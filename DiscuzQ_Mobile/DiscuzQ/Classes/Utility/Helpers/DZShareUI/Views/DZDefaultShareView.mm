@@ -119,7 +119,7 @@ self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
     
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, share_back_H - 48-KTabbar_Gap, KScreenWidth, 0.5)];
-    lineView.backgroundColor = KGroupLine_Color;
+    lineView.backgroundColor = KLine_Color;
     [shareBGView addSubview:lineView];
     
     /******************** 取消 ************************/

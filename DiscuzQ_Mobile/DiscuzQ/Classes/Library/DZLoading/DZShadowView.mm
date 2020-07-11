@@ -83,7 +83,7 @@ const CGFloat PRShadowAnimationDuration = 0.4f;
 - (void)coverView
 {
     UIView  *coverView = [[UIView alloc] initWithFrame:self.bounds];
-    coverView.backgroundColor = RGBACOLOR(5, 0, 10, 0.55);
+    coverView.backgroundColor = mRGBColor_alpha(5, 0, 10, 0.55);
     [self addSubview:coverView];
 }
 

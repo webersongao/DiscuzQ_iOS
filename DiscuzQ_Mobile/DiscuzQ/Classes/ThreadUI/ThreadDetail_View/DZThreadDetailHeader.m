@@ -8,14 +8,15 @@
 
 #import "DZThreadDetailHeader.h"
 #import "DZThreadHead.h"
-#import "DZThreadTHelper.h"
 #import "DZThreadToolBar.h"
+#import "DZThreadTHelper.h"
+#import "DZThreadCateBar.h"
 
 @interface DZThreadDetailHeader ()<threadContentDelegate>
 
 @property (nonatomic, strong) DZThreadHead *userHeader;  //!< 用户信息
 @property (nonatomic, strong) DZThreadContent *thredCoreView;  //!< 核心帖子内容
-@property (nonatomic, strong) DZThreadToolBar *bottomToolBar;  //!< 转评赞 工具条
+@property (nonatomic, strong) DZThreadCateBar *categoryBar;  //!< 左侧分类
 
 @end
 
@@ -36,12 +37,12 @@
     
     [self addSubview:self.userHeader];
     [self addSubview:self.thredCoreView];
-    [self addSubview:self.bottomToolBar];
+    [self addSubview:self.categoryBar];
     
     [self.userHeader configHeadAction:self avatar:@selector(userAvatarAction) more:@selector(threadMoreAction)];
-    
-    [self.bottomToolBar configToolBarAction:self like:nil reply:nil share:@selector(threadFavoriteAction)];
+    [self.categoryBar configToolBarAction:self like:@selector(threadCategoryAction) reply:nil share:nil];
 }
+
 
 
 -(void)userAvatarAction{
@@ -49,15 +50,16 @@
     [DZThreadTHelper thread_UserCenterCellAction:nil];
 }
 
+-(void)threadCategoryAction{
+    
+    [DZThreadTHelper thread_CategoryCenterCellAction:nil];
+}
+
 -(void)threadMoreAction{
     
     [DZThreadTHelper thread_MoreCellAction:nil];
 }
 
--(void)threadFavoriteAction{
-    
-    [DZThreadTHelper thread_FavoriteCellAction:nil];
-}
 
 -(void)updateDetailHead:(DZQDataThread *)dataModel layout:(DZDHeadStyle *)layout{
     
@@ -68,14 +70,15 @@
     
     [self.thredCoreView updateThreadContent:dataModel contentStyle:layout];
     
-    [self.bottomToolBar updateDetailToolBar:dataModel toolLayout:layout.frame_toolBar];
+    [self.categoryBar updateDetailCategoryBar:dataModel.relationships.category toolLayout:layout.frame_toolBar];
+    
 }
 
 -(void)layoutDetailHeader:(DZDHeadStyle *)layout{
     
     self.userHeader.frame = layout.kf_head;
     self.thredCoreView.frame = layout.kf_content;
-    self.bottomToolBar.frame = layout.kf_toolBar;
+    self.categoryBar.frame = layout.kf_toolBar;
     
 }
 
@@ -87,9 +90,9 @@
         self.playVideoBlock(playButton, dataVideo);
     }
     
-    NSString *currentUrl =  dataVideo.attributes.media_url;
+//    NSString *currentUrl =  dataVideo.attributes.media_url;
     
-//    [[DZMediaCenter Center] Media_videoPlayWithAssetURL:currentUrl playView:playButton];
+    //    [[DZMediaCenter Center] Media_videoPlayWithAssetURL:currentUrl playView:playButton];
 }
 
 
@@ -110,11 +113,12 @@
     return _thredCoreView;
 }
 
--(DZThreadToolBar *)bottomToolBar{
-    if (!_bottomToolBar) {
-        _bottomToolBar = [[DZThreadToolBar alloc] initWithFrame:CGRectZero];
+
+-(DZThreadCateBar *)categoryBar{
+    if (!_categoryBar) {
+        _categoryBar = [[DZThreadCateBar alloc] initWithFrame:CGRectZero];
     }
-    return _bottomToolBar;
+    return _categoryBar;
 }
 
 @end

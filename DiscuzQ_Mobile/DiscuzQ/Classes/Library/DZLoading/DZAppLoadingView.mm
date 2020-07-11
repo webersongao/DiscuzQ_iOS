@@ -38,7 +38,7 @@
     UILabel *stateLab = [[UILabel alloc] initWithFrame:CGRectMake(actImageView.right + 10, (KCenterBarHeight - 16)/2.0, KScreenWidth - 120, 16)];
     stateLab.text = StateTitle;
     stateLab.font = [UIFont systemFontOfSize:15.0];
-    stateLab.textColor = KColor(K333333_Color, 1.0);
+    stateLab.textColor = KTitle_Color;
     stateLab.textAlignment = NSTextAlignmentLeft;
     stateLab.lineBreakMode = NSLineBreakByTruncatingTail;
     

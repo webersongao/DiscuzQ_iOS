@@ -91,7 +91,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     DZThreadDetailSection *Header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DZThreadDetailSection"];
     
-    [Header updateSectionLike:self.dataModel.relationships.firstPost.relationships.likedUsers reward:self.dataModel.relationships.rewardedUsers layout:self.detailStyle.frame_detail_Section];
+    [Header updateSectionView:self.dataModel sectionLayout:self.detailStyle.frame_detail_Section];
     
     return Header;
 }

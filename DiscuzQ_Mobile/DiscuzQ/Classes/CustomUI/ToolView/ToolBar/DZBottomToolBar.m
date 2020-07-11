@@ -174,8 +174,9 @@
     self.backgroundColor = KWhite_Color;
     [self.leftMainButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateNormal];
     [self.leftMainButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateHighlighted];
+    
     [self.rightButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateSelected];
+    [self.rightButton setTitleColor:KHight_Color forState:UIControlStateSelected];
     [self.rightButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateHighlighted];
     
     [self.leftMainButton setImage:KImageNamed(@"dz_list_comment") forState:UIControlStateNormal];
@@ -185,7 +186,7 @@
     [self.rightButton setImage:KImageNamed(@"dz_list_praise_f") forState:UIControlStateSelected];
     [self.rightButton setImage:KImageNamed(@"dz_list_praise_n") forState:UIControlStateHighlighted];
     [self.rightButton setTitle:@"点赞" forState:UIControlStateNormal];
-    [self.rightButton setTitle:@"点赞" forState:UIControlStateSelected];
+    [self.rightButton setTitle:@"已赞" forState:UIControlStateSelected];
     [self.rightButton setTitle:@"点赞" forState:UIControlStateHighlighted];
     [self.leftMainButton setTitle:@"评论" forState:UIControlStateNormal];
     [self.leftMainButton setTitle:@"评论" forState:UIControlStateHighlighted];
@@ -217,7 +218,7 @@
 -(UILabel *)toolTextLabel{
     if (_toolTextLabel == nil) {
         
-        _toolTextLabel = [UILabel labelWithFrame:CGRectMake(kMargin15, 0, self.width - 120 - kMargin15, kToolBarHeight) title:@"" titleColor:KColor(KFFF9F2_Color, 1.0) font:KFont(14) textAlignment:NSTextAlignmentLeft];
+        _toolTextLabel = [UILabel labelWithFrame:CGRectMake(kMargin15, 0, self.width - 120 - kMargin15, kToolBarHeight) title:@"" titleColor:KColor(K31323E_Color, 1.0) font:KFont(14) textAlignment:NSTextAlignmentLeft];
     }
     return _toolTextLabel;
 }
@@ -232,7 +233,7 @@
 
 -(UIButton *)leftMainButton{
     if (!_leftMainButton) {
-        _leftMainButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) titleStr:@"" titleColor:KColor(KFFF9F2_Color, 1.0) titleTouColor:KColor(KFFF9F2_Color, 1.0) font:KFont(16.f) Radius:0 Target:self action:@selector(leftButtonAction:)];
+        _leftMainButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) titleStr:@"" titleColor:KColor(K31323E_Color, 1.0) titleTouColor:KColor(K31323E_Color, 1.0) font:KFont(16.f) Radius:0 Target:self action:@selector(leftButtonAction:)];
     }
     return _leftMainButton;
 }

@@ -13,6 +13,7 @@ typedef NS_ENUM(NSInteger,DZHtmlUrlType){
     DZHtmlUrl_Http,
     DZHtmlUrl_Tel,
     DZHtmlUrl_Mail,
+    DZHtmlUrl_Download,
 };
 
 

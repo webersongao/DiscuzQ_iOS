@@ -20,7 +20,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = RGBACOLOR(83, 83, 83, 0.5);
+        self.backgroundColor = mRGBColor_alpha(83, 83, 83, 0.5);
         UIWindow *window = [UIApplication sharedApplication].delegate.window;
         self.frame = window.bounds;
         [self sup_commitInit];

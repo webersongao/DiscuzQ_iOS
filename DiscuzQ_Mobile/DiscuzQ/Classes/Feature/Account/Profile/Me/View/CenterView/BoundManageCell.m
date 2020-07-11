@@ -54,7 +54,7 @@
         NSMutableAttributedString *attName = [[NSMutableAttributedString alloc] initWithString:checkNull(name)];
         NSRange brange = {name.length - 5, 5};
         [attName addAttribute:NSFontAttributeName value:KFont(12) range:brange];
-        [attName addAttribute:NSForegroundColorAttributeName value:K_Color_Message range:brange];
+        [attName addAttribute:NSForegroundColorAttributeName value:KLightGray_Color range:brange];
         self.nameV.textLabel.attributedText = attName;
     }
 }

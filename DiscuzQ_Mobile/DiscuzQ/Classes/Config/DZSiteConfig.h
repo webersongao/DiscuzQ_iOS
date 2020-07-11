@@ -21,8 +21,8 @@
 
 #ifdef MACRO_PRODUCT //线上环境
 #define KDebug_Color    KWhite_Color
-//#define DZQ_BASEURL      @"https://discuz.chat"
-#define DZQ_BASEURL      @"https://www.bushcraftcn.com"
+#define DZQ_BASEURL      @"https://discuz.chat"
+//#define DZQ_BASEURL      @"https://www.bushcraftcn.com"
 
 #else //测试环境
 

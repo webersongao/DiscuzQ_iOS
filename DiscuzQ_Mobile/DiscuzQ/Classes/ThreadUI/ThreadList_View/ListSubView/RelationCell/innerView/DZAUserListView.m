@@ -21,7 +21,6 @@ static NSString * const cellIdentifier = @"DZAUserListCell";
 @implementation DZAUserListView
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout{
-    
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         self.delegate = self;
@@ -34,7 +33,7 @@ static NSString * const cellIdentifier = @"DZAUserListCell";
 
 -(void)config_AUserListView{
     self.showsVerticalScrollIndicator = NO;
-    self.showsHorizontalScrollIndicator = NO;
+//    self.showsHorizontalScrollIndicator = NO;
     self.backgroundColor = KDebug_Color;
     [self registerClass:[DZAUserListCell class] forCellWithReuseIdentifier:cellIdentifier];
 }

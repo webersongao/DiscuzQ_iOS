@@ -32,10 +32,11 @@
 
 // 计算 空间高度 宽度等
 + (DZThreadListStyle *)canculateContentListStyle:(DZQDataThread *)dataModel{
+    
     DZThreadListStyle *threadStyle = [[DZThreadListStyle alloc] init];
     CGFloat cellWidth = dz_CellWidth;
     CGFloat cellContenMaxWidth = dz_CellMaxContentWidth;
-
+    
     if (dataModel.attributes.isSticky) {
         
         threadStyle.kf_HeadSize = CGSizeMake(dz_CellWidth, kToolBarHeight);
