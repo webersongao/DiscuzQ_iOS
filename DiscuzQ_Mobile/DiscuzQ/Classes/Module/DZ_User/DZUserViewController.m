@@ -8,10 +8,8 @@
 
 #import "DZUserViewController.h"
 #import "DZUserListView.h"
-
+#import "DZUserHelper.h"
 #import "UIAlertController+Extension.h"
-#import "DZVerticalButton.h"
-//#import "DZPickerHeader.h"
 #import "DZMediaPicker.h"
 #import "UIImage+Limit.h"
 
@@ -49,15 +47,11 @@
 -(void)config_UserView{
     self.title = @"我的";
     [self.view addSubview:self.listView];
-    self.listView.backgroundColor = [UIColor whiteColor];
-    [self configNaviBar:@"navi_bar_message" type:NaviItemImage Direction:NaviDirectionLeft];
+    self.listView.backgroundColor = KWhite_Color;
     [self configNaviBar:@"navi_setting" type:NaviItemImage Direction:NaviDirectionRight];
 }
 
--(void)leftBarBtnClick{
-    [[DZMobileCtrl sharedCtrl] PushToMessageCenterController:self.userModel.typeUnreadNotifications];
-}
-- (void)rightBarBtnClick {
+- (void)rightBarBtnClick:(UIButton *)button {
     [[DZMobileCtrl sharedCtrl] PushToSettingViewController];
 }
 
@@ -94,13 +88,8 @@
 -(void)reloadUserController:(DZQResModel *)VarModel{
     
     self.userModel = (DZQUserModel *)VarModel.dataBody.firstObject.attributes;
+    [DZMobileCtrl sharedCtrl].User.typeUnreadNotis = self.userModel.typeUnreadNotifications;
     DZQProfileRelationModel *relateM = (DZQProfileRelationModel *)VarModel.dataBody.firstObject.relationships;
-    
-    if (self.userModel.unreadNotifications) {
-        [self configNaviBar:@"navi_bar_message_new" type:NaviItemImage Direction:NaviDirectionLeft];
-    }else{
-        [self configNaviBar:@"navi_bar_message" type:NaviItemImage Direction:NaviDirectionLeft];
-    }
     
     [self.listView.headView updateUserListHeader:self.userModel relate:relateM];
 }
@@ -120,9 +109,13 @@
         }
             break;
         case cell_fans:          //我的粉丝
+        {
+            [[DZMobileCtrl sharedCtrl] PushToUserFriendListCtrl:self.userModel.user_id isFans:YES];
+        }
+            break;
         case cell_follow:        // 我的关注
         {
-            [[DZMobileCtrl sharedCtrl] PushToMyFriendListControlle:self.userModel.user_id];
+            [[DZMobileCtrl sharedCtrl] PushToUserFriendListCtrl:self.userModel.user_id isFans:NO];
         }
             break;
         case cell_topic:          // 我的帖子（主题）
@@ -153,7 +146,7 @@
             break;
         case cell_invate:          // 我的邀请码
         {
-            [DZMobileCtrl showAlertInfo:@"邀请功能暂未开启"];
+            [DZUserHelper user_createUserinviteCodeAction:self.userModel];
         }
             break;
         default:

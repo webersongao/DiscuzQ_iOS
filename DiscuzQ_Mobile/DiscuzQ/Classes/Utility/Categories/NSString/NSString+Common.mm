@@ -1,6 +1,6 @@
 //
 //  NSString+Common.m
-//  BaiduShucheng
+//  DiscuzQ
 //
 //  Created by Gao on 17/6/17.
 //
@@ -62,9 +62,8 @@
 }
 
 // 将url的参数部分转化成字典
-+ (NSDictionary *)PRParamsURL:(NSString *)url
++ (NSDictionary *)DZParamsURL:(NSString *)url
 {
-    
     NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
     if (NSNotFound != [url rangeOfString:@"?"].location) {
         NSString *paramString = [url substringFromIndex:
@@ -80,13 +79,31 @@
                 NSString* key = [[kvPair objectAtIndex:0] stringByRemovingPercentEncoding];
                 NSString* value = [[kvPair objectAtIndex:1] stringByRemovingPercentEncoding];
                 [pairs setValue:value forKey:key];
+            }else if (kvPair.count > 2){
+                NSString* key = [[kvPair objectAtIndex:0] stringByRemovingPercentEncoding];
+                NSString* keyStr = [NSString stringWithFormat:@"%@",key];
+                NSString* value = [pairString substringFromIndex:keyStr.length+1];
+                [pairs setValue:value forKey:key];
             }
+        }
+    }else if ([url containsString:@"="]){
+        NSString *pairString = [NSString stringWithFormat:@"%@",url];
+        NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
+        if (kvPair.count == 2) {
+            NSString* key = [[kvPair objectAtIndex:0] stringByRemovingPercentEncoding];
+            NSString* value = [[kvPair objectAtIndex:1] stringByRemovingPercentEncoding];
+            [pairs setValue:value forKey:key];
+        }else if (kvPair.count > 2){
+            NSString* key = [[kvPair objectAtIndex:0] stringByRemovingPercentEncoding];
+            NSString* keyStr = [NSString stringWithFormat:@"%@",key];
+            NSString* value = [pairString substringFromIndex:keyStr.length+1];
+            [pairs setValue:value forKey:key];
         }
     }
     return [NSDictionary dictionaryWithDictionary:pairs];
 }
 
-+ (NSDictionary *)PRParamsURLNoneDecode:(NSString *)url
++ (NSDictionary *)DZParamsURLNoneDecode:(NSString *)url
 {
     
     NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
@@ -103,6 +120,11 @@
             if (kvPair.count == 2) {
                 NSString* key = [kvPair objectAtIndex:0];
                 NSString* value = [kvPair objectAtIndex:1];
+                [pairs setValue:value forKey:key];
+            }else if (kvPair.count > 2){
+                NSString* key = [kvPair objectAtIndex:0];
+                NSString* keyStr = [NSString stringWithFormat:@"%@",key];
+                NSString* value = [pairString substringFromIndex:keyStr.length+1];
                 [pairs setValue:value forKey:key];
             }
         }
@@ -163,23 +185,23 @@ return textSize.width;
         height = 14.0;
     }
     NSDictionary *fontDict = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]};  //指定字号
-    CGRect rect = [self boundingRectWithSize:CGSizeMake(0, height)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
-                   NSStringDrawingUsesFontLeading attributes:fontDict context:nil];
-    return rect.size.width;
+CGRect rect = [self boundingRectWithSize:CGSizeMake(0, height)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
+               NSStringDrawingUsesFontLeading attributes:fontDict context:nil];
+return rect.size.width;
 }
 
 + (CGFloat)cacaulteStringHeight:(NSString *)str fontSize:(int)fontSize width:(CGFloat)width lineSpacing:(CGFloat)lineSpacing
 {
-    NSString *string = [NSString stringWithFormat:@"%@",str];
+    NSString *string = checkNull(str);
     if (!string.length) {
         return 0;
     }
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]};
 
-    CGSize textSize = [string boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+CGSize textSize = [string boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
 
-    textSize.height = ceil(textSize.height);
-    return textSize.height;
+textSize.height = ceil(textSize.height);
+return textSize.height;
 }
 
 

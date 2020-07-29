@@ -11,10 +11,12 @@
 #import "DZLoginController.h"
 #import "DZRegisterController.h"
 #import "DZPickerHeader.h"
+#import "DZWebOAuthView.h"
+#import "DZShadowAlertManager.h"
 #import "DZPostSiriViewController.h"
 #import "DZRootPostTabController.h"
 #import "DZMediaPicker.h"
-#import "DZArticleViewController.h"
+#import "DZQApiListController.h"
 
 @interface DZHomeTestViewController ()
 
@@ -46,6 +48,23 @@
 }
 
 
+// 登录账号
+- (IBAction)dzqUserLoginAction:(UIButton *)sender {
+    
+    KWEAKSELF
+    [[DZNetCenter center] dzx_loginWithName:KTest_UserName password:KTest_PassWord mobile:@"" completion:^(DZQUserModel *userModel,DZQTokenModel *tokenModel,BOOL success) {
+        if (success) {
+            KSLog(@"WBS 登录成功 ");
+            weakSelf.userId = userModel.user_id;
+            weakSelf.nameLabel.text = userModel.username;
+            [weakSelf.avatarIcon dz_setImageWithURL:userModel.avatarUrl];
+        }else{
+            KSLog(@"WBS 登录失败 ");
+        }
+    }];
+    
+}
+
 //搜索
 - (IBAction)searchAction:(UIButton *)sender {
     
@@ -55,27 +74,58 @@
     
 }
 
-// 注册
-- (IBAction)registerAction:(UIButton *)sender {
+// 列表
+- (IBAction)readerAction:(UIButton *)sender {
     
-    [[DZNetCenter center] dzx_PostListWithThreadId:@"2837" page:1 completion:^(NSArray<DZQDataPost *> *postArr,BOOL hasMore) {
-        KSLog(@"查询回复接口[列表] 获取成功");
+    DZWebOAuthView *webauth = [[DZWebOAuthView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)];
+    [webauth loadRequestWithCodeUrl:@"https://discuz.chat/data/attributes/captcha"];
+    [[DZShadowAlertManager sharedManager] showScaleAlertView:webauth bDismiss:YES];
+    
+}
+
+
+// 退出账号
+- (IBAction)userLogOutAction:(UIButton *)sender {
+    
+    KWEAKSELF
+    [[DZNetCenter center] dzx_loginOutWithCompletion:^{
+        KSLog(@"WBS 退出账户 成功 ");
+        weakSelf.userId = nil;
+        weakSelf.avatarIcon.image = nil;
+        weakSelf.nameLabel.text = @"<--熊猫看书-->";
     }];
     
 }
 
-// 阅读
-- (IBAction)readerAction:(UIButton *)sender {
+- (IBAction)apiListAction:(UIButton *)sender {
     
-    DZTabItem *item01 = [[DZTabItem alloc] initWithTitle:@"腾讯柯基" class:[DZBaseViewController class]];
-    DZTabItem *item02 = [[DZTabItem alloc] initWithTitle:@"百度辣鸡" class:[DZBaseViewController class]];
-    DZTabItem *item03 = [[DZTabItem alloc] initWithTitle:@"阿里粑粑" class:[DZBaseViewController class]];
+    DZQApiListController *ListVC = [[DZQApiListController alloc] init];
     
-    NSArray *tabArray = @[item01,item02,item03];
-    DZRootPostTabController *PostTab = [[DZRootPostTabController alloc] initWithTabArr:tabArray];
-    [[DZMobileCtrl sharedCtrl] PushToController:PostTab];
+    [[DZMobileCtrl sharedCtrl] PushToController:ListVC];
     
 }
+
+
+#pragma mark   /********************* API 测试 *************************/
+
+
+
+
+// 注册
+- (IBAction)registerAction:(UIButton *)sender {
+    
+    NSString *userName = @"ios_Gao_001";
+    NSString *password = @"ios_Gao_pwd";
+    [[DZNetCenter center] dzx_registerWithName:userName password:password completion:^(DZQAuthModel * _Nonnull varModel, BOOL success) {
+        if (success) {
+            KSLog(@"WBS 注册账户 成功 ");
+        }else{
+            KSLog(@"WBS 注册账户 失败 ");
+        }
+    }];
+}
+
+
 
 // 设置
 - (IBAction)settingAction:(UIButton *)sender {
@@ -151,9 +201,9 @@
 // 详情页 接口
 - (IBAction)siriInputAction:(UIButton *)sender {
     
-    //    NSString *threadId = @"561";    // 多文字，少图片
-//    NSString *threadId = @"3057";    // 富文本 多图片
-    NSString *threadId = @"2837";    // 富文本 超链接
+    //    NSString *threadId = @"4888";    // 多文字，带引用格式
+    //    NSString *threadId = @"5000";    // 富文本 付费文章
+    NSString *threadId = @"4987";    // 富文本 超链接 带附件
     //    NSString *threadId = @"2314";  // 文章
     //    NSString *threadId = @"3054";  // 视频
     [[DZMobileCtrl sharedCtrl] PushToThreadDetailController:threadId];
@@ -162,24 +212,20 @@
 // 主题列表 接口
 - (IBAction)defautInputAction:(UIButton *)sender {
     
-    [[DZNetCenter center] dzx_threadListWithCate:@"" page:1 completion:^(NSArray<DZQDataThread *> * _Nonnull varModel,BOOL hasMore,BOOL success) {
+    [[DZNetCenter center] dzx_allEmojiListWithCompletion:^(NSArray<DZQDataEmoji *> * varModel, BOOL success) {
         if (success) {
-            KSLog(@"WBS 主题 列表获取 成功");
+            KSLog(@"WBS 表情包 数据 成功");
         }else{
-            KSLog(@"WBS 主题 列表获取 失败");
+            KSLog(@"WBS 表情包 数据 获取失败");
         }
     }];
     
 }
 
-// 分类列表 接口
+//  接口
 - (IBAction)siriUIInputAction:(UIButton *)sender {
     
-    DZArticleViewController *articleVC = [[DZArticleViewController alloc] init];
     
-    articleVC.htmlString = @"<p><img src=\"https://discuz.chat/static/images/logo.png\" alt=\"\"></p>\n\n<p>以上是logo</p>\n\n<p>想加入官方微信群，请扫码：</p>\n\n<p><img src=\"https://discuz.chat/storage/attachment/nPcasNXDOY7A14TS_thumb.png\" alt=\"\"></p>\n\n<p>加微信好友，拉入官方微信群(每隔1-2天不定时登录此微信号处理)</p>\n\n<p>语法如下：</p>\n\n<pre><code>![](https://discuz.chat/static/images/logo.png)\n\n以上是logo\n\n想加入官方微信群，请扫码：\n\n![](https://discuz.chat/storage/attachment/nPcasNXDOY7A14TS_thumb.png)\n\n加微信好友，拉入官方微信群(每隔1-2天不定时登录此微信号处理)</code></pre>";
-    
-    [[DZMobileCtrl sharedCtrl] PushToController:articleVC];
     
 }
 
@@ -212,52 +258,12 @@
 // 单条主题
 - (IBAction)dzqSingleThreadAction:(UIButton *)sender {
     
+    [[DZMobileCtrl sharedCtrl] PushToPostTabViewController];
 }
 
-// 登录账号
-- (IBAction)dzqUserLoginAction:(UIButton *)sender {
-    
-    KWEAKSELF
-    [[DZNetCenter center] dzx_loginWithName:KTest_UserName password:KTest_PassWord mobile:@"" completion:^(DZQUserModel *userModel,DZQBaseToken *tokenModel,BOOL success) {
-        if (success) {
-            KSLog(@"WBS 登录成功 ");
-            weakSelf.userId = userModel.user_id;
-            weakSelf.nameLabel.text = userModel.username;
-            [weakSelf.avatarIcon dz_setImageWithURL:userModel.avatarUrl];
-        }else{
-            KSLog(@"WBS 登录失败 ");
-        }
-    }];
-    
-}
 
-// 注册 账号
-- (IBAction)dzqUserRegisterAction:(UIButton *)sender {
-    
-    NSString *userName = @"ios_Gao_001";
-    NSString *password = @"ios_Gao_pwd";
-    [[DZNetCenter center] dzx_registerWithName:userName password:password completion:^(DZQRegModel * _Nonnull varModel, BOOL success) {
-        if (success) {
-            KSLog(@"WBS 注册账户 成功 ");
-        }else{
-            KSLog(@"WBS 注册账户 失败 ");
-        }
-    }];
-    
-}
 
-// 退出账号
-- (IBAction)userLogOutAction:(UIButton *)sender {
-    
-    KWEAKSELF
-    [[DZNetCenter center] dzx_loginOutWithCompletion:^{
-        KSLog(@"WBS 退出账户 成功 ");
-        weakSelf.userId = nil;
-        weakSelf.avatarIcon.image = nil;
-        weakSelf.nameLabel.text = @"<--熊猫看书-->";
-    }];
-    
-}
+
 
 
 

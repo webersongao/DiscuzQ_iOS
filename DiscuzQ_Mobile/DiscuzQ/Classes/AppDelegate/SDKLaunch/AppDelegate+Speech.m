@@ -1,5 +1,5 @@
 //
-//  AppDelegate+Speech.m
+//  DZQDelegate+Speech.m
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2019/11/14.
@@ -9,7 +9,7 @@
 #import "AppDelegate+Speech.h"
 
 
-@implementation AppDelegate (Speech)
+@implementation DZQDelegate (Speech)
 
 -(void)launchDoumaoSpeech{
     //Set APPID

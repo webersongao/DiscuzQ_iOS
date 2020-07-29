@@ -15,6 +15,6 @@ typedef void(^RefreshBlock)(void);
 
 @property (nonatomic, assign) BOOL isTabbarSelected;     // tabbar页面的时候跳登录页面考虑这个属性
 
-- (void)updateUserWhenSuccess:(DZQBaseToken *)tokenModel;
+- (void)updateUserWhenSuccess:(DZQTokenModel *)tokenModel;
 
 @end

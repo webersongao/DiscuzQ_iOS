@@ -13,6 +13,7 @@
 
 @interface DZMyFriendListController ()
 
+@property (nonatomic, assign) NSInteger index;  //!< 属性注释
 @property (nonatomic, copy) NSString *user_id;  //!< 属性注释
 @property (nonatomic, strong) DZContainerController *rootVC;
 
@@ -20,13 +21,14 @@
 
 @implementation DZMyFriendListController
 
-- (instancetype)initWithUserid:(NSString *)user_id
+- (instancetype)initWithUser:(NSString *)user_id index:(NSInteger)index
 {
     self = [super init];
     if (self) {
-        self.user_id = user_id;
+        self.index = index;
+        self.user_id = checkNull(user_id);
     }
-    return self;
+    return self.user_id.length ? self : nil;
 }
 
 - (void)viewDidLoad {
@@ -34,6 +36,8 @@
     
     self.title = @"好友列表";
     [self config_FriendListCtrl];
+    
+    [self.rootVC.segmentControl setSelectedSegmentIndex:self.index animated:NO];
 }
 
 -(void)config_FriendListCtrl{
@@ -51,7 +55,7 @@
     
     NSArray *targetVCArr = @[followVC,fansVC];
     self.rootVC = [[DZContainerController alloc] init];
-    CGRect segmentRect = CGRectMake(0, 0, KScreenWidth, 44);
+    CGRect segmentRect = CGRectMake(0, 0, KScreenWidth, kToolBarHeight);
     self.view.height = KScreenHeight - KNavi_ContainStatusBar_Height;
     [self.rootVC configSubControllers:targetVCArr parentVC:self segmentRect:segmentRect];
     

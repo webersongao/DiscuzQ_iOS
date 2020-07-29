@@ -1,12 +1,19 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-source 'https://cdn.cocoapods.org/'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 
 target 'DiscuzQ' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+#  use_frameworks!
+
+#（1）#use_frameworks! -> 不使用use_frameworks!则是会生成相应的.a文件(静态链接库)，通过static libraries这个方式来管理pod的代码。
+#（2）Linked：libPods-xxx.a包含了其它用pod导入的第三方框架的.a文件。
+
+#（3）use_frameworks! -> 如果使用了use_frameworks!则cocoapods会生成相应的.frameworks文件（动态链接库：实际内容为Header+动态链接库+资源文件），使用dynamic framworks 来取代static libraries方式。
+#（4）Linked：Pods_xxx.framework包含了其它用pod导入的第三方框架的.framework文件。
   
   # sharesdk 主模块(必须)
   pod 'mob_sharesdk'
@@ -40,21 +47,23 @@ target 'DiscuzQ' do
   pod 'SDWebImage'
   pod 'DTCoreText'
   pod 'DTFoundation'
-  pod 'AFNetworking'
+  pod 'AFNetworking', '~> 4.0.1'
   pod 'MBProgressHUD'
   pod 'LYEmptyView'   #一行代码集成空内容视图
   pod 'ZXPAutoLayout'
   pod 'IQKeyboardManager'
   pod 'WebViewJavascriptBridge'
   pod 'PYSearch' # 搜索控制器
-  pod 'TYSnapshotScroll'  # 一键截图
   
   pod 'ZFPlayer' # 视频播放器 https://www.jianshu.com/p/c5b71a0c6038
   pod 'ZFPlayer/AVPlayer'
   pod 'ZFPlayer/ControlView'
   
+  pod 'TABAnimated'  # 骨架屏
   pod 'YBImageBrowser' # 图片浏览器
   pod 'TZImagePickerController' # 图片选择器
+  
+  ## SSChat 可以借鉴键盘使用
   
   
 end

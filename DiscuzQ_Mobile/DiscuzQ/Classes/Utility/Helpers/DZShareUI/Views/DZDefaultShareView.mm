@@ -92,7 +92,7 @@ self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
     UIView *shareBGView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight-share_back_H, KScreenWidth, share_back_H)];
     shareBGView.userInteractionEnabled = YES;
     shareBGView.tag = 12889035;
-    shareBGView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:1];
+    shareBGView.backgroundColor = [KWhite_Color colorWithAlphaComponent:1];
     [backBlackView addSubview:shareBGView];
     
     /************* 添加 Button item ****************/
@@ -119,7 +119,7 @@ self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
     
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, share_back_H - 48-KTabbar_Gap, KScreenWidth, 0.5)];
-    lineView.backgroundColor = KGroupLine_Color;
+    lineView.backgroundColor = KLine_Color;
     [shareBGView addSubview:lineView];
     
     /******************** 取消 ************************/
@@ -140,7 +140,7 @@ self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
     backBlackView.alpha = 0;
     
     [UIView animateWithDuration:0.35 animations:^{
-        backBlackView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        backBlackView.backgroundColor = [KBlack_Color colorWithAlphaComponent:0.5];
         shareBGView.frame = finaRect;
         shareBGView.alpha = 0.99;
         backBlackView.alpha = 1;

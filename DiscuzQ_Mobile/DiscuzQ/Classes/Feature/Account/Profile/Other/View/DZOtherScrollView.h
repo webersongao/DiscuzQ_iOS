@@ -10,6 +10,7 @@
 
 @interface DZOtherScrollView : UIScrollView
 
+-(void)updateOtherUserListTabView;
 
 -(void)updateUserHeader:(DZQBaseUser *)userModel;
 

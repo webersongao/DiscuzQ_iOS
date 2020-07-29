@@ -9,12 +9,12 @@
 #import "DZWebView.h"
 #import "DZRefreshHeader.h"
 #import "PRNetWorkErrorView.h"
-#import "LoadingAniView.h"
+#import "DZLoadingAniView.h"
 
 @interface DZWebView ()<WKNavigationDelegate,WKUIDelegate,PRNetWorkErrorViewDelegate>
 {
     BOOL m_isWebReload;
-    LoadingAniView * m_actView;
+    DZLoadingAniView * m_actView;
 }
 @property(nonatomic,assign) WebCSSMode CssMode;
 @property (nonatomic, copy) NSString *urlLoad;  //!< 属性注释
@@ -51,7 +51,7 @@
 -(void)comfigBaseWebView{
     self.UIDelegate = self;
     self.navigationDelegate = self;
-    self.backgroundColor = KRandom_Color;
+    self.backgroundColor = KDebug_Color;
     self.urlCenter = [[DZWebUrlCenter alloc] init];
     self.jsBridge = [WebViewJavascriptBridge bridgeForWebView:self];
     [self.jsBridge setWebViewDelegate:self];
@@ -72,7 +72,7 @@
 -(void)setIsActionLoading:(BOOL)isActionLoading{
     _isActionLoading = isActionLoading;
     if (isActionLoading) {
-        m_actView = [[LoadingAniView alloc] initWithSuperView:self loadingType:PRLoadingViewNoramlType];
+        m_actView = [[DZLoadingAniView alloc] initWithSuperView:self loadingType:PRLoadingViewNoramlType];
     }else{
         m_actView = nil;
     }
@@ -191,7 +191,7 @@
 }
 
 - (void)dz_loadHTMLString:(NSString *)htmlString baseURL:(NSString *)urlString back:(backStringBlock)backBlock{
-
+    
     // 无数据的时候显示
     if (!htmlString.length) {
         backBlock ? backBlock(@"网页数据异常或无法解析，请稍后重试") : nil;
@@ -209,7 +209,11 @@
 #pragma mark   /********************* WKUIDelegate *************************/
 
 - (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
-    return webView;
+    WKFrameInfo *frameInfo = navigationAction.targetFrame;
+    if (![frameInfo isMainFrame]) {
+        [webView loadRequest:navigationAction.request];
+    }
+    return nil;
 }
 
 #pragma mark   /********************* WKNavigationDelegate *************************/

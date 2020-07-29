@@ -24,6 +24,7 @@
 @interface PRNaviSegmentView : UIScrollView
 
 @property (nonatomic, copy) void(^WidthEqualBlock)(BOOL isEqual);  //!< 属性注释
+@property (nonatomic, assign) BOOL isBind;  //!< 是否固定不移动
 @property (nonatomic, strong) PRTagSegmentView *segmentView;  //!< 属性注释
 @property (nonatomic, weak) id<PRNaviSegmentViewDelegate> segDelegate;  //!< 属性注释
 @property (nonatomic, strong) UIView *bottomScrollLine;  //!< <#属性注释#>

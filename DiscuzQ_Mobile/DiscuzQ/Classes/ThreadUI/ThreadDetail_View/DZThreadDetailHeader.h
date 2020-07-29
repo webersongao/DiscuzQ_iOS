@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DZDDetailStyle.h"
+#import "DZThreadContent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface DZThreadDetailHeader : UIView
+
+@property (nonatomic, copy) backVideoBlock playVideoBlock;
 
 -(void)updateDetailHead:(DZQDataThread *)dataModel layout:(DZDHeadStyle *)layout;
 

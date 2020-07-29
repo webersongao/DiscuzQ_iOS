@@ -45,7 +45,7 @@
 #pragma mark   /********************* HeaderCollectionDelegate *************************/
 
 - (void)collectionView:(HomeCollectionView *)collectionView didSelectItemCell:(HomeCollectionCell *)itemCell {
-    [[DZMobileCtrl sharedCtrl] PushToForumCateController:itemCell.cellModel.type_id];
+    [[DZMobileCtrl sharedCtrl] PushToForumCateController:itemCell.cellModel];
 }
 
 - (void)collectionView:(HomeCollectionView *)collectionView longPressItemCell:(HomeCollectionCell *)itemCell{

@@ -19,7 +19,7 @@
 + (void)showStateWithTitle:(NSString *)StateTitle cancelTitle:(NSString *)cancelTitle Target:(id)target cancelAction:(SEL)cancelAction{
     
     UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(0, KNavi_ContainStatusBar_Height - KCenterBarHeight, KScreenWidth, KCenterBarHeight)];
-    infoView.backgroundColor = [UIColor whiteColor];
+    infoView.backgroundColor = KWhite_Color;
     
     UIImageView *actImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PRState_Loading_1"]];
     actImageView.frame = CGRectMake(kMargin20, (KCenterBarHeight - kMargin20)/2.0, kMargin20,kMargin20);
@@ -38,7 +38,7 @@
     UILabel *stateLab = [[UILabel alloc] initWithFrame:CGRectMake(actImageView.right + 10, (KCenterBarHeight - 16)/2.0, KScreenWidth - 120, 16)];
     stateLab.text = StateTitle;
     stateLab.font = [UIFont systemFontOfSize:15.0];
-    stateLab.textColor = KColor(K333333_Color, 1.0);
+    stateLab.textColor = KTitle_Color;
     stateLab.textAlignment = NSTextAlignmentLeft;
     stateLab.lineBreakMode = NSLineBreakByTruncatingTail;
     
@@ -48,8 +48,8 @@
     NSString *canStr = cancelTitle.length ? cancelTitle : @"取消";
     [cancelBtn setTitle:canStr forState:UIControlStateNormal];
     cancelBtn.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    [cancelBtn setTitleColor:KColor(K00BF99_Color, 1.0) forState:UIControlStateNormal];
-    cancelBtn.layer.borderColor = KColor(K00BF99_Color, 1.0).CGColor;
+    [cancelBtn setTitleColor:KDarkGreen_Color forState:UIControlStateNormal];
+    cancelBtn.layer.borderColor = KDarkGreen_Color.CGColor;
     cancelBtn.layer.borderWidth = 1.0;
     cancelBtn.layer.cornerRadius = 3.0;
     if (target && cancelAction) {

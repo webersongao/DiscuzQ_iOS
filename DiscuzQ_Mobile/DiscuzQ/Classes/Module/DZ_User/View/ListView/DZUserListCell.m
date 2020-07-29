@@ -30,6 +30,7 @@
 
 - (void)p_setupCellView {
     
+    self.backgroundColor = KDebug_Color;
     [self.contentView addSubview:self.nameV];
     [self.contentView addSubview:self.detailLabel];
 }

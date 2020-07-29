@@ -21,8 +21,10 @@
     return @{@"type_id":@"id"};
 }
 
+
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"attributes" : [DZQThreadModel class]};
 }
+
 
 @end

@@ -26,7 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self config_DUserHeader];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = KDebug_Color;
     }
     return self;
 }

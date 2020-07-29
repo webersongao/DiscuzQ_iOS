@@ -36,9 +36,9 @@
 
 
 
--(DZThreadBaseView *)cellView{
+-(DZThreadCellView *)cellView{
     if (!_cellView) {
-        _cellView = [[DZThreadBaseView alloc] init];
+        _cellView = [[DZThreadCellView alloc] init];
     }
     return _cellView;
 }

@@ -17,6 +17,7 @@
     if (self) {
         _subCls = subCls;
         _title = checkNull(title);
+        _viewCtrl = [subCls new];
     }
     return self;
 }

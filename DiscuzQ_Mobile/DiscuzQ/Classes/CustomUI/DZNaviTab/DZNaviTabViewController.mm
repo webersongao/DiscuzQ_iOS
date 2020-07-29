@@ -48,7 +48,6 @@
     for (int index = 0; index < self.tabsArray.count; index++) {
         
         DZTabItem *tabItem = self.tabsArray[index];
-        tabItem.viewCtrl = tabItem.viewCtrl;
         [self.tabScrollView addSubview:tabItem.viewCtrl.view];
         tabItem.viewCtrl.view.frame = CGRectMake(index*self.tabScrollView.width, 0, self.tabScrollView.width, self.tabScrollView.height);
     }

@@ -11,6 +11,9 @@
 @interface DZMobileCtrl (Tool)
 
 
+// 复制 文字到粘贴板
++(void)PasteLocalBoardWithString:(NSString *)strUrl;
+
 +(void)addObserver:(id)observer sel:(SEL)selName name:(NSString *)name;
 
 +(void)postNotification:(NSString *)name obj:(id)obj userinfo:(NSDictionary *)info;

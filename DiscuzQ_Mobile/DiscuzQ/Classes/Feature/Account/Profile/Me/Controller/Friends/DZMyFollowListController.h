@@ -7,6 +7,7 @@
 //
 
 #import "DZBaseViewController.h"
+#import "DZMyUserListView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithUserid:(NSString *)user_id;
 
-@property (nonatomic, strong) UITableView *listView;  //!< 属性注释
+@property (nonatomic, strong) DZMyUserListView *listView;  //!< 属性注释
+
+-(void)first_LoadUserFollowListViewData;
 
 
 @end

@@ -1,6 +1,6 @@
 //
 //  NSString+Common.h
-//  BaiduShucheng
+//  DiscuzQ
 //
 //  Created by Gao on 17/6/17.
 //
@@ -28,9 +28,9 @@
 
 + (NSString *)PRImagePath:(NSString *)imageName;
 
-+ (NSDictionary *)PRParamsURL:(NSString *)url;
++ (NSDictionary *)DZParamsURL:(NSString *)url;
 
-+ (NSDictionary *)PRParamsURLNoneDecode:(NSString *)url;
++ (NSDictionary *)DZParamsURLNoneDecode:(NSString *)url;
 
 //删除所有的空格及换行
 + (NSString *)removeSpaceAndNewline:(NSString *)str;
@@ -49,16 +49,16 @@
 //-(CGFloat)textHeightWithSize:(CGSize)size font:(UIFont*)font;
 
 
-//- (CGSize)customSizeWithFont:(UIFont *)font;
+- (CGSize)customSizeWithFont:(UIFont *)font;
 //- (CGSize)customSizeWithFont:(UIFont *)font forWidth:(CGFloat)width lineBreakMode:(NSLineBreakMode)lineBreakMode;
 //// Single line, no wrapping. Truncation based on the NSLineBreakMode.
 //- (CGSize)customDrawAtPoint:(CGPoint)point withFont:(UIFont *)font;
 //
 //- (CGSize)customDrawAtPoint:(CGPoint)point forWidth:(CGFloat)width withFont:(UIFont *)font lineBreakMode:(NSLineBreakMode)lineBreakMode;
-//
-//- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
-//
-//- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode;
+
+- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+
+- (CGSize)customSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode;
 //
 //// Wrapping to fit horizontal and vertical size.
 //- (CGSize)customDrawInRect:(CGRect)rect withFont:(UIFont *)font;

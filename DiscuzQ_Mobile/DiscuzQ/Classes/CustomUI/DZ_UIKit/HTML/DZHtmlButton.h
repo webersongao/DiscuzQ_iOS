@@ -13,6 +13,8 @@ typedef NS_ENUM(NSInteger,DZHtmlUrlType){
     DZHtmlUrl_Http,
     DZHtmlUrl_Tel,
     DZHtmlUrl_Mail,
+    DZHtmlUrl_SpanUrl,
+    DZHtmlUrl_Download,
 };
 
 
@@ -21,7 +23,6 @@ typedef NS_ENUM(NSInteger,DZHtmlUrlType){
 
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, assign) DZHtmlUrlType urlType;
 /**
  类方法创建Button
 
@@ -31,12 +32,9 @@ typedef NS_ENUM(NSInteger,DZHtmlUrlType){
  */
 + (DZHtmlButton *)htmlButtonURL:(NSString *)url withIdentifier:(NSString *)identifier frame:(CGRect)frame;
 
-
 //打开链接
-+ (void)openWebPage:(NSString *)url;
++ (void)openHtmlUrlWithSpanUrl:(NSString *)url;
 
-//拨打电话
-+ (void)dailPhoneNum:(NSString *)phoneNum;
 
 
 

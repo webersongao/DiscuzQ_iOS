@@ -48,7 +48,7 @@
 -(PRBaiduHttpClient *)NetClient{
     NSString *authorization = [NSString stringWithFormat:@"Bearer %@",self.token];
     if (self.token.length) {
-        KSLog(@"WBS Toekn 是 \n\n %@  \n\n",self.token);
+//        KSLog(@"WBS Toekn 是 \n\n %@  \n\n",self.token);
         [_NetClient baidu_SetHeaderDesign:@{@"authorization":authorization} manager:_NetClient.jsonManager];
     }else{
         KSLog(@"账户未登录，无法获取到 Token 值");

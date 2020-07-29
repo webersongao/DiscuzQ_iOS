@@ -9,7 +9,10 @@
 #import "DZMobileCtrl.h"
 
 @class DZNotiItem;
+@class DZShareModel;
 @class DZBaseAuthModel;
+@class DZThreadDetailController;
+
 @interface DZMobileCtrl (Navi)
 
 - (void)PopToPrevieousController:(BOOL)animated;
@@ -18,16 +21,27 @@
 
 - (void)PresentViewController:(UIViewController *)CtrlVC;
 
+// 个人详情页
 - (void)PushToOtherUserController:(NSString *)userId;
 
+// 跳转 我的好友（我的关注 我的粉丝）
+-(void)PushToUserFriendListCtrl:(NSString *)user_id isFans:(BOOL)isFans;
+
 /// 帖子详情页
-- (void)PushToThreadDetailController:(NSString *)tid;
+- (DZThreadDetailController *)PushToThreadDetailController:(NSString *)tid;
 
 /// 分类板块 帖子列表
-- (void)PushToForumCateController:(NSString *)cate_id;
+- (void)PushToForumCateController:(DZQDataCate *)dataCate;
 
+// 话题列表页
+- (void)PushToTopicListViewController;
+// 话题详情页
+- (void)PushToTopicDetailController:(NSString *)topicId;
 
 - (void)PushToWebViewController:(NSString *)link;
+
+//拨打电话
+- (void)PushToPhoneViewWithNumber:(NSString *)phoneNum;
 
 // 跳转登录
 - (void)PresentLoginController;
@@ -37,8 +51,6 @@
 // 主题发布页
 - (void)PushToPostTabViewController;
 
-// 跳转 我的好友（我的关注 我的粉丝）
--(void)PushToMyFriendListControlle:(NSString *)user_id;
 // 跳转 我的钱包
 -(void)PushToMyWalletViewController;
 
@@ -51,19 +63,15 @@
 // 跳转 草稿箱
 -(void)PushToMyDraftListViewController;
 
+/// 跳转 我的帖子列表(帖子+回复)
+-(void)PushToMyThreadListController;
+
 /// 跳转 消息详情页
 -(void)PushToMsgDetailListController:(DZNotiItem *)item;
 
 
-/// 跳转 我的帖子列表(帖子+回复)
--(void)PushToMyThreadListController;
-
 /// 跳转 用户设置
 -(void)PushToSettingViewController;
-
-
-// 跳转 他的话题
--(void)PushToUserThreadController:(NSString *)Uid;
 
 /// 账号绑定
 - (void)PushToAccountBindController;
@@ -98,8 +106,12 @@
 /// 账号绑定状态
 -(void)PushToJudgeBindController;
 
-/// 消息中心
-- (void)PushToMessageCenterController:(DZQUnReadModel *)UnReadModel;
+/// 主题分享
+-(void)shareThreadActionWithModel:(DZShareModel *)model;
+
+/// 举报某条主题
+-(void)complainActionWithThreadId:(NSString *)threadId;
+
 
 
 @end

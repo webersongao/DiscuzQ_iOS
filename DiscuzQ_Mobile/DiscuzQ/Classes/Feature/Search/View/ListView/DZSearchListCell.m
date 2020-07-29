@@ -47,7 +47,7 @@
     _info = cellModel;
     NSRange range = [cellModel.subject rangeOfString:cellModel.keyword];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cellModel.subject];
-    [str addAttribute:NSForegroundColorAttributeName value:K_Color_Theme range:range];
+    [str addAttribute:NSForegroundColorAttributeName value:KGreen_Color range:range];
     [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:range];
     self.contentLabel.attributedText = str;
     self.timeLabel.text = cellModel.dateline;
@@ -66,7 +66,7 @@
 - (UILabel *)contentLabel {
     if (_contentLabel == nil) {
         _contentLabel = [[UILabel alloc] init];
-        _contentLabel.font = KFont(17);
+        _contentLabel.font = KFont(18);
     }
     return _contentLabel;
 }

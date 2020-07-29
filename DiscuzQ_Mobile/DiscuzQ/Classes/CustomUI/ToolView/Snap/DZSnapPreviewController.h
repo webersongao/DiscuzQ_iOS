@@ -6,9 +6,9 @@
 //  Copyright © 2020年 WebersonGao. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DZBaseViewController.h"
 
-@interface DZSnapPreviewController : UIViewController
+@interface DZSnapPreviewController : DZBaseViewController
 
 - (instancetype)init:(UIImage *)image;
 

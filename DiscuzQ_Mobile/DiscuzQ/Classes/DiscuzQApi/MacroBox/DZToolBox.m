@@ -17,17 +17,12 @@
     NSData *data;
     
     /*判断图片是不是png格式的文件*/
-    
-    if(UIImagePNGRepresentation(image))
-        
+    if(UIImagePNGRepresentation(image)){
         data = UIImagePNGRepresentation(image);
-    
-    /*判断图片是不是jpeg格式的文件*/
-    
-    else
-        
+    }else{
+        /*判断图片是不是jpeg格式的文件*/
         data = UIImageJPEGRepresentation(image,1.0);
-    
+    }
     return data;
 }
 
@@ -47,8 +42,11 @@ NSArray* DZQStringToNSArray(NSString * _Nullable arrayStr){
 NSString* _Nullable DZQUrlCommonPara(NSString * __nullable apiCtrl,NSString * __nullable subCtrl,NSString * __nullable queryStr)
 {
     NSString *baseApiCtrl = apiCtrl.length ? apiCtrl : @"/api";
+    if ([baseApiCtrl hasSuffix:@"/"]) {
+        baseApiCtrl = [baseApiCtrl substringToIndex:baseApiCtrl.length-1];
+    }
     baseApiCtrl = [NSString stringWithFormat:@"%@/%@",baseApiCtrl,DZQStrNull(subCtrl)];
-    NSString *queryString = queryStr.length ? [NSString stringWithFormat:@"%@&",queryStr] :@"";
+    NSString *queryString = queryStr.length ? [NSString stringWithFormat:@"%@&",DZQStrNull(queryStr)] :@"";
     
     if ([DZQ_BASEURL hasSuffix:@"/"] && [baseApiCtrl hasPrefix:@"/"]) {
         baseApiCtrl = [baseApiCtrl substringFromIndex:1];
@@ -59,7 +57,10 @@ NSString* _Nullable DZQUrlCommonPara(NSString * __nullable apiCtrl,NSString * __
     if ([queryString hasPrefix:@"?"]) {
         queryString = [queryString substringFromIndex:1];
     }
-    NSString *URLString = [NSString stringWithFormat:@"%@%@?%@%@",DZQ_BASEURL,baseApiCtrl,queryString,DZQ_from_TAG];
+     NSString *URLString = [NSString stringWithFormat:@"%@%@?%@%@",DZQ_BASEURL,baseApiCtrl,queryString,DZQ_from_TAG];
+    
+    URLString = [URLString stringByReplacingOccurrencesOfString:@"=(null)" withString:@"="];
+    URLString = [URLString stringByReplacingOccurrencesOfString:@"null" withString:@""];
     
     return URLString;
 }

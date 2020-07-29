@@ -68,11 +68,11 @@
 
  /********************* 响应事件 *************************/
 
-- (void)rightBarBtnClick {
+- (void)rightBarBtnClick:(UIButton *)button {
     [[DZMobileCtrl sharedCtrl] PushToPostTabViewController];
 }
 
--(void)leftBarBtnClick{
+-(void)leftBarBtnClick:(UIButton *)button{
     KWEAKSELF
     if (m_isMedia) {
         [weakSelf transitionFromViewController:self.imageListVC toViewController:self.videoScanVC duration:0.35 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{

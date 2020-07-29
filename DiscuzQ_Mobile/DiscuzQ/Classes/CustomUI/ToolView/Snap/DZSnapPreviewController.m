@@ -40,7 +40,7 @@
 }
 
 - (void)initView{
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KWhite_Color;
     
     self.imageView = [UIImageView new];
     self.imageView.image = self.image;

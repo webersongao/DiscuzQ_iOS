@@ -47,19 +47,30 @@
     return instance;
 }
 
-/// 常用 不带有公共上行的网络请求
-- (long)baidu_CommonRequestWithUrl:(NSString *)URLString
-                            urlTag:(long)urlTag
-                            method:(PRRequestType)method
-                       reponseType:(PRResponseType)reponseType
-                        parameters:(id)parameters
-                           success:(void (^)(NSURLSessionDataTask *task, id response))success
-                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                            cancel:(void (^)(void))cancel
-{
-    long tag = [self baidu_innerRequestWithUrl:URLString urlTag:urlTag method:method reponseType:reponseType parameters:parameters success:success failure:failure cancel:cancel];
-    return tag;
+/**
+ *  移除当前正在请求的operation
+ */
+- (void)baidu_CancelFileTask:(long)taskUrlTag{
+    
+    NSNumber *urlTagNum = [NSNumber numberWithLong:taskUrlTag];
+    NSURLSessionTask *task = [m_opertaionsDict objectForKey:urlTagNum];
+    if (task) {
+        [task cancel];
+    }
+    [self baidu_removeCurrentFileTask:taskUrlTag];
 }
+
+//定制化头信息和请求时长
+- (void)baidu_SetHeaderDesign:(NSDictionary *)parameters manager:(AFHTTPSessionManager *)manager
+{
+    AFHTTPRequestSerializer *requetSerializer = manager.requestSerializer;
+    requetSerializer.timeoutInterval = Baidu_REQUEST_TIME;
+    for (NSString *key in parameters.allKeys) {
+        NSString *value = [parameters valueForKey:key];
+        [requetSerializer setValue:value forHTTPHeaderField:key];
+    }
+}
+
 
 /**
  *  HTTP请求（ GET JSON）
@@ -88,33 +99,54 @@
     return tag;
 }
 
-/// 带有 某些指定的公共上行参数的网络请求
-- (long)baidu_CommonParametersRequestWithUrl:(NSString *)URLString
-                                      urlTag:(long)urlTag
-                                      method:(PRRequestType)method
-                                 reponseType:(PRResponseType)reponseType
-                                  parameters:(id)parameters
-                                     success:(void (^)(NSURLSessionDataTask *task, id response))success
-                                     failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                                      cancel:(void (^)(void))cancel
-
-{
-    //拼接公共上行
-    URLString = [self appendCommonParamsUrl:URLString];
-    
-#ifndef MACRO_PRODUCT
-    [self rebuiltUrlParams:parameters url:URLString];
-#endif
-    
-    long tag = [self baidu_innerRequestWithUrl:URLString urlTag:urlTag method:method reponseType:reponseType parameters:parameters success:success failure:failure cancel:cancel];
+/**
+ *  HTTP请求（ Patch JSON）
+ * 一律不加公共上行的请求
+ */
+- (long)baidu_PatchRequestWithUrl:(NSString *)URLString
+                           urlTag:(long)urlTag
+                       parameters:(id)parameters
+                          success:(void (^)(NSURLSessionDataTask *task, id response))success
+                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+                           cancel:(void (^)(void))cancel{
+    long tag = [self baidu_innerRequestWithUrl:URLString urlTag:urlTag method:PRRequestPatch reponseType:PRResponseJson parameters:parameters success:success failure:failure cancel:cancel];
     return tag;
 }
+
+
+/**
+ *  HTTP请求（ Delete JSON）
+ * 一律不加公共上行的请求
+ */
+- (long)baidu_DeleteRequestWithUrl:(NSString *)URLString
+                            urlTag:(long)urlTag
+                        parameters:(id)parameters
+                           success:(void (^)(NSURLSessionDataTask *task, id response))success
+                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+                            cancel:(void (^)(void))cancel{
+    long tag = [self baidu_innerRequestWithUrl:URLString urlTag:urlTag method:PRRequestDelete reponseType:PRResponseJson parameters:parameters success:success failure:failure cancel:cancel];
+    return tag;
+}
+
+/**
+ *  HTTP请求（ Head JSON）
+ * 一律不加公共上行的请求
+ */
+- (long)baidu_HeadRequestWithUrl:(NSString *)URLString
+                            urlTag:(long)urlTag
+                        parameters:(id)parameters
+                           success:(void (^)(NSURLSessionDataTask *task, id response))success
+                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+                            cancel:(void (^)(void))cancel{
+    long tag = [self baidu_innerRequestWithUrl:URLString urlTag:urlTag method:PRRequestHeader reponseType:PRResponseJson parameters:parameters success:success failure:failure cancel:cancel];
+    return tag;
+}
+
 
 /**
  WBS 百度文件上传（无公共上行）
  */
 - (void)baidu_UploadRequestWithUrl:(NSString *)URLString
-                       reponseType:(PRResponseType)reponseType
                         parameters:(id)parameters
                             urlTag:(long)urlTag
                    appendBodyBlock:(void (^)(id <AFMultipartFormData> formData))block
@@ -124,7 +156,7 @@
                             cancel:(void (^)(void))cancel
 {
     //处理响应数据类型配置
-    AFHTTPSessionManager *manager = [self baidu_ManagerWithResType:reponseType];
+    AFHTTPSessionManager *manager = [self baidu_ManagerWithResType:PRResponseJson];
     
     //创建block请求成功回调,是为了留下一个统一一个回调处理的地方
     __weak PRBaiduHttpClient *weakself = self;
@@ -170,7 +202,6 @@
  WBS 文件下载（无公共上行）
  */
 - (void)baidu_downloadRequestWithUrl:(NSString *)URLString
-                         reponseType:(PRResponseType)reponseType
                           parameters:(id)parameters
                               urlTag:(long)urlTag
                             progress:(void (^)(NSProgress * downProgress))downloadProgress
@@ -179,7 +210,7 @@
                               cancel:(void (^)(void))cancel;
 {
     //处理响应数据类型配置
-    AFHTTPSessionManager *manager = [self baidu_ManagerWithResType:reponseType];
+    AFHTTPSessionManager *manager = [self baidu_ManagerWithResType:PRResponseJson];
     
     //创建block请求成功回调,是为了留下一个统一一个回调处理的地方
     __weak PRBaiduHttpClient *weakself = self;
@@ -232,29 +263,22 @@
     
 }
 
-/**
- *  移除当前正在请求的operation
- */
-- (void)baidu_CancelFileTask:(long)taskUrlTag{
-    
-    NSNumber *urlTagNum = [NSNumber numberWithLong:taskUrlTag];
-    NSURLSessionTask *task = [m_opertaionsDict objectForKey:urlTagNum];
-    if (task) {
-        [task cancel];
-    }
-    [self baidu_removeCurrentFileTask:taskUrlTag];
+
+
+/// 常用 不带有公共上行的网络请求
+- (long)baidu_CommonRequestWithUrl:(NSString *)URLString
+                            urlTag:(long)urlTag
+                            method:(PRRequestType)method
+                       reponseType:(PRResponseType)reponseType
+                        parameters:(id)parameters
+                           success:(void (^)(NSURLSessionDataTask *task, id response))success
+                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+                            cancel:(void (^)(void))cancel
+{
+    long tag = [self baidu_innerRequestWithUrl:URLString urlTag:urlTag method:method reponseType:reponseType parameters:parameters success:success failure:failure cancel:cancel];
+    return tag;
 }
 
-//定制化头信息和请求时长
-- (void)baidu_SetHeaderDesign:(NSDictionary *)parameters manager:(AFHTTPSessionManager *)manager
-{
-    AFHTTPRequestSerializer *requetSerializer = manager.requestSerializer;
-    requetSerializer.timeoutInterval = Baidu_REQUEST_TIME;
-    for (NSString *key in parameters.allKeys) {
-        NSString *value = [parameters valueForKey:key];
-        [requetSerializer setValue:value forHTTPHeaderField:key];
-    }
-}
 
 /**
  网络状态监测  -- 暂时没使用
@@ -266,57 +290,7 @@
 }
 
 
-
--(void)rebuiltUrlParams:(NSDictionary *)rootDictionary url:(NSString *)requestUrl{
-    
-    KSLog(@"请求链接：requestURL is \n\n %@ \n\n",[DataCheck rebuiltParams:rootDictionary url:requestUrl]);
-}
-
-/**
- *  拼接公共上行
- *
- *  @param baseUrl 含有空格必须编码不然af不兼容崩溃
- *
- *  @return urlString
- */
-- (NSString *)appendCommonParamsUrl:(NSString *)baseUrl
-{
-    if (baseUrl && ([baseUrl rangeOfString:@"p16="].location == NSNotFound)) {
-        baseUrl = addUrlParam(baseUrl,DZQ_from_TAG);
-    }
-    return [baseUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-}
-
-
-NSString* addUrlParam(NSString *baseurl, NSString *param)
-{
-    if(!baseurl || [baseurl length] == 0
-       || !param || [param length] == 0)
-        return baseurl;
-    
-    NSString* resultUrl = @"";
-    if ([baseurl rangeOfString:@"?"].length == 0)
-    {
-        resultUrl = [NSString stringWithFormat:@"%@?%@", baseurl, param];
-    }
-    else
-    {
-        if([baseurl hasSuffix:@"?"])
-        {
-            //以?结尾,不带&
-            resultUrl = [NSString stringWithFormat:@"%@%@", baseurl, param];
-        }
-        else
-        {
-            //存在?,但是不以?结尾,带&
-            resultUrl = [NSString stringWithFormat:@"%@&%@", baseurl, param];
-        }
-    }
-    return resultUrl;
-}
-
-
-- (long)baidu_innerRequestWithUrl:(NSString *)url
+- (long)baidu_innerRequestWithUrl:(NSString *)URLString
                            urlTag:(long)urlTag
                            method:(PRRequestType)method
                       reponseType:(PRResponseType)reponseType
@@ -325,6 +299,14 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
                            cancel:(void (^)(void))cancel
 {
+    
+#ifndef MACRO_PRODUCT
+    [self rebuiltUrlParams:parameters url:URLString];
+#endif
+    
+    //拼接公共上行
+    URLString = [self appendCommonParamsUrl:URLString];
+    
     //处理响应数据类型配置
     AFHTTPSessionManager *httpSessionManager = [self baidu_ManagerWithResType:reponseType];
     
@@ -358,7 +340,7 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
     switch (method) {
         case PRRequestGet:
         {
-            task = [httpSessionManager GET:url parameters:parameters headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+            task = [httpSessionManager GET:URLString parameters:parameters headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 successCallBack(task, responseObject);
@@ -369,7 +351,7 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
             break;
         case PRRequestPost:
         {
-            task = [httpSessionManager POST:url parameters:parameters headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+            task = [httpSessionManager POST:URLString parameters:parameters headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
                 
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 successCallBack(task, responseObject);
@@ -380,7 +362,7 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
             break;
         case PRRequestDelete:
         {
-            task = [httpSessionManager DELETE:url parameters:parameters headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            task = [httpSessionManager DELETE:URLString parameters:parameters headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 successCallBack(task, responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 failureCallBack(task, error);
@@ -389,7 +371,7 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
             break;
         case PRRequestPut:
         {
-            task = [httpSessionManager PUT:url parameters:parameters headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            task = [httpSessionManager PUT:URLString parameters:parameters headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 successCallBack(task,responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 failureCallBack(task,error);
@@ -398,14 +380,22 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
             break;
         case PRRequestPatch:
         {
-            task = [httpSessionManager PATCH:url parameters:parameters headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            task = [httpSessionManager PATCH:URLString parameters:parameters headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 successCallBack(task,responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 failureCallBack(task,error);
             }];
         }
             break;
-            
+        case PRRequestHeader:
+        {
+            task = [httpSessionManager HEAD:URLString parameters:parameters headers:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+                 successCallBack(task,nil);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                failureCallBack(task,error);
+            }];
+        }
+            break;
         default:
             break;
     }
@@ -421,6 +411,57 @@ NSString* addUrlParam(NSString *baseurl, NSString *param)
     
 }
 
+
+#pragma mark   /********************* 工具方法 *************************/
+
+/**
+ *  拼接公共上行
+ *
+ *  @param baseUrl 含有空格必须编码不然af不兼容崩溃
+ *
+ *  @return urlString
+ */
+- (NSString *)appendCommonParamsUrl:(NSString *)baseUrl
+{
+    if (baseUrl && ([baseUrl rangeOfString:DZQ_from_TAG].location == NSNotFound)) {
+        baseUrl = addUrlParam(baseUrl,DZQ_from_TAG);
+    }
+    return [baseUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+
+
+-(void)rebuiltUrlParams:(NSDictionary *)rootDictionary url:(NSString *)requestUrl{
+    
+    KSLog(@"Discuz Q 请求链接：requestURL is \n\n %@ \n\n",[DataCheck rebuiltParams:rootDictionary url:requestUrl]);
+}
+
+
+NSString* addUrlParam(NSString *baseurl, NSString *param)
+{
+    if(!baseurl || [baseurl length] == 0
+       || !param || [param length] == 0)
+        return baseurl;
+    
+    NSString* resultUrl = @"";
+    if ([baseurl rangeOfString:@"?"].length == 0)
+    {
+        resultUrl = [NSString stringWithFormat:@"%@?%@", baseurl, param];
+    }
+    else
+    {
+        if([baseurl hasSuffix:@"?"])
+        {
+            //以?结尾,不带&
+            resultUrl = [NSString stringWithFormat:@"%@%@", baseurl, param];
+        }
+        else
+        {
+            //存在?,但是不以?结尾,带&
+            resultUrl = [NSString stringWithFormat:@"%@&%@", baseurl, param];
+        }
+    }
+    return resultUrl;
+}
 
 
 /// ++++++++++++=======  通用配置项  ========++++++++++++

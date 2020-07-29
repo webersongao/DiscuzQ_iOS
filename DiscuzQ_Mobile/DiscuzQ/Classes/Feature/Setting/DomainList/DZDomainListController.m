@@ -30,7 +30,7 @@ NSString * const KDomainNameKey = @"name";
     self.dataSourceArr = [NSMutableArray arrayWithArray:[self localDomainData]];
 }
 
-- (void)rightBarBtnClick {
+- (void)rightBarBtnClick:(UIButton *)button {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"注意" message:@"请输入域名’http‘开头‘/’结尾" preferredStyle:UIAlertControllerStyleAlert];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
@@ -81,7 +81,7 @@ NSString * const KDomainNameKey = @"name";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([self class])];
     if (cell == nil) {
         cell = [[DZBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NSStringFromClass([self class])];
-        cell.detailTextLabel.font = KFont(11);
+        cell.detailTextLabel.font = KFont(12);
         cell.textLabel.font = KFont(14);
     }
     NSDictionary *domainDic = self.dataSourceArr[indexPath.row];

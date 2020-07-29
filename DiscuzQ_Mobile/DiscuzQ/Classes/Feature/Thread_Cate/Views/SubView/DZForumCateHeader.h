@@ -12,5 +12,6 @@ typedef void(^CollectionForumBlock)(UIButton *sender);
 
 @interface DZForumCateHeader : UIView
 
+-(void)updateCateHeader:(DZQDataCate *)dataCate;
 
 @end

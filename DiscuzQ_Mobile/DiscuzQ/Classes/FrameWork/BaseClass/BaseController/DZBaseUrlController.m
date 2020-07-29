@@ -7,16 +7,13 @@
 //
 
 #import "DZBaseUrlController.h"
-#import "DZBaseMoreMenu.h"
 #import "DZSnapPreviewController.h"
 #import "UIAlertController+WKWebAlert.h"
 #import "UIAlertController+Extension.h"
-#import <TYSnapshotScroll/TYSnapshotScroll.h>
 
 @interface DZBaseUrlController ()<DZWebViewDelegate>
 
 @property (nonatomic,strong) DZWebView *webView;
-@property (nonatomic, strong) DZBaseMoreMenu *moreMenu;  //!< <#属性注释#>
 
 @end
 
@@ -29,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.moreMenu= [DZBaseMoreMenu shareInstance];
     [self.view addSubview:self.webView];
     
     KWEAKSELF
@@ -88,7 +84,8 @@
 - (DZWebView *)webView {
     if (_webView == nil) {
         _webView = [[DZWebView alloc] initWithFrame:KView_OutNavi_Bounds];
-        _webView.backgroundColor = [UIColor whiteColor];
+//       _webView = [[DZWebView alloc] initDeviceModeWithFrame:KView_OutNavi_Bounds];
+        _webView.backgroundColor = KWhite_Color;
         _webView.userInteractionEnabled = YES;
         _webView.WKBaseDelegate = self;
         [_webView setOpaque:NO];
@@ -96,64 +93,29 @@
     return _webView;
 }
 
--(void)rightBarBtnClick{
+-(void)rightBarBtnClick:(UIButton *)button{
     
     KWEAKSELF
     NSMutableArray *buttonTitleArray = [NSMutableArray array];
-    [buttonTitleArray addObjectsFromArray:@[@"safari打开", @"复制链接", @"分享", @"截图", @"刷新"]];
-    [self.moreMenu defaultMenuShowInViewController:self title:@"更多" message:nil buttonTitleArray:buttonTitleArray buttonTitleColorArray:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
-        
-    } block:^(UIAlertController * _Nonnull alertController, UIAlertAction * _Nonnull action, NSInteger buttonIndex)
+    [buttonTitleArray addObjectsFromArray:@[@"safari打开", @"复制链接", @"刷新"]];
+    [[DZMobileCtrl sharedCtrl].moreMenu showSheetMenuInViewCtrl:self title:@"" message:nil buttonTitleArray:buttonTitleArray buttonTitleColorArray:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
+    } block:^(UIAlertController * _Nonnull alertController, UIAlertAction * _Nonnull action, NSInteger index)
      {
-        if (buttonIndex == 0)
-        {
-            if (weakSelf.urlString.length > 0)
-            {
-                /*! safari打开 */
-                [self safariOpenURL:[NSURL URLWithString:weakSelf.urlString]];
-                return;
-            } else {
-                [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
-            }
+        NSString *URlString = checkNull(weakSelf.urlString);
+        if (URlString.length <= 0){
+            [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
+            return;
         }
-        else if (buttonIndex == 1)
-        {
+        if (index == 0){
+            /*! safari打开 */
+            [self safariOpenURL:[NSURL URLWithString:URlString]];
+        }else if (index == 1){
             /*! 复制链接 */
-            if (weakSelf.urlString.length > 0)
-            {
-                [UIPasteboard generalPasteboard].string = weakSelf.urlString;
-                return;
-            }
-            else
-            {
-                [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
-            }
-        }
-        else if (buttonIndex == 2)
-        {
-            KSLog(@"WBS 分享按钮 点击了 2333333   ");
-        }
-        else if (buttonIndex == 3)
-        {
-            [weakSelf snapshotBtn];
-        }
-        else if (buttonIndex == 4)
-        {
+            [UIPasteboard generalPasteboard].string = URlString;
+        }else if (index == 2){
             /*! 刷新 */
             [weakSelf.webView reloadFromOrigin];
         }
-    }];
-}
-
--(void)snapshotBtn{
-    KWEAKSELF
-    [self.HUD showAnimated:YES];
-    [TYSnapshotScroll screenSnapshot:self.webView finishBlock:^(UIImage *snapShotImage) {
-        [self.HUD hideAnimated:YES];
-        UIViewController *preVc = [[DZSnapPreviewController alloc] init:snapShotImage];
-        UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:preVc];
-        naviVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [weakSelf presentViewController:naviVC animated:YES completion:nil];
     }];
 }
 

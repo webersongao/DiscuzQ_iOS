@@ -82,7 +82,7 @@
     KWEAKSELF
     [self.HUD showLoadingMessag:@"注册中" toView:self.view];
     
-    [[DZNetCenter center] dzx_registerWithName:username password:password completion:^(DZQRegModel *varModel, BOOL success) {
+    [[DZNetCenter center] dzx_registerWithName:username password:password completion:^(DZQAuthModel *varModel, BOOL success) {
         [weakSelf.HUD hideAnimated:YES];
         if (!success) {
             [DZMobileCtrl showAlertError:@"注册失败"];

@@ -40,6 +40,13 @@
     self.tableHeaderView = self.headerView;
     [self registerClass:[DZThreadPostCell class] forCellReuseIdentifier:@"DZThreadPostCell"];
     [self registerClass:[DZThreadDetailSection class] forHeaderFooterViewReuseIdentifier:@"DZThreadDetailSection"];
+//    self.tabAnimated = [TABTableAnimated animatedWithCellClass:[DZThreadPostCell class] cellHeight:kCellHeight];
+    KWEAKSELF
+    self.headerView.playVideoBlock = ^(DZVideoPicView *button, DZQDataVideo *dataVideo) {
+        if (weakSelf.detailDelegate && [weakSelf.detailDelegate respondsToSelector:@selector(detaiVideoView:videoDidPlayClick:)]) {
+            [weakSelf.detailDelegate detaiVideoView:button videoDidPlayClick:dataVideo];
+        }
+    };
 }
 
 -(DZThreadDetailStyle *)detailStyle{
@@ -53,7 +60,7 @@
     
     self.dataModel = dataModel;
     
-    self.detailStyle.frame_detail_Head.frame_content.kf_twoItem.htmlDelagate = self;
+    self.detailStyle.frame_detail_Head.frame_content.kf_contentItem.htmlDelagate = self;
     
     [self.headerView updateDetailHead:dataModel layout:self.detailStyle.frame_detail_Head];
     
@@ -84,7 +91,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     DZThreadDetailSection *Header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"DZThreadDetailSection"];
     
-    [Header updateSectionLike:self.dataModel.relationships.firstPost.relationships.likedUsers reward:self.dataModel.relationships.rewardedUsers layout:self.detailStyle.frame_detail_Section];
+    [Header updateSectionView:self.dataModel sectionLayout:self.detailStyle.frame_detail_Section];
     
     return Header;
 }
@@ -116,6 +123,13 @@
     
     KSLog(@"WBS 跳转 评论详情? 还是 ？");
     
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+   CGFloat offsetY = scrollView.contentOffset.y;
+    if (self.detailDelegate && [self.detailDelegate respondsToSelector:@selector(detailListView:scrollDidScroll:)]) {
+        [self.detailDelegate detailListView:self scrollDidScroll:offsetY];
+    }
 }
 
 

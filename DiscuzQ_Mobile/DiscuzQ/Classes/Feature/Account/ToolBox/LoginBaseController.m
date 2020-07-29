@@ -17,12 +17,12 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KWhite_Color;
     [self configNaviBar:@"navi_reader_down" type:NaviItemImage Direction:NaviDirectionLeft];
 }
 
 #pragma mark - 请求成功操作
-- (void)updateUserWhenSuccess:(DZQBaseToken *)tokenModel{
+- (void)updateUserWhenSuccess:(DZQTokenModel *)tokenModel{
     
     [[DZPushCenter shareInstance] configPush]; // 设置推送
     
@@ -44,7 +44,7 @@
 }
 
 
--(void)leftBarBtnClick{
+-(void)leftBarBtnClick:(UIButton *)button{
     [self dz_PopCurrentViewController];
 }
 

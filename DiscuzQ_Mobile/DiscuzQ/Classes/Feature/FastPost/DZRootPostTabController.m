@@ -26,7 +26,7 @@
 }
 
 
--(void)rightBarBtnClick{
+-(void)rightBarBtnClick:(UIButton *)button{
     
     KSLog(@"WBS 提交 主题信息");
 }

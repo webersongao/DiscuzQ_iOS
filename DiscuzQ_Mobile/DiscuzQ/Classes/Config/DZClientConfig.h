@@ -25,4 +25,3 @@ typedef void(^PRStateBlock)(id data,BOOL bSuccess);
 
 #define KError_NetNil      @"网络异常，请稍后再试"
 #define KError_DataNil     @"数据异常，请稍后再试"
-#define KShadowAlert_Tag    18111301 // 通用的 ShadowAletView 的弹窗默认tag

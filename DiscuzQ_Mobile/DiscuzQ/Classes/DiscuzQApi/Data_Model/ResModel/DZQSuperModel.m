@@ -29,10 +29,10 @@
 
 @implementation DZQSuperRelation
 
-+ (Class)relateClassForKey:(NSString *)typeKey{
-    
-    return [[DZQNetTool shared].dataLogic.Maper modelClassForKey:typeKey];
-}
+//+ (Class)relateClassForKey:(NSString *)typeKey{
+//
+//    return [[DZQNetTool shared].dataLogic.Maper modelClassForKey:typeKey];
+//}
 
 + (instancetype)dz_modelWithDictionary:(NSDictionary *)dictionary{
     

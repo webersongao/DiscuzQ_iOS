@@ -19,16 +19,16 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self p_setupViews];
+        [self config_authWebViews];
     }
     return self;
 }
 
-- (void)p_setupViews {
+- (void)config_authWebViews {
     
     [self addSubview:self.textField];
     [self addSubview:self.codeWebview];
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
 }
 
 -(void)loadRequestWithCodeUrl:(NSString *)urlString{
@@ -63,9 +63,9 @@
     if (!_codeWebview) {
         _codeWebview = [[DZWebView alloc] initDeviceModeWithFrame:CGRectMake(0, kMargin10, KScreenWidth * 0.3, 0)];
         _codeWebview.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        _codeWebview.userInteractionEnabled = YES;
         [_codeWebview setTranslatesAutoresizingMaskIntoConstraints:NO];
         _codeWebview.scrollView.scrollEnabled = NO;
+        _codeWebview.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRefreshCodeGesAction)];
         tapges.delegate = self;
         [_codeWebview addGestureRecognizer:tapges];

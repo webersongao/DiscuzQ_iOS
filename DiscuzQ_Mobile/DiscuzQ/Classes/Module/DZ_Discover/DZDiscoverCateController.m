@@ -39,22 +39,28 @@
     self.view.frame = m_frame;
     [self configDiscoverCateCtrlAction];
     [self.view addSubview:self.listView];
-    self.view.backgroundColor = KRandom_Color;
+    self.view.backgroundColor = KDebug_Color;
     [self.dz_NavigationBar removeFromSuperview];
 }
 
 -(void)configDiscoverCateCtrlAction{
     
     KWEAKSELF
+    self.listView.mj_header = [DZRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.page = 1;
+        [weakSelf downLoadCateListData:weakSelf.page];
+    }];
+    
     self.listView.mj_footer = [DZRefreshFooter footerWithRefreshingBlock:^{
         weakSelf.page ++;
         [weakSelf downLoadCateListData:weakSelf.page];
     }];
-    
 }
 
 -(void)updateDiscoverCateControllerView{
-    [self downLoadCateListData:self.page];
+    if (self.page <= 1 && self.threadArray.count <= 0) {
+        [self downLoadCateListData:self.page];
+    }
 }
 
 #pragma mark - 数据下载
@@ -74,8 +80,8 @@
         }else{
             [self.listView.mj_footer endRefreshingWithNoMoreData];
         }
+        [self.listView.mj_header endRefreshing];
     }];
-    
 }
 
 /// 分析处理数据
@@ -84,10 +90,20 @@
     if (self.page <= 1) {
         [self.threadArray removeAllObjects];
     }else{
-        KSLog(@"WBS 帖子列表暂无数据");
+        KSLog(@"WBS 该列表暂无数据");
     }
     [self.threadArray addObjectsFromArray:threadAray];
     [self.listView updateDiscoverListView:self.threadArray];
+}
+
+#pragma mark   /********************* 视频播放 *************************/
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.listView zf_filterShouldPlayCellWhileScrolled:^(NSIndexPath *indexPath) {
+        [[DZMediaCenter Center] playTheVideoAtIndexPath:indexPath scrollAnimated:NO];
+    }];
 }
 
 #pragma mark   /********************* 初始化 *************************/

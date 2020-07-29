@@ -10,7 +10,6 @@
 #import <ShareSDK/ShareSDK.h>
 #import "DZUserLoginView.h"
 #import "DZTextField.h"
-#import "ZHPickView.h"
 #import "DZShareCenter.h"
 #import <ShareSDKExtension/ShareSDK+Extension.h>
 
@@ -49,14 +48,14 @@
     [self.loginView.wechatBtn addTarget:self action:@selector(loginWithWeiXinAction) forControlEvents:(UIControlEventTouchUpInside)];
 }
 
-- (void)leftBarBtnClick {
+-(void)leftBarBtnClick:(UIButton *)button {
     [self.view endEditing:YES];
     NSDictionary *userInfo = @{@"type":@"cancel"};
     [[NSNotificationCenter defaultCenter] postNotificationName:DZ_ConfigSelectedIndex_Notify object:nil userInfo:userInfo];
-    [super leftBarBtnClick];
+    [super leftBarBtnClick:button];
 }
 #pragma mark - 注册
-- (void)rightBarBtnClick {
+- (void)rightBarBtnClick:(UIButton *)button {
     [self.view endEditing:YES];
     [self dismissViewControllerAnimated:NO completion:nil];
     [[DZMobileCtrl sharedCtrl] PresentRegisterController];
@@ -117,7 +116,7 @@
     
     KWEAKSELF
     [self.HUD showLoadingMessag:@"登录中" toView:self.view];
-    [[DZNetCenter center] dzx_loginWithName:username password:password mobile:@"" completion:^(DZQUserModel *userModel,DZQBaseToken *tokenModel,BOOL success) {
+    [[DZNetCenter center] dzx_loginWithName:username password:password mobile:@"" completion:^(DZQUserModel *userModel,DZQTokenModel *tokenModel,BOOL success) {
         [weakSelf.HUD hide];
         if (success) {
             [weakSelf updateUserResInfo:tokenModel];
@@ -136,7 +135,7 @@
 
 
 #pragma mark - 请求成功操作
-- (void)updateUserResInfo:(DZQBaseToken *)tokenModel {
+- (void)updateUserResInfo:(DZQTokenModel *)tokenModel {
     [super updateUserWhenSuccess:tokenModel];
     [self dz_PopCurrentViewController];
 }

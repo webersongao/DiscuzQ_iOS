@@ -122,25 +122,23 @@
     if (direction == NaviDirectionLeft) {
         UIBarButtonItem *leftBtn;
         if (type == NaviItemText) {
-            leftBtn = [[UIBarButtonItem alloc] initWithTitle:titleOrImg style:UIBarButtonItemStylePlain target:self action:@selector(leftBarBtnClick)];
+            leftBtn = [[UIBarButtonItem alloc] initWithItemTitle:titleOrImg Layout:YES target:self action:@selector(leftBarBtnClick:)];
         } else {
-            leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:titleOrImg] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarBtnClick)];
+            leftBtn = [[UIBarButtonItem alloc] initWithItemImageName:titleOrImg target:self action:@selector(leftBarBtnClick:)];
         }
-        self.dz_NavigationItem.leftBarButtonItem = leftBtn;
-        self.dz_NavigationItem.leftBarButtonItem.tintColor = K_Color_MainTitle;
+        [self dz_SetItem:leftBtn Layout:YES];
     } else {
         UIBarButtonItem *rightBtn;
         if (type == NaviItemText) {
-            rightBtn = [[UIBarButtonItem alloc] initWithTitle:titleOrImg style:UIBarButtonItemStylePlain target:self action:@selector(rightBarBtnClick)];
+            rightBtn = [[UIBarButtonItem alloc] initWithItemTitle:titleOrImg Layout:YES target:self action:@selector(rightBarBtnClick:)];
         } else {
-            rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:titleOrImg] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarBtnClick)];
+            rightBtn = [[UIBarButtonItem alloc] initWithItemImageName:titleOrImg target:self action:@selector(rightBarBtnClick:)];
         }
-        self.dz_NavigationItem.rightBarButtonItem = rightBtn;
-        self.dz_NavigationItem.rightBarButtonItem.tintColor = K_Color_MainTitle;
+        [self dz_SetItem:rightBtn Layout:NO];
     }
 }
 
--(void)leftBarBtnClick{
+-(void)leftBarBtnClick:(UIButton *)button {
     if (self.navigationController.viewControllers.count > 1) {
         [WBEmoticonInputView sharedView].hidden = YES;
         [self.navigationController popViewControllerAnimated:YES];
@@ -149,7 +147,7 @@
     }
 }
 
--(void)rightBarBtnClick {
+- (void)rightBarBtnClick:(UIButton *)button{
     KSLog(@"you按钮");
 }
 
@@ -160,15 +158,6 @@
         _HUD = [[MBProgressHUD alloc] initWithView:self.view];
     }
     return _HUD;
-}
-
-// 空白页
-- (EmptyAlertView *)emptyView {
-    if (_emptyView == nil) {
-        _emptyView = [[EmptyAlertView alloc] init];
-        _emptyView.hidden = YES;
-    }
-    return _emptyView;
 }
 
 - (CGFloat)tabbarHeight {

@@ -39,7 +39,7 @@
 -(void)config_NaviTab:(NSArray<DZTabItem *> *)tabArray Target:(id)target action:(SEL)action{
     
     UIFont *foont = self.titleFont ? self.titleFont : KBoldFont(16.0f);
-    UIColor *coloor = self.titleColor ? self.titleColor : KColor(K454759_Color, 1.0);
+    UIColor *coloor = self.titleColor ? self.titleColor : KTitle_Color;
     UIColor *highColoor = self.titleHighColor ? self.titleHighColor : KColor(K33C3A5_Color, 1.0);
     
     for (int index = 0; index < tabArray.count; index++) {
@@ -50,10 +50,6 @@
         titleButton.selected = NO;
         [self addSubview:titleButton];
         titleButton.tag = index + k_NaviTab_BtnTag;
-        
-        DZBaseViewController *tabCtrl = [tabItem.subCls new];
-        tabCtrl.view.backgroundColor = KRandom_Color;
-        tabItem.viewCtrl = tabCtrl;
     }
     
     [self updateNaviTabViewState:0];

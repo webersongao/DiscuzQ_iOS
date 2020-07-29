@@ -29,7 +29,7 @@
     [self.view addSubview:self.scrollview];
     [self dz_bringNavigationBarToFront];
     [self.scrollview addSubview:self.contentLabel];
-    self.scrollview.backgroundColor = [UIColor whiteColor];
+    self.scrollview.backgroundColor = KWhite_Color;
 }
 
 -(void)viewWillLayoutSubviews{

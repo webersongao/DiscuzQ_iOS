@@ -41,9 +41,10 @@
     [super startUpdateProperties:updateProperties];
 }
 
+// 排除不处理的字段
 -(NSArray *)excludedFields
 {
-    return @[@"rowID"];
+    return @[@"rowID",@"typeUnreadNotis"];
 }
 
 
@@ -54,6 +55,7 @@
     NSDictionary *userDict = [dataDict dictionaryForKey:@"attributes"];
     DZUserModel *model = [DZUserModel yy_modelWithDictionary:userDict];
     
+    model.typeUnreadNotis = nil;
     model.user_id = DZQStrNull([userDict objectForKey:@"id"]);
     
     model.expires_in = [tokenDict longLongForKey:@"expires_in"];

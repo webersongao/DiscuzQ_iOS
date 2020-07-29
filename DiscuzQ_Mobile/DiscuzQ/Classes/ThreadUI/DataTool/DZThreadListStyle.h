@@ -14,7 +14,7 @@
 
 @property(nonatomic,assign) CGFloat kf_thread_CellHeight;
 
-
+@property(nonatomic,strong) NSAttributedString *summaryAttributeStr;
 
 
 @end

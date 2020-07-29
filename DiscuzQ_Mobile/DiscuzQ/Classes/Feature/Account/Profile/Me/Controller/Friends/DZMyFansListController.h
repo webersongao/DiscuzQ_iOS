@@ -7,12 +7,16 @@
 //
 
 #import "DZBaseViewController.h"
+#import "DZMyUserListView.h"
 
 @interface DZMyFansListController : DZBaseViewController
 
-@property (nonatomic, strong) UITableView *listView;  //!< 属性注释
 
 - (instancetype)initWithUserid:(NSString *)user_id;
+
+@property (nonatomic, strong) DZMyUserListView *listView;  //!< 属性注释
+
+-(void)first_LoadUserFollowListViewData;
 
 
 @end

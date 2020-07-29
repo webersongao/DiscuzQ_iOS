@@ -12,6 +12,7 @@
 #import "DZNetCenter+Site.h"
 #import "DZNetCenter+User.h"
 #import "DZNetCenter+Post.h"
+#import "DZNetCenter+Thread.h"
 
 
 #endif /* DZNetHeader_h */

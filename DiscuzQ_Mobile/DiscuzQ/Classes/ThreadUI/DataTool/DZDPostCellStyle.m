@@ -41,6 +41,16 @@
     DZDPostCellStyle *postStyle = [[DZDPostCellStyle alloc] init];
     
     postStyle.frame_post_user = [DZDUserStyle DUserStyle:cellWidth basic:YES];
+    
+    NSString *firstString = dataModel.relationships.user.attributes.username;
+    NSString *replyUserName = dataModel.relationships.replyUser.attributes.username;
+    
+    if (replyUserName.length) {
+        firstString = checkTwoStr(firstString, @" 回复了 ");
+    }
+    
+    postStyle.frame_post_user.nameAttributedString = [NSString attributeTextWithFrontString:firstString textColor:KTitle_Color Font:KFont(14) endString:replyUserName endtextColor:KGreen_Color endFont:KFont(14) LineSpaceing:0];
+    
     postStyle.frame_post_content = [DZDContentStyle DPostContentStyleWithMaxW:contenMaxWidth cellWidth:cellWidth dataModel:dataModel];
     postStyle.frame_post_toolBar = [DZDToolBarStyle DToolBarStyle:cellWidth];
     

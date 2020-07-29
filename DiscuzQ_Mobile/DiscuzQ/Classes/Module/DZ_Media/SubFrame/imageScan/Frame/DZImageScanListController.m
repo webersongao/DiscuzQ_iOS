@@ -53,19 +53,6 @@ static NSString * headerSection = @"CellHeader";
     [self.HUD hide];
 }
 
-- (void)emptyShow {
-    if (self.dataSourceArr.count > 0) {
-        self.emptyView.hidden = YES;
-    } else {
-        self.emptyView.hidden = NO;
-        self.emptyView.frame = self.collectionView.bounds;
-        if (!self.emptyView.isOnView) {
-            [self.collectionView addSubview:self.emptyView];
-            self.emptyView.isOnView = YES;
-        }
-    }
-}
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(KScreenWidth, 54);
@@ -132,7 +119,7 @@ static NSString * headerSection = @"CellHeader";
 }
 
 - (void)pushThreadList:(ForumNodeModel *)node {
-    [[DZMobileCtrl sharedCtrl] PushToForumCateController:node.infoModel.fid];
+//    [[DZMobileCtrl sharedCtrl] PushToForumCateController:node.infoModel.fid];
 }
 
 - (void)didSelectHeaderWithSection:(UITapGestureRecognizer *)sender {
@@ -188,7 +175,7 @@ static NSString * headerSection = @"CellHeader";
         flowLayout.minimumInteritemSpacing = 4;
         flowLayout.itemSize = CGSizeMake((KScreenWidth - 20 - 20) / 3, KScreenWidth / 3 + 40);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, KNavi_ContainStatusBar_Height, KScreenWidth, KScreenHeight - KNavi_ContainStatusBar_Height) collectionViewLayout:flowLayout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = KDebug_Color;
         _collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [_collectionView registerClass:[DZImageSquareCell class] forCellWithReuseIdentifier:CellID];
         [_collectionView registerClass:[DZCollectSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerSection];

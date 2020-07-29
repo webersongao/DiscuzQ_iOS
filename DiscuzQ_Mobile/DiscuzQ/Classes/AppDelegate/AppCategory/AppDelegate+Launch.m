@@ -1,5 +1,5 @@
 //
-//  AppDelegate+Launch.m
+//  DZQDelegate+Launch.m
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2019/11/21.
@@ -11,7 +11,7 @@
 #import "DZLaunchScreenManager.h"
 #import "DZInstroductionView.h"
 
-@implementation AppDelegate (Launch)
+@implementation DZQDelegate (Launch)
 
 
 -(void)loadAppLaunchScreenView{

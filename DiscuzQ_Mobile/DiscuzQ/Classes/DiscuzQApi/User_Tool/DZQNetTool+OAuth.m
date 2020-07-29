@@ -61,7 +61,7 @@
     [self.NetClient baidu_PostRequestWithUrl:UrlString urlTag:0 parameters:paraDict success:^(NSURLSessionDataTask *task, id response) {
         [weakQSelf.dataLogic resModelWithJSON:response urlCtrl:KDZQMapKey(DZQ_User_login, @"login") completion:^(DZQResModel *resModel) {
             // 保存 token 到SDK，以便后面在 HTTPHeader中使用
-            DZQBaseToken *token = (DZQBaseToken *)resModel.dataBody.firstObject.attributes;
+            DZQTokenModel *token = (DZQTokenModel *)resModel.dataBody.firstObject.attributes;
             [weakQSelf updateDZQSDkToken:token.access_token];
             if (success) {
                 success(resModel,resModel.success);

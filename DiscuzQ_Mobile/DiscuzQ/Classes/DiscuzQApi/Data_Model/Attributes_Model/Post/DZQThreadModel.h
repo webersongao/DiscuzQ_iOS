@@ -42,7 +42,6 @@
 @property (nonatomic, assign) BOOL canHide;  //!< 是否有权放入回收站
 @property (nonatomic, assign) BOOL canFavorite;  //!< 是否有权收藏
 
-
 @end
 
 

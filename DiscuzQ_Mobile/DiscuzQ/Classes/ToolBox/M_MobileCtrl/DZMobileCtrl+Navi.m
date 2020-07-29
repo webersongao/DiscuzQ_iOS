@@ -13,7 +13,6 @@
 #import "DZLoginController.h"
 #import "DZSearchController.h"
 #import "DZMyDraftListController.h"
-#import "DZMessageViewController.h"
 #import "DZFavoriteListController.h"
 #import "DZMyFriendListController.h"
 #import "DZSettingController.h"
@@ -25,13 +24,15 @@
 #import "DZSendMsgViewController.h"
 #import "DZDomainListController.h"
 #import "DZAboutController.h"
+#import "DZTopicDetailController.h"
+#import "DZTopicListViewController.h"
 #import "DZSiteInfoViewController.h"
-#import "DZThreadDetailController.h"
 #import "DZUsertermsController.h"
 #import "DZRegisterController.h"
 #import "DZRootPostTabController.h"
 #import "DZMyThreadListController.h"
-#import "DZMsgDetailListController.h"
+#import "DZNotiDetailListController.h"
+#import "DZThreadDetailController.h"
 
 @implementation DZMobileCtrl (Navi)
 
@@ -55,24 +56,49 @@
     }
 }
 
+// 个人详情页
 - (void)PushToOtherUserController:(NSString *)userId{
     NSString *userIdStr = checkNull(userId);
     DZOtherUserController * ovc = [[DZOtherUserController alloc] initWithAuthor:userIdStr];
     [self.mainNavi pushViewController:ovc animated:YES];
 }
 
+// 跳转 我的好友（我的关注 我的粉丝）
+-(void)PushToUserFriendListCtrl:(NSString *)user_id isFans:(BOOL)isFans{
+    
+    NSInteger index = isFans ? 1 : 0;
+    DZMyFriendListController *mfvc = [[DZMyFriendListController alloc] initWithUser:user_id index:index];
+    [self.mainNavi pushViewController:mfvc animated:YES];
+}
+
+
 /// 帖子详情页
-- (void)PushToThreadDetailController:(NSString *)tid {
+- (DZThreadDetailController *)PushToThreadDetailController:(NSString *)tid {
     DZThreadDetailController *detailVC = [[DZThreadDetailController alloc] initWithThread:tid];
     [self.mainNavi pushViewController:detailVC animated:YES];
+    return detailVC;
 }
 
 /// 分类板块 帖子列表
-- (void)PushToForumCateController:(NSString *)cate_id {
-    DZThreadCateListController *lianMixVc = [[DZThreadCateListController alloc] init];
-    lianMixVc.forumFid = cate_id;
-    [self.mainNavi pushViewController:lianMixVc animated:YES];
+- (void)PushToForumCateController:(DZQDataCate *)dataCate {
+    DZThreadCateListController *CateVC = [[DZThreadCateListController alloc] init];
+    CateVC.dataCate = dataCate;
+    [self.mainNavi pushViewController:CateVC animated:YES];
 }
+
+// 话题详情页
+- (void)PushToTopicDetailController:(NSString *)topicId {
+    DZTopicDetailController *topicVC = [[DZTopicDetailController alloc] init];
+    topicVC.topicId = topicId;
+    [self.mainNavi pushViewController:topicVC animated:YES];
+}
+
+// 话题列表页
+- (void)PushToTopicListViewController {
+    DZTopicListViewController *tListVC = [[DZTopicListViewController alloc] init];
+    [self.mainNavi pushViewController:tListVC animated:YES];
+}
+
 
 - (void)PushToWebViewController:(NSString *)link {
     link = checkNull(link);
@@ -84,6 +110,15 @@
     [self.mainNavi pushViewController:urlCtrl animated:YES];
 }
 
+//拨打电话
+- (void)PushToPhoneViewWithNumber:(NSString *)phoneNum {
+    phoneNum = checkNull(phoneNum);
+    if (!phoneNum.length) {
+        return;
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:checkTwoStr(@"tel:", phoneNum)] options:nil completionHandler:nil];
+}
 
 - (void)PresentLoginController{
     DZLoginController *loginVC = [[DZLoginController alloc] init];
@@ -113,13 +148,6 @@
     [self.mainNavi pushViewController:searchVC animated:YES];
 }
 
-
-// 跳转 我的好友（我的关注 我的粉丝）
--(void)PushToMyFriendListControlle:(NSString *)user_id{
-    DZMyFriendListController *mfvc = [[DZMyFriendListController alloc] initWithUserid:user_id];
-    [self.mainNavi pushViewController:mfvc animated:YES];
-}
-
 // 跳转 我的钱包
 -(void)PushToMyWalletViewController{
     DZMyWalletViewController *walletVC = [[DZMyWalletViewController alloc] init];
@@ -134,7 +162,9 @@
 
 // 跳转 我的收藏
 -(void)PushToMyCollectionController{
-    DZFavoriteListController *mfvc = [[DZFavoriteListController alloc] init];
+    
+    NSString *user_id = [DZMobileCtrl sharedCtrl].User.user_id;
+    DZFavoriteListController *mfvc = [[DZFavoriteListController alloc] initWithUser:user_id index:0];
     [self.mainNavi pushViewController:mfvc animated:YES];
 }
 
@@ -148,7 +178,7 @@
 /// 跳转 消息详情页
 -(void)PushToMsgDetailListController:(DZNotiItem *)item{
 
-    DZMsgDetailListController *detailVC = [[DZMsgDetailListController alloc] initWithItem:item];
+    DZNotiDetailListController *detailVC = [[DZNotiDetailListController alloc] initWithItem:item];
     [self.mainNavi pushViewController:detailVC animated:YES];
     
 }
@@ -163,7 +193,8 @@
 
 /// 跳转 我的帖子列表
 -(void)PushToMyThreadListController{
-    DZMyThreadListController *trVc = [[DZMyThreadListController alloc] initWithUserid:nil];
+    NSString *user_id = [DZMobileCtrl sharedCtrl].User.user_id;
+    DZMyThreadListController *trVc = [[DZMyThreadListController alloc] initWithUserid:user_id];
     [self.mainNavi pushViewController:trVc animated:YES];
 }
 
@@ -227,23 +258,29 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DZ_StorePath] options:@{} completionHandler:nil];
 }
 
-/// 分享 app
-- (void)shareMyMobileAPPWithView:(UIView *)view {
-    
-    [[DZSDKShareCenter shareInstance] shareText:@"Discuz客户端产品，提供方便简洁的发帖与阅读体验" andImages:@[[DZDevice getIconName]] andUrlstr:DZ_StorePath andTitle:DZ_APP_Name andView:view andHUD:nil];
-}
 /// 账号绑定状态
 -(void)PushToJudgeBindController {
     
 }
 
-/// 消息中心
-- (void)PushToMessageCenterController:(DZQUnReadModel *)UnReadModel {
-    DZMessageViewController *MsgVC = [[DZMessageViewController alloc] initWithUnReadModel:UnReadModel];
-    [self.mainNavi pushViewController:MsgVC animated:YES];
+/// 主题分享
+-(void)shareThreadActionWithModel:(DZShareModel *)model {
+    
+    [DZShareCenter shareActionWithModel:nil];
 }
 
 
+/// 举报某条主题
+-(void)complainActionWithThreadId:(NSString *)threadId {
+    
+    KSLog(@"我要举报你了");
+}
+
+/// 分享 app
+- (void)shareMyMobileAPPWithView:(UIView *)view {
+    
+    [[DZSDKShareCenter shareInstance] shareText:@"Discuz客户端产品，提供方便简洁的发帖与阅读体验" andImages:@[[DZDevice getIconName]] andUrlstr:DZ_StorePath andTitle:DZ_APP_Name andView:view andHUD:nil];
+}
 
 
 @end

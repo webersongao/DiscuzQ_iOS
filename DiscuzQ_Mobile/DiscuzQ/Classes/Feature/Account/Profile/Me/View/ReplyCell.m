@@ -7,7 +7,7 @@
 //
 
 #import "ReplyCell.h"
-#import "MsgReplyModel.h"
+#import "oldMsgReplyModel.h"
 
 @implementation ReplyCell
 
@@ -21,7 +21,7 @@
 
 - (void)createUI {
     self.timeLab = [[UILabel alloc] init];
-    self.timeLab.backgroundColor = [UIColor whiteColor];
+    self.timeLab.backgroundColor = KWhite_Color;
     self.timeLab.font = KFont(12);
     self.timeLab.textColor = KGray_Color;
     [self.contentView addSubview:self.timeLab];
@@ -33,18 +33,18 @@
     [self.contentView addSubview:self.floorLab];
     
     self.messageLab = [[UILabel alloc] init];
-    self.messageLab.font = KFont(15);
+    self.messageLab.font = KFont(16);
     self.messageLab.numberOfLines = 0;
     [self.contentView addSubview:self.messageLab];
     
     self.subjectLab = [[UILabel alloc] init];
     self.subjectLab.textColor = KGray_Color;
-    self.subjectLab.font = KFont(15);
+    self.subjectLab.font = KFont(16);
     [self.contentView addSubview:self.subjectLab];
     
 }
 
-- (void)setInfo:(MsgReplyModel *)info {
+- (void)setInfo:(oldMsgReplyModel *)info {
     
     self.timeLab.text = info.dateline;
     
@@ -61,7 +61,7 @@
     self.floorLab.frame = CGRectMake(KScreenWidth - 15 - 50, 10, 50, 15);
     
     CGSize maxSize = CGSizeMake(KScreenWidth - 30, 100);
-    CGSize textSize = [self.messageLab.text sizeWithFont:KFont(15) maxSize:maxSize];
+    CGSize textSize = [self.messageLab.text sizeWithFont:KFont(16) maxSize:maxSize];
     
     self.messageLab.frame = CGRectMake(15, CGRectGetMaxY(self.timeLab.frame) + 10, KScreenWidth - 30, textSize.height);
     

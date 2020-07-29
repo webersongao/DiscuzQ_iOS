@@ -17,9 +17,4 @@
 
 @property (nonatomic, assign) NSInteger page;
 
-/**
- 空数据的时候显示 这里要设置dataSourceArr.count = 0的时候
- */
-- (void)emptyShow;
-
 @end

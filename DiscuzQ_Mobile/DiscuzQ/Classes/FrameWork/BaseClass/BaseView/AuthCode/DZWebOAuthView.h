@@ -6,9 +6,9 @@
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DZScaleView.h"
 
-@interface DZWebOAuthView : UIView
+@interface DZWebOAuthView : DZScaleView
 
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, copy) void(^refreshAuthCodeBlock)(void);

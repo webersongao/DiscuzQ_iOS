@@ -7,11 +7,13 @@
 //
 
 #import "DZMyThreadListController.h"
+#import "DZDiscoverListView.h"
 
 @interface DZMyThreadListController ()
 
 @property (nonatomic, copy) NSString *user_id;  //!< 属性注释
 @property (nonatomic, assign) NSInteger page;  //!< 属性注释
+@property (nonatomic, strong) NSMutableArray<DZQDataThread *> *threadArray;  //!< 属性注释
 
 @end
 
@@ -21,39 +23,79 @@
 {
     self = [super init];
     if (self) {
-        self.user_id = user_id;
+        self.page = 1;
+        self.user_id = checkNull(user_id);
     }
-    return self;
+    return self.user_id.length ? self : nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的主题";
-    
-    [self downLoadMyThreadListData];
+    self.title = @"主题列表";
+    [self configDiscoverCateCtrlAction];
     [self.view addSubview:self.listView];
+    self.view.backgroundColor = KDebug_Color;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self first_LoadMyListThreadViewData];
+}
+
+
+-(void)configDiscoverCateCtrlAction{
     
-    KWEAKSELF;
+    KWEAKSELF
     self.listView.mj_footer = [DZRefreshFooter footerWithRefreshingBlock:^{
-        [weakSelf loadMoreMyThreadData];
+        weakSelf.page ++;
+        [weakSelf downLoadCateListData:weakSelf.page];
     }];
 }
 
-- (void)loadMoreMyThreadData {
-    self.page ++;
-    [self downLoadMyThreadListData];
+-(void)first_LoadMyListThreadViewData{
+    if (self.page <= 1 && self.threadArray.count <= 0) {
+        [self downLoadCateListData:self.page];
+    }
 }
 
--(void)downLoadMyThreadListData {
-//    [self.HUD showLoadingMessag:@"正在加载" toView:self.view];
+#pragma mark - 数据下载
+- (void)downLoadCateListData:(NSInteger)page {
     
+    [self.HUD showLoadingMessag:@"加载中" toView:self.view];
+    KWEAKSELF
+    [[DZNetCenter center] dzx_threadListWithUser:self.user_id page:page completion:^(NSArray<DZQDataThread *> *varModel, BOOL hasMore,BOOL success) {
+        [weakSelf.HUD hide];
+        if (success) {
+            [weakSelf anylyeThreadListData:varModel];
+        }else{
+            [DZMobileCtrl showAlertError:KError_DataNil];
+        }
+        if (hasMore) {
+            [weakSelf.listView.mj_footer endRefreshing];
+        }else{
+            [self.listView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
+}
+
+/// 分析处理数据
+- (void)anylyeThreadListData:(NSArray<DZQDataThread *> *)threadAray {
+    
+    if (self.page <= 1) {
+        [self.threadArray removeAllObjects];
+    }else{
+        KSLog(@"WBS 该列表暂无数据");
+    }
+    [self.threadArray addObjectsFromArray:threadAray];
+    [self.listView updateDiscoverListView:self.threadArray];
 }
 
 
 
--(DZMyThreadListView *)listView{
+-(DZDiscoverListView *)listView{
     if (!_listView) {
-        _listView = [[DZMyThreadListView alloc] initWithFrame:KView_OutNavi_Bounds style:UITableViewStylePlain];
+        _threadArray = [NSMutableArray array];
+        _listView = [[DZDiscoverListView alloc] initWithListFrame:KView_OutNavi_Bounds];
     }
     return _listView;
 }

@@ -21,7 +21,7 @@
     self.popGestureEnabled = YES;
     self.interactivePopGestureRecognizer.delegate = self;
     self.navigationBar.hidden = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = KWhite_Color;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -55,8 +55,8 @@
     if (self.viewControllers.count > 0) {
         if ([viewController isKindOfClass:[DZBaseNaviBarController class]]) {
             DZBaseNaviBarController *baseCtrl = (DZBaseNaviBarController *)viewController;
-            if ([baseCtrl respondsToSelector:@selector(leftBarBtnClick)]) {
-                [baseCtrl dz_SetNavigationBackItemWithTarget:baseCtrl action:@selector(leftBarBtnClick)];
+            if ([baseCtrl respondsToSelector:@selector(leftBarBtnClick:)]) {
+                [baseCtrl dz_SetNavigationBackItemWithTarget:baseCtrl action:@selector(leftBarBtnClick:)];
             }
         }
     }

@@ -112,7 +112,7 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     
     //添加更新提示
     UIView *updateView = [[UIView alloc]initWithFrame:CGRectMake(Ratio(20), Ratio(18), bgView.frame.size.width - Ratio(40), maxHeight)];
-    updateView.backgroundColor = [UIColor whiteColor];
+    updateView.backgroundColor = KWhite_Color;
     updateView.layer.masksToBounds = YES;
     updateView.layer.cornerRadius = 4.0f;
     [bgView addSubview:updateView];
@@ -155,7 +155,7 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     updateButton.layer.cornerRadius = 2.0f;
     [updateButton addTarget:self action:@selector(updateVersion) forControlEvents:UIControlEventTouchUpInside];
     [updateButton setTitle:@"立即更新" forState:UIControlStateNormal];
-    [updateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [updateButton setTitleColor:KWhite_Color forState:UIControlStateNormal];
     [updateView addSubview:updateButton];
     
     //取消按钮

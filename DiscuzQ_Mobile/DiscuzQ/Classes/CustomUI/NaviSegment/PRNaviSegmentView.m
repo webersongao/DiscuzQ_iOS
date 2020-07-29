@@ -38,6 +38,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.isBind = NO;
         self.bounces = NO;
         [self addSubview:self.segmentView];
         [self addSubview:self.bottomScrollLine];
@@ -117,6 +118,7 @@
     } else {     //将selItem置中
         targetX = selectButtonX - (self.width / 2.0) + (titleModel.titleW/2.f);
     }
+    targetX = self.isBind ? 0 : targetX;
     
     [self setContentOffset:CGPointMake(targetX , 0) animated:YES];
 }
@@ -185,7 +187,7 @@
         _segmentView.titleFont = [UIFont systemFontOfSize:15.f];
         _segmentView.fixedLineWidth = 35 * 0.5;
         _segmentView.titleSelectFont = [UIFont boldSystemFontOfSize:15.f];
-        _segmentView.backgroundColor = [UIColor whiteColor];
+        _segmentView.backgroundColor = KWhite_Color;
         _segmentView.titleColor = KColor(@"#333333", 1);
         _segmentView.titleHightColor = KColor(@"#00BF99", 1);
         _segmentView.selectLineColor = KColor(@"#00BF99", 1);

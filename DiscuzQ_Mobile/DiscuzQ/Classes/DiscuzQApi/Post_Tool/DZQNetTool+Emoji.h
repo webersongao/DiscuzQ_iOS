@@ -7,11 +7,15 @@
 //
 
 #import "DZQNetTool.h"
+#import "DZQEmojiModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface DZQNetTool (Emoji)
 
+/// 全部 Emoji表情[列表]
+-(void)dz_allEmojiListWithSuccess:(PRCompleteBlock)success failure:(PRFailureBlock)failure;
+
+
 @end
 
-NS_ASSUME_NONNULL_END
+

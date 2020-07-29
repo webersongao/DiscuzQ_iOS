@@ -16,25 +16,35 @@
 
 @implementation DZBaseCollectionView
 
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout{
+    UICollectionViewLayout *localLayout = layout ? layout : [DZLayoutTool defaultLayout];
+    self = [super initWithFrame:frame collectionViewLayout:localLayout];
+    if (self) {
+        [self layoutSubviewConfig];
+    }
+    return self;
+}
+
 - (instancetype)initWithSquareFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame collectionViewLayout:[DZLayoutTool defaultLayout]];
     if (self) {
+        [self addRefreshHeaderView];
+        [self addRefreshFooterView];
         [self layoutSubviewConfig];
-        self.backgroundColor = KRandom_Color;
-        if (@available(iOS 11.0, *)) {
-            self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            // Fallback on earlier versions
-        }
     }
     return self;
 }
 
 -(void)layoutSubviewConfig{
+    
+    self.backgroundColor = KDebug_Color;
+    if (@available(iOS 11.0, *)) {
+        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+    }
 
-    [self addRefreshHeaderView];
-    [self addRefreshFooterView];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(lonePressRecognizerAction:)];
     [self addGestureRecognizer:longPress];

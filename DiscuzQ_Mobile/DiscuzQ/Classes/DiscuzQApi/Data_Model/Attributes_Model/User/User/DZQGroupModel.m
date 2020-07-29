@@ -26,7 +26,9 @@
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"attributes" : [DZQGroupModel class]};
+    return @{@"attributes" : [DZQGroupModel class],
+             @"relationships" : [DZQGroupRelationModel class]};
 }
+
 
 @end;

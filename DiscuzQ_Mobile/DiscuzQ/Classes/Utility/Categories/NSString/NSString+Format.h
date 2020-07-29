@@ -49,18 +49,13 @@
 +(NSMutableAttributedString *)attributeWithLineSpaceing:(int)lineSpacing text:(NSString *)textString viewWidth:(float)labelWidth font:(UIFont *)font;
 
 /**
- 富文本
- 
- @param textString 前半段文字
- @param textColor 前半段文字颜色
- @param FontSize 前半段文字大小
- @param lineSpacing 行间距
+ 富文本 彩色 字号可定
  */
 +(NSMutableAttributedString *)attributeTextWithString:(NSString *)textString textColor:(UIColor*)textColor FontSize:(CGFloat)FontSize LineSpaceing:(int)lineSpacing;
 
 
 /**
- 富文本
+ 前 后 两半段 富文本
  
  @param frontString 前半段文字
  @param textColor 前半段文字颜色

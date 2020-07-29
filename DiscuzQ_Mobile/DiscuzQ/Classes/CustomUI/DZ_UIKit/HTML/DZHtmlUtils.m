@@ -35,7 +35,7 @@
 //Html->富文本NSAttributedString
 + (NSAttributedString *)getAttributedStringWithHtml:(NSString *)htmlString{
     //获取富文本
-    NSDictionary *fontDict = @{DTDefaultTextColor:KContent_Color,DTDefaultFontSize:[NSNumber numberWithFloat:14],DTDefaultLineHeightMultiplier:[NSNumber numberWithFloat:1.5]};
+    NSDictionary *fontDict = @{DTDefaultTextColor:KContent_Color,DTDefaultLinkColor:KGreen_Color,DTDefaultFontSize:[NSNumber numberWithFloat:KContent_fontSize],DTDefaultLineHeightMultiplier:[NSNumber numberWithFloat:1.5]};
     NSData *data = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTMLData:data options:fontDict documentAttributes:NULL];
     return attributedString;

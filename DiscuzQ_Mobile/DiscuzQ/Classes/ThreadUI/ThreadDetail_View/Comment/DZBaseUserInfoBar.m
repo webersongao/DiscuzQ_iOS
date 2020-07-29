@@ -10,7 +10,6 @@
 
 @interface DZBaseUserInfoBar ()
 
-@property (nonatomic, strong) UIButton *avatar;  //!< 头像
 @property (nonatomic, strong) UILabel *nameLabel;  //!< 昵称
 @property (nonatomic, strong) DZLabel *timeLabel;  //!< 回复发布时间
 @property (nonatomic, strong) UIImageView *userTag;  //!< 是否认证用户
@@ -26,7 +25,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self config_UserView];
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
     }
     return self;
 }
@@ -46,9 +45,9 @@
 }
 
 
--(void)updateUserBar:(NSString *)name avatar:(NSString *)avatar time:(NSString *)time real:(BOOL)isReal style:(DZDUserStyle *)userStyle{
+-(void)updateUserBar:(NSAttributedString *)attributedName avatar:(NSString *)avatar time:(NSString *)time real:(BOOL)isReal style:(DZDUserStyle *)userStyle{
     
-    self.nameLabel.text = name;
+    self.nameLabel.attributedText = attributedName;
     self.timeLabel.text = time;
     self.userTag.hidden = isReal ? NO : YES;
     [self.avatar dz_setImageWithURL:avatar forState:UIControlStateNormal placeholder:KImageNamed(DZQ_Cor_icon)];
@@ -73,7 +72,7 @@
 
 - (UIButton *)avatar{
     if (!_avatar) {
-        _avatar = [UIButton ButtonNormalWithFrame:CGRectZero title:@"" titleFont:nil titleColor:nil normalImgPath:@"noavatar_small" touchImgPath:@"noavatar_small" isBackImage:YES];
+        _avatar = [UIButton ButtonNormalWithFrame:CGRectZero title:@"" titleFont:nil titleColor:nil normalImgPath:@"noavatar_small" touchImgPath:@"noavatar_small" isBackImage:YES picAlpha:1];
         _avatar.layer.cornerRadius = 17.f;
         _avatar.clipsToBounds = YES;
     }
@@ -82,7 +81,7 @@
 
 -(UILabel *)nameLabel{
     if (!_nameLabel) {
-        _nameLabel = [UILabel labelWithFrame:CGRectZero title:@"--" titleColor:KColor(K2A2C2F_Color, 1.0) font:KFont(14) textAlignment:NSTextAlignmentLeft];
+        _nameLabel = [UILabel labelWithFrame:CGRectZero title:@"--" titleColor:KTitle_Color font:KFont(14) textAlignment:NSTextAlignmentLeft];
     }
     return _nameLabel;
 }

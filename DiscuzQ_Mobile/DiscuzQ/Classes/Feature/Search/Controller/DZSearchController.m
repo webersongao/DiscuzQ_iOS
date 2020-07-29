@@ -35,9 +35,9 @@
     [self dz_SetNavigationTitleView:self.searchView];
     [self.searchView.searchBar becomeFirstResponder];
     
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = KWhite_Color;
     [self.tableView registerClass:[DZSearchListCell class] forCellReuseIdentifier:@"DZSearchListCell"];
-    [self.searchView.rightBtn addTarget:self action:@selector(rightBarBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.searchView.rightBtn addTarget:self action:@selector(rightSearchBarBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)config_searchCtrlAction {
@@ -59,7 +59,7 @@
     }];
 }
 
-- (void)rightBarBtnClick:(UIButton *)button {
+- (void)rightSearchBarBtnClick:(UIButton *)button {
     button.selected = !button.isSelected;
     if (button.isSelected) {
         [self searchBarEndActive];
@@ -97,7 +97,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = KWhite_Color;
     
     UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, KScreenWidth - 20, 39)];
     lab.textColor = [UIColor darkGrayColor];
@@ -185,16 +185,16 @@
     
     NSString *keyStr = self.searchView.searchBar.text;
     KWEAKSELF
-    [[DZNetCenter center] dzx_siteSearcWithKey:keyStr page:self.page completion:^(id  _Nonnull varModel, BOOL success) {
-        [weakSelf.tableView.mj_footer endRefreshing];
-        
-        if (success) {
-            
-            [self.tableView reloadData];
-        }else{
-            [self searchBarBecomeActive];
-        }
-    }];
+    
+//    [[DZNetCenter center] dzx_siteSearcWithKey:keyStr page:self.page completion:^(id  _Nonnull varModel, BOOL success) {
+//        [weakSelf.tableView.mj_footer endRefreshing];
+//        if (success) {
+//            [self.tableView reloadData];
+//        }else{
+//            [self searchBarBecomeActive];
+//        }
+//    }];
+    
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

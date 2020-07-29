@@ -38,7 +38,9 @@ static DZMobileCtrl *instance = nil;
 }
 
 -(void)MobileCtrlConfigration{
+    self.moreMenu= [DZMoreMenu sharedMenu];
     self.instance = [[DZInstance alloc] init];
+    self.tipHubViewArr = [NSMutableArray array];
 }
 
 -(void)setTababar:(UITabBarController *)Tababar mainNavi:(UINavigationController *)mainNavi{

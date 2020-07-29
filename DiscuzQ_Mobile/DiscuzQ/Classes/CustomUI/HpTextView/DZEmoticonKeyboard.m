@@ -51,7 +51,7 @@ static const NSInteger RowFaceCount = 9;
     /*******************这里设置可以定义键盘更多东西************************************/
     self.contentView.contentSize = CGSizeMake(KScreenWidth * 2, 1);
     self.contentView.pagingEnabled = YES;
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = KWhite_Color;
     self.contentView.showsHorizontalScrollIndicator = NO;
     self.contentView.scrollEnabled = NO;
     /*******************************************************/
@@ -139,7 +139,7 @@ static const NSInteger RowFaceCount = 9;
 
 - (void)setupPickerView {
 //    self.uploadView = [[UploadAttachView alloc] initWithFrame:CGRectMake(KScreenWidth, CGRectGetHeight(self.attachmentBar.frame), KScreenWidth, m_keyboardHeight - CGRectGetHeight(self.attachmentBar.frame))];
-//    self.contentView.backgroundColor = [UIColor whiteColor];
+//    self.contentView.backgroundColor = KWhite_Color;
 //    [self.contentView addSubview:self.uploadView];
 }
 

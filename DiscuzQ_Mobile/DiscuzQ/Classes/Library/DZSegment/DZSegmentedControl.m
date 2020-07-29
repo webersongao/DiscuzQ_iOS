@@ -133,7 +133,7 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self addSubview:self.scrollView];
     
-    _backgroundColor = [UIColor whiteColor];
+    _backgroundColor = KWhite_Color;
     self.opaque = NO;
     _selectionIndicatorColor = [UIColor colorWithRed:52.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
     
@@ -149,8 +149,8 @@
     self.verticalDividerEnabled = NO;
     self.type = DZSegmentedControlTypeText;
     self.verticalDividerWidth = 1.0f;
-    _verticalDividerColor = [UIColor blackColor];
-    self.borderColor = [UIColor blackColor];
+    _verticalDividerColor = KBlack_Color;
+    self.borderColor = KBlack_Color;
     self.borderWidth = 1.0f;
     
     self.shouldAnimateUserSelection = YES;
@@ -899,7 +899,7 @@
 - (NSDictionary *)resultingTitleTextAttributes {
     NSDictionary *defaults = @{
         NSFontAttributeName : [UIFont systemFontOfSize:19.0f],
-        NSForegroundColorAttributeName : [UIColor blackColor],
+        NSForegroundColorAttributeName : KBlack_Color,
     };
     
     NSMutableDictionary *resultingAttrs = [NSMutableDictionary dictionaryWithDictionary:defaults];

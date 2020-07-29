@@ -36,7 +36,7 @@
     [self.contentView addSubview:self.iconV];
     
     self.titleLab = [[UILabel alloc] init];
-    self.titleLab.font = KFont(15);
+    self.titleLab.font = KFont(16);
     //    self.titleLab.numberOfLines = 0;
     //    self.titleLab.textAlignment = NSTextAlignmentLeft;
     self.titleLab.textAlignment = NSTextAlignmentCenter;
@@ -48,11 +48,6 @@
     self.numLab.textAlignment = NSTextAlignmentCenter;
     self.numLab.textColor = KGray_Color;
     [self.contentView addSubview:self.numLab];
-    
-    //    self.postsLab = [[UILabel alloc] init];
-    //    self.postsLab.font = KFont(10);
-    //    self.postsLab.textColor = KGray_Color;
-    //    [self.contentView addSubview:self.postsLab];
     
     [self.iconV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(@8);

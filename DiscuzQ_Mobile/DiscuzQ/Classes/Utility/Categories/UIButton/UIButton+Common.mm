@@ -46,8 +46,12 @@
 }
 
 /// 创建 普通 按钮
-+ (UIButton *)ButtonNormalWithFrame:(CGRect)frame title:(NSString *)title titleFont:(UIFont *)titleFont titleColor:(UIColor *)titleColor normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage
++ (UIButton *)ButtonNormalWithFrame:(CGRect)frame title:(NSString *)title titleFont:(UIFont *)titleFont titleColor:(UIColor *)titleColor normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage picAlpha:(CGFloat)alpha
 {
+    return [UIButton ButtonWithFrame:frame title:title titleFont:titleFont titleColor:titleColor titleSeleColor:titleColor normalImgPath:normalPath touchImgPath:touchUpPath isBackImage:isBackImage picAlpha:alpha];
+}
+
++ (UIButton *)ButtonWithFrame:(CGRect)frame title:(NSString *)title titleFont:(UIFont *)titleFont titleColor:(UIColor *)titleColor titleSeleColor:(UIColor *)seletedColor normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage picAlpha:(CGFloat)alpha{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = frame;
     button.backgroundColor = [UIColor clearColor];
@@ -59,11 +63,15 @@
     }
     if (titleColor) {
         [button setTitleColor:titleColor forState:UIControlStateNormal];
-        [button setTitleColor:titleColor forState:UIControlStateSelected];
+    }
+    if (seletedColor) {
+        [button setTitleColor:seletedColor forState:UIControlStateSelected];
+    }else{
+        [button setTitleColor:titleColor forState:UIControlStateNormal];
     }
     
     if (nil != normalPath) {
-        UIImage *normalImage = [UIImage imageNamed:normalPath];
+        UIImage *normalImage = [[UIImage imageNamed:normalPath] dz_imageWithAlpha:alpha];
         if (isBackImage) {
             [button setBackgroundImage:normalImage forState:UIControlStateNormal];
         } else {
@@ -73,7 +81,9 @@
     }
     
     if (nil != touchUpPath) {
-        UIImage *touchUpImage = [UIImage imageNamed:touchUpPath];
+        
+        UIImage *touchUpImage = [[UIImage imageNamed:touchUpPath] dz_imageWithAlpha:alpha];
+        
         if (isBackImage) {
             [button setBackgroundImage:touchUpImage forState:UIControlStateHighlighted];
             [button setBackgroundImage:touchUpImage forState:UIControlStateSelected];

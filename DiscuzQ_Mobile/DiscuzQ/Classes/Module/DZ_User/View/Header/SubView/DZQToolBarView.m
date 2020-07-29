@@ -53,21 +53,21 @@
 
 -(UIButton *)fansButton{
     if (!_fansButton) {
-        _fansButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, self.width/3.0, self.height) titleStr:@"粉丝数" titleColor:KColor(K000000_Color, 1.0) titleTouColor:KColor(K000000_Color, 1.0) font:KFont(14) Radius:2.f Target:self action:nil];
+        _fansButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, self.width/3.0, self.height) titleStr:@"粉丝数" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
     }
     return _fansButton;
 }
 
 -(UIButton *)followButton{
     if (!_followButton) {
-        _followButton = [UIButton ButtonTextWithFrame:CGRectMake(self.width/3.0, 0, self.width/3.0, self.height) titleStr:@"关注数" titleColor:KColor(K000000_Color, 1.0) titleTouColor:KColor(K000000_Color, 1.0) font:KFont(14) Radius:2.f Target:self action:nil];
+        _followButton = [UIButton ButtonTextWithFrame:CGRectMake(self.width/3.0, 0, self.width/3.0, self.height) titleStr:@"关注数" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
     }
     return _followButton;
 }
 
 -(UIButton *)topicButton{
     if (!_topicButton) {
-        _topicButton = [UIButton ButtonTextWithFrame:CGRectMake((self.width/3.0)*2, 0, self.width/3.0, self.height) titleStr:@"主题数" titleColor:KColor(K000000_Color, 1.0) titleTouColor:KColor(K000000_Color, 1.0) font:KFont(14) Radius:2.f Target:self action:nil];
+        _topicButton = [UIButton ButtonTextWithFrame:CGRectMake((self.width/3.0)*2, 0, self.width/3.0, self.height) titleStr:@"主题数" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
     }
     return _topicButton;
 }

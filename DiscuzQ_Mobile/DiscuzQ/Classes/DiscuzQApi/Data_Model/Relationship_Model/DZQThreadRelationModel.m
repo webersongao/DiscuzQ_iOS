@@ -14,13 +14,21 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"user" : [DZQDataUser class],
              @"posts" : [DZQDataPost class],
+             @"topic" : [DZQDataTopic class],
              @"category" : [DZQDataCate class],
+             @"paidUsers" : [DZQDataUser class],
              @"firstPost" : [DZQDataPost class],
+             @"deletedUser" : [DZQDataUser class],
              @"threadVideo" : [DZQDataVideo class],
              @"rewardedUsers" : [DZQDataUser class],
+             @"lastThreePosts" : [DZQDataPost class],
              @"lastPostedUser" : [DZQDataUser class]
     };
 }
+
+
+
+
 
 + (instancetype)relationModelWithDictionary:(NSDictionary *)dictionary{
     

@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame style:style];
     if (self) {
         [self config_BaseListeView];
-        self.backgroundColor = KRandom_Color;
+        self.backgroundColor = KDebug_Color;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;

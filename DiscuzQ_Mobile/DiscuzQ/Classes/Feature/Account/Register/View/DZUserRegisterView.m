@@ -25,7 +25,7 @@
     if (@available(iOS 11.0, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     
     UIImageView *nameImageV = [[UIImageView alloc] init];
     nameImageV.image = [UIImage imageNamed:DZ_Logo_image];
@@ -95,7 +95,7 @@
     self.registerButton.cs_acceptEventInterval = 1;
     [self addSubview:self.registerButton];
     [self.registerButton setTitle:@"注册" forState:UIControlStateNormal];
-    self.registerButton.backgroundColor = K_Color_Theme;
+    self.registerButton.backgroundColor = KGreen_Color;
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView);
         make.top.equalTo(self.repassView.mas_bottom).offset(16);

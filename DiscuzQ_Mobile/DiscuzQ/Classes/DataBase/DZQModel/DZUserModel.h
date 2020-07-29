@@ -40,6 +40,7 @@
 @property (nonatomic, copy) NSString *payTime;  //!< 属性注释
 
 @property (nonatomic, assign) NSInteger unreadNotifications;  //!< 属性注释
+@property (nonatomic, strong) DZQUnReadModel *typeUnreadNotis;  //!< 未读消息模型model
 
 
 // Token 信息

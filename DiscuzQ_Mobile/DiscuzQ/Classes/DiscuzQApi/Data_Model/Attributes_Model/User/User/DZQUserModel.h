@@ -21,17 +21,22 @@
 
 @end;
 
+// 登录用户的详细信息
 @interface DZQUserModel : DZQBaseUser
 
 @property (nonatomic, copy) NSString *originalMobile;  //!< 属性注释
 @property (nonatomic, copy) NSString *registerIp;  //!< 属性注释
+@property (nonatomic, copy) NSString *registerPort;  //!< 属性注释
 @property (nonatomic, copy) NSString *lastLoginIp;  //!< 属性注释
-@property (nonatomic, copy) NSString *identity;  //!< 属性注释
+@property (nonatomic, copy) NSString *lastLoginPort;  //!< 属性注释
+
+@property (nonatomic, copy) NSString *identity;  //!< 注册理由
 @property (nonatomic, copy) NSString *realname;  //!< 属性注释
 @property (nonatomic, copy) NSString *mobile;  //!< 属性注释
 @property (nonatomic, assign) BOOL hasPassword;  //!< 属性注释
 @property (nonatomic, assign) BOOL canWalletPay;  //!< 属性注释
 @property (nonatomic, assign) double walletBalance;  //!< 属性注释
+@property (nonatomic, assign) double walletFreeze;  //!< 用户冻结余额
 
 @property (nonatomic, assign) BOOL paid;  //!< 属性注释
 @property (nonatomic, copy) NSString *payTime;  //!< 属性注释

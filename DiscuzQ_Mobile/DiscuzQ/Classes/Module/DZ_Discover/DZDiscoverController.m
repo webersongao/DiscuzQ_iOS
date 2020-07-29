@@ -13,7 +13,7 @@
 @interface DZDiscoverController ()<UIScrollViewDelegate,PRNaviSegmentViewDelegate>
 
 @property (nonatomic,assign) int currentIndex;
-@property (nonatomic, strong) UIButton *PostButton;  //!< <#属性注释#>
+@property (nonatomic, strong) UIButton *PostButton;  //!< 属性注释
 @property (nonatomic, strong) UIScrollView *scrollView;  //!< 属性注释
 @property (nonatomic, strong) PRNaviSegmentView *ScrollBar;  //!< 属性注释
 @property(nonatomic,strong) NSArray<DZDiscoverCateController*> *listViewArray;
@@ -35,7 +35,6 @@
     [self.view addSubview:self.PostButton];
     self.listViewArray = [NSMutableArray array];
 //    [self dz_SetNavigationlogoView:DZ_Navi_Logo];
-    [self configNaviBar:@"navi_bar_message" type:NaviItemImage Direction:NaviDirectionLeft];
     [self configNaviBar:@"navi_bar_search" type:NaviItemImage Direction:NaviDirectionRight];
 }
 
@@ -60,11 +59,7 @@
 
 #pragma mark   /********************* 响应事件 *************************/
 
--(void)leftBarBtnClick{
-    [[DZMobileCtrl sharedCtrl] PushToMessageCenterController:nil];
-}
-
-- (void)rightBarBtnClick {
+- (void)rightBarBtnClick:(UIButton *)button {
     [[DZMobileCtrl sharedCtrl] PushToSearchController];
 }
 
@@ -74,12 +69,6 @@
 
 
 #pragma mark   /********************* PRNaviSegmentViewDelegate *************************/
-
-//- (void)naviSegment:(PRNaviSegmentView *)segmentView touchNaviIndex:(NSInteger)index{
-//    [self.scrollView setContentOffset:CGPointMake(index*self.scrollView.width, 0) animated:YES];
-//    DZDiscoverCateController *listVC = [self.listViewArray objectAtIndex:index];
-//    [listVC updateDiscoverCateControllerView];
-//}
 
 - (void)naviSegment:(PRNaviSegmentView *)segmentView touchSameNaviIndex:(NSInteger)index{
     [self.scrollView setContentOffset:CGPointMake(index*self.scrollView.width, 0) animated:YES];
@@ -156,7 +145,7 @@
 -(UIButton *)PostButton{
     if (!_PostButton) {
         CGFloat btn_width = 50.0;
-        _PostButton = [UIButton ButtonNormalWithFrame:CGRectMake(KScreenWidth - btn_width - 15, KScreenHeight - btn_width - 15 - KNavi_ContainStatusBar_Height - 10, btn_width, btn_width) title:@"" titleFont:nil titleColor:nil normalImgPath:@"writePost" touchImgPath:@"writePost" isBackImage:YES];
+        _PostButton = [UIButton ButtonNormalWithFrame:CGRectMake(KScreenWidth - btn_width - 15, KScreenHeight - btn_width - 15 - KNavi_ContainStatusBar_Height - 10, btn_width, btn_width) title:@"" titleFont:nil titleColor:nil normalImgPath:@"writePost" touchImgPath:@"writePost" isBackImage:YES picAlpha:1];
         [_PostButton addTarget:self action:@selector(transToFastPostAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _PostButton;

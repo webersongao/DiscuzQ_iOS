@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "DZNavigationBar.h"
+#import "UIBarButtonItem+Utils.h"
 
 typedef NS_ENUM(NSInteger, DZNaviItemType) {
     DZNaviItemType_None,
@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, DZNaviItemType) {
 /**
  点击返回按钮 子类可以通过拦截这个方法拦截返回事件
  */
--(void)leftBarBtnClick;
+-(void)leftBarBtnClick:(UIButton *)button;
 
 
 - (BOOL)isPresent;

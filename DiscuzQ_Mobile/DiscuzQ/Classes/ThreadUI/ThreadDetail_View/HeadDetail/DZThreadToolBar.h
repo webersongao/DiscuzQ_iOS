@@ -13,8 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DZThreadToolBar : DZThreadBottomBar
 
 
--(void)updateDetailToolBar:(DZDToolBarStyle *)toolLayout;
-
+-(void)updateDetailToolBar:(DZQDataThread *)Model toolLayout:(DZDToolBarStyle *)toolLayout;
 
 
 

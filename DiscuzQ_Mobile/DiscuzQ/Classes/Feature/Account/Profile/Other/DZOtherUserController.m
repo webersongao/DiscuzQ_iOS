@@ -31,14 +31,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self config_OtherUserCtrl];
-
 }
 
 -(void)config_OtherUserCtrl{
     
     [self.view addSubview:self.otherView];
     [self loadOtherUserProfile];
-    
+    [self.otherView updateOtherUserListTabView];
 }
 
 
@@ -60,9 +59,6 @@
     [self.otherView updateUserHeader:(DZQBaseUser *)resModel.dataBody.firstObject.attributes];
     
 }
-
-
-
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

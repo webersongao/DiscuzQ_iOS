@@ -23,7 +23,8 @@
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"attributes" : [DZQBaseUser class]};
+    return @{@"attributes" : [DZQBaseUser class],@"relationships" : [DZQUserRelationModel class]};
 }
 
 @end
+

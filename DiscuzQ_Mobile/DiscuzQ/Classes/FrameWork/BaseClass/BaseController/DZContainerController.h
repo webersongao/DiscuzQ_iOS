@@ -6,7 +6,7 @@
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DZBaseViewController.h"
 #import "DZSegmentedControl.h"
 
 @interface DZContainerController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
@@ -17,10 +17,9 @@
 @property (nonatomic, weak) UIViewController *parentController;
 @property (strong, nonatomic) DZSegmentedControl *segmentControl;
 @property (nonatomic,strong) UICollectionViewFlowLayout *flowLayout;
-@property (strong, nonatomic) UITableViewController *currentCtrl;
 
-@property (strong, nonatomic) NSArray <UITableViewController *>*tableControllers;
+@property (strong, nonatomic) NSArray <DZBaseViewController *>*tableControllers;
 
-- (void)configSubControllers:(NSArray<UITableViewController *>*)subControllers parentVC:(UIViewController *)parentVC segmentRect:(CGRect)segmentRect;
+- (void)configSubControllers:(NSArray<DZBaseViewController *>*)subControllers parentVC:(UIViewController *)parentVC segmentRect:(CGRect)segmentRect;
 
 @end

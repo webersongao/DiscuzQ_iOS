@@ -8,10 +8,14 @@
 
 #import "DZBaseViewController.h"
 
-#define KOtherHeaderH 140.f
+#define KOtherHeaderH 130.f
 
 @interface DZUserTabController : DZBaseViewController
 
 - (instancetype)initTabFrame:(CGRect)frame userId:(NSString *)userId;
+
+-(void)updateFilstUserTabControllerView;
+
+
 
 @end

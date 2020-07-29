@@ -29,7 +29,6 @@
 }
 
 - (void)setupViews {
-    //    self.backgroundColor = [UIColor whiteColor];
     //    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [self addSubview:self.button];
     [self addSubview:self.textLab];
@@ -90,8 +89,8 @@
 - (UILabel *)textLab {
     if (!_textLab) {
         _textLab = [[UILabel alloc] init];
-        _textLab.font = KFont(17);
-        _textLab.textColor = K_Color_Theme;
+        _textLab.font = KFont(18);
+        _textLab.textColor = KGreen_Color;
     }
     return _textLab;
 }

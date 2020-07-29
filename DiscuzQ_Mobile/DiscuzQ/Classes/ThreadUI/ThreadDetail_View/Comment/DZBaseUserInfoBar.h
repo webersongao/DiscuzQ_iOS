@@ -12,8 +12,9 @@
 @interface DZBaseUserInfoBar : UIView
 
 @property (nonatomic, assign) BOOL isSepLine;  //!< 属性注释
+@property (nonatomic, strong) UIButton *avatar;  //!< 头像
 
--(void)updateUserBar:(NSString *)name avatar:(NSString *)avatar time:(NSString *)time real:(BOOL)isReal style:(DZDUserStyle *)userStyle;
+-(void)updateUserBar:(NSAttributedString *)attributedName avatar:(NSString *)avatar time:(NSString *)time real:(BOOL)isReal style:(DZDUserStyle *)userStyle;
 
 @end
 

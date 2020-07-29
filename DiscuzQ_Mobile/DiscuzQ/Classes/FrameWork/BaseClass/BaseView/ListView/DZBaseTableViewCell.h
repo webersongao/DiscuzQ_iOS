@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITableViewCell+Animation.h"
 
 @interface DZBaseTableViewCell : UITableViewCell
+
+
 @property (nonatomic, strong) UIView *seprateLine;  //!< 属性注释
+
 @end
 
 

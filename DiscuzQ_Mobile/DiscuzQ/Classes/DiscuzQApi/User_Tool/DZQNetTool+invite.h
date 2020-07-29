@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DZQNetTool (invite)
 
+/// 普通用户创建邀请码
+-(void)dz_userinviteCodeWithSuccess:(PRCompleteBlock)success failure:(PRFailureBlock)failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

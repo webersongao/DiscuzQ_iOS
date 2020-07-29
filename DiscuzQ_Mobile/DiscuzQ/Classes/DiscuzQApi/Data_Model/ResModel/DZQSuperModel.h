@@ -12,11 +12,11 @@
 #import "NSObject+Super.h"
 
 // 无特殊情况，一般都是屏幕宽度
-#define dz_CellMargin 15.0
+#define dz_CellMargin kMargin15
 // 无特殊情况，一般都是屏幕宽度
 #define dz_CellWidth KScreenWidth
 // 无特殊情况，一般都是屏幕宽度 - 30 （两个边距）
-#define dz_CellMaxContentWidth ((KScreenWidth) - (15.0 * 2.0))
+#define dz_CellMaxContentWidth ((KScreenWidth) - (kMargin15 * 2.0))
 
 @class DZQSuperData;
 
@@ -42,7 +42,7 @@
 // 该 子类 的字段只能是 data.relationships 的一级字段 暂不支持自定义key
 @interface DZQSuperRelation : NSObject
 
-+ (Class)relateClassForKey:(NSString *)typeKey;
+//+ (Class)relateClassForKey:(NSString *)typeKey;
 
 + (instancetype)relationModelWithDictionary:(NSDictionary *)dictionary;
 

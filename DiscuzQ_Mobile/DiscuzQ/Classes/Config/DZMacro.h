@@ -10,6 +10,7 @@
 #define DZMacro_h
 
 #import "PRLayouter.h"
+#import "DZQDelegate.h"
 
 #pragma mark - app名称
 
@@ -32,6 +33,8 @@
 #define kMargin30   30.0
 #define kMargin35   35.0
 #define kMargin40   40.0
+#define kMargin45   45.0
+#define kMargin50   50.0
 #define K_input_Height 50  /// 输入框高度
 #define kMiniBarHeight   35.0 /// 35.0
 #define kToolBarHeight   44.0
@@ -40,6 +43,10 @@
 #define kCellHeight_54   55.0
 #define kCellHeight_60   60.0
 #define kCellHeight_65   65.0
+
+#define kHeaderHeight_80    80.0
+#define kHeaderHeight_100   100.0
+#define kHeaderHeight_120   120.0
 
 /**
  * iPhone X Screen Insets
@@ -84,8 +91,10 @@
 // 国际化 字符创
 #define _(x) [LocalStringUtil localString:x]
 #define checkInteger(__X__)     [NSString stringWithFormat:@"%ld",__X__]
+#define checkFloat(__X__)       [NSString stringWithFormat:@"%.2f",__X__]
 #define checkTwoStr(X,Y)        [NSString stringWithFormat:@"%@%@",X,Y]
 #define checkNull(__X__)        (__X__) == nil || [(__X__) isEqual:[NSNull null]] ? @"" : [NSString stringWithFormat:@"%@", (__X__)]
+#define kAPPDelegate    ((DZQDelegate *)[[UIApplication sharedApplication] delegate])
 
 #pragma mark - 网络请求超时时间
 #define TIMEOUT 30.0
@@ -113,6 +122,7 @@ typedef void(^backSetBlock)(NSSet * setArr);
 typedef void(^backBoolBlock)(BOOL boolState);
 typedef void(^completeBoolBlock)(BOOL bSuccess);
 typedef void(^backButtonBlock)(UIButton * button);
+typedef void(^backIntegerBlock)(NSInteger index);
 typedef void(^backDictionaryBlock)(NSDictionary * Dictionary);
 typedef void(^backArraySizeBlock)(NSArray * Array,int64_t allSize);
 
@@ -146,5 +156,24 @@ typedef void(^ProgressBlock)(double Progress,NSError *error);
 
 #define DZ_DomainUrlChange_Notify       @"DomainN4ameChange"
 #define DZ_UserLogin_Notify             @"user9LoginNotification"
+
+
+
+/// 播放器view的tag，列表中UI控件唯一tag值
+#define kPlayerViewTag      20070301
+#define KShadowAlert_Tag    18111301 // 通用的 ShadowAletView 的弹窗默认tag
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif /* DZMacro_h */

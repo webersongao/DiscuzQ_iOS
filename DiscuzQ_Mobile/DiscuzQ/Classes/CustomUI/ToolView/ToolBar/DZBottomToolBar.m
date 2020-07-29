@@ -61,7 +61,7 @@
         [self.rightButton setImage:nil forState:UIControlStateNormal];
         [self.leftMainButton setTitle:@"确定上传" forState:UIControlStateNormal];
         self.leftMainButton.centerY = self.rightButton.centerY = kToolBarHeight/2.f;
-        [self.leftMainButton setTitleColor:KColor(KFFFFFF_Color, 1.0) forState:UIControlStateNormal];
+        [self.leftMainButton setTitleColor:KWhite_Color forState:UIControlStateNormal];
     }else if (self.mode == toolBar_naviAction){
         [self layoutIBottomToolBar_naviStyle];
     }
@@ -127,11 +127,18 @@
     }
 }
 
+-(void)centerButtonAction:(UIButton *)button{
+    button.selected = !button.isSelected;
+    if (self.centerBlock) {
+        self.centerBlock(button);
+    }
+}
+
 
 -(void)layoutIBottomToolBar_naviStyle{
     
     self.toolTextLabel.font = KBoldFont(18.f);
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     [self.toolTextLabel setTextColor:KColor(K31323E_Color, 1.0)];
     [self.leftMainButton setTitleColor:KColor(K33C3A5_Color, 1.0) forState:UIControlStateNormal];
     [self.leftMainButton setTitleColor:KColor(K33C3A5_Color, 1.0) forState:UIControlStateHighlighted];
@@ -164,11 +171,12 @@
 -(void)layoutIBottomBar_CommentStyle{
     
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = KWhite_Color;
     [self.leftMainButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateNormal];
     [self.leftMainButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateHighlighted];
+    
     [self.rightButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateSelected];
+    [self.rightButton setTitleColor:KHight_Color forState:UIControlStateSelected];
     [self.rightButton setTitleColor:KColor(K31323E_Color, 1.0) forState:UIControlStateHighlighted];
     
     [self.leftMainButton setImage:KImageNamed(@"dz_list_comment") forState:UIControlStateNormal];
@@ -178,7 +186,7 @@
     [self.rightButton setImage:KImageNamed(@"dz_list_praise_f") forState:UIControlStateSelected];
     [self.rightButton setImage:KImageNamed(@"dz_list_praise_n") forState:UIControlStateHighlighted];
     [self.rightButton setTitle:@"点赞" forState:UIControlStateNormal];
-    [self.rightButton setTitle:@"点赞" forState:UIControlStateSelected];
+    [self.rightButton setTitle:@"已赞" forState:UIControlStateSelected];
     [self.rightButton setTitle:@"点赞" forState:UIControlStateHighlighted];
     [self.leftMainButton setTitle:@"评论" forState:UIControlStateNormal];
     [self.leftMainButton setTitle:@"评论" forState:UIControlStateHighlighted];
@@ -201,7 +209,7 @@
     
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(self.width/2.f, 0, 0.5, kToolBarHeight)];
-    line.backgroundColor = KColor(KECECEC_Color, 1.0);
+    line.backgroundColor = KLine_Color;
     [self addSubview:line];
 }
 
@@ -210,7 +218,7 @@
 -(UILabel *)toolTextLabel{
     if (_toolTextLabel == nil) {
         
-        _toolTextLabel = [UILabel labelWithFrame:CGRectMake(kMargin15, 0, self.width - 120 - kMargin15, kToolBarHeight) title:@"" titleColor:KColor(KFFF9F2_Color, 1.0) font:KFont(14) textAlignment:NSTextAlignmentLeft];
+        _toolTextLabel = [UILabel labelWithFrame:CGRectMake(kMargin15, 0, self.width - 120 - kMargin15, kToolBarHeight) title:@"" titleColor:KColor(K31323E_Color, 1.0) font:KFont(14) textAlignment:NSTextAlignmentLeft];
     }
     return _toolTextLabel;
 }
@@ -225,19 +233,26 @@
 
 -(UIButton *)leftMainButton{
     if (!_leftMainButton) {
-        _leftMainButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) titleStr:@"" titleColor:KColor(KFFF9F2_Color, 1.0) titleTouColor:KColor(KFFF9F2_Color, 1.0) font:KFont(16.f) Radius:0 Target:self action:@selector(leftButtonAction:)];
+        _leftMainButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) titleStr:@"" titleColor:KColor(K31323E_Color, 1.0) titleTouColor:KColor(K31323E_Color, 1.0) font:KFont(16.f) Radius:0 Target:self action:@selector(leftButtonAction:)];
     }
     return _leftMainButton;
 }
 
 -(UIButton *)rightButton{
     if (!_rightButton) {
-        _rightButton = [UIButton ButtonNormalWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) title:nil titleFont:KFont(16.f) titleColor:KColor(KFFFFFF_Color, 1.0) normalImgPath:@"dz_syncskip" touchImgPath:@"dz_syncskip" isBackImage:NO];
+        _rightButton = [UIButton ButtonNormalWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) title:nil titleFont:KFont(16.f) titleColor:KWhite_Color normalImgPath:DZQ_icon touchImgPath:DZQ_icon isBackImage:NO picAlpha:1];
         [_rightButton addTarget:self action:@selector(rightButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightButton;
 }
 
+-(UIButton *)centerButton{
+    if (!_centerButton) {
+        _centerButton = [UIButton ButtonNormalWithFrame:CGRectMake(0, 0, 100, kToolBarHeight) title:nil titleFont:KFont(16.f) titleColor:KWhite_Color normalImgPath:DZQ_icon touchImgPath:DZQ_icon isBackImage:NO picAlpha:1];
+        [_centerButton addTarget:self action:@selector(centerButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _centerButton;
+}
 
 
 @end

@@ -15,14 +15,18 @@
 /*
  *  BaseUrl设置 打开 1为生产环境，注释为测试环境
  */
-
-//#define MACRO_PRODUCT 1
+  
+#define MACRO_PRODUCT 1
 
 
 #ifdef MACRO_PRODUCT //线上环境
+#define KDebug_Color    KWhite_Color
 #define DZQ_BASEURL      @"https://discuz.chat"
+//#define DZQ_BASEURL      @"https://www.bushcraftcn.com"
 
 #else //测试环境
+
+#define KDebug_Color    KRandom_Color
 #define DZQ_BASEURL      @"https://discuz.chat"
 //#define DZQ_BASEURL      @"https://www.bushcraftcn.com"
 #endif
@@ -31,7 +35,6 @@
 
 #define DZQ_icon        @"discuz_circle_logo"
 #define DZQ_Cor_icon    @"discuz_cor_logo"
-
 
 #define DZ_company_Name  @"北京抖猫科技有限公司" // 公司
 #define DZ_APP_Name      @"抖猫社区"

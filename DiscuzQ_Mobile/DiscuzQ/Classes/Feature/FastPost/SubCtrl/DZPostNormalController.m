@@ -7,8 +7,11 @@
 //
 
 #import "DZPostNormalController.h"
+#import "DZThreadEditerView.h"
 
 @interface DZPostNormalController ()
+
+@property (nonatomic, strong) DZThreadEditerView *editerView;  //!< <#属性注释#>
 
 @end
 
@@ -16,6 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.editerView];
+    [self.dz_NavigationBar removeFromSuperview];
+}
+
+
+-(DZThreadEditerView *)editerView{
+    if (!_editerView) {
+        _editerView = [[DZThreadEditerView alloc] initWithFrame:self.view.bounds];
+    }
+    return _editerView;
 }
 
 

@@ -10,6 +10,6 @@
 
 @interface DZMyFriendListController : DZBaseViewController
 
-- (instancetype)initWithUserid:(NSString *)user_id;
+- (instancetype)initWithUser:(NSString *)user_id index:(NSInteger)index;
 
 @end

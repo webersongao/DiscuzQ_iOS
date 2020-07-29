@@ -26,7 +26,7 @@
     if (self) {
         self.user_id = userId;
         [self config_OtherScrollView];
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = KWhite_Color;
     }
     return self;
 }
@@ -44,8 +44,10 @@
 -(void)updateUserHeader:(DZQBaseUser *)userModel{
     
     [self.headerView updateInfoHeader:userModel.username grade:@"超级无敌管理员" icon:userModel.avatarUrl];
-    
-    
+}
+
+-(void)updateOtherUserListTabView{
+    [self.tabListCtrl updateFilstUserTabControllerView];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer

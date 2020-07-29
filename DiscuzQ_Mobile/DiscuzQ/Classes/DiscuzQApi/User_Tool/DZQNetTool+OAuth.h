@@ -7,8 +7,8 @@
 //
 
 #import "DZQNetTool.h"
-#import "DZQRegModel.h"
-#import "DZQLoginRelationModel.h"
+#import "DZQAuthModel.h"
+#import "DZOtherRelationModel.h"
 
 @interface DZQNetTool (OAuth)
 

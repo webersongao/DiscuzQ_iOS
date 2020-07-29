@@ -42,7 +42,7 @@
     [super viewDidLoad];
     self.view.frame = KView_OutNavi_Bounds;
     self.tableView.frame = self.view.bounds;
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = KWhite_Color;
     self.hotSearches = @[@"discuz",@"App",@"微社区",@"小程序",@"定制开发",@"应用中心",@"插件"].mutableCopy;
     self.hotSearchTags = [self addAndLayoutTagsWithTagsContentView:self.hotSearchView tagTexts:self.hotSearches].mutableCopy;
     [self setHotSearchStyle];
@@ -50,7 +50,7 @@
     UILabel *tipLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
     tipLab.textAlignment = NSTextAlignmentCenter;
     tipLab.font = [UIFont systemFontOfSize:14];
-    tipLab.textColor = K_Color_Message;
+    tipLab.textColor = KLightGray_Color;
     tipLab.text = @"清空历史";
     tipLab.userInteractionEnabled = YES;
     [tipLab addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clearSearchHistory)]];
@@ -101,7 +101,7 @@
     headView.height = contentView.height + 40;
     
     UILabel *tipLab = [[UILabel alloc] initWithFrame:CGRectMake(kMargin15, 10, KScreenWidth - 30, 20)];
-    tipLab.textColor = K_Color_Message;
+    tipLab.textColor = KLightGray_Color;
     tipLab.font = [UIFont systemFontOfSize:14];
     tipLab.text = @"热门搜索";
     [headView addSubview:tipLab];
@@ -122,7 +122,7 @@
 
 - (void)setHotSearchStyle {
     for (UILabel *tag in self.hotSearchTags) {
-        tag.textColor = [UIColor whiteColor];
+        tag.textColor = KWhite_Color;
         tag.layer.borderColor = nil;
         tag.layer.borderWidth = 0.0;
         tag.backgroundColor = kPol_RandomColor;
@@ -155,7 +155,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (cell == nil) {
         cell = [[DZBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.textLabel.textColor = K_Color_Message;
+        cell.textLabel.textColor = KLightGray_Color;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.imageView.image = [UIImage imageNamed:@"search_history"];
     }
@@ -174,13 +174,13 @@
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 30)];
         UILabel *tipLab = [[UILabel alloc] initWithFrame:CGRectMake(kMargin15, kMargin15, KScreenWidth - 30, 15)];
         tipLab.font = [UIFont systemFontOfSize:14];
-        tipLab.textColor = K_Color_Message;
+        tipLab.textColor = KLightGray_Color;
         [headView addSubview:tipLab];
         tipLab.text = @"搜索历史";
         return headView;
     } else {
         UIView *v = [UIView new];
-        v.backgroundColor = [UIColor whiteColor];
+        v.backgroundColor = KWhite_Color;
         return v;
     }
 }

@@ -29,18 +29,19 @@
 @property (nonatomic, assign) NSInteger type;  //!< 属性注释
 @property (nonatomic, assign) NSInteger type_id;  //!< 属性注释
 
-//@property (nonatomic, assign) BOOL isGallery;  //!< 属性注释
-@property (nonatomic, assign) BOOL isRemote;  //!< 属性注释
+@property (nonatomic, assign) BOOL isGallery;  //!< 是否是帖子图片
+@property (nonatomic, assign) BOOL isRemote;  //!< 是否是远程附件
 @property (nonatomic, assign) NSInteger isApproved;  //!< 属性注释
 
-@property (nonatomic, copy) NSString *url;  //!< 属性注释
-@property (nonatomic, copy) NSString *attachment;  //!< 属性注释
-@property (nonatomic, copy) NSString *extension;  //!< 属性注释
-@property (nonatomic, copy) NSString *fileName;  //!< 属性注释
-@property (nonatomic, copy) NSString *filePath;  //!< 属性注释
-@property (nonatomic, assign) NSTimeInterval fileSize;  //!< 属性注释
+@property (nonatomic, copy) NSString *url;  //!< 图片或者视频等附件原始路径
+@property (nonatomic, copy) NSString *uuid;  //!< 附件 uuid
+@property (nonatomic, copy) NSString *attachment;  //!< 文件系统生成的名称
+@property (nonatomic, copy) NSString *extension;  //!< 文件扩展名
+@property (nonatomic, copy) NSString *fileName;  //!< 文件原名称
+@property (nonatomic, copy) NSString *filePath;  //!< 文件路径
+@property (nonatomic, assign) NSTimeInterval fileSize;  //!< 文件大小
 
-@property (nonatomic, copy) NSString *fileType;  //!< 属性注释
+@property (nonatomic, copy) NSString *fileType;  //!< 文件类型
 @property (nonatomic, copy) NSString *thumbUrl;  //!< 图片缩略图（fileType 为 图片时包含该字段）
 
 @end

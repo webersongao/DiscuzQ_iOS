@@ -33,7 +33,7 @@
     self.tableView = [[DZBaseTableView alloc] initWithFrame:KView_OutNavi_Bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = KDebug_Color;
 }
 
 #pragma mark - UITableViewDataSource
@@ -56,7 +56,10 @@
     if (cell == nil) {
         cell = [[DZBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellId];
         cell.textLabel.font = KFont(14);
-        cell.detailTextLabel.font = KFont(11);
+        cell.detailTextLabel.font = KFont(12);
+        cell.backgroundColor = KDebug_Color;
+        cell.textLabel.textColor = KTitle_Color;
+        cell.detailTextLabel.textColor = KContent_Color;
         if (indexPath.section == 0 && indexPath.row == 0) {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }

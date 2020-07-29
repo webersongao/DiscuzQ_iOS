@@ -1,14 +1,14 @@
 //
-//  AppDelegate+Launch.h
+//  DZQDelegate+Launch.h
 //  DiscuzQ
 //
 //  Created by WebersonGao on 2019/11/21.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //  欢迎页面
 
-#import "AppDelegate.h"
+#import "DZQDelegate.h"
 
-@interface AppDelegate (Launch)
+@interface DZQDelegate (Launch)
 
 -(void)launch_WhenApplicationDidBecomeActive;
 -(void)loadAppLaunchScreenView;

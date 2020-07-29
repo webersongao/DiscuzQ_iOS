@@ -7,7 +7,6 @@
 //
 
 #import "DZBaseNaviBarController.h"
-#import "EmptyAlertView.h"
 
 typedef NS_ENUM(NSUInteger, NaviDirection) {
     NaviDirectionLeft,
@@ -24,7 +23,6 @@ typedef NS_ENUM(NSUInteger, NaviItemType) {
 @property (nonatomic, assign) CGFloat statusbarHeight;
 
 @property (nonatomic, strong) MBProgressHUD *HUD;
-@property (nonatomic, strong) EmptyAlertView *emptyView;
 
 @property (nonatomic, assign) BOOL DZ_hideTabBarWhenPushed;  //!< push该控制器时是否隐藏TabBar
 
@@ -58,7 +56,7 @@ typedef NS_ENUM(NSUInteger, NaviItemType) {
 /**
  导航栏右按钮点击事件
  */
--(void)rightBarBtnClick;
+- (void)rightBarBtnClick:(UIButton *)button;
 
 
 #pragma mark - Hook

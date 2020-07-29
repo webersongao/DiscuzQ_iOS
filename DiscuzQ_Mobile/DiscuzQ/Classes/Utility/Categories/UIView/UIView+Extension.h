@@ -23,4 +23,8 @@
 
 - (UIViewController *)dz_GetViewController;
 
+- (UIView *)snapshotCellView;
+
+
+
 @end

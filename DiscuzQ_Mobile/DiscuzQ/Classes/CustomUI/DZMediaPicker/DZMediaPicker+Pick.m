@@ -23,10 +23,10 @@
         return;
     }
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:self.maxPickCount columnNumber:self.columnNumber delegate:self pushPhotoPickerVc:YES];
-    imagePickerVc.barItemTextColor = KBlack_Color;
-    [imagePickerVc.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:KBlack_Color}];
-    imagePickerVc.navigationBar.tintColor = KBlack_Color;
-    imagePickerVc.naviBgColor = [UIColor whiteColor];
+    imagePickerVc.barItemTextColor = KTitle_Color;
+    [imagePickerVc.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:KTitle_Color}];
+    imagePickerVc.navigationBar.tintColor = KTitle_Color;
+    imagePickerVc.naviBgColor = KWhite_Color;
     imagePickerVc.navigationBar.translucent = NO;
     
 #pragma mark - 五类个性化设置，这些参数都可以不传，此时会走默认设置
@@ -54,7 +54,7 @@
     // imagePickerVc.navigationBar.translucent = NO;
     imagePickerVc.iconThemeColor = [UIColor colorWithRed:31 / 255.0 green:185 / 255.0 blue:34 / 255.0 alpha:1.0];
     imagePickerVc.showPhotoCannotSelectLayer = YES;
-    imagePickerVc.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    imagePickerVc.cannotSelectLayerColor = [KWhite_Color colorWithAlphaComponent:0.8];
     [imagePickerVc setPhotoPickerPageUIConfigBlock:^(UICollectionView *collectionView, UIView *bottomToolBar, UIButton *previewButton, UIButton *originalPhotoButton, UILabel *originalPhotoLabel, UIButton *doneButton, UIImageView *numberImageView, UILabel *numberLabel, UIView *divideLine) {
         [doneButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }];

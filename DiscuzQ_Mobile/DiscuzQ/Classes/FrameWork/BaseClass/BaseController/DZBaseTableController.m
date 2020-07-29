@@ -40,28 +40,6 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - public
-- (void)emptyShow {
-    
-    if (self.dataSourceArr.count > 0) {
-        [self.tableView.mj_footer setHidden:NO];
-        self.emptyView.hidden = YES;
-    } else {
-        self.emptyView.hidden = NO;
-        if (!self.tableView.tableHeaderView) {
-            self.emptyView.frame = self.tableView.bounds;
-        }else{
-            CGFloat headerHeight = CGRectGetHeight(self.tableView.tableHeaderView.frame);
-            self.emptyView.frame = CGRectMake(self.tableView.left, self.tableView.top + headerHeight, self.tableView.width, self.tableView.height - headerHeight);
-        }
-        if (!self.emptyView.isOnView) {
-            [self.tableView addSubview:self.emptyView];
-            self.emptyView.isOnView = YES;
-        }
-        [self.tableView.mj_footer setHidden:YES];
-    }
-}
-
 #pragma mark - private
 // 刷新
 - (void)refresh {

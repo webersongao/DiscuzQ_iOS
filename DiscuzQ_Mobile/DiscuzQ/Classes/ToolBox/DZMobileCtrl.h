@@ -11,16 +11,23 @@
 #import "GlobalModel.h"
 #import "DZShadowView.h"
 #import "DZInstance.h"
+#import "DZMoreMenu.h"
 #import "DZUserModel.h"
+#import "TBLoadingView.h"
 
 @interface DZMobileCtrl : NSObject
 
 +(instancetype)sharedCtrl;
 
 @property (nonatomic, strong) DZUserModel *User;  //!< 用户信息(包含Token)
+@property (nonatomic, strong) NiHubView *hubView;
 
 @property (nonatomic, strong) DZInstance *instance;  //!< 存放各种单例属性
+@property (nonatomic, strong) DZMoreMenu *moreMenu;  //!< 属性注释
+@property (nonatomic, strong) NSMutableArray* tipHubViewArr;
 @property (nonatomic, strong) DZShadowView *shadowAlertView;  //!< 阴影View
+
+@property (nonatomic, assign) BOOL bOpenLoadAnimated;
 @property(nonatomic,strong,readonly) DZRootTabBarController *rootTababar;
 @property(nonatomic,strong,readonly) DZBaseNavigationController *mainNavi;
 

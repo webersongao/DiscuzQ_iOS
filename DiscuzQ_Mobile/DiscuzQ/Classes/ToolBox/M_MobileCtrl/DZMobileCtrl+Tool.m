@@ -19,5 +19,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:observer selector:selName name:name object:nil];
 }
 
+// 复制 文字到粘贴板
++(void)PasteLocalBoardWithString:(NSString *)strUrl{
+    
+    NSString *shareToUrl = checkNull(strUrl);
+    UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
+    
+    [pasteBoard setString:shareToUrl];
+    
+    if (pasteBoard.string.length < 1) {
+        [DZMobileCtrl showAlertError:@"复制失败"];
+    }else{
+        [DZMobileCtrl showAlertSuccess:@"复制成功"];
+    }
+}
 
 @end
