@@ -95,13 +95,13 @@
     DZNotificationController *MsgVC = [[DZNotificationController alloc] init];
     DZUserViewController *UserVC = [[DZUserViewController alloc] init];
     
-    [self addChildVc:testVC title:@"霸道总裁" image:@"tabbar_homem" selectedImage:@"tabbar_homes"];
+//    [self addChildVc:testVC title:@"霸道总裁" image:@"tabbar_homem" selectedImage:@"tabbar_homes"];
 
-//    [self addChildVc:DisVC title:@"Discover" image:DZQ_icon selectedImage:DZQ_icon];
+    [self addChildVc:DisVC title:@"首页" image:DZQ_icon selectedImage:DZQ_icon];
 
 //    [self addChildVc:HomeVC title:@"短视频" image:DZQ_icon selectedImage:DZQ_icon];
-//
-//    [self addChildVc:MsgVC title:@"消息" image:DZQ_icon selectedImage:DZQ_icon];
+
+    [self addChildVc:MsgVC title:@"消息" image:DZQ_icon selectedImage:DZQ_icon];
 
     [self addChildVc:UserVC title:@"我的" image:DZQ_icon selectedImage:DZQ_icon];
 }
