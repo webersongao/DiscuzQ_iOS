@@ -21,4 +21,7 @@ Discuz Q 移动化客户端iOS版(OC版本)
 ### 不定期内测：[http://www.pgyer.com/DiscuzQ](http://www.pgyer.com/DiscuzQ)
 
 目前代码既具备完整App的数据和UI架构雏形，但最新的功能开发及更多玩法，尚未开源。
-2021年的新开发的功能，会不定期推送到github，想了解最新，加我微信，拉你进群：chinaMasker
+
+## 2021年的新开发的功能，会不定期推送到github，想了解最新，加我微信，拉你进群：chinaMasker
+
+#  想了解最新feature，加我微信，拉你进群：chinaMasker
