@@ -24,4 +24,4 @@ Discuz Q 移动化客户端iOS版(OC版本)
 
 ## 2021年的新开发的功能，会不定期推送到github，想了解最新，加我微信，拉你进群：chinaMasker
 
-#  想了解最新feature，加我微信，拉你进群：chinaMasker
+#  想了解最新feature，加我微信，拉你进群：ChinaMasker
