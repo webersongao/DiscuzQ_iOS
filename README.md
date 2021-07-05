@@ -18,4 +18,4 @@ Discuz Q 移动化客户端iOS版(OC版本)
 
 ##内测分发：
 
-### 不定期内测：[http://www.pgyer.com/DiscuzQ](http://www.pgyer.com/DiscuzQ)
+### 不定期内测：[http://www.pgyer.com/DiSiKaSi](https://www.pgyer.com/disikasi)
