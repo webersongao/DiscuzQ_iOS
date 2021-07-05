@@ -1,7 +1,8 @@
 //
 //  DZBaseCollectionView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/22.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -41,11 +42,7 @@
     self.backgroundColor = KDebug_Color;
     if (@available(iOS 11.0, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        // Fallback on earlier versions
     }
-
-    
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(lonePressRecognizerAction:)];
     [self addGestureRecognizer:longPress];
 }

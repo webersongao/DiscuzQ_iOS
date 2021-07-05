@@ -1,7 +1,8 @@
 //
 //  DZBaseUrlController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/4/29.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -25,9 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.view addSubview:self.webView];
-    
     KWEAKSELF
     [_webView dz_loadBaseWebUrl:_urlString back:^(NSString *String) {
         [UIAlertController alertTitle:nil message:String controller:self doneText:@"返回" cancelText:nil doneHandle:^{
@@ -103,7 +102,7 @@
      {
         NSString *URlString = checkNull(weakSelf.urlString);
         if (URlString.length <= 0){
-            [UIAlertController PAlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
+            [UIAlertController dz_AlertWithTitle:@"提示" message:@"无法获取当前链接" completion:nil];
             return;
         }
         if (index == 0){
@@ -125,7 +124,7 @@
     [[UIApplication sharedApplication] openURL:URL options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO} completionHandler:^(BOOL success)
      {
         if (!success) {
-            [UIAlertController PAlertWithTitle:@"提示" message:@"打开失败" completion:nil];
+            [UIAlertController dz_AlertWithTitle:@"提示" message:@"打开失败" completion:nil];
         }
     }];
 }

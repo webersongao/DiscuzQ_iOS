@@ -1,7 +1,8 @@
 //
 //  DZThreadCashPayView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/9.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -48,7 +49,7 @@
     if (dataModel.attributes.price > 0) {
         // 付费
         NSString *typeStr = @"查看内容";
-        //        文章类型(0 普通 1 长文 2 视频 3 图片)
+        //        文章类型(0 普通 1 长文 2 视频 3 图片 4 语音 5 问答帖 6 商品帖)
         if (dataModel.attributes.type == 0) {
             typeStr = @"查看剩余内容";
         }else if (dataModel.attributes.type == 1){
@@ -61,7 +62,7 @@
         
         localArray = dataModel.relationships.paidUsers;
         NSString *payStr = [NSString stringWithFormat:@"支付%.2f元%@",dataModel.attributes.price,typeStr];
-        self.cashPayButton.hidden = dataModel.attributes.paid;
+        self.cashPayButton.hidden = (dataModel.attributes.price > 0) ? NO : YES;
         [self.cashPayButton setTitle:payStr forState:UIControlStateNormal];
         
         NSString *infoStr = [NSString stringWithFormat:@"%ld人已付费",localArray.count];

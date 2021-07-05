@@ -1,7 +1,8 @@
 //
 //  DZAboutView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/12/5.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -12,6 +13,12 @@
 @interface DZAboutView()
 
 @property (nonatomic, strong) UIImageView *bgImageView;
+
+@property (nonatomic, strong) UIImageView *logoView;
+@property (nonatomic, strong) UILabel *appNameLabel;
+@property (nonatomic, strong) UILabel *versiontypeLabel;
+@property (nonatomic, strong) UILabel *companyLabel;
+@property (nonatomic, strong) UILabel *incLabel;
 
 @end
 
@@ -28,80 +35,86 @@
 
 - (void)p_setupViews {
     
-    self.bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"aboutbg"]];
     [self addSubview:self.bgImageView];
-    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.equalTo(self);
-    }];
-    
-    NSString *logoName = [DZDevice getIconName];
-    
-    self.logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:logoName]];
     [self.bgImageView addSubview:self.logoView];
-    [self.logoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.bgImageView.mas_centerX);
-        make.top.equalTo(self.bgImageView).offset(50);
-        make.size.mas_equalTo(CGSizeMake(100, 100));
-    }];
-    self.logoView.layer.masksToBounds = YES;
-    self.logoView.layer.cornerRadius = 10;
-    
-    self.appNameLabel = [[UILabel alloc] init];
-    self.appNameLabel.font = [UIFont boldSystemFontOfSize:31.0];
     [self.bgImageView addSubview:self.appNameLabel];
-    self.appNameLabel.text = DZ_APP_Name;
-    self.appNameLabel.textColor = KBlack_Color;
-    self.appNameLabel.textAlignment = NSTextAlignmentCenter;
-    [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.logoView.mas_bottom).offset(30);
-        make.centerX.equalTo(self.bgImageView.mas_centerX);
-        make.width.equalTo(self.bgImageView);
-        make.height.mas_equalTo(40);
-    }];
-    
-    self.versiontypeLabel = [[UILabel alloc] init];
     [self.bgImageView addSubview:self.versiontypeLabel];
-    self.versiontypeLabel.font = [UIFont systemFontOfSize:14.0];
-    self.versiontypeLabel.textColor = [UIColor lightGrayColor];
-    self.versiontypeLabel.textAlignment = NSTextAlignmentCenter;
-    [self.versiontypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.appNameLabel);
-        make.top.equalTo(self.appNameLabel.mas_bottom).offset(10);
-        make.height.mas_equalTo(10);
-        make.centerX.equalTo(self.bgImageView.mas_centerX);
-    }];
-    
-    NSString *currentversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    self.versiontypeLabel.text = [NSString stringWithFormat:@"iOS v%@",currentversion];
-    
-    self.incLabel = [[UILabel alloc] init];
     [self.bgImageView addSubview:self.incLabel];
-    self.incLabel.font = [UIFont systemFontOfSize:12.0];
-    self.incLabel.textColor = [UIColor lightGrayColor];
-    self.incLabel.textAlignment = NSTextAlignmentCenter;
-    [self.incLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.equalTo(self.appNameLabel);
-        make.centerX.equalTo(self.bgImageView.mas_centerX);
-        make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-20 - self.appNameLabel.frame.size.height);
-    }];
-    
-    self.incLabel.text = DZ_CopyRight;
-    
-    self.companyLabel = [[UILabel alloc] init];
     [self.bgImageView addSubview:self.companyLabel];
-    self.companyLabel.font = [UIFont systemFontOfSize:16.0];
-    self.companyLabel.textColor = [UIColor darkGrayColor];
-    self.companyLabel.textAlignment = NSTextAlignmentCenter;
-    [self.companyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.equalTo(self.appNameLabel);
-        make.centerX.equalTo(self.bgImageView.mas_centerX);
-        make.bottom.equalTo(self.incLabel.mas_top).offset(10);
-    }];
-    self.companyLabel.text = DZ_company_Name;
     
 }
 
 
 
+-(UIImageView *)bgImageView{
+    if (!_bgImageView) {
+        _bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dz_about_back"]];
+        _bgImageView.frame = self.bounds;
+    }
+    return _bgImageView;
+}
+
+-(UIImageView *)logoView{
+    if (!_logoView) {
+        _logoView = [[UIImageView alloc] initWithImage:KImageNamed(DZQ_Square_icon)];
+        _logoView.frame = CGRectMake((self.bgImageView.width-100)/2.0, 80, 100, 100);
+        _logoView.layer.masksToBounds = YES;
+        _logoView.layer.cornerRadius = 10;
+    }
+    return _logoView;
+}
+
+-(UILabel *)appNameLabel{
+    if (!_appNameLabel) {
+        _appNameLabel = [[UILabel alloc] init];
+        _appNameLabel.font = [UIFont boldSystemFontOfSize:31.0];
+        _appNameLabel.text = DZ_APP_Name;
+        _appNameLabel.textColor = KBlack_Color;
+        _appNameLabel.textAlignment = NSTextAlignmentCenter;
+        _appNameLabel.frame = CGRectMake(0, self.logoView.bottom+30, self.bgImageView.width, 40);
+    }
+    return _appNameLabel;
+}
+
+-(UILabel *)versiontypeLabel{
+    if (!_versiontypeLabel) {
+        _versiontypeLabel = [[UILabel alloc] init];
+        _versiontypeLabel.font = [UIFont systemFontOfSize:14.0];
+        _versiontypeLabel.textColor = [UIColor lightGrayColor];
+        _versiontypeLabel.textAlignment = NSTextAlignmentCenter;
+        _versiontypeLabel.frame = CGRectMake(self.appNameLabel.left, self.appNameLabel.bottom + 10, self.appNameLabel.width, 15);
+        NSString *currentversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        _versiontypeLabel.text = [NSString stringWithFormat:@"iOS V %@",currentversion];
+    }
+    return _versiontypeLabel;
+}
+
+
+-(UILabel *)incLabel{
+    if (!_incLabel) {
+        _incLabel = [[UILabel alloc] init];
+        _incLabel.text = DZ_CopyRight;
+        _incLabel.font = [UIFont systemFontOfSize:12.0];
+        _incLabel.textColor = [UIColor lightGrayColor];
+        _incLabel.textAlignment = NSTextAlignmentCenter;
+        CGFloat incTopY = self.height -20 - self.appNameLabel.height;
+        _incLabel.frame = CGRectMake(self.appNameLabel.left, incTopY, self.appNameLabel.width, self.appNameLabel.height);
+    }
+    return _incLabel;
+}
+
+
+-(UILabel *)companyLabel{
+    if (!_companyLabel) {
+        _companyLabel = [[UILabel alloc] init];
+        _companyLabel.font = [UIFont systemFontOfSize:16.0];
+        _companyLabel.textColor = [UIColor darkGrayColor];
+        _companyLabel.textAlignment = NSTextAlignmentCenter;
+        CGFloat companyTopY = self.incLabel.top - kMargin20;
+        _companyLabel.frame = CGRectMake(self.appNameLabel.left, companyTopY, self.appNameLabel.width, kMargin20);
+        _companyLabel.text = DZ_company_Name;
+    }
+    return _companyLabel;
+}
 
 @end

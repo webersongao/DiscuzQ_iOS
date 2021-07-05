@@ -1,7 +1,8 @@
 //
 //  DZOtherScrollView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/26.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -41,9 +42,10 @@
 }
 
 
--(void)updateUserHeader:(DZQBaseUser *)userModel{
-    
-    [self.headerView updateInfoHeader:userModel.username grade:@"超级无敌管理员" icon:userModel.avatarUrl];
+-(void)updateUserHeader:(DZQDataUser *)dataUser{
+    DZQUserRelationV1 *relation = (DZQUserRelationV1 *)dataUser.relationships;
+    NSString *groupStr = dataUser.attributes.showGroups ? relation.groups.firstObject.attributes.name : @"身份保密";
+    [self.headerView updateInfoHeader:dataUser.attributes grade:groupStr];
 }
 
 -(void)updateOtherUserListTabView{

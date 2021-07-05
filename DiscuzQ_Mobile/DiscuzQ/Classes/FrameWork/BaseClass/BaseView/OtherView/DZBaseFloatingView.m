@@ -1,7 +1,8 @@
 //
 //  DZBaseFloatingView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2017/7/27.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -39,7 +40,7 @@
     [self addSubview:self.contentView];
     
     self.closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.closeBtn setImage:[UIImage imageNamed:@"dz_type_close"] forState:UIControlStateNormal];
+    [self.closeBtn setImage:[UIImage imageNamed:@"type_close_gray"] forState:UIControlStateNormal];
     [self.closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.closeBtn setEnlargeEdgeWithTop:15 right:15 bottom:15 left:15];
     [self.contentView addSubview:self.closeBtn];

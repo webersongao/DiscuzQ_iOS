@@ -7,6 +7,7 @@
 //
 
 #import "FTPopOverMenu.h"
+#import "DZCacheHelper.h"
 
 // changeable
 #define FTDefaultMargin                     4.f
@@ -15,8 +16,6 @@
 #define FTDefaultMenuCornerRadius           5.f
 #define FTDefaultAnimationDuration          0.2
 // change them at your own risk
-#define KSCREEN_WIDTH                       [[UIScreen mainScreen] bounds].size.width
-#define KSCREEN_HEIGHT                      [[UIScreen mainScreen] bounds].size.height
 #define FTDefaultBackgroundColor            [UIColor clearColor]
 #define FTDefaultTintColor                  [UIColor colorWithRed:80/255.f green:80/255.f blue:80/255.f alpha:1.f]
 #define FTDefaultTextColor                  [UIColor whiteColor]
@@ -220,7 +219,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
     }else if ([resource isKindOfClass:[NSURL class]]) {
         [self downloadImageWithURL:resource completion:completion];
     }else{
-        NSLog(@"Image resource not recougnized.");
+        KSLog(@"Image resource not recougnized.");
         completion(nil);
     }
 }
@@ -267,17 +266,13 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
  @return filePath
  */
 - (NSString *)filePathForImageURL:(NSURL *)url {
-    NSString *diskCachePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:FTPopOverMenuImageCacheDirectory];
-    if(![[NSFileManager defaultManager] fileExistsAtPath:diskCachePath]){
-        NSError *error = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath
-                                  withIntermediateDirectories:YES
-                                                   attributes:@{}
-                                                        error:&error];
-    }
+    NSString *cachePath = [[DZFileManager Shared].dz_CachesPath stringByAppendingPathComponent:FTPopOverMenuImageCacheDirectory];
+    
+    cachePath = [[DZFileManager Shared] dz_CreateFolderAtPath:cachePath];
+    
     NSData *data = [url.absoluteString dataUsingEncoding:NSUTF8StringEncoding];
     NSString *pathComponent = [data base64EncodedStringWithOptions:NSUTF8StringEncoding];
-    NSString *filePath = [diskCachePath stringByAppendingPathComponent:pathComponent];
+    NSString *filePath = [cachePath stringByAppendingPathComponent:pathComponent];
     return filePath;
 }
 
@@ -534,7 +529,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
 
 @implementation FTPopOverMenu
 
-+ (FTPopOverMenu *)sharedInstance {
++ (FTPopOverMenu *)Shared {
     static dispatch_once_t once = 0;
     static FTPopOverMenu *shared;
     dispatch_once(&once, ^{ shared = [[FTPopOverMenu alloc] init]; });
@@ -547,7 +542,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                    withMenuArray:(NSArray *)menuArray
                        doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                     dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:sender window:nil senderFrame:CGRectNull withMenu:menuArray imageNameArray:nil config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:sender window:nil senderFrame:CGRectNull withMenu:menuArray imageNameArray:nil config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showForSender:(UIView *)sender
@@ -555,7 +550,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                       imageArray:(NSArray *)imageArray
                        doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                     dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:sender window:nil senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:sender window:nil senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showForSender:(UIView *)sender
@@ -564,14 +559,14 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                    configuration:(FTPopOverMenuConfiguration *)configuration
                        doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                     dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:sender window:nil senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:configuration doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:sender window:nil senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:configuration doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showFromEvent:(UIEvent *)event
                    withMenuArray:(NSArray *)menuArray
                        doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                     dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:[event.allTouches.anyObject view] window:event.allTouches.anyObject.window senderFrame:CGRectNull withMenu:menuArray imageNameArray:nil config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:[event.allTouches.anyObject view] window:event.allTouches.anyObject.window senderFrame:CGRectNull withMenu:menuArray imageNameArray:nil config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showFromEvent:(UIEvent *)event
@@ -579,7 +574,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                       imageArray:(NSArray *)imageArray
                        doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                     dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:[event.allTouches.anyObject view] window:event.allTouches.anyObject.window senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:[event.allTouches.anyObject view] window:event.allTouches.anyObject.window senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showFromEvent:(UIEvent *)event
@@ -588,14 +583,14 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                    configuration:(FTPopOverMenuConfiguration *)configuration
                        doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                     dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:[event.allTouches.anyObject view] window:event.allTouches.anyObject.window senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:configuration doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:[event.allTouches.anyObject view] window:event.allTouches.anyObject.window senderFrame:CGRectNull withMenu:menuArray imageNameArray:imageArray config:configuration doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showFromSenderFrame:(CGRect )senderFrame
                          withMenuArray:(NSArray *)menuArray
                              doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                           dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:nil window:nil senderFrame:senderFrame withMenu:menuArray imageNameArray:nil config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:nil window:nil senderFrame:senderFrame withMenu:menuArray imageNameArray:nil config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showFromSenderFrame:(CGRect )senderFrame
@@ -603,7 +598,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                             imageArray:(NSArray *)imageArray
                              doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                           dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:nil window:nil senderFrame:senderFrame withMenu:menuArray imageNameArray:imageArray config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:nil window:nil senderFrame:senderFrame withMenu:menuArray imageNameArray:imageArray config:nil doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 + (FTPopOverMenu *)showFromSenderFrame:(CGRect )senderFrame
@@ -612,11 +607,11 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                          configuration:(FTPopOverMenuConfiguration *)configuration
                              doneBlock:(FTPopOverMenuDoneBlock)doneBlock
                           dismissBlock:(FTPopOverMenuDismissBlock)dismissBlock {
-    return [[self sharedInstance] showForSender:nil window:nil senderFrame:senderFrame withMenu:menuArray imageNameArray:imageArray config:configuration doneBlock:doneBlock dismissBlock:dismissBlock];
+    return [[self Shared] showForSender:nil window:nil senderFrame:senderFrame withMenu:menuArray imageNameArray:imageArray config:configuration doneBlock:doneBlock dismissBlock:dismissBlock];
 }
 
 +(void)dismiss {
-    [[self sharedInstance] dismiss];
+    [[self Shared] dismiss];
 }
 
 #pragma mark - Private Methods
@@ -712,7 +707,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
 
 - (void)adjustPopOverMenu {
     self.backgroundView.backgroundColor = [UIColor clearColor];
-    [self.backgroundView setFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
+    [self.backgroundView setFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     
     CGRect senderRect ;
     
@@ -723,8 +718,8 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
     } else {
         senderRect = self.senderFrame;
     }
-    if (senderRect.origin.y > KSCREEN_HEIGHT) {
-        senderRect.origin.y = KSCREEN_HEIGHT;
+    if (senderRect.origin.y > kScreenHeight) {
+        senderRect.origin.y = kScreenHeight;
     }
 
     UIEdgeInsets safeAreaInset = UIEdgeInsetsZero;
@@ -738,7 +733,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
     BOOL shouldAutoScroll = NO;
     FTPopOverMenuArrowDirection arrowDirection;
     
-    if (senderRect.origin.y + senderRect.size.height/2  < KSCREEN_HEIGHT/2) {
+    if (senderRect.origin.y + senderRect.size.height/2  < kScreenHeight/2) {
         arrowDirection = FTPopOverMenuArrowDirectionUp;
         menuArrowPoint.y = 0;
     }else{
@@ -746,9 +741,9 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
         menuArrowPoint.y = menuHeight;
     }
     
-    if (menuArrowPoint.x + self.config.menuWidth/2 + self.config.horizontalMargin > KSCREEN_WIDTH) {
-        menuArrowPoint.x = MIN(menuArrowPoint.x - (KSCREEN_WIDTH - self.config.menuWidth - self.config.horizontalMargin), self.config.menuWidth - self.menuArrowWidth - self.config.horizontalMargin);
-        menuX = KSCREEN_WIDTH - self.config.menuWidth - self.config.horizontalMargin;
+    if (menuArrowPoint.x + self.config.menuWidth/2 + self.config.horizontalMargin > kScreenWidth) {
+        menuArrowPoint.x = MIN(menuArrowPoint.x - (kScreenWidth - self.config.menuWidth - self.config.horizontalMargin), self.config.menuWidth - self.menuArrowWidth - self.config.horizontalMargin);
+        menuX = kScreenWidth - self.config.menuWidth - self.config.horizontalMargin;
     }else if ( menuArrowPoint.x - self.config.menuWidth/2 - self.config.horizontalMargin < 0){
         menuArrowPoint.x = MAX( FTDefaultMenuCornerRadius + self.menuArrowWidth, menuArrowPoint.x - self.config.horizontalMargin);
         menuX = self.config.horizontalMargin;
@@ -760,8 +755,8 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
     if (arrowDirection == FTPopOverMenuArrowDirectionUp) {
         menuRect = CGRectMake(menuX, (senderRect.origin.y + senderRect.size.height), self.config.menuWidth, menuHeight);
         // if too long and is out of screen
-        if (menuRect.origin.y + menuRect.size.height > KSCREEN_HEIGHT - safeAreaInset.bottom) {
-            menuRect = CGRectMake(menuX, (senderRect.origin.y + senderRect.size.height), self.config.menuWidth, KSCREEN_HEIGHT - menuRect.origin.y - self.config.horizontalMargin - safeAreaInset.bottom);
+        if (menuRect.origin.y + menuRect.size.height > kScreenHeight - safeAreaInset.bottom) {
+            menuRect = CGRectMake(menuX, (senderRect.origin.y + senderRect.size.height), self.config.menuWidth, kScreenHeight - menuRect.origin.y - self.config.horizontalMargin - safeAreaInset.bottom);
             shouldAutoScroll = YES;
         }
     }else{

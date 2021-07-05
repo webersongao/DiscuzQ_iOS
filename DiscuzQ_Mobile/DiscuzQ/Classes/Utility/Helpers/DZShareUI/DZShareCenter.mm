@@ -1,7 +1,8 @@
 //
 //  DZShareCenter.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/9/27.
 //
 
@@ -19,12 +20,21 @@
 }
 
 /**
+ 直接掉起 分享 ThreadModel
+ */
++(void)shareActionWithThreadModel:(DZQDataThread *)dataThread{
+    
+    DZShareModel *model = [DZShareModel shareWithThread:dataThread];
+    [DZDefaultShareView showDefaultShareViewFromModel:model];
+}
+
+/**
  (内部私用) 分享点击方法
  
  @param model 原始数据
  @param shareType 分享渠道
  */
-+ (void)shareButtonActionWithType:(DQShareType)shareType model:(DZShareModel *)model{
++ (void)rightButtonActionWithType:(DQShareType)shareType model:(DZShareModel *)model{
     
     switch (shareType) {
         case DQShareQQFriend:
@@ -99,9 +109,8 @@
 // 分享 链接
 +(void)shareToThreadOrOtherLinkUrl:(DZShareModel *)model{
     
-    NSString *shareToUrl = checkNull(model.url);
+    NSString *shareToUrl = checkNull(model.urlString);
     UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
-    
     [pasteBoard setString:shareToUrl];
     
     if (pasteBoard.string.length < 1) {
@@ -109,6 +118,7 @@
     }else{
         [DZMobileCtrl showAlertSuccess:@"复制成功"];
     }
+    
 }
 
 

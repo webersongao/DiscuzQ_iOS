@@ -167,4 +167,16 @@
     return snapshotView;
 }
 
+
+/// 获取截图
+/// @param view 需要截图的视图
++ (UIImage *)getScreenshotImage:(UIView *)view {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 0);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:NO];
+    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return screenImage;
+}
+
+
 @end

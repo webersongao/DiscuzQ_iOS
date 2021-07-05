@@ -1,7 +1,8 @@
 //
 //  DZThreadCateDetailView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/27.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -14,7 +15,7 @@
 @interface DZThreadCateDetailView ()<UIScrollViewDelegate,PRNaviSegmentViewDelegate>
 
 @property (nonatomic,assign) int currentIndex;
-@property (nonatomic ,strong) DZQDataCate *dataCate;
+@property (nonatomic ,strong) DZThreadCateM *dataCate;
 @property (nonatomic, strong) DZForumCateHeader *headView;
 @property (nonatomic, strong) PRNaviSegmentView *ScrollBar;  //!< 属性注释
 @property (nonatomic, strong) DZThreadCateInnerView *innerScrollView;
@@ -23,7 +24,7 @@
 
 @implementation DZThreadCateDetailView
 
-- (instancetype)initWithFrame:(CGRect)frame cate:(DZQDataCate *)dataCate
+- (instancetype)initWithFrame:(CGRect)frame cate:(DZThreadCateM *)dataCate
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -45,6 +46,7 @@
     [self addSubview:self.innerScrollView];
     
     KWEAKSELF
+    [self.headView updateCateHeader:self.dataCate];
     self.innerScrollView.backSBlock = ^(NSInteger index) {
         if(weakSelf.currentIndex != index){
             weakSelf.currentIndex = (int)index;

@@ -1,7 +1,8 @@
 //
 //  UIImage+Circle.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/8/22.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -11,6 +12,7 @@
 #import <Accelerate/Accelerate.h>
 
 @implementation UIImage (Circle)
+// 图片拉伸
 + (UIImage *)resizeImage:(NSString *)imageName
 {
     UIImage * image = [UIImage imageNamed:imageName];
@@ -46,7 +48,7 @@
 + (UIImage *)dz_imageName:(NSString *)imageName {
     UIImage *image = [UIImage dz_imageName:imageName];
     if (image == nil) {
-        NSLog(@"%@图片不存在",imageName);
+        KSLog(@"%@图片不存在",imageName);
     }
     return image;
 }
@@ -66,10 +68,10 @@
  @param color 颜色
  @return 图片
  */
-+ (UIImage*)createImageWithColor:(UIColor*)color {
++ (UIImage*)dz_imageWithColor:(UIColor*)color {
     
     CGRect rect = CGRectMake(0.0f,0.0f,1.0f,1.0f);
-    return [UIImage createImageWithColor:color andRect:rect];
+    return [UIImage dz_imageWithColor:color andRect:rect];
 }
 
 /**
@@ -79,10 +81,10 @@
  @param height 绘制的高度
  @return 图片
  */
-+ (UIImage*)createImageWithColor:(UIColor*)color andHeight:(CGFloat)height {
++ (UIImage*)dz_imageWithColor:(UIColor*)color andHeight:(CGFloat)height {
     
     CGRect rect = CGRectMake(0.0f,0.0f,1.0f,height);
-    return [UIImage createImageWithColor:color andRect:rect];
+    return [UIImage dz_imageWithColor:color andRect:rect];
 }
 
 /**
@@ -92,7 +94,7 @@
  @param rect 绘制的位置大小
  @return 图片
  */
-+ (UIImage*)createImageWithColor:(UIColor *)color andRect:(CGRect)rect {
++ (UIImage*)dz_imageWithColor:(UIColor *)color andRect:(CGRect)rect {
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context=UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
@@ -101,17 +103,6 @@
     UIGraphicsEndImageContext();
     return theImage;
 }
-
-
-/// 根据URL 生成二维码 图像
-+(UIImage *)dz_QRImageWithURLString:(NSString *)urlString{
-    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
-    [filter setDefaults];
-    NSData *data = [urlString dataUsingEncoding:NSUTF8StringEncoding];
-    [filter setValue:data forKeyPath:@"inputMessage"];
-    return [UIImage imageWithCIImage:[filter outputImage]];
-}
-
 
 
 /// 生成毛玻璃效果图

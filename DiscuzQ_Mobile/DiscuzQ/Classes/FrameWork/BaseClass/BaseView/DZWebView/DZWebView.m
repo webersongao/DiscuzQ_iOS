@@ -1,7 +1,8 @@
 //
 //  DZWebView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/1/3.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -19,7 +20,7 @@
 @property(nonatomic,assign) WebCSSMode CssMode;
 @property (nonatomic, copy) NSString *urlLoad;  //!< 属性注释
 @property (nonatomic, strong) DZWebUrlCenter *urlCenter;  //!< 属性注释
-@property (nonatomic, strong) WebViewJavascriptBridge * jsBridge;
+//@property (nonatomic, strong) WebViewJavascriptBridge * jsBridge;
 @property (nonatomic,strong) PRNetWorkErrorView *errorView;
 @property (nonatomic, weak) DZRefreshHeader *refreshHeader;
 
@@ -53,8 +54,8 @@
     self.navigationDelegate = self;
     self.backgroundColor = KDebug_Color;
     self.urlCenter = [[DZWebUrlCenter alloc] init];
-    self.jsBridge = [WebViewJavascriptBridge bridgeForWebView:self];
-    [self.jsBridge setWebViewDelegate:self];
+//    self.jsBridge = [WebViewJavascriptBridge bridgeForWebView:self];
+//    [self.jsBridge setWebViewDelegate:self];
 }
 
 -(void)setIsHeaderRefresh:(BOOL)isHeaderRefresh{
@@ -138,7 +139,7 @@
 
 -(void)handleFailureWebView
 {
-    [self addErrorView];
+    [self add_ErrorViewToWebView];
 }
 
 - (PRNetWorkErrorView *)errorView
@@ -152,7 +153,7 @@
 }
 
 //加载失败页 PRErrorViewType
-- (void)addErrorView {
+- (void)add_ErrorViewToWebView {
     [self.errorView addErrorViewWithViewType:PRErrorViewNoNet];
     [self addSubview:self.errorView];
 }
@@ -202,9 +203,9 @@
 }
 
 
-- (void)dz_registerHandler:(NSString*)handlerName handler:(WVJBHandler)handler{
-    [self.jsBridge registerHandler:handlerName handler:handler];
-}
+//- (void)dz_registerHandler:(NSString*)handlerName handler:(WVJBHandler)handler{
+//    [self.jsBridge registerHandler:handlerName handler:handler];
+//}
 
 #pragma mark   /********************* WKUIDelegate *************************/
 

@@ -1,10 +1,11 @@
 //
 //  DZThreadListStyle.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/24.
 //  Copyright © 2020 WebersonGao. All rights reserved.
-//  该style 只适用于Discover控制器的列表样式
+//  该style 只适用于Home控制器的列表样式
 
 #import "DZQSuperModel.h"
 #import "DZDListStyle.h"
@@ -16,6 +17,7 @@
 
 @property(nonatomic,strong) NSAttributedString *summaryAttributeStr;
 
+@property (nonatomic, strong) Class className;  //!< 属性注释
 
 @end
 

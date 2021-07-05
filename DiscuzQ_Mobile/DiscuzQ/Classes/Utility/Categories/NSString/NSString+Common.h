@@ -15,9 +15,11 @@
 //判断是否为浮点型
 - (BOOL)isPureFloat;
 
-+(NSString *)decodeString:(NSString*)strUrl;
++ (NSString *)decodeString:(NSString*)strUrl;
 
-+(NSString *)encodeString:(NSString*)strUrl;
++ (NSString *)encodeString:(NSString*)strUrl;
+
++ (NSString *)StringValueFromObject:(id)value;
 
 //检测是否是充值选择金额页面
 - (BOOL)checkisContainTBValueUrl;
@@ -65,5 +67,28 @@
 //- (CGSize)customDrawInRect:(CGRect)rect withFont:(UIFont *)font lineBreakMode:(NSLineBreakMode)lineBreakMode;
 //
 //- (CGSize)customSizeWithFont:(UIFont *)font minFontSize:(CGFloat)minFontSize actualFontSize:(CGFloat *)actualFontSize forWidth:(CGFloat)width lineBreakMode:(NSLineBreakMode)lineBreakMode;
+
+
+//英文字母
++(BOOL)yingwenzimu:(NSString *)str;
+//用户名  手机号
++(BOOL)yonghuming:(NSString *)str;
++(BOOL)shoujihao:(NSString *)str;
+//验证码 密码
++(BOOL)yanzhengma:(NSString *)str;
++(BOOL)mima:(NSString *)str;
+//身份证号 邮箱
++(BOOL)shenfenzheng:(NSString *)str;
++(BOOL)youxiang:(NSString *)str;
+
+/// 是否是首页地址 http://www.baidu.com
+-(BOOL)isSiteHomeUrl;
+
+/// 是否是域名 www.baidu.com
+-(BOOL)isSiteDomain;
+
+/// 是否是网页url http://www.tetet.com/index.html?q=1&m=test
+-(BOOL)isSitePageUrl;
+
 
 @end

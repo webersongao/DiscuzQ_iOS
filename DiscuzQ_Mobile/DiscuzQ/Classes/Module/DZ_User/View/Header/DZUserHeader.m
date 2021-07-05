@@ -1,7 +1,8 @@
 //
 //  DZUserHeader.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/10.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -46,11 +47,11 @@
     [self.toolBarV configAction:self fans:@selector(fansButtonAction) follow:@selector(followButtonAction) topic:@selector(topicButtonAction)];
 }
 
--(void)updateUserListHeader:(DZQUserModel *)userModel relate:(DZQProfileRelationModel *)relate{
+-(void)updateUserListHeader:(DZQUserV1 *)userModel relate:(DZQUserRelationV1 *)relate{
     
     DZQDataGroup *dataGroup = (DZQDataGroup *)relate.groups.firstObject;
     [self.headerV updateHeader:userModel group:dataGroup.attributes];
-    [self.toolBarV updateFans:userModel.fansCount follow:userModel.follow topic:userModel.threadCount];
+    [self.toolBarV updateFans:userModel.fansCount follow:userModel.followCount thread:userModel.threadCount];
 }
 
 

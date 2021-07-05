@@ -1,7 +1,8 @@
 //
 //  DZRootTabBar.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/3/7.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -13,7 +14,6 @@ typedef enum : NSUInteger {
     TabItemForum,
     TabItemUser,
 } TabItemIndex;
-
 
 
 @interface DZRootTabBar : UITabBar

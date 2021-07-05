@@ -1,7 +1,8 @@
 //
 //  UIColor+More.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/3/1.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -136,7 +137,7 @@
     
     NSString *imageColorString = nil;
     
-    UIColor *imageColor = [UIColor color16WithHexString:K2A2C2F_Color alpha:1.0];
+    UIColor *imageColor = [UIColor color16WithHexString:KColor(K2A2C2F_Color, 1.0) alpha:1.0];
     PaletteColorModel *mutedColorModel = allModeColorDic[@"muted"];
     if ([mutedColorModel isKindOfClass:[PaletteColorModel class]]) {
         if (mutedColorModel != nil && mutedColorModel.imageColorString != nil) {

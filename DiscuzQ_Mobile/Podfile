@@ -15,26 +15,16 @@ target 'DiscuzQ' do
 #（3）use_frameworks! -> 如果使用了use_frameworks!则cocoapods会生成相应的.frameworks文件（动态链接库：实际内容为Header+动态链接库+资源文件），使用dynamic framworks 来取代static libraries方式。
 #（4）Linked：Pods_xxx.framework包含了其它用pod导入的第三方框架的.framework文件。
   
-  # sharesdk 主模块(必须)
-  pod 'mob_sharesdk'
-  # UI模块(非必须，需要用到ShareSDK提供的分享菜单栏和分享编辑页面需要以下1行)
-  pod 'mob_sharesdk/ShareSDKUI'
-  # 平台SDK模块(对照一下平台，需要的加上。如果只需要QQ、微信、新浪微博，只需要以下3行)
-  pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
-  pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
-  #（微信sdk不带支付的命令）
-  pod 'mob_sharesdk/ShareSDKPlatforms/WeChat'
-  # 扩展模块（在调用可以弹出我们UI分享方法的时候是必需的）
-  # 使用配置文件分享模块（非必需）
-  # pod 'mob_sharesdk/ShareSDKConfigFile'
-  pod 'mob_sharesdk/ShareSDKExtension'
+#  pod 'UMCommon'    # 必须集成，由原来的UMCCommon变为了UMCommon
+#  pod 'UMDevice'    # 必须集成
+#  # 社会化分享
+#  pod 'UMShare/Social/WeChat'   #集成微信(完整版14.4M)
+#  pod 'UMShare/Social/QQ'   #集成QQ/QZone/TIM(完整版7.6M)
+#  pod 'UMShare/Social/Sina'   #集成新浪微博(完整版25.3M)
+  
   
   pod 'FMDB' # 数据库
-  
   pod 'YYModel' # - 高性能的 iOS JSON 模型框架。
-#  pod 'YYCache' # - 高性能的 iOS 缓存框架。
-#  pod 'YYImage' # — 功能强大的 iOS 图像框架。
-  pod 'YYWebImage' #  — 高性能的 iOS 异步图像加载框架。
   pod 'YYText' #  — 功能强大的 iOS 富文本框架。
 #  pod 'YYKeyboardManager' #  — iOS 键盘监听管理工具。
 #  pod 'YYDispatchQueuePool' #  — iOS 全局并发队列管理工具。
@@ -42,28 +32,38 @@ target 'DiscuzQ' do
   pod 'YYCategories' #  — 功能丰富的 Category 类型工具库。 JKCategories 也很牛逼
   
   pod 'Masonry'
-  pod 'MJRefresh'
-  pod 'XHLaunchAd' # XHPayKit有借鉴意义，建议阅读
-  pod 'SDWebImage'
-  pod 'DTCoreText'
-  pod 'DTFoundation'
+  pod 'MJRefresh', '~> 3.5.0'
+#  pod 'XHLaunchAd' # XHPayKit有借鉴意义，建议阅读
+  pod 'FLAnimatedImage'
+  pod 'DTCoreText', '~> 1.6.25'
+  pod 'DTFoundation', '~> 1.7.15'
   pod 'AFNetworking', '~> 4.0.1'
   pod 'MBProgressHUD'
-  pod 'LYEmptyView'   #一行代码集成空内容视图
   pod 'ZXPAutoLayout'
-  pod 'IQKeyboardManager'
-  pod 'WebViewJavascriptBridge'
+  pod 'IQKeyboardManager', '~> 6.5.6'
   pod 'PYSearch' # 搜索控制器
-  
-  pod 'ZFPlayer' # 视频播放器 https://www.jianshu.com/p/c5b71a0c6038
+  pod 'ZFPlayer', '~> 4.0.1' # 视频播放器 https://www.jianshu.com/p/c5b71a0c6038
   pod 'ZFPlayer/AVPlayer'
   pod 'ZFPlayer/ControlView'
   
-  pod 'TABAnimated'  # 骨架屏
-  pod 'YBImageBrowser' # 图片浏览器
-  pod 'TZImagePickerController' # 图片选择器
+  pod 'TABAnimated', '~> 2.4.7'  # 骨架屏
   
-  ## SSChat 可以借鉴键盘使用
+  # 支持SVG格式
+  pod 'SDWebImageSVGKitPlugin'
+  pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
+  
+  pod 'WBSUtils' # 默认依赖 SDWebImage YYCache YYWebImage
+  pod 'WBSUtils/YYWebImage'
+  pod 'WBSUtils/WebViewJsBridge' # WebViewJsBridge
+  pod 'WBSUtils/YBImageBrowser' # 图片浏览器 PYPhotoBrowser
+  
+#  pod 'HXPhotoPicker', '~> 3.1.6'# 图片预览，相册选择器
+#  pod 'HXPhotoPicker/SDWebImage', '~> 3.1.6'
+#  pod 'GKPhotoBrowser' # 图片浏览器 YBImageBrowser
+  pod 'TZImagePickerController', '~> 3.4.3' # 图片选择器
+#  pod 'UITableView+FDTemplateLayoutCell', '~> 1.6'
+  
+  ## DZQChat 可以借鉴键盘使用
   
   
 end

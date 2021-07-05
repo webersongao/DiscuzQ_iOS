@@ -1,7 +1,8 @@
 //
 //  HomeCollectionCell.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/20.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -35,10 +36,10 @@
 }
 
 
--(void)updateForumCellWithModel:(DZQDataCate *)cellModel{
+-(void)updateForumCellWithModel:(DZThreadCateM *)cellModel{
     _cellModel = cellModel;
-    self.NameLabel.text = cellModel.attributes.name;
-    [self.iconImage dz_setImageWithURL:cellModel.attributes.icon placeholder:kDeafultCover];
+    self.NameLabel.text = cellModel.name;
+    [self.iconImage dz_setImageWithURL:cellModel.icon placeholder:kDeafultCover];
 }
 
 -(UIImageView *)iconImage{

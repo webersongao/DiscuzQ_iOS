@@ -1,7 +1,8 @@
 //
 //  DZWalletHeader.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/28.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -82,6 +83,7 @@
 -(UIImageView *)iconView{
     if (!_iconView) {
         _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(kMargin15, kMargin10, kCellHeight_60, kCellHeight_60)];
+        _iconView.image = KImageNamed(DZQ_icon);
         _iconView.layer.cornerRadius = 10.f;
         _iconView.layer.masksToBounds = YES;
     }
@@ -98,7 +100,7 @@
 
 -(UILabel *)availableLab{
     if (!_availableLab) {
-        _availableLab = [UILabel labelWithFrame:CGRectMake(self.iconView.right + kMargin10, self.iconView.bottom-kMargin20, kMargin35, kMargin15) title:@"余额:" titleColor:KLightContent_Color font:KFont(14.f) textAlignment:NSTextAlignmentLeft];
+        _availableLab = [UILabel labelWithFrame:CGRectMake(self.iconView.right + kMargin10, self.iconView.bottom-kMargin20, kMargin35, kMargin15) title:@"余额:" titleColor:KLightContent_Color font:KFont(12.f) textAlignment:NSTextAlignmentLeft];
     }
     return _availableLab;
 }
@@ -138,7 +140,7 @@
 // 钱包状态 正常 or 冻结提现
 -(UILabel *)statusLabel{
     if (!_statusLabel) {
-        _statusLabel = [UILabel labelWithFrame:CGRectMake(self.right-kMargin45-kMargin15, self.iconView.top, kMargin45, kMargin15) title:@"正常" titleColor:KLightContent_Color font:KFont(12.f) textAlignment:NSTextAlignmentCenter];
+        _statusLabel = [UILabel labelWithFrame:CGRectMake(self.right-kMargin45-kMargin15, self.iconView.top, kMargin45, kMargin15) title:@"未知" titleColor:KLightContent_Color font:KFont(12.f) textAlignment:NSTextAlignmentCenter];
         _statusLabel.backgroundColor = KLine_Color;
         _statusLabel.layer.cornerRadius = 2.f;
         _statusLabel.layer.masksToBounds = YES;

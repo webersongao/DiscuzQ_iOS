@@ -1,7 +1,8 @@
 //
 //  UIImage+Limit.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/7/25.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -22,8 +23,8 @@
 - (UIImage*)dz_transformWithLockedRatio:(CGFloat)width height:(CGFloat)height rotate:(BOOL)rotate;
 
 // 缩放
-+ (UIImage*)dz_transform:(UIImage *)image width:(CGFloat)width
-               height:(CGFloat)height rotate:(BOOL)rotate;
+- (UIImage*)dz_transform:(CGFloat)width
+                  height:(CGFloat)height rotate:(BOOL)rotate;
 @end
 
 

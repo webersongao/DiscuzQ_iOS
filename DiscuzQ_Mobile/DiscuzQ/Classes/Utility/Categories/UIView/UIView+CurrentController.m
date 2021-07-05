@@ -1,7 +1,8 @@
 //
 //  UIView+CurrentController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/11/23.
 //  Copyright © 2018年 WebersonGao. All rights reserved.
 //
@@ -78,7 +79,7 @@
         nextResponder = appRootVC.presentedViewController;
     }else{
         //2、通过navigationcontroller弹出VC
-        //        NSLog(@"subviews == %@",[window subviews]);
+        //        KSLog(@"subviews == %@",[window subviews]);
         UIView *frontView = [[window subviews] objectAtIndex:0];
         nextResponder = [frontView nextResponder];
     }

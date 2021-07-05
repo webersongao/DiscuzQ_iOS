@@ -1,7 +1,8 @@
 //
 //  DZEmailHelper.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/4/8.
 //  Copyright © 2018年 WebersonGao. All rights reserved.
 //
@@ -11,6 +12,8 @@
 #import "UIDevice+Extension.h"
 
 @interface DZEmailHelper()<MFMailComposeViewControllerDelegate>
+
+@property (nonatomic, weak) UINavigationController *rootNaviController;
 
 @end
 
@@ -25,7 +28,17 @@
     return sendHelper;
 }
 
-- (void)prepareSendEmail {
+-(UINavigationController *)rootNaviController{
+    return [DZMobileCtrl sharedCtrl].mainNavi;
+}
+
+- (void)prepareToSendEmail:(NSString *)emailStr {
+    
+    NSString *UserEmail = emailStr.length ? emailStr : DeveloperEmail;
+    if (!UserEmail || !UserEmail.length) {
+        return;;
+    }
+    
     if ([MFMailComposeViewController canSendMail]) {
         
         NSString *deviceName = [UIDevice currentDevice].name;
@@ -37,20 +50,20 @@
         MFMailComposeViewController *mailPicker = [[MFMailComposeViewController alloc] init];
         mailPicker.mailComposeDelegate = self;
         //添加收件人
-        [mailPicker setToRecipients:@[DeveloperEmail]];
+        [mailPicker setToRecipients:@[UserEmail]];
         
         //设置主题
         [mailPicker setSubject:[NSString stringWithFormat:@"%@ %@ - FeedBack Mail  From%@",appName,appVersion,deviceName]];
         NSString *content = [NSString stringWithFormat:@"\n \n \n \n Device：%@ \n System: %@ \n App Version：%@",device,systemVersion,appVersion];
         [mailPicker setMessageBody:content isHTML:NO];
-        [_navigationController presentViewController:mailPicker animated:YES completion:nil];
+        [self.rootNaviController presentViewController:mailPicker animated:YES completion:nil];
     } else {
         [MBProgressHUD showInfo:@"用户没有设置邮件账户"];
     }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [_navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.rootNaviController dismissViewControllerAnimated:YES completion:nil];
     NSString *msg;
     switch (result) {
         case MFMailComposeResultCancelled:

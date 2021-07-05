@@ -1,14 +1,14 @@
 //
 //  DZFavoriteCateController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/1/20.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
-//
+//  分类收藏
 
 #import "DZFavoriteCateController.h"
 #import "UIAlertController+Extension.h"
-#import "CollectionForumCell.h"
 
 @interface DZFavoriteCateController ()
 
@@ -27,12 +27,11 @@
         self.page = 1;
         self.user_id = checkNull(user_id);
     }
-    return self.user_id.length ? self : nil;
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"板块列表";
     [self.view addSubview:self.listView];
     self.view.backgroundColor = KDebug_Color;
 }
@@ -43,7 +42,8 @@
 -(UITableView *)listView{
     if (!_listView) {
         _threadArray = [NSMutableArray array];
-        _listView = [[UITableView alloc] initWithFrame:KView_OutNavi_Bounds style:UITableViewStylePlain];
+        _listView = [[DZCateFavListView alloc] initWithFrame:KView_OutNavi_Bounds];
+        _listView.backgroundColor = KWhite_Color;
     }
     return _listView;
 }

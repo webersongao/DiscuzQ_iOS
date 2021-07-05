@@ -1,7 +1,8 @@
 //
 //  UIImage+Circle.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/8/22.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -11,6 +12,8 @@
 @interface UIImage (Circle)
 
 - (UIImage *)cutCircleImage;
+
+/// 图片拉伸
 + (UIImage *)resizeImage:(NSString *)imageName;
 + (__kindof UIImage *)dz_imageName:(NSString *)imageName;
 
@@ -22,7 +25,7 @@
  @param color 颜色
  @return 图片
  */
-+ (UIImage*)createImageWithColor:(UIColor*)color;
++ (UIImage*)dz_imageWithColor:(UIColor*)color;
 
 /**
  颜色转图片
@@ -31,7 +34,7 @@
  @param height 绘制的高度
  @return 图片
  */
-+ (UIImage*)createImageWithColor:(UIColor*)color andHeight:(CGFloat)height;
++ (UIImage*)dz_imageWithColor:(UIColor*)color andHeight:(CGFloat)height;
 
 /**
  颜色转图片
@@ -40,12 +43,7 @@
  @param rect 绘制的位置大小
  @return 图片
  */
-+ (UIImage*)createImageWithColor:(UIColor *)color andRect:(CGRect)rect;
-
-
-/// 根据URL 生成二维码 图像
-+(UIImage *)dz_QRImageWithURLString:(NSString *)urlString;
-
++ (UIImage*)dz_imageWithColor:(UIColor *)color andRect:(CGRect)rect;
 
 
 /**

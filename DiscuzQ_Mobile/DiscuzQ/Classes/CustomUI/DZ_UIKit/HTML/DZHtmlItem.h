@@ -1,7 +1,8 @@
 //
 //  DZHtmlItem.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/27.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -26,6 +27,7 @@
 @interface DZHtmlItem : NSObject
 
 @property(nonatomic,assign) CGRect frame; //  文字内容
+@property(nonatomic,assign) CGFloat lineHeight; //  单行文字内容
 @property(nonatomic,assign) CGRect maxRect; // 内容最大rect
 @property(nonatomic,copy) NSString *screen_html; // 最终展示在屏幕上的html
 

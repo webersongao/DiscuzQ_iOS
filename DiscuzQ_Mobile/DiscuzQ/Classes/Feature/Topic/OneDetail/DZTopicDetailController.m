@@ -1,13 +1,14 @@
 //
 //  DZTopicDetailController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/25.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
 
 #import "DZTopicDetailController.h"
-#import "DZDiscoverListView.h"
+#import "DZHomeListView.h"
 #import "DZTopicHeaderView.h"
 
 @interface DZTopicDetailController ()
@@ -15,7 +16,7 @@
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) NSMutableArray *threadArray;  //!< 属性注释
 @property (nonatomic, strong) DZTopicHeaderView *headView;  //!< 属性注释
-@property (nonatomic, strong) DZDiscoverListView *listView;  //!< 属性注释
+@property (nonatomic, strong) DZHomeListView *listView;  //!< 属性注释
 
 @end
 
@@ -99,7 +100,7 @@
         KSLog(@"WBS 该列表暂无数据");
     }
     [self.threadArray addObjectsFromArray:threadAray];
-    [self.listView updateDiscoverListView:self.threadArray];
+    [self.listView updateHomeListView:self.threadArray];
 }
 
 // 全部话题（话题列表页面）
@@ -124,10 +125,10 @@
     return _headView;
 }
 
--(DZDiscoverListView *)listView{
+-(DZHomeListView *)listView{
     if (!_listView) {
         _threadArray = [NSMutableArray array];
-        _listView = [[DZDiscoverListView alloc] initWithListFrame:KView_OutNavi_Bounds];
+        _listView = [[DZHomeListView alloc] initWithListFrame:KView_OutNavi_Bounds];
     }
     return _listView;
 }

@@ -1,7 +1,8 @@
 //
 //  PRNaviSegmentView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/6/3.
 //
 
@@ -51,7 +52,7 @@
 -(void)updateNaviBarWithTitle:(NSArray <NSString *>*)titleArray cache:(BOOL)cache{
     
     KWEAKSELF
-    NSMutableArray *muArray = [NSMutableArray arrayWithArray:titleArray];
+    NSMutableArray *muArray = [[NSMutableArray alloc] initWithArray:titleArray];
     NSDictionary *widthInfoDict = [[PRNaviTabManager shared] calculateTitleWidthinfo:muArray cache:cache Completion:^(NSDictionary *widthDict) {
         if (widthDict && widthDict.allKeys.count) {
             [weakSelf canculateSegmentWithRectDict:widthDict titleArr:muArray];
@@ -189,8 +190,8 @@
         _segmentView.titleSelectFont = [UIFont boldSystemFontOfSize:15.f];
         _segmentView.backgroundColor = KWhite_Color;
         _segmentView.titleColor = KColor(@"#333333", 1);
-        _segmentView.titleHightColor = KColor(@"#00BF99", 1);
-        _segmentView.selectLineColor = KColor(@"#00BF99", 1);
+        _segmentView.titleHightColor = KDarkGreen_Color;
+        _segmentView.selectLineColor = KDarkGreen_Color;
     }
     return _segmentView;
 }

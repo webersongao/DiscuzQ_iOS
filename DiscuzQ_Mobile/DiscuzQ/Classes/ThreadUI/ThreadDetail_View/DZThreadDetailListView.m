@@ -1,7 +1,8 @@
 //
 //  DZThreadDetailListView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/20.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -24,8 +25,8 @@
 
 @implementation DZThreadDetailListView
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
-    self = [super initWithFrame:frame style:style];
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame style:UITableViewStyleGrouped];
     if (self) {
         [self config_ThreadDetailListView];
         self.reloadQueue = dispatch_queue_create("com.reloadDetail", DISPATCH_QUEUE_SERIAL);
@@ -42,7 +43,7 @@
     [self registerClass:[DZThreadDetailSection class] forHeaderFooterViewReuseIdentifier:@"DZThreadDetailSection"];
 //    self.tabAnimated = [TABTableAnimated animatedWithCellClass:[DZThreadPostCell class] cellHeight:kCellHeight];
     KWEAKSELF
-    self.headerView.playVideoBlock = ^(DZVideoPicView *button, DZQDataVideo *dataVideo) {
+    self.headerView.playVideoBlock = ^(DZMediaPlayView *button, DZQDataVideo *dataVideo) {
         if (weakSelf.detailDelegate && [weakSelf.detailDelegate respondsToSelector:@selector(detaiVideoView:videoDidPlayClick:)]) {
             [weakSelf.detailDelegate detaiVideoView:button videoDidPlayClick:dataVideo];
         }
@@ -73,7 +74,7 @@
 -(void)updateThreadPostDetail:(NSArray<DZQDataPost *> *)dataPostList{
     
     // 必须有帖子主题内容之后才可以刷新评论
-    if (self.dataModel && self.dataModel.type_id.length) {
+    if (self.dataModel && self.dataModel.inner_id.length) {
         self.dataList = [dataPostList copy];
     }
     

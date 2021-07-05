@@ -25,7 +25,8 @@
     self.estimatedRowHeight = 0;
     self.estimatedSectionHeaderHeight = 0;
     self.estimatedSectionFooterHeight = 0;
-    self.separatorColor = KColor(@"#ECECEC", 1);
+    self.separatorColor = KLightGray_Color;
+    self.dz_emptyView = [DZEmptyView emptyViewWithMode:DZEmptyModeDefault];
     if (@available(iOS 11.0, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }

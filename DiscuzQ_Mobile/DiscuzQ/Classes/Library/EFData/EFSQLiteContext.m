@@ -62,15 +62,6 @@ static NSMutableDictionary *sDeleteSQLs;
 // WBS
 - (BOOL)addObject:(EFSQLiteObject *)object withConflictOption:(ConflictOption)option toDatabase:(FMDatabase *)database
 {
-    /*
-     if ([object isKindOfClass:[BookInfo class]])
-     {
-     if (!((BookInfo *)object).bookID)
-     {
-     return NO;
-     }
-     }*/
-    
     NSString *className = @(object_getClassName([object class]));
     
     NSString *insertSQL = [sInsertSQLs objectForKey:className];
@@ -86,21 +77,23 @@ static NSMutableDictionary *sDeleteSQLs;
     
     for (KeyValuePair *pair in fields)
     {
-        //        if ([pair.key isEqualToString:@"lastChapterName"] || [pair.key isEqualToString:@"authorIcon"])
-        //        {
         if ([object valueForKey:pair.key] == nil || [[object valueForKey:pair.key] isKindOfClass:[NSNull class]])
         {
             [fieldValues addObject:@""];
         }
         else
         {
-            [fieldValues addObject:[object valueForKey:pair.key]];
+            id innerObj = [object valueForKey:pair.key];
+            Class innerObjClass = [[[object class] blobFields] valueForKey:pair.key];
+            if ([innerObj isKindOfClass:innerObjClass]) {
+                NSString *innerObjString = [innerObj DZQ_ModelToJSONString];
+                NSData *innerData = [innerObjString dataUsingEncoding:NSUTF8StringEncoding];
+                NSData *dataObj = (innerData && ![innerData isKindOfClass:[NSNull class]]) ? innerData : [object valueForKey:pair.key];
+                [fieldValues addObject:dataObj];
+            }else{
+                [fieldValues addObject:innerObj];
+            }
         }
-        //        }
-        //        else
-        //        {
-        //            [fieldValues addObject:[object valueForKey:pair.key]];
-        //        }
     }
     
     return [database executeUpdate:insertSQL withArgumentsInArray:fieldValues];
@@ -127,15 +120,6 @@ static NSMutableDictionary *sDeleteSQLs;
 
 - (BOOL)removeObject:(EFSQLiteObject *)object
 {
-    /*
-     if ([object isKindOfClass:[BookInfo class]])
-     {
-     if (!((BookInfo *)object).bookID)
-     {
-     return NO;
-     }
-     } */
-    
     __block BOOL result;
     
     NSString *className = [NSString stringWithFormat:@"%s", object_getClassName([object class])];
@@ -248,8 +232,6 @@ static NSMutableDictionary *sDeleteSQLs;
             [paramValues appendString:@"?"];
             [paramValues appendString:@","];
         }
-        
-        
     }
     
     NSString *optionString;
@@ -323,7 +305,6 @@ static NSMutableDictionary *sDeleteSQLs;
                 success = DBExcuteFree;
             }
         }
-        
     }];
     return success;
 }

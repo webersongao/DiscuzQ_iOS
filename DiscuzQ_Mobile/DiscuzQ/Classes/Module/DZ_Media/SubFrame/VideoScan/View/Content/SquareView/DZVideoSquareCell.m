@@ -1,7 +1,8 @@
 //
 //  DZVideoSquareCell.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/22.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -14,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self configDiscoverSquareCell];
+        [self configHomeSquareCell];
     }
     return self;
 }
@@ -24,7 +25,7 @@
     self.cellView.frame = self.bounds;
 }
 
--(void)configDiscoverSquareCell{
+-(void)configHomeSquareCell{
 
     [self.contentView addSubview:self.cellView];
 }

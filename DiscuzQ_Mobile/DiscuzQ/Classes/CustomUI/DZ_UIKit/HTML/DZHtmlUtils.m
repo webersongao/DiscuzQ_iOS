@@ -1,7 +1,8 @@
 //
 //  DZHtmlUtils.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/26.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -15,6 +16,7 @@
 //    DTDefaultTextAlignment  // 行align
 //    DTDefaultLinkHighlightColor // 链接 高亮色
 //    DTDefaultLineHeightMultiplier  // 行间距
+static CGFloat KHtmlLineSpacing = 1.5;
 
 @implementation DZHtmlUtils
 
@@ -32,10 +34,14 @@
     return sizeNeeded;
 }
 
++(CGFloat)singleHtmlLineHeight{
+    return (KContent_fontSize + (KHtmlLineSpacing *2.0) + kMargin5);
+}
+
 //Html->富文本NSAttributedString
 + (NSAttributedString *)getAttributedStringWithHtml:(NSString *)htmlString{
     //获取富文本
-    NSDictionary *fontDict = @{DTDefaultTextColor:KContent_Color,DTDefaultLinkColor:KGreen_Color,DTDefaultFontSize:[NSNumber numberWithFloat:KContent_fontSize],DTDefaultLineHeightMultiplier:[NSNumber numberWithFloat:1.5]};
+    NSDictionary *fontDict = @{DTDefaultTextColor:KContent_Color,DTDefaultLinkColor:KGreen_Color,DTDefaultFontSize:[NSNumber numberWithFloat:KContent_fontSize],DTDefaultLineHeightMultiplier:[NSNumber numberWithFloat:KHtmlLineSpacing]};
     NSData *data = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithHTMLData:data options:fontDict documentAttributes:NULL];
     return attributedString;

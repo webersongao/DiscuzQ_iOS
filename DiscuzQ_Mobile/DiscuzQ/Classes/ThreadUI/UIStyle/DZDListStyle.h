@@ -1,7 +1,8 @@
 //
 //  DZDListStyle.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/6/3.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -12,6 +13,8 @@
 #define KImageWHTwoRatio   (4.0/5.0)  // 两张 图片宽高比
 #define KVideoWHRatio      (1920.0/1080.0)  // 视频宽高比 1920 / 1080
 
+#define KAudioListHeight   100.0  // 列表 音频高度
+#define KGoodsListHeight   150.0 // 列表 商品高度
 
 @interface DZDUserStyle : DZQStyle
 

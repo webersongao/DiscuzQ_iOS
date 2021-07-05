@@ -10,15 +10,6 @@
 
 @implementation DZBaseTableViewCell
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.backgroundColor = KDebug_Color;
-    }
-    return self;
-}
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -29,9 +20,14 @@
 }
 
 - (void)config_BaseListeCell {
+    self.textLabel.font = KBoldFont(14);
+    self.backgroundColor = KDebug_Color;
+    self.detailTextLabel.font = KFont(12);
+    self.textLabel.textColor = KTitle_Color;
     [self.contentView addSubview:self.seprateLine];
+    self.detailTextLabel.textColor = KContent_Color;
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
-    self.selectedBackgroundView.backgroundColor = KColor(@"#F7F7F8", 1);
+    self.selectedBackgroundView.backgroundColor = KLightGray_Color;
 }
 
 -(void)layoutSubviews{

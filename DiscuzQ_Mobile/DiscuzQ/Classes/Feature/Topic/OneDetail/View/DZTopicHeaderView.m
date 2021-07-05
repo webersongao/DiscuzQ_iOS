@@ -1,7 +1,8 @@
 //
 //  DZTopicHeaderView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/25.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -48,8 +49,8 @@
     
     self.isReady = dataTopic.attributes.content.length ? YES : NO;
     self.nameLabel.text = [NSString stringWithFormat:@"#%@#",dataTopic.attributes.content];
-    self.viewNoLabel.text = checkTwoStr(@"热度:", checkInteger((long)dataTopic.attributes.view_count));
-    self.threadNoLabel.text = checkTwoStr(@"主题数:", checkInteger((long)dataTopic.attributes.thread_count));
+    self.viewNoLabel.text = checkTwoStr(@"热度:", checkIntegerStr((long)dataTopic.attributes.view_count));
+    self.threadNoLabel.text = checkTwoStr(@"主题数:", checkIntegerStr((long)dataTopic.attributes.thread_count));
     
 }
 

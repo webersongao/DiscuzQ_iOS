@@ -1,14 +1,14 @@
 //
 //  DZWebView.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/1/3.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
 
 #import <WebKit/WebKit.h>
 #import "DZWebUrlCenter.h"
-#import <WebViewJavascriptBridge.h>
 
 typedef enum : NSUInteger {
     WebCSS_Default,
@@ -47,7 +47,7 @@ typedef enum : NSUInteger {
 
 - (void)dz_loadBaseWebUrl:(NSString *)urlString back:(backStringBlock)backBlock;
 
-- (void)dz_registerHandler:(NSString*)handlerName handler:(WVJBHandler)handler;
+//- (void)dz_registerHandler:(NSString*)handlerName handler:(WVJBHandler)handler;
 
 - (void)dz_loadHTMLString:(NSString *)htmlString baseURL:(NSString *)urlString back:(backStringBlock)backBlock;
 

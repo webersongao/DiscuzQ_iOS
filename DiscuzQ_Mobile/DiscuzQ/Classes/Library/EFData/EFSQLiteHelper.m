@@ -149,7 +149,7 @@ static IllegalDatabaseVersionFoundHandler sHandler;
 //        KSLog("end read db %@", self)
 
         if ([db hasOpenResultSets]) {
-//            NSLog(@"Warning: there is at least one open result set around after performing [inDatabase:]");
+//            KSLog(@"Warning: there is at least one open result set around after performing [inDatabase:]");
         }
     }
 }

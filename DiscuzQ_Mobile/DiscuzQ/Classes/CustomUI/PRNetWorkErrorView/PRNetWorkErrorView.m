@@ -142,7 +142,7 @@ NSString *const PRErrorViewDefaultNoDataTextString = @"暂无内容";
     self.button = ({
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 160, 44)];
         button.layer.cornerRadius = 3;
-        button.backgroundColor = [UIColor color16WithHexString:@"#33C3A5" alpha:1.0];
+        button.backgroundColor = KGreen_Color;
         button.titleLabel.font = KFontWeight(16, UIFontWeightMedium);
         [button setTitle:@"再试一次" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(tryAction) forControlEvents:UIControlEventTouchUpInside];

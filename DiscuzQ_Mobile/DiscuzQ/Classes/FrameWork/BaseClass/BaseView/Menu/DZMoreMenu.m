@@ -1,7 +1,8 @@
 //
 //  DZMoreMenu.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/01/19.
 //  Copyright © 2020年 WebersonGao. All rights reserved.
 //
@@ -9,6 +10,12 @@
 #import "DZMoreMenu.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@interface DZMoreMenu ()
+
+@property (nonatomic, strong) UIAlertController *alertCtrl;  //!< 属性注释
+
+@end
 
 @implementation DZMoreMenu
 
@@ -27,17 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
                         message:(nullable NSString *)message
                buttonTitleArray:(nullable NSArray *)buttonTitleArray
           buttonTitleColorArray:(nullable NSArray<UIColor *> *)buttonTitleColorArray
-popoverPresentationControllerBlock:(nullable UIAlertControllerPopoverPresentationControllerBlock)popoverPresentationControllerBlock
-                          block:(nullable BAKit_AlertControllerButtonActionBlock)block
+popoverPresentationControllerBlock:(nullable DQKit_UIAlertCtrlPopoverPresentationBlock)popoverPresentationControllerBlock
+                          block:(nullable DQKit_AlertCtrlBtnActionBlock)block
 {
-    
-    [UIAlertController ba_actionSheetShowInViewController:viewController
-                                                    title:title
-                                                  message:message
-                                         buttonTitleArray:buttonTitleArray
-                                    buttonTitleColorArray:buttonTitleColorArray
-                       popoverPresentationControllerBlock:popoverPresentationControllerBlock
-                                                    block:block];
+    self.alertCtrl = nil;
+    self.alertCtrl = [UIAlertController dz_actionSheetShowInViewController:viewController title:title message:message buttonTitleArray:buttonTitleArray buttonTitleColorArray:buttonTitleColorArray popoverPresentationControllerBlock:popoverPresentationControllerBlock block:block];
     
 }
 

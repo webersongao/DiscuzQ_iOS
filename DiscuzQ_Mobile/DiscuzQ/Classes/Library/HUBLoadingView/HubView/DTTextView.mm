@@ -1,14 +1,14 @@
 //
 //  DTTextView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/12.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
 
 #import "DTTextView.h"
 #import "DZSkinHelper.h"
-#import "DZCacheManager.h"
 #import "DTTextAttachment.h"
 
 #import "DTImageTextAttachment.h"
@@ -19,7 +19,6 @@
 #import "NSAttributedString+HTML.h"
 #import "DTTiledLayerWithoutFade.h"
 #import "DTCoreTextConstants.h"
-//#import "ContentExtractor.h"
 #import <DTCoreTextLayoutLine.h>
 #import <CommonCrypto/CommonDigest.h>
 
@@ -416,7 +415,7 @@
         
         NSString *readmePath = nil;
         
-        readmePath = [[DZCacheManager sharedInstance] tmpPath];
+        readmePath = [[DZFileManager Shared] dz_TmpPath];
         [options setObject:[NSURL fileURLWithPath:readmePath] forKey:NSBaseURLDocumentOption];
         
         if (!CGSizeEqualToSize(maxSize, CGSizeZero))
@@ -751,7 +750,7 @@
     NSString *url = [button.URL absoluteString];
     NSString *title = @"";
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:url,@"url",title,@"title", nil];
-    //NSLog(@"linkPushurl = %@",url);
+    //KSLog(@"linkPushurl = %@",url);
     if (url)
     {
 //        if ([self.htmlDelegate respondsToSelector:@selector(contentLinkPush:)])
@@ -763,7 +762,7 @@
 
 - (void)linkLongPressedTextView:(UILongPressGestureRecognizer *)gesture
 {
-    //NSLog(@"linkLongPressedTextView");
+    //KSLog(@"linkLongPressedTextView");
     if (gesture.state == UIGestureRecognizerStateBegan)
     {
         if(self.showCopy && [self.contentStr length])

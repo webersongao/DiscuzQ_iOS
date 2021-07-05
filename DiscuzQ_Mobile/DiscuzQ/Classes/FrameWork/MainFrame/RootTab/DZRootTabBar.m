@@ -1,7 +1,8 @@
 //
 //  DZRootTabBar.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/3/7.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -13,7 +14,7 @@
 
 @interface DZRootTabBar ()
 {
-    CGFloat badgeDotWH;
+    CGFloat m_badgeDotWH;
 }
 /** 发布按钮 */
 @property (nonatomic, strong) UIButton *publishButton;
@@ -27,12 +28,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self configRootTabBarSubView];
+        [self setBarTintColor:KLightLine_Color];
     }
     return self;
 }
 
 -(void)configRootTabBarSubView{
-    badgeDotWH = KWidthScale(6.f);
+    m_badgeDotWH = KWidthScale(6.f);
     self.translucent = NO;
     self.tintColor = KGreen_Color;
 //    [self addSubview:self.publishButton];
@@ -52,7 +54,7 @@
 
 - (void)publishButtonClick:(UIButton *)button
 {
-    [[DZMobileCtrl sharedCtrl] PushToPostTabViewController];
+    [[DZMobileCtrl sharedCtrl] PushToThreadPublishController];
 }
 
 
@@ -70,7 +72,7 @@
     CGFloat percentX = (index + 0.55) / TabbarItemNums;
     CGFloat x = ceilf(percentX * tabFrame.size.width);
     CGFloat y = ceilf(0.16 * (tabFrame.size.height - KTabbar_Gap));
-    badgeDotView.frame = CGRectMake(x, y, badgeDotWH, badgeDotWH);
+    badgeDotView.frame = CGRectMake(x, y, m_badgeDotWH, m_badgeDotWH);
     [self addSubview:badgeDotView];
 }
 
@@ -127,7 +129,5 @@
     }
     return _publishButton;
 }
-
-
 
 @end

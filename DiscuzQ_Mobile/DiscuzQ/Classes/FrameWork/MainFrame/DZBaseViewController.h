@@ -1,7 +1,8 @@
 //
 //  DZBaseViewController.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/5/4.
 //  Copyright (c) 2015年 WebersonGao. All rights reserved.
 //
@@ -25,6 +26,9 @@ typedef NS_ENUM(NSUInteger, NaviItemType) {
 @property (nonatomic, strong) MBProgressHUD *HUD;
 
 @property (nonatomic, assign) BOOL DZ_hideTabBarWhenPushed;  //!< push该控制器时是否隐藏TabBar
+
+// 判断是否登录(如果赋值，注意类型)
++ (id)initWithLogin;
 
 /**
  * 创建左右 导航按钮

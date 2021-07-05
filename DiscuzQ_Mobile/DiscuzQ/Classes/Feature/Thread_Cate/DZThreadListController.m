@@ -1,7 +1,8 @@
 //
 //  DZThreadListController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/12/8.
 //  Copyright © 2019年 WebersonGao. All rights reserved.
 //
@@ -33,14 +34,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configDiscoverCateCtrlAction];
+    [self configHomeCateCtrlAction];
     [self.view addSubview:self.listView];
     self.view.backgroundColor = KDebug_Color;
     [self.dz_NavigationBar removeFromSuperview];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstThreadListRequest:) name:DZ_ThreadListFirstReload_Notify object:nil];
 }
 
--(void)configDiscoverCateCtrlAction{
+-(void)configHomeCateCtrlAction{
     
     KWEAKSELF
     self.listView.mj_header = [DZRefreshHeader headerWithRefreshingBlock:^{
@@ -94,7 +95,7 @@
         KSLog(@"WBS 该列表暂无数据");
     }
     [self.threadArray addObjectsFromArray:threadAray];
-    [self.listView updateDiscoverListView:self.threadArray];
+    [self.listView updateHomeListView:self.threadArray];
 }
 
 
@@ -110,10 +111,10 @@
 }
 
 
--(DZDiscoverListView *)listView{
+-(DZHomeListView *)listView{
     if (!_listView) {
         _threadArray = [NSMutableArray array];
-        _listView = [[DZDiscoverListView alloc] initWithListFrame:self.view.bounds];
+        _listView = [[DZHomeListView alloc] initWithListFrame:self.view.bounds];
     }
     return _listView;
 }

@@ -1,7 +1,8 @@
 //
 //  PRNaviTabManager.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/6/12.
 //
 
@@ -40,7 +41,7 @@
     }
     
     NSMutableArray *imgTitleArr = [[NSMutableArray alloc] initWithCapacity:3];
-    NSArray *tempArray = [NSArray arrayWithArray:TitleArray];
+    NSArray *tempArray = [[NSArray alloc]initWithArray:TitleArray];
     [TitleArray removeAllObjects];
     for (int index = 0; index<tempArray.count; index++) {
         NSString *titleStr = tempArray[index];

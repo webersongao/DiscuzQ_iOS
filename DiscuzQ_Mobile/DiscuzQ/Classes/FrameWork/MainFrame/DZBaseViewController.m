@@ -1,19 +1,31 @@
 //
 //  DZBaseViewController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/5/4.
 //  Copyright (c) 2015年 WebersonGao. All rights reserved.
 //
 
 #import "DZBaseViewController.h"
 #import "WBEmoticonInputView.h"
+#import "DZLoginController.h"
 
 @interface DZBaseViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
 @implementation DZBaseViewController
+
++ (id)initWithLogin
+{
+    if (![DZMobileCtrl sharedCtrl].isLogin) {
+        return [[DZLoginController alloc] init];
+    }else{
+        return [[self alloc] init];
+    }
+    return nil;
+}
 
 -(BOOL)DZ_hideTabBarWhenPushed{
     return YES;
@@ -30,13 +42,14 @@
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-    
     [self configBaseViewController];
 }
 
 -(void)configBaseViewController{
     
     [self.view setExclusiveTouch:YES];
+    self.view.backgroundColor = KDebug_Color;
+    self.view.dz_emptyView = [DZEmptyView emptyViewWithMode:DZEmptyModeDefault];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transToLogin) name:DZ_UserLogin_Notify object:nil];
     // 监听UIWindow隐藏 播放视频的时候，状态栏会自动消失，处理后让状态栏重新出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endFullScreen:) name:UIWindowDidBecomeHiddenNotification object:nil];
@@ -62,7 +75,7 @@
 
 // 界面是否登录
 - (BOOL)isLogin {
-    if (![DZLoginModule isLogged]) {
+    if (![DZMobileCtrl sharedCtrl].isLogin) {
         [self transToLogin];
         return NO;
     }
@@ -119,23 +132,14 @@
  */
 -(void)configNaviBar:(NSString *)titleOrImg type:(NaviItemType)type Direction:(NaviDirection)direction {
     
-    if (direction == NaviDirectionLeft) {
-        UIBarButtonItem *leftBtn;
-        if (type == NaviItemText) {
-            leftBtn = [[UIBarButtonItem alloc] initWithItemTitle:titleOrImg Layout:YES target:self action:@selector(leftBarBtnClick:)];
-        } else {
-            leftBtn = [[UIBarButtonItem alloc] initWithItemImageName:titleOrImg target:self action:@selector(leftBarBtnClick:)];
-        }
-        [self dz_SetItem:leftBtn Layout:YES];
-    } else {
-        UIBarButtonItem *rightBtn;
-        if (type == NaviItemText) {
-            rightBtn = [[UIBarButtonItem alloc] initWithItemTitle:titleOrImg Layout:YES target:self action:@selector(rightBarBtnClick:)];
-        } else {
-            rightBtn = [[UIBarButtonItem alloc] initWithItemImageName:titleOrImg target:self action:@selector(rightBarBtnClick:)];
-        }
-        [self dz_SetItem:rightBtn Layout:NO];
+    DZBarButtonItem *textItem = nil;
+    if (type == NaviItemText) {
+        textItem = [[DZBarButtonItem alloc] initTextBarButton:titleOrImg touchH:titleOrImg target:self action:((direction == NaviDirectionLeft) ? @selector(leftBarBtnClick:) : @selector(rightBarBtnClick:))];
+    }else{
+        textItem = [[DZBarButtonItem alloc] initImageBarButton:titleOrImg touchH:titleOrImg isBack:YES target:self action:((direction == NaviDirectionLeft) ? @selector(leftBarBtnClick:) : @selector(rightBarBtnClick:))];
     }
+    
+    [self dz_SetNaviOneButtonItem:textItem Layout:((direction == NaviDirectionLeft) ? YES : NO)];
 }
 
 -(void)leftBarBtnClick:(UIButton *)button {

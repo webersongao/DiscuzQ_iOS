@@ -7,6 +7,15 @@
 #import <objc/runtime.h>
 #import "EFSQLiteObject.h"
 #import "KeyValuePair.h"
+#import "NSObject+Dictionary.h"
+
+@implementation EFSQLData
+
+- (NSDictionary *)EF_modelToDictionary{
+    return [self DZQ_ModelToDictionary];
+}
+
+@end
 
 @interface EFSQLiteObject () {
     NSMutableArray *_changedProperties;
@@ -89,6 +98,10 @@
     if (_isKVORegistered) {
         [self unregisterFromKVO];
     }
+}
+
++(NSDictionary<NSString *,Class> *)blobFields{
+    return @{};
 }
 
 #pragma mark - private

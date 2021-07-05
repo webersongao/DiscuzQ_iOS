@@ -1,7 +1,8 @@
 //
 //  DZThreadCateInnerView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/27.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -11,14 +12,14 @@
 
 @interface DZThreadCateInnerView ()<UIScrollViewDelegate>
 
-@property (nonatomic ,strong) DZQDataCate *dataCate;
+@property (nonatomic ,strong) DZThreadCateM *dataCate;
 @property (nonatomic, strong) NSMutableArray<DZThreadListController *> *ctvArr;
 
 @end
 
 @implementation DZThreadCateInnerView
 
-- (instancetype)initWithInnerFrame:(CGRect)frame cate:(DZQDataCate *)dataCate
+- (instancetype)initWithInnerFrame:(CGRect)frame cate:(DZThreadCateM *)dataCate
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -63,7 +64,7 @@
     if (!_ctvArr) {
         _ctvArr = [NSMutableArray arrayWithCapacity:3];
         for (int idx = 0; idx < 3; idx++) {
-            DZThreadListController *listVc = [[DZThreadListController alloc] initWithCateid:self.dataCate.type_id order:idx];
+            DZThreadListController *listVc = [[DZThreadListController alloc] initWithCateid:self.dataCate.pid order:idx];
             [self addSubview:listVc.view];
             listVc.view.left = self.width*idx;
             [listVc.dz_NavigationBar removeFromSuperview];

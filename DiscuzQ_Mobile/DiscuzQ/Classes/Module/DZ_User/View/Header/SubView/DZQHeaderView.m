@@ -1,7 +1,8 @@
 //
 //  DZQHeaderView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/10.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -35,12 +36,12 @@
     return self;
 }
 
--(void)updateHeader:(DZQUserModel *)userModel group:(DZQGroupModel *)group{
+-(void)updateHeader:(DZQUserV1 *)userModel group:(DZQGroupV1 *)group{
     
     self.groupLabel.text = group.name;
     self.signatureLabel.text = userModel.signature;
     self.nameLabel.text = userModel.username ?: @"未登录";
-    [self.avatarView dz_setImageWithURL:userModel.avatarUrl forState:UIControlStateNormal placeholder:KImageNamed(@"DZQ_icon")];
+    [self.avatarView dz_setBackImageWithURL:userModel.avatarUrl forState:UIControlStateNormal placeholder:KImageNamed(DZQ_icon)];
     [self layoutMyHeaderSubviews];
 }
 
@@ -57,7 +58,7 @@
 
 -(UIButton *)avatarView{
     if (!_avatarView) {
-        _avatarView = [UIButton ButtonNormalWithFrame:CGRectMake(kMargin15, (self.height-60)/2.0, 60, 60) title:nil titleFont:nil titleColor:nil normalImgPath:DZQ_icon touchImgPath:DZQ_icon isBackImage:YES picAlpha:1];
+        _avatarView = [UIButton ButtonNormalWithFrame:CGRectMake(kMargin15, (self.height-60)/2.0, 60, 60) title:nil titleFont:nil titleColor:nil normalImgPath:DZQ_Square_icon touchImgPath:DZQ_Square_icon isBackImage:YES picAlpha:1];
         _avatarView.layer.cornerRadius = 10.f;
         _avatarView.layer.masksToBounds = YES;
     }

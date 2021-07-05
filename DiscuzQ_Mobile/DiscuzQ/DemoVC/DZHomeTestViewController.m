@@ -1,30 +1,35 @@
 //
 //  DZHomeTestViewController.m
-//  DiscuzMobile
-//
+//  DiscuzQ
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/12/25.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
 
 #import "DZHomeTestViewController.h"
-#import "DZSearchController.h"
+#import "DZSearchViewController.h"
 #import "DZLoginController.h"
 #import "DZRegisterController.h"
 #import "DZPickerHeader.h"
 #import "DZWebOAuthView.h"
 #import "DZShadowAlertManager.h"
 #import "DZPostSiriViewController.h"
-#import "DZRootPostTabController.h"
 #import "DZMediaPicker.h"
 #import "DZQApiListController.h"
 
-@interface DZHomeTestViewController ()
+#import <SDWebImage.h>
 
+@interface DZHomeTestViewController ()
+{
+    NSString *m_tempStr;
+}
 @property (nonatomic, copy) NSString *userId;  //!< userId
 // 用户名
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 // 用户头像
 @property (weak, nonatomic) IBOutlet UIImageView *avatarIcon;
+@property (weak, nonatomic) IBOutlet UIButton *stateButton;
 
 
 @end
@@ -44,7 +49,7 @@
     
     self.nameLabel.text = @"<--熊猫看书-->";
     self.avatarIcon.layer.cornerRadius = 25.f;
-    
+    self.stateButton.backgroundColor = KGreen_Color;
 }
 
 
@@ -52,7 +57,7 @@
 - (IBAction)dzqUserLoginAction:(UIButton *)sender {
     
     KWEAKSELF
-    [[DZNetCenter center] dzx_loginWithName:KTest_UserName password:KTest_PassWord mobile:@"" completion:^(DZQUserModel *userModel,DZQTokenModel *tokenModel,BOOL success) {
+    [[DZNetCenter center] dzx_loginWithName:KTest_UserName password:KTest_PassWord mobile:@"" completion:^(DZQUserV1 *userModel,DZQTokenV1 *tokenModel,BOOL success) {
         if (success) {
             KSLog(@"WBS 登录成功 ");
             weakSelf.userId = userModel.user_id;
@@ -97,13 +102,37 @@
     
 }
 
-- (IBAction)apiListAction:(UIButton *)sender {
+// 底部最大按钮 状态
+- (IBAction)stateButtonAction:(UIButton *)sender {
     
-    DZQApiListController *ListVC = [[DZQApiListController alloc] init];
-    
-    [[DZMobileCtrl sharedCtrl] PushToController:ListVC];
+//    [[DZNetCenter center] dzx_followShipDeleteWithUser:@"12883" completion:^(DZQDataFollow * _Nonnull dataFollow, BOOL success) {
+//        if (success) {
+//            NSLog(@"WBS  关注成功");
+//        }else{
+//            NSLog(@"WBS  ~关注失败~");
+//        }
+//    }];
     
 }
+
+/// 接口列表
+- (IBAction)apiListAction:(UIButton *)sender {
+    
+    NSString *avaUrl = @"https://discuz.chat/images/groups/group-10.svg";
+    
+    NSString *aassnglj = @"http://1.116.86.125/favicon.ico";
+    
+    [self.stateButton setTitle:@"猫" forState:UIControlStateNormal];
+    [self.stateButton dz_setImageWithURL:aassnglj forState:UIControlStateNormal];
+    
+    
+    //    DZQApiListController *ListVC = [[DZQApiListController alloc] init];
+    //
+    //    [[DZMobileCtrl sharedCtrl] PushToController:ListVC];
+    
+}
+
+
 
 
 #pragma mark   /********************* API 测试 *************************/
@@ -116,7 +145,7 @@
     
     NSString *userName = @"ios_Gao_001";
     NSString *password = @"ios_Gao_pwd";
-    [[DZNetCenter center] dzx_registerWithName:userName password:password completion:^(DZQAuthModel * _Nonnull varModel, BOOL success) {
+    [[DZNetCenter center] dzx_registerWithName:userName password:password completion:^(DZQAuthV1 * _Nonnull varModel, BOOL success) {
         if (success) {
             KSLog(@"WBS 注册账户 成功 ");
         }else{
@@ -226,19 +255,20 @@
 - (IBAction)siriUIInputAction:(UIButton *)sender {
     
     
-    
 }
 
 // 用户信息
 - (IBAction)dzqUserInfoAction:(UIButton *)sender {
     
     NSString *userId = self.userId;
-    [[DZNetCenter center] dzx_userInfoWithUserId:userId isMe:YES completion:^(DZQResModel * _Nonnull varModel, BOOL success) {
+    [[DZNetCenter center] dzx_userInfoWithUserId:userId isMe:YES completion:^(DZQDataUser * dataUser, BOOL success) {
         if (success) {
             KSLog(@"WBS 用户信息 获取 成功");
         }else{
             KSLog(@"WBS 用户信息 获取 失败");
         }
+    } failure:^(DZQErrorV1 * _Nonnull varModel) {
+        
     }];
 }
 
@@ -258,11 +288,37 @@
 // 单条主题
 - (IBAction)dzqSingleThreadAction:(UIButton *)sender {
     
-    [[DZMobileCtrl sharedCtrl] PushToPostTabViewController];
+//    [[DZMobileCtrl sharedCtrl] PushToThreadPublishController];
+    
+    m_tempStr = @"";
+    NSRange subRange = NSMakeRange(0, -2);
+    BOOL isCanUse = [self canUseRange:subRange];
+    
+    
+    NSRange range = NSMakeRange(81, 65);
+    NSRange stringRange = NSMakeRange(0, 119);
+    
+    if (NSMaxRange(range) <= NSMaxRange(stringRange)) {
+        NSLog(@"1111111111111111111");
+    }else{
+        NSLog(@"2222222222222222222");
+    }
+    NSString *subString = [m_tempStr substringWithRange:subRange];
+    
+    NSLog(@"WBS subString is %@",subString);
+    
 }
 
 
-
+- (BOOL)canUseRange:(NSRange)range
+{
+    
+    NSRange stringRange = NSMakeRange(0, m_tempStr.length);
+    if (range.location >= 0 && ((range.location >= stringRange.location) && (NSMaxRange(range) <= NSMaxRange(stringRange)))) {
+        return YES;
+    }
+    return NO;
+}
 
 
 

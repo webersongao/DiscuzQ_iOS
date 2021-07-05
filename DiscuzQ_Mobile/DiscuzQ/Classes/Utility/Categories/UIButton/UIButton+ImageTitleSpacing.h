@@ -1,12 +1,15 @@
 //
 //  UIButton+ImageTitleSpacing.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/8/15.
 //  Copyright © 2015 wiwide. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, MKButtonEdgeInsetsStyle) {
     MKButtonEdgeInsetsImageTop, // image在上，label在下
@@ -50,7 +53,7 @@ typedef NS_ENUM(NSUInteger, MKButtonEdgeInsetsStyle) {
 
 @end
 
-
+NS_ASSUME_NONNULL_END
 
 
 

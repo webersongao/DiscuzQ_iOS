@@ -1,7 +1,8 @@
 //
 //  DZUIUserModel.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/27.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -25,7 +26,7 @@
     
     DZUIUserModel *model = [[DZUIUserModel alloc] init];
     
-    DZQThreadRelationModel *relateModel = dataModel.relationships;
+    DZQThreadRelationV1 *relateModel = dataModel.relationships;
     
     model.user_Name = relateModel.user.attributes.username;
     model.user_Grade = @"";
@@ -46,12 +47,12 @@
     
     DZUIUserModel *model = [[DZUIUserModel alloc] init];
     
-    DZQFollowRelationModel *relateModel = dataModel.relationships;
+    DZQFollowRelationV1 *relateModel = dataModel.relationships;
     
     DZQDataUser *oriUserModel = isFrom ? relateModel.fromUser : relateModel.toUser;
     
     model.user_Name = oriUserModel.attributes.username;
-    model.user_Grade = oriUserModel.relationships.groups.attributes.name;
+    model.user_Grade = oriUserModel.relationships.groups.firstObject.attributes.name;
     model.user_Time = @"";
     model.user_avatar = oriUserModel.attributes.avatarUrl;
     

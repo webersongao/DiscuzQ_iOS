@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>迪斯卡斯</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -11,11 +13,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>DiSiKaSi</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -24,10 +26,10 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>discuzQ APP</string>
+			<string>DiSiKaSi App</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>doumao</string>
+				<string>disikasi</string>
 			</array>
 		</dict>
 	</array>
@@ -47,11 +49,13 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>允许定位以把位置保存到照片中</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>访问麦克风以录像</string>
+	<string>访问麦克风以发送语音</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>请允许保存图片到相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>访问相册以选择照片</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>允许语音输入,以保证语音转换为文字</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -61,8 +65,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

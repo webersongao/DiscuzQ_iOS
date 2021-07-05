@@ -1,13 +1,15 @@
 //
 //  UIButton+Common.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/11/6.
 //
 //
 
 #import "UIButton+Common.h"
-
+#import <YYWebImage.h>
+#import <SDImageSVGKCoder.h>
 
 @implementation UIButton (Common)
 
@@ -43,6 +45,30 @@
     [self setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
     [self setImage:[UIImage imageNamed:highlightedImage]  forState:UIControlStateHighlighted];
     [self setImage:[UIImage imageNamed:selectedImage]  forState:UIControlStateSelected];
+}
+
+/// 创建 图片 按钮
++ (UIButton *)ButtonImageWithFrame:(CGRect)frame normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage
+{
+    return [UIButton ButtonWithFrame:frame title:nil titleFont:nil titleColor:nil titleSeleColor:nil normalImgPath:normalPath touchImgPath:touchUpPath isBackImage:isBackImage picAlpha:1];
+}
+
+/// 创建 图片 按钮
++ (UIButton *)ButtonImageWithFrame:(CGRect)frame normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage picAlpha:(CGFloat)alpha
+{
+    return [UIButton ButtonWithFrame:frame title:nil titleFont:nil titleColor:nil titleSeleColor:nil normalImgPath:normalPath touchImgPath:touchUpPath isBackImage:isBackImage picAlpha:alpha];
+}
+
+/// 创建 图片 按钮 (点击事件)
++ (UIButton *)ButtonImageWithFrame:(CGRect)frame normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage  Target:(id)target action:(SEL)btnAction{
+
+    UIButton *tmpButton = [UIButton ButtonWithFrame:frame title:nil titleFont:nil titleColor:nil titleSeleColor:nil normalImgPath:normalPath touchImgPath:touchUpPath isBackImage:isBackImage picAlpha:1];
+    
+    if (target && btnAction) {
+        [tmpButton addTarget:target action:btnAction forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return tmpButton;
 }
 
 /// 创建 普通 按钮
@@ -105,34 +131,82 @@
 
 - (void)dz_setImageWithURL:(NSString *)imageURL forState:(UIControlState)state{
     
-    [self yy_setImageWithURL:KURLString(imageURL) forState:state options:YYWebImageOptionShowNetworkActivity];
-    
+    [self btn_internalSetImageWithURL:imageURL isBackground:NO placeholder:nil forState:state options:0 completion:nil];
 }
 
 
 - (void)dz_setOptionImageWithURL:(NSString *)imageURL forState:(UIControlState)state options:(YYWebImageOptions)options{
-    
-    [self yy_setImageWithURL:KURLString(imageURL) forState:state options:YYWebImageOptionShowNetworkActivity ];
-    
+    [self btn_internalSetImageWithURL:imageURL isBackground:NO placeholder:nil forState:state options:options completion:nil];
 }
 
 - (void)dz_setImageWithURL:(NSString *)imageURL forState:(UIControlState)state placeholder:(UIImage *)placeholder {
-    
-    [self yy_setImageWithURL:KURLString(imageURL) forState:state placeholder:placeholder options:YYWebImageOptionShowNetworkActivity completion:nil];
+    [self btn_internalSetImageWithURL:imageURL isBackground:NO placeholder:placeholder forState:state options:0 completion:nil];
 }
 
-- (void)dz_setBlockImageWithURL:(NSString *)imageURL forState:(UIControlState)state options:(YYWebImageOptions)options completion:(YKCompletion)completion{
+- (void)dz_setBackImageWithURL:(NSString *)imageURL forState:(UIControlState)state{
+    [self btn_internalSetImageWithURL:imageURL isBackground:YES placeholder:nil forState:state options:0 completion:nil];
+}
+
+- (void)dz_setBackImageWithURL:(NSString *)imageURL forState:(UIControlState)state placeholder:(UIImage *)placeholder {
+    [self btn_internalSetImageWithURL:imageURL isBackground:YES placeholder:placeholder forState:state options:0 completion:nil];
+}
+
+- (void)dz_setBlockImageWithURL:(NSString *)imageURL forState:(UIControlState)state completion:(YKCompletion)completion{
     
-    [self yy_setImageWithURL:KURLString(imageURL) forState:state placeholder:nil options:YYWebImageOptionShowNetworkActivity completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-        if (completion) {
-            completion(image,url,error);
+    [self btn_internalSetImageWithURL:imageURL isBackground:NO placeholder:nil forState:state options:YYWebImageOptionShowNetworkActivity completion:completion];
+}
+
+- (void)btn_internalSetImageWithURL:(NSString *)imageURL isBackground:(BOOL)isBack placeholder:(UIImage *)placeholder forState:(UIControlState)state options:(YYWebImageOptions)options completion:(YKCompletion)completion{
+    
+    NSURL *urlObj = KURLString(imageURL);
+    BOOL isSVG = ([urlObj.path.lowercaseString containsString:@".svg"] && [urlObj.absoluteString.lowercaseString containsString:@".svg"]);
+    
+    if (isSVG) {
+        SDImageSVGKCoder *svgCoder = [SDImageSVGKCoder sharedCoder];
+        [[SDImageCodersManager sharedManager] addCoder:svgCoder];
+//        CGSize svgSize = isBack ? self.frame.size : self.imageView.frame.size;
+//        NSDictionary *context = @{SDImageCoderDecodeThumbnailPixelSize : @(svgSize)};
+        if (isBack) {
+            [self sd_setBackgroundImageWithURL:urlObj forState:state placeholderImage:placeholder options:0 context:nil];
+        }else{
+            //TODO: SVG 似乎会显示位置错误
+            [self sd_setImageWithURL:urlObj forState:state placeholderImage:placeholder options:0 context:nil];
         }
-    }];
-    
-    
+    }else{
+        if (isBack) {
+            [self yy_setBackgroundImageWithURL:urlObj forState:state placeholder:placeholder options:options completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+                if (completion) { completion(image,url,error);}
+            }];
+        }else{
+            [self yy_setImageWithURL:urlObj forState:state placeholder:placeholder options:options completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+                if (completion) { completion(image,url,error);}
+            }];
+        }
+    }
 }
 
-
+-(void)layoutItemButtonWithTitle:(NSString *)title titleH:(NSString *)titleH image:(NSString *)image imageH:(NSString *)imageH imageTitleSpace:(CGFloat)space;{
+    self.layer.cornerRadius = 3.f;
+    self.layer.masksToBounds = YES;
+    self.titleLabel.font = KFont(12.f);
+    self.backgroundColor = KDarkLine_Color;
+    
+    [self setTitle:title forState:UIControlStateNormal];
+    [self setTitle:titleH forState:UIControlStateSelected];
+    [self setTitle:titleH forState:UIControlStateHighlighted];
+    
+    [self setTitleColor:KGray_Color forState:UIControlStateNormal];
+    [self setTitleColor:KGreen_Color forState:UIControlStateSelected];
+    [self setTitleColor:KGreen_Color forState:UIControlStateHighlighted];
+    
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [self setImage:KImageNamed(image) forState:UIControlStateNormal];
+    [self setImage:KImageNamed(imageH) forState:UIControlStateHighlighted];
+    [self layoutButtonWithEdgeInsetsStyle:MKButtonEdgeInsetsImageLeft imageTitleSpace:space];
+    self.contentEdgeInsets = UIEdgeInsetsMake(kMargin5, kMargin10, kMargin5, kMargin10);
+    [self sizeToFit];
+}
 
 
 @end

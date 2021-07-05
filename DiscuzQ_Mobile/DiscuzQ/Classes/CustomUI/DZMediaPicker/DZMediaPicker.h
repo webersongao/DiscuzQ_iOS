@@ -1,7 +1,8 @@
 //
 //  DZMediaPicker.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/28.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -9,11 +10,12 @@
 #import <Foundation/Foundation.h>
 #import <TZImagePickerController.h>
 #import <FLAnimatedImage.h>
+#import "DZMediaModel.h"
 
 typedef enum : NSUInteger {
     DZPicker_Video,  // 单个视频
     DZPicker_singlePic,  // 单张图片
-    DZPicker_MuitlplePic,  // 多张 图片
+    DZPicker_MuitlplePic,  // 多张 图片（默认为9张）
 } DZPickerType;
 
 typedef void(^DZPreViewBlock)(NSArray<UIImage *> *imageArr , NSArray<PHAsset *> *AssetArr, BOOL isOrigin);

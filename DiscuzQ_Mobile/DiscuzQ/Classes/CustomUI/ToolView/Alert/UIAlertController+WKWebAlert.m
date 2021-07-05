@@ -1,7 +1,8 @@
 //
 //  UIAlertController+WKWebAlert.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/01/19.
 //  Copyright © 2020年 WebersonGao. All rights reserved.
 //
@@ -34,7 +35,7 @@
 }
 
 
-+ (void)PAlertWithTitle:(NSString *)title message:(NSString *)message completion:(void (^)())completion
++ (void)dz_AlertWithTitle:(NSString *)title message:(NSString *)message completion:(void (^)())completion
 {
     UIAlertController*  showSecreetDefault = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *ActionTrue = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nullable action) {
@@ -49,7 +50,7 @@
 }
 
 
-+ (void)PAlertWithTitle:(NSString *)title
++ (void)dz_AlertWithTitle:(NSString *)title
                 message:(NSString *)message
            action1Title:(NSString *)action1Title
            action2Title:(NSString *)action2Title
@@ -85,27 +86,17 @@
  @param block block
  @return UIAlertController-ActionSheet
  */
-+ (nonnull instancetype)ba_actionSheetShowInViewController:(nonnull UIViewController *)viewController
++ (nonnull instancetype)dz_actionSheetShowInViewController:(nonnull UIViewController *)viewController
                                                      title:(nullable NSString *)title
                                                    message:(nullable NSString *)message
                                           buttonTitleArray:(nullable NSArray *)buttonTitleArray
                                      buttonTitleColorArray:(nullable NSArray <UIColor *>*)buttonTitleColorArray
 #if TARGET_OS_IOS
-                        popoverPresentationControllerBlock:(nullable UIAlertControllerPopoverPresentationControllerBlock)popoverPresentationControllerBlock
+                        popoverPresentationControllerBlock:(nullable DQKit_UIAlertCtrlPopoverPresentationBlock)popoverPresentationControllerBlock
 #endif
-                                                     block:(nullable BAKit_AlertControllerButtonActionBlock)block
+                                                     block:(nullable DQKit_AlertCtrlBtnActionBlock)block
 {
-    return [self ba_alertControllerShowInViewController:viewController
-                                                  title:title
-                                        attributedTitle:nil
-                                                message:message
-                                      attributedMessage:nil
-                                         preferredStyle:UIAlertControllerStyleActionSheet
-                                       buttonTitleArray:buttonTitleArray
-                                  buttonTitleColorArray:buttonTitleColorArray
-                          buttonEnabledNoWithTitleArray:nil
-                              textFieldPlaceholderArray:nil
-                      textFieldConfigurationActionBlock:nil
+    return [self ba_alertControllerShowInViewController:viewController title:title attributedTitle:nil message:message attributedMessage:nil preferredStyle:UIAlertControllerStyleActionSheet buttonTitleArray:buttonTitleArray buttonTitleColorArray:buttonTitleColorArray buttonEnabledNoWithTitleArray:nil textFieldPlaceholderArray:nil textFieldConfigurationActionBlock:nil
 #if TARGET_OS_IOS
                      popoverPresentationControllerBlock:popoverPresentationControllerBlock
 #endif
@@ -124,101 +115,79 @@
                                  buttonTitleColorArray:(nullable NSArray <UIColor *>*)buttonTitleColorArray
                          buttonEnabledNoWithTitleArray:(NSArray <NSString *> *_Nullable)buttonEnabledNoWithTitleArray
                              textFieldPlaceholderArray:(NSArray <NSString *> *_Nullable)textFieldPlaceholderArray
-                     textFieldConfigurationActionBlock:(nullable BAKit_AlertControllerTextFieldConfigurationActionBlock)textFieldConfigurationActionBlock
+                     textFieldConfigurationActionBlock:(nullable DQKit_AlertCtrlTextFieldConfigActionBlock)textFieldConfigurationActionBlock
 #if TARGET_OS_IOS
                     popoverPresentationControllerBlock:(void(^)(UIPopoverPresentationController *popover))popoverPresentationControllerBlock
 #endif
-                                                 block:(BAKit_AlertControllerButtonActionBlock)block
+                                                 block:(DQKit_AlertCtrlBtnActionBlock)block
 {
-    UIAlertController *strongController = [self alertControllerWithTitle:title
-                                                                 message:message
-                                                          preferredStyle:preferredStyle];
+    UIAlertController *strongController = [self alertControllerWithTitle:title message:message preferredStyle:preferredStyle];
     
-    __weak UIAlertController *alertController = strongController;
+    __weak UIAlertController *weakAlertController = strongController;
     
-    if (buttonTitleArray)
+    if (buttonTitleArray.count)
     {
-        for (NSUInteger i = 0; i < buttonTitleArray.count; i++)
-        {
+        for (NSUInteger i = 0; i < buttonTitleArray.count; i++){
+            
             NSString *buttonTitle = buttonTitleArray[i];
-            
-            UIAlertAction *action = [UIAlertAction actionWithTitle:buttonTitle
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction *action){
-                                                               if (block)
-                                                               {
-                                                                   block(alertController, action, i);
-                                                               }
-                                                           }];
-            [alertController addAction:action];
-            
-            for (NSInteger j = 0; j < buttonEnabledNoWithTitleArray.count; j ++)
-            {
-                if ([buttonEnabledNoWithTitleArray[j] isEqualToString:buttonTitle])
-                {
+            UIAlertAction *action = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                if (block){
+                    block(weakAlertController, action, i);
+                }
+            }];
+            [weakAlertController addAction:action];
+            for (NSInteger j = 0; j < buttonEnabledNoWithTitleArray.count; j ++){
+                if ([buttonEnabledNoWithTitleArray[j] isEqualToString:buttonTitle]){
                     action.enabled = NO;
                 }
             }
-            
-            if (buttonTitleColorArray)
+            if (buttonTitleColorArray.count && buttonTitle.length && attributedTitle.length && attributedMessage.length)
             {
-                [strongController setAlertWithAlert:strongController
-                             mutableAttributedTitle:attributedTitle
-                           mutableAttributedMessage:attributedMessage
-                                             Action:action
-                                   buttonTitleColor:buttonTitleColorArray[i]];
+                [weakAlertController setAlertWithMutableAttributedTitle:attributedTitle mutableAttributedMessage:attributedMessage Action:action buttonTitleColor:buttonTitleColorArray[i]];
             }
         }
     }
-    if (textFieldPlaceholderArray)
+    if (textFieldPlaceholderArray.count)
     {
-        for (NSInteger i = 0; i < textFieldPlaceholderArray.count; i++)
-        {
-            [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-                
+        for (NSInteger i = 0; i < textFieldPlaceholderArray.count; i++){
+            [weakAlertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
                 textField.placeholder = textFieldPlaceholderArray[i];
-                if (textFieldConfigurationActionBlock)
-                {
+                if (textFieldConfigurationActionBlock){
                     textFieldConfigurationActionBlock(textField, i);
                 }
             }];
         }
     }
     
-    if (preferredStyle == UIAlertControllerStyleActionSheet)
-    {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"取 消"
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:nil];
-        [alertController addAction:action];
+    if (preferredStyle == UIAlertControllerStyleActionSheet){
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"取 消" style:UIAlertActionStyleCancel handler:nil];
+        [weakAlertController addAction:action];
     }
     
 #if TARGET_OS_IOS
-    if (popoverPresentationControllerBlock)
-    {
-        popoverPresentationControllerBlock(alertController.popoverPresentationController);
+    if (popoverPresentationControllerBlock){
+        popoverPresentationControllerBlock(weakAlertController.popoverPresentationController);
     }
 #endif
     
-    [viewController.ba_currentViewController presentViewController:alertController animated:YES completion:nil];
+    [viewController.ba_currentViewController presentViewController:weakAlertController animated:YES completion:nil];
     
-    return alertController;
+    return weakAlertController;
 }
 
 
-- (void)setAlertWithAlert:(UIAlertController * __nonnull )alert
-   mutableAttributedTitle:(NSMutableAttributedString *)mutableAttributedTitle
+- (void)setAlertWithMutableAttributedTitle:(NSMutableAttributedString *)mutableAttributedTitle
  mutableAttributedMessage:(nullable NSMutableAttributedString *)mutableAttributedMessage
                    Action:(UIAlertAction * __nonnull )action
          buttonTitleColor:(UIColor *)buttonTitleColor
 {
     /*! 1、首先获得对应的属性 */
     //    NSArray *propertysListArray = [[UIAlertController class] ba_propertysList];
-    //    NSLog(@"1、获取【UIAlertController】所有的属性名：%@", propertysListArray);
+    //    KSLog(@"1、获取【UIAlertController】所有的属性名：%@", propertysListArray);
     
     /*! 2、获得成员变量 */
     NSArray *ivarListArray = [[UIAlertAction class] ba_ivarList];
-    //    NSLog(@"2、获取【UIAlertController】所有的成员变量：%@", ivarListArray);
+    //    KSLog(@"2、获取【UIAlertController】所有的成员变量：%@", ivarListArray);
     
     for (NSInteger i = 0; i < ivarListArray.count; i++)
     {
@@ -231,17 +200,17 @@
     
     /*! 3、改变显示提示字体颜色 */
     NSArray *propertysListArray2 = [[UIAlertController class] ba_ivarList];
-    //    NSLog(@"3、获取【UIAlertController】所有的成员变量：%@", propertysListArray2);
+    //    KSLog(@"3、获取【UIAlertController】所有的成员变量：%@", propertysListArray2);
     for (NSInteger i = 0; i < propertysListArray2.count; i++)
     {
         NSString *ivarName = propertysListArray2[i];
         if ([ivarName isEqualToString:@"_attributedTitle"])
         {
-            [alert setValue:mutableAttributedTitle forKey:@"attributedTitle"];
+            [self setValue:mutableAttributedTitle forKey:@"attributedTitle"];
         }
         if ([ivarName isEqualToString:@"_attributedMessage"])
         {
-            [alert setValue:mutableAttributedMessage forKey:@"attributedMessage"];
+            [self setValue:mutableAttributedMessage forKey:@"attributedMessage"];
         }
     }
 }

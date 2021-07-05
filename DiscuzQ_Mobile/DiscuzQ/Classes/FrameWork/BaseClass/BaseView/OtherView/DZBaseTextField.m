@@ -1,7 +1,8 @@
 //
 //  DZBaseTextField.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2017/7/14.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -14,19 +15,19 @@
 {
     self = [super init];
     if (self) {
-        [self commitInit];
+        [self commitInit_textField];
     }
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self commitInit];
+        [self commitInit_textField];
     }
     return self;
 }
 
-- (void)commitInit {
+- (void)commitInit_textField {
     UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
     [keyboardDoneButtonView sizeToFit];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneClicked:)];

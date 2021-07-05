@@ -1,24 +1,25 @@
 //
 //  DZSearchListCell.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/7/11.
 //  Copyright © 2018年 WebersonGao. All rights reserved.
 //
 
 #import "DZSearchListCell.h"
-#import "SearchModel.h"
+#import "DZSearchModel.h"
 
 @implementation DZSearchListCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self commitInit];
+        [self commit_ListCellUI];
     }
     return self;
 }
 
-- (void)commitInit {
+- (void)commit_ListCellUI {
     [self.contentView addSubview:self.contentLabel];
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.evaluateLabel];
@@ -43,17 +44,11 @@
     }];
 }
 
--(void)updateSearchCell:(SearchModel *)cellModel {
+-(void)updateSearchCell:(DZSearchModel *)cellModel {
     _info = cellModel;
-    NSRange range = [cellModel.subject rangeOfString:cellModel.keyword];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:cellModel.subject];
-    [str addAttribute:NSForegroundColorAttributeName value:KGreen_Color range:range];
-    [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:range];
-    self.contentLabel.attributedText = str;
-    self.timeLabel.text = cellModel.dateline;
-    self.evaluateLabel.text = [NSString stringWithFormat:@"%ld个评论",(long)cellModel.replies];
+   
 }
-- (CGFloat)caculateSearchCellHeight:(SearchModel *)info {
+- (CGFloat)caculateSearchCellHeight:(DZSearchModel *)info {
     [self updateSearchCell:info];
     [self layoutIfNeeded];
     return [self cellHeight];

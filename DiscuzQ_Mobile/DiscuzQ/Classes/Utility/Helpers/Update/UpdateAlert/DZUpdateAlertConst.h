@@ -11,13 +11,13 @@
 /** RGB */
 #define SELColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 /** 屏幕高度 */
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define UP_SCREEN_W [UIScreen mainScreen].bounds.size.width
 /** 屏幕高度 */
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define UP_SCREEN_H [UIScreen mainScreen].bounds.size.height
 
 //屏幕适配
 /**当前设备对应375的比例*/
-#define Ratio_375 (SCREEN_WIDTH/375.0)
+#define Ratio_375 (UP_SCREEN_W/375.0)
 /**转换成当前比例的数*/
 #define Ratio(x) ((int)((x) * Ratio_375))
 

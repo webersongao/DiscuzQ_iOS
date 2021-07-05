@@ -20,13 +20,13 @@
 }
 
 - (void)setupView {
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = KLine_Color.CGColor;
-    self.backgroundColor = KDarkLine_Color;
-    self.layer.cornerRadius = 14;
-    self.layer.masksToBounds = YES;
     self.placeholder = @"关键字";
-    UIImage* searchBarBg = [UIImage createImageWithColor:KDarkLine_Color andHeight:30.0f];
+    self.layer.borderWidth = 0.5;
+    self.layer.masksToBounds = YES;
+    self.backgroundColor = KDarkLine_Color;
+    self.layer.cornerRadius = self.height/2.0;
+    self.layer.borderColor = KLine_Color.CGColor;
+    UIImage* searchBarBg = [UIImage dz_imageWithColor:KDarkLine_Color andHeight:30.0f];
     //设置背景图片
     [self setBackgroundImage:searchBarBg];
     //设置文本框背景

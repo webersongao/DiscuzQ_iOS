@@ -1,7 +1,8 @@
 //
 //  DZAuthCodeView.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/9/18.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -10,10 +11,9 @@
 
 @interface DZAuthCodeView : UIView
 
-@property (strong, nonatomic) NSArray *dataArray;//字符素材数组
+//验证码字符串
+- (NSString *)authCode;
 
-@property (copy, nonatomic) NSMutableString *authCodeStr;//验证码字符串
-
-- (void)updateCode;
+- (void)updateLocalAuthCode;
 
 @end

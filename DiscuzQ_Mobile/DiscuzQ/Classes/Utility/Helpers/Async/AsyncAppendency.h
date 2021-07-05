@@ -1,7 +1,8 @@
 //
 //  AsyncAppendency.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2017/11/19.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -13,7 +14,7 @@ extern dispatch_group_t asyGroup;
 
 @interface AsyncAppendency : NSObject
 
-+ (instancetype)shareInstance;
++ (instancetype)Shared;
 
 /**
  等待异步操作执行完毕之后执行semaphore方式

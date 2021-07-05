@@ -1,7 +1,8 @@
 //
 //  DZThreadDetailListView.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/20.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -14,7 +15,7 @@
 @optional
 - (void)detailListView:(DZThreadDetailListView *)detailListView scrollDidScroll:(CGFloat)offsetY;
 
-- (void)detaiVideoView:(DZVideoPicView *)videoView videoDidPlayClick:(DZQDataVideo *)dataVideo;
+- (void)detaiVideoView:(DZMediaPlayView *)videoView videoDidPlayClick:(DZQDataVideo *)dataVideo;
 
 @end
 

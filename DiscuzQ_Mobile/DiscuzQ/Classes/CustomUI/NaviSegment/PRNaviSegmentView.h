@@ -1,7 +1,8 @@
 //
 //  PRNaviSegmentView.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/6/3.
 //
 /*
@@ -24,7 +25,7 @@
 @interface PRNaviSegmentView : UIScrollView
 
 @property (nonatomic, copy) void(^WidthEqualBlock)(BOOL isEqual);  //!< 属性注释
-@property (nonatomic, assign) BOOL isBind;  //!< 是否固定不移动
+@property (nonatomic, assign) BOOL isBind;  //!< 滚动条是否固定不移动
 @property (nonatomic, strong) PRTagSegmentView *segmentView;  //!< 属性注释
 @property (nonatomic, weak) id<PRNaviSegmentViewDelegate> segDelegate;  //!< 属性注释
 @property (nonatomic, strong) UIView *bottomScrollLine;  //!< <#属性注释#>

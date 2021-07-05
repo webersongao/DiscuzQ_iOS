@@ -25,6 +25,8 @@
 
 - (UIView *)snapshotCellView;
 
-
+/// 获取截图
+/// @param view 需要截图的视图
++ (UIImage *)getScreenshotImage:(UIView *)view;
 
 @end

@@ -82,6 +82,16 @@
     }
 }
 
+- (void)showLoadingView {
+    
+    [self showLoadingMessag:@"" toView:nil blackColor:nil];
+}
+
+- (void)showLoadingtoView:(UIView *)view {
+    
+    [self showLoadingMessag:@"" toView:view blackColor:nil];
+}
+
 #pragma mark 显示一些信息
 - (void)showLoadingMessag:(NSString *)message toView:(UIView *)view {
     

@@ -8,7 +8,7 @@
 	<array>
 		<dict>
 			<key>id</key>
-			<string>com.discuz.default</string>
+			<string>com.disikasi.default</string>
 			<key>version</key>
 			<integer>0</integer>
 			<key>display_only</key>
@@ -16,7 +16,7 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>com.discuz.kuhou</string>
+			<string>com.disikasi.kuhou</string>
 			<key>version</key>
 			<integer>0</integer>
 			<key>display_only</key>
@@ -24,7 +24,7 @@
 		</dict>
 		<dict>
 			<key>id</key>
-			<string>com.discuz.daidai</string>
+			<string>com.disikasi.daidai</string>
 			<key>version</key>
 			<integer>0</integer>
 			<key>display_only</key>

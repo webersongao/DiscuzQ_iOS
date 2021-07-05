@@ -1,7 +1,8 @@
 //
 //  DZThreadDetailStyle.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/29.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -67,9 +68,7 @@
     
     // 计算各个回复cell的布局
     for (DZQDataPost *dataPost in dataModel.relationships.posts) {
-        
         dataPost.styleModel = [DZDPostCellStyle DPostCellStyle:cellWidth maxWidth:contenMaxWidth dataModel:dataPost];
-        
     }
     
     return style;

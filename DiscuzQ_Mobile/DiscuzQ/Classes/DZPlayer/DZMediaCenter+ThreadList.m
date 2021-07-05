@@ -1,7 +1,8 @@
 //
 //  DZMediaCenter+ThreadList.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/3.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -27,15 +28,16 @@
     /// 1.0是消失100%时候
     self.player.playerDisapperaPercent = 0.8;
     /// 播放器view露出一半时候开始播放
-    self.player.playerApperaPercent = .5;
+    self.player.shouldAutoPlay = NO;
+//    self.player.playerApperaPercent = .5;
     KWEAKSELF
     self.player.playerDidToEnd = ^(id  _Nonnull asset) {
         [weakSelf.player stopCurrentPlayingCell];
-        weakSelf.videoView.playIcon.playState = dz_PlayNone;
+        [weakSelf.videoView update_MediaState:dz_PlayNone];
     };
     
     self.player.playerPlayFailed = ^(id<ZFPlayerMediaPlayback>  _Nonnull asset, id  _Nonnull error) {
-        weakSelf.videoView.playIcon.playState = dz_PlayRetry;
+        [weakSelf.videoView update_MediaState:dz_PlayRetry];
     };
     
     self.player.orientationWillChange = ^(ZFPlayerController * _Nonnull player, BOOL isFullScreen) {
@@ -67,13 +69,13 @@
     
     self.player.zf_playerDisappearingInScrollView = ^(NSIndexPath * _Nonnull indexPath, CGFloat playerDisapperaPercent) {
         BOOL isPlay = weakSelf.player.currentPlayerManager.isPlaying;
-        weakSelf.videoView.playIcon.playState = isPlay ? dz_Playing : dz_PlayNone;
+        [weakSelf.videoView update_MediaState:(isPlay ? dz_Playing : dz_PlayNone)];
     };
     
 }
 
 // 列表cell 播放视频
-- (BOOL)Media_videoPlayWithIndexPath:(NSIndexPath *)indexPath playView:(DZVideoPicView *)playView{
+- (BOOL)Media_videoPlayWithIndexPath:(NSIndexPath *)indexPath playView:(DZMediaPlayView *)playView{
     
     self.videoView = playView;
     
@@ -88,13 +90,13 @@
     }
     
     BOOL isPlay = self.player.currentPlayerManager.isPlaying;
-    playView.playIcon.playState = isPlay ? dz_Playing : dz_PlayNone;
+    [playView update_MediaState:(isPlay ? dz_Playing : dz_PlayNone)];
     
     return isPlay;
 }
 
 // 列表cell 播放视频
-- (BOOL)Media_videoPlayWithAssetURL:(NSString *)media_url playView:(DZVideoPicView *)playView{
+- (BOOL)Media_videoPlayWithAssetURL:(NSString *)media_url playView:(DZMediaPlayView *)playView{
     
     self.videoView = playView;
     
@@ -112,7 +114,7 @@
     }
     
     BOOL isPlay = self.player.currentPlayerManager.isPlaying;
-    playView.playIcon.playState = isPlay ? dz_Playing : dz_PlayNone;
+    [playView update_MediaState:(isPlay ? dz_Playing : dz_PlayNone)];
     
     return isPlay;
 }
@@ -129,7 +131,7 @@
         [weakSelf.player addPlayerViewToCell];
     };
     /// 详情页点击播放的回调
-    detailVC.detailVCPlayCallback = ^(DZVideoPicView *videoView) {
+    detailVC.detailVCPlayCallback = ^(DZMediaPlayView *videoView) {
         [weakSelf playTheVideoAtIndexPath:indexPath scrollAnimated:NO];
     };
     
@@ -138,7 +140,7 @@
 - (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath scrollAnimated:(BOOL)animated {
     
 //    NSInteger index = (indexPath.row-1)/3;
-    DZQThreadRelationModel *videoModel = (DZQThreadRelationModel *)self.dataArray[indexPath.row].relationships;
+    DZQThreadRelationV1 *videoModel = (DZQThreadRelationV1 *)self.dataArray[indexPath.row].relationships;
     
     if (animated) {
         [self.player playTheIndexPath:indexPath assetURL:[NSURL URLWithString:videoModel.threadVideo.attributes.media_url] scrollPosition:ZFPlayerScrollViewScrollPositionTop animated:YES];

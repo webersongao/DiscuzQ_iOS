@@ -1,7 +1,8 @@
 //
 //  DZBottomToolBar.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/8/12.
 //
 
@@ -9,6 +10,7 @@
 
 @interface DZBottomToolBar ()
 
+@property (nonatomic, strong) DZQPostV1 *PostModel;  //!< <#属性注释#>
 @property (nonatomic, strong) UILabel *toolTextLabel;  //!< 属性注释
 @property (nonatomic, strong) UILabel * centerLabel;  //!< 属性注释
 @property (nonatomic, strong) UIButton * leftMainButton;  //!< 属性注释
@@ -101,6 +103,10 @@
     self.rightButton.selected = rightSelected;
 }
 
+-(void)updateDetailBottomBar:(DZQDataPost *)Post{
+    _PostModel = Post.attributes;
+    self.rightButton.selected = Post.attributes.isLiked;
+}
 /**
  底部提示条
  @param alertString 提示文字

@@ -1,7 +1,8 @@
 //
 //  AudioTool.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2017/6/16.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -9,6 +10,7 @@
 #import "AudioTool.h"
 #import <AVFoundation/AVFoundation.h>
 #import "lame.h"
+#import "DZCacheHelper.h"
 #import "AudioModel.h"
 #import "AudioConst.h"
 
@@ -24,7 +26,7 @@
 
 @implementation AudioTool
 
-+ (instancetype)shareInstance {
++ (instancetype)Shared {
     static AudioTool *adTool = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -53,7 +55,7 @@
     }
     
     self.session = session;
-    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [DZFileManager Shared].dz_CachesPath;
     self.recordPath = [path stringByAppendingString:[NSString stringWithFormat:@"/RRecord%lu.wav",(unsigned long)self.audioArray.count]];
     //2.获取文件路径
    NSURL *recordFileUrl = [NSURL fileURLWithPath:self.recordPath];
@@ -253,10 +255,7 @@
  * 移除文件共有方法
  */
 - (void)removeFileWithPath:(NSString *)path {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    if ([fm fileExistsAtPath:path]) {
-        [fm removeItemAtPath:path error:nil];
-    }
+    [[DZFileManager Shared] deleteLocalFile:path];
 }
 
 - (NSMutableArray<AudioModel *> *)audioArray {

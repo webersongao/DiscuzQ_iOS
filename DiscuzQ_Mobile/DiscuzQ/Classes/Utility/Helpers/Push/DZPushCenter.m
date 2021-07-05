@@ -1,7 +1,8 @@
 //
 //  DZPushCenter.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 19/12/25.
 //  Copyright © 2019年 WebersonGao. All rights reserved.
 //
@@ -18,7 +19,7 @@
 @implementation DZPushCenter
 
 
-+ (instancetype)shareInstance {
++ (instancetype)Shared {
     static DZPushCenter *center = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

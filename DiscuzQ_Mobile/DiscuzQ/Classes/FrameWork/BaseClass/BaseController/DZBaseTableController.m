@@ -1,7 +1,8 @@
 //
 //  DZBaseTableController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/5/5.
 //  Copyright (c) 2015年 WebersonGao. All rights reserved.
 //
@@ -15,7 +16,7 @@
     [super viewDidLoad];
     
     self.page = 1;
-    
+    self.view.backgroundColor = KWhite_Color;
     // 点击菜单栏刷新
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:DZ_TabbarRefresh_Notify object:nil];
     // 点击导航栏到顶部
@@ -32,6 +33,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaul5CellId"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defaul5CellId"];
+        cell.backgroundColor = KWhite_Color;
     }
     return cell;
 }
@@ -80,7 +82,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _tableView.backgroundColor = KWhite_Color;
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }

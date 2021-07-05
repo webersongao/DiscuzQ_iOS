@@ -1,7 +1,8 @@
 //
 //  DZToolBox.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/10.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -45,10 +46,14 @@ NSString* _Nullable DZQUrlCommonPara(NSString * __nullable apiCtrl,NSString * __
     if ([baseApiCtrl hasSuffix:@"/"]) {
         baseApiCtrl = [baseApiCtrl substringToIndex:baseApiCtrl.length-1];
     }
+    subCtrl = DZQStrNull(subCtrl);
+    if ([subCtrl hasPrefix:@"/"]) {
+        subCtrl = [subCtrl substringToIndex:subCtrl.length-1];
+    }
     baseApiCtrl = [NSString stringWithFormat:@"%@/%@",baseApiCtrl,DZQStrNull(subCtrl)];
     NSString *queryString = queryStr.length ? [NSString stringWithFormat:@"%@&",DZQStrNull(queryStr)] :@"";
     
-    if ([DZQ_BASEURL hasSuffix:@"/"] && [baseApiCtrl hasPrefix:@"/"]) {
+    if ([[DZMobileCtrl siteRootDomain] hasSuffix:@"/"] && [baseApiCtrl hasPrefix:@"/"]) {
         baseApiCtrl = [baseApiCtrl substringFromIndex:1];
     }
     if ([baseApiCtrl hasSuffix:@"/"]) {
@@ -57,7 +62,7 @@ NSString* _Nullable DZQUrlCommonPara(NSString * __nullable apiCtrl,NSString * __
     if ([queryString hasPrefix:@"?"]) {
         queryString = [queryString substringFromIndex:1];
     }
-     NSString *URLString = [NSString stringWithFormat:@"%@%@?%@%@",DZQ_BASEURL,baseApiCtrl,queryString,DZQ_from_TAG];
+     NSString *URLString = [NSString stringWithFormat:@"%@%@?%@%@",[DZMobileCtrl siteRootDomain],baseApiCtrl,queryString,DZQ_from_TAG];
     
     URLString = [URLString stringByReplacingOccurrencesOfString:@"=(null)" withString:@"="];
     URLString = [URLString stringByReplacingOccurrencesOfString:@"null" withString:@""];

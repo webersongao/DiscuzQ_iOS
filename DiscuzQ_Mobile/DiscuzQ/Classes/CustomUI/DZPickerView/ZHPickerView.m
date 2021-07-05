@@ -178,8 +178,9 @@
 
 -(void)setUpPickView{
     
-    UIPickerView *pickView=[[UIPickerView alloc] init];
-    pickView.backgroundColor = KLightGray_Color;
+    UIPickerView *pickView = [[UIPickerView alloc] init];
+    pickView.backgroundColor = KDarkLine_Color;
+    pickView.tintColor = UIColor.redColor;
     _pickerView = pickView;
     pickView.delegate = self;
     pickView.dataSource = self;
@@ -192,30 +193,30 @@
     UIDatePicker *datePicker=[[UIDatePicker alloc] init];
     datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     datePicker.datePickerMode = datePickerMode;
-    datePicker.backgroundColor= KLightGray_Color;
+    datePicker.backgroundColor= KLightLine_Color;
     if (_defaulDate) {
         [datePicker setDate:_defaulDate];
-        
     }
     if (_maxDate) {
         [datePicker setMaximumDate:_maxDate];
     }
-    
     _datePicker = datePicker;
-//    datePicker.frame.size.width
     datePicker.frame = CGRectMake(0, kToolBarHeight, [UIScreen mainScreen].bounds.size.width, datePicker.frame.size.height);
     _pickeviewHeight = datePicker.frame.size.height;
     [self addSubview:datePicker];
 }
 
 -(void)setUpToolBar{
-    _toolbar=[self setToolbarStyle];
+    _toolbar = [self setToolbarStyle];
     [self setToolbarWithPickViewFrame];
     [self addSubview:_toolbar];
 }
 -(UIToolbar *)setToolbarStyle{
     UIToolbar *toolbar=[[UIToolbar alloc] init];
-    
+    toolbar.layer.borderWidth = 0.5;
+    toolbar.tintColor = KTitle_Color;
+    toolbar.barTintColor = KDarkLine_Color;
+    toolbar.layer.borderColor = KLightGray_Color.CGColor;
     UIBarButtonItem *lefttem=[[UIBarButtonItem alloc] initWithTitle:@" 取消" style:UIBarButtonItemStylePlain target:self action:@selector(remove)];
     
     UIBarButtonItem *centerSpace=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];

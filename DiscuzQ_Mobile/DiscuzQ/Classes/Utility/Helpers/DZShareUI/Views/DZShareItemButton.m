@@ -1,7 +1,8 @@
 //
 //  DZShareItemButton.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2016/12/21.
 //  Copyright © 2016年 Weberson. All rights reserved.
 //
@@ -19,7 +20,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setUpShareButtonImageTag:imageTAG
+        [self setUprightButtonImageTag:imageTAG
                                   title:title
                               titleFont:titleFont
                              titleColor:titleColor];
@@ -27,7 +28,7 @@
     return self;
 }
 
-- (void)setUpShareButtonImageTag:(NSInteger)imageTAG
+- (void)setUprightButtonImageTag:(NSInteger)imageTAG
                             title:(NSString *)title
                         titleFont:(CGFloat)titleFont
                        titleColor:(UIColor *)titleColor

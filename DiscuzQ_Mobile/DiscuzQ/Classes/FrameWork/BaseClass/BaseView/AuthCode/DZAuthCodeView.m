@@ -1,7 +1,8 @@
 //
 //  DZAuthCodeView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/9/18.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -13,6 +14,12 @@
 #define kLineWidth 1.0    // 干扰线宽度
 #define kCharCount 4      // 验证码个数
 #define kFontSize [UIFont systemFontOfSize:arc4random() % 5 + 15]   // 字体大小
+
+@interface DZAuthCodeView ()
+
+@property (strong, nonatomic) NSArray *dataArray;//字符素材数组
+@property (copy, nonatomic) NSMutableString *authCodeStr;//验证码字符串
+@end
 
 @implementation DZAuthCodeView
 
@@ -29,6 +36,10 @@
         [self getAuthcode];//获得随机验证码
     }
     return self;
+}
+
+- (NSString *)authCode{
+    return self.authCodeStr.copy;
 }
 
 #pragma mark 获得随机验证码
@@ -50,10 +61,10 @@
 #pragma mark 点击界面切换验证码
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self updateCode];
+    [self updateLocalAuthCode];
 }
 
-- (void)updateCode {
+- (void)updateLocalAuthCode {
     [self getAuthcode];
     
     //setNeedsDisplay调用drawRect方法来实现view的绘制

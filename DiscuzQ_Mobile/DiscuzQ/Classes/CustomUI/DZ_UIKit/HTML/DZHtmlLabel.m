@@ -1,7 +1,8 @@
 //
 //  DZHtmlLabel.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/26.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -119,12 +120,12 @@
 }
 
 - (void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView willDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
-    KSLog(@"WBS willDrawLayoutFrame ");
+//    KSLog(@"WBS willDrawLayoutFrame ");
 }
 
 
 - (void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView didDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context{
-    KSLog(@"WBS didDrawLayoutFrame ");
+//    KSLog(@"WBS didDrawLayoutFrame ");
 }
 
 //- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame{

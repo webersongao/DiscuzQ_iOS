@@ -1,7 +1,8 @@
 //
 //  DZUserViewController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/10.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -10,13 +11,13 @@
 #import "DZUserListView.h"
 #import "DZUserHelper.h"
 #import "UIAlertController+Extension.h"
-#import "DZMediaPicker.h"
+#import "DZMediaBrowser.h"
 #import "UIImage+Limit.h"
 
 @interface DZUserViewController ()
 
 @property(nonatomic,strong) DZUserListView *listView;
-@property (nonatomic, strong) DZQUserModel *userModel;
+@property (nonatomic, strong) DZQUserV1 *userModel;
 
 @end
 
@@ -72,24 +73,25 @@
     [self.HUD showLoadingMessag:@"拉取信息" toView:self.view];
     KWEAKSELF
     NSString *userId = [DZMobileCtrl sharedCtrl].User.user_id;
-    [[DZNetCenter center] dzx_userInfoWithUserId:userId isMe:YES completion:^(DZQResModel * varModel, BOOL bSuccess) {
+    
+    [self loadUserInfoWithId:userId isMe:YES completion:^(DZQDataUser * dataUser, BOOL bSuccess) {
         [weakSelf.HUD hide];
-        if (!bSuccess) {
-            [DZMobileCtrl showAlertInfo:@"获取资料失败"];
-        }else{
+        if (bSuccess) {
             // 刷新用户信息
-            [weakSelf reloadUserController:varModel];
+            [weakSelf reloadUserController:dataUser];
         }
         [weakSelf.listView.mj_header endRefreshing];
+    } failure:^(DZQErrorV1 * _Nonnull errorModel) {
+        [weakSelf.HUD hide];
     }];
     
 }
 
--(void)reloadUserController:(DZQResModel *)VarModel{
+-(void)reloadUserController:(DZQDataUser *)dataUser{
     
-    self.userModel = (DZQUserModel *)VarModel.dataBody.firstObject.attributes;
+    self.userModel = (DZQUserV1 *)dataUser.attributes;
     [DZMobileCtrl sharedCtrl].User.typeUnreadNotis = self.userModel.typeUnreadNotifications;
-    DZQProfileRelationModel *relateM = (DZQProfileRelationModel *)VarModel.dataBody.firstObject.relationships;
+    DZQUserRelationV1 *relateM = (DZQUserRelationV1 *)dataUser.relationships;
     
     [self.listView.headView updateUserListHeader:self.userModel relate:relateM];
 }
@@ -157,26 +159,17 @@
 
 
 - (void)localUserLoginout {
-    [DZLoginModule signoutWithCompletion:^{
+    [[DZMobileCtrl sharedCtrl] signoutWithCompletion:^{
         [self reloadUserController:nil];
     }];
 }
 
 - (void)modifyAvatarAction {
-    KWEAKSELF;
-    [[DZMediaPicker Shared] dz_ShowAvatarPickerSheet:self.navigationController];
-    [DZMediaPicker Shared].media_PictureBlock = ^(NSArray<UIImage *> *imageArr, NSArray<PHAsset *> *AssetArr, BOOL isOrigin) {
-        [weakSelf uploadUserAvatarImage:imageArr.firstObject];
-    };
+    if (![DZMobileCtrl sharedCtrl].isLogin || !self.userModel.avatarUrl.length) {
+        return;
+    }
+    [[DZMediaBrowser Shared] browserSingleWithPic:self.userModel.avatarUrl preview:nil];
 }
-
-- (void)uploadUserAvatarImage:(UIImage *)image {
-    
-    [self.HUD showLoadingMessag:@"上传中" toView:self.view];
-    [self.HUD hide];
-    [MBProgressHUD showInfo:@"上传成功"];
-}
-
 
 #pragma mark   /********************* 初始化配置 *************************/
 

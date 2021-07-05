@@ -1,7 +1,8 @@
 //
 //  DZBottomToolBar.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/8/12.
 //
 
@@ -28,6 +29,8 @@ typedef enum : NSUInteger {
 - (instancetype)initWithFrame:(CGRect)frame Mode:(toolBarMode)Mode;
 
 -(void)showBottomToolBar:(BOOL)bShow;
+
+-(void)updateDetailBottomBar:(DZQDataPost *)Post;
 
 // 更新选中数量
 -(void)updateNaviEditBar:(NSInteger)selectedNo;

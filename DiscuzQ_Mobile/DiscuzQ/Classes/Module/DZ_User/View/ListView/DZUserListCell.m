@@ -1,20 +1,21 @@
 //
 //  DZUserListCell.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/13.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
 
 #import "DZUserListCell.h"
-#import "DZHorizontalButton.h"
+#import "DZIConButton.h"
 #import "DZUserItemModel.h"
 
 @interface DZUserListCell ()
 
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UISwitch *themeSwitch;
-@property (nonatomic, strong) DZHorizontalButton *nameV;
+@property (nonatomic, strong) DZIConButton *nameV;
 
 @end
 
@@ -38,8 +39,9 @@
 - (void)updateUserListCenterCell:(DZUserItemModel *)model{
     
     self.detailLabel.text = model.detailStr;
-    self.nameV.textLabel.text = model.titleStr;
-    self.nameV.iconV.image = [UIImage imageNamed:model.iconName];
+    [self.nameV updateTitle:model.titleStr icon:KImageNamed(model.iconName)];
+//    [self.nameV setTitle:model.titleStr forState:UIControlStateNormal];
+//    [self.nameV setImage:KImageNamed(model.iconName) forState:UIControlStateNormal];
     
     if (model.action == cell_colorMode) {
         self.accessoryView = self.themeSwitch;
@@ -52,8 +54,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.nameV.frame = CGRectMake(kMargin15, kMargin10, (self.width/2.f)-kMargin15, CGRectGetHeight(self.frame) - kMargin20);
-    self.detailLabel.frame = CGRectMake(self.width/2.0, CGRectGetMinY(self.nameV.frame), (self.width/2.f)-kMargin35, CGRectGetHeight(self.nameV.frame));
+    self.nameV.frame = CGRectMake(kMargin15, kMargin10, (self.width/2.f)-kMargin15, self.height - kMargin20);
+    self.detailLabel.frame = CGRectMake(self.width/2.0, self.nameV.top, (self.width/2.f)-kMargin35, self.nameV.height);
 }
 
 
@@ -67,9 +69,9 @@
 }
 
 
--(DZHorizontalButton *)nameV{
+-(DZIConButton *)nameV{
     if (!_nameV) {
-        _nameV = [[DZHorizontalButton alloc] init];
+        _nameV = [[DZIConButton alloc] initWithFrame:CGRectMake(kMargin15, kMargin10, (kScreenWidth/2.f)-kMargin15, kCellHeight_50 - kMargin20)];
     }
     return _nameV;
 }

@@ -19,7 +19,7 @@
 
 - (void)addInView:(UIView *)superView {
     if (superView == nil) {
-        NSLog(@"superView can't nil");
+        KSLog(@"superView can't nil");
         return;
     }
     superView.hidden = NO;
@@ -31,7 +31,7 @@
 
 - (void)showInView:(UIView *)superView animation:(id<TYLaunchAnimationProtocol>)animation completion:(void (^)(BOOL finished))completion {
     if (superView == nil) {
-        NSLog(@"superView can't nil");
+        KSLog(@"superView can't nil");
         return;
     }
     superView.userInteractionEnabled = YES;

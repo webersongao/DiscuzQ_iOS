@@ -9,7 +9,7 @@
 #import "DZUpdateAlertView.h"
 #import "DZUpdateAlertConst.h"
 
-#define DEFAULT_MAX_HEIGHT SCREEN_HEIGHT/3*2
+#define UP_DEFAULT_MAX_HEIGHT  UP_SCREEN_H/3*2
 
 @interface DZUpdateAlertView()
 
@@ -91,14 +91,14 @@ description 格式如 @"1.xxxxxx\n2.xxxxxx"
     CGFloat realHeight = descHeight + Ratio(314);
     
     //bgView最大高度
-    CGFloat maxHeight = DEFAULT_MAX_HEIGHT;
+    CGFloat maxHeight = UP_DEFAULT_MAX_HEIGHT;
     //更新内容可否滑动显示
     BOOL scrollEnabled = NO;
     
     //重置bgView最大高度 设置更新内容可否滑动显示
-    if (realHeight > DEFAULT_MAX_HEIGHT) {
+    if (realHeight > UP_DEFAULT_MAX_HEIGHT) {
         scrollEnabled = YES;
-        descHeight = DEFAULT_MAX_HEIGHT - Ratio(314);
+        descHeight = UP_DEFAULT_MAX_HEIGHT - Ratio(314);
     }else
     {
         maxHeight = realHeight;

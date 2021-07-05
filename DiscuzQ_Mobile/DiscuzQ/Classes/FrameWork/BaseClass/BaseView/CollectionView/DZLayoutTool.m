@@ -1,14 +1,15 @@
 //
 //  DZLayoutTool.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/25.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
 
 #import "DZLayoutTool.h"
 
-#define  kDis_PicCellWH     ((KScreenWidth - kMargin30 - kMargin10)/3.0)   // 首页发现列表 图片cell宽高
+#define  kDis_PicCellWH     ((KScreenWidth - kMargin30 - kMargin10)/3.0)   // 首页列表 图片cell宽高
 
 
 @implementation DZLayoutTool
@@ -52,7 +53,7 @@
 }
 
 // 首页 列表 图片 九宫格模式 布局
-+ (UICollectionViewFlowLayout *)discoverPicLayout{
++ (UICollectionViewFlowLayout *)homePicLayout{
     
     UICollectionViewFlowLayout * gridLayout = [[UICollectionViewFlowLayout alloc] init];
     gridLayout.scrollDirection = UICollectionViewScrollDirectionVertical;

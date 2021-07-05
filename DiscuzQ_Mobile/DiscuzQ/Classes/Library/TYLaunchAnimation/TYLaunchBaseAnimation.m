@@ -12,7 +12,7 @@
 
 - (void)configureAnimationWithView:(UIView *)view completion:(void (^)(BOOL))completion
 {
-    NSLog(@"please implement TYLaunchAnimationProtocol");
+    KSLog(@"please implement TYLaunchAnimationProtocol");
 }
 
 @end

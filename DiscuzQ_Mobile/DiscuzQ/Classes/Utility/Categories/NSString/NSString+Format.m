@@ -1,7 +1,8 @@
 //
 //  NSString+Format.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/12/29.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -10,6 +11,23 @@
 #import "YYAnimatedImageView.h"
 
 @implementation NSString (Format)
+
++(NSMutableAttributedString *)addAttributeWithString:(NSString *)textString attributes:(NSDictionary<NSAttributedStringKey, id> *)attrs{
+    NSString *endTextString = checkNull(textString);
+    if (!attrs || !endTextString.length) {
+        return nil;
+    }
+    NSMutableAttributedString *attributetext = [[NSMutableAttributedString alloc] initWithString:endTextString];
+    [attributetext addAttributes:attrs range:NSMakeRange(0, endTextString.length)];
+    return attributetext;
+}
+
++(NSMutableAttributedString *)addAttributeWithString:(NSString *)textString attributes:(NSDictionary<NSAttributedStringKey, id> *)attrs range:(NSRange)range{
+    NSString *endTextString = checkNull(textString);
+    NSMutableAttributedString *attributetext = [[NSMutableAttributedString alloc] initWithString:endTextString];
+    [attributetext addAttributes:attrs range:range];
+    return attributetext;
+}
 
 +(NSAttributedString *)changeFormatterToAttributeWithString:(NSString *)chagneString{
     if (chagneString == nil) {

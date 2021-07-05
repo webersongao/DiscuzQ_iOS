@@ -1,7 +1,8 @@
 //
 //  NSString+MoreMethod.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/7/12.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -171,22 +172,8 @@
     return [NSString stringWithFormat:@"%.1f万", dec];
 }
 
-- (NSString *)makeDomain {
-    if ([self isUrlContainDomain]) {
-        return self;
-    }
-    NSString *domain = [[NSUserDefaults standardUserDefaults] objectForKey:KRoot_Domainkey];
-    NSString *urlStr = self;
-    if ([DataCheck isValidString:domain]) {
-        urlStr = [NSString stringWithFormat:@"%@%@",domain,urlStr];
-    } else {
-        urlStr = [NSString stringWithFormat:@"%@%@",DZQ_BASEURL,urlStr];
-    }
-    return urlStr;
-}
-
 - (BOOL)isUrlContainDomain {
-    return  ([self hasPrefix:@"http://"] || [self hasPrefix:@"https://"]) ? YES : NO;
+    return  (([self hasPrefix:@"http://"] || [self hasPrefix:@"https://"])) ? YES : NO;
 }
 
 // 计算两个时间字符串 开始时间是否早于结束时间 2016-12-05 00:00
@@ -315,25 +302,6 @@
     return attriStr;
 }
 
-- (NSString*)getmd5WithString {
-    
-    const char* original_str=[self UTF8String];
-    
-    unsigned char digist[CC_MD5_DIGEST_LENGTH]; //CC_MD5_DIGEST_LENGTH = 16
-    
-    CC_MD5(original_str, strlen(original_str), digist);
-    
-    NSMutableString* outPutStr = [NSMutableString stringWithCapacity:10];
-    
-    for(int  i =0; i<CC_MD5_DIGEST_LENGTH;i++){
-        
-        [outPutStr appendFormat:@"%02x", digist[i]];// 小写 x 表示输出的是小写 MD5 ，大写 X 表示输出的是大写 MD5
-        
-    }
-    
-    return [outPutStr lowercaseString];
-}
-
 // 判断域名是否解析
 +(BOOL)resolveHost:(NSString*)hostname {
     Boolean result = false;
@@ -345,23 +313,15 @@
     NSString *ipAddress = nil;
     
     hostRef = CFHostCreateWithName(kCFAllocatorDefault, (__bridge CFStringRef)hostname);
-    
     if(hostRef) {
-        
         result = CFHostStartInfoResolution(hostRef,kCFHostAddresses,NULL);// pass an error instead of NULL here to find out why it failed
-        
         if(result) {
-            
             addresses =CFHostGetAddressing(hostRef, &result);
-            
         }
-        
     }
     
     if(result) {
-        
         CFIndex index =0;
-        
         CFDataRef ref = (CFDataRef)CFArrayGetValueAtIndex(addresses, index);
         
         int port=0;
@@ -427,5 +387,24 @@
     }
     
 }
+
+
+- (NSString *)dz_urlAppendingParameters:(id)parameters{
+    if (parameters==nil) {
+        return self;
+    }else{
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        for (NSString *key in parameters) {
+            id obj = [parameters objectForKey:key];
+            NSString *str = [NSString stringWithFormat:@"%@=%@",key,obj];
+            [array addObject:str];
+        }
+        
+        NSString *parametersString = [array componentsJoinedByString:@"&"];
+        return  [self stringByAppendingString:[NSString stringWithFormat:@"&%@",parametersString]];
+    }
+}
+
+
 
 @end

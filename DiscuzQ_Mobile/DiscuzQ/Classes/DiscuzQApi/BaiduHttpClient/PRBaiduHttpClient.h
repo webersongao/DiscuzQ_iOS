@@ -1,47 +1,18 @@
 //
 //  PRBaiduHttpClient.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/8/10.
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
-
-static double Baidu_REQUEST_TIME = 30.0;
-
-static NSInteger Baidu_CANCEL_CODE = -999; //取消网络
-static NSInteger Baidu_NONENET_CODE = -1009; // 没网
-static NSInteger Baidu_ERRORNET_CODE = -1001; //网不正常上不去
-
-
-typedef void(^PRNoneBlock)(void);
-typedef void(^PRBoolBlock)(BOOL *success);
-typedef void(^PRFailureBlock)(NSError *error);
-typedef void(^PRCompleteBlock)(id data,BOOL success);
-typedef void(^PRProgressBlock)(double Progress);
-
-typedef NS_ENUM(NSInteger, PRRequestType){
-    PRRequestGet,
-    PRRequestPut,
-    PRRequestPost,
-    PRRequestPatch,
-    PRRequestDelete,
-    PRRequestHeader,
-};
-
-typedef NS_ENUM(NSInteger, PRResponseType){
-    PRResponseJson,
-    PRResponseXML,
-    PRResponseData,
-};
-
+#import "PRBaiduManager.h"
 
 @interface PRBaiduHttpClient : NSObject
 
-@property(nonatomic,strong) AFHTTPSessionManager *jsonManager;
-@property(nonatomic,strong) AFHTTPSessionManager *dataManager;
-@property(nonatomic,strong) AFHTTPSessionManager *xmlManager;
+@property(nonatomic,strong,readonly) PRBaiduSessionManager *jsonManager;
+@property(nonatomic,strong,readonly) PRBaiduSessionManager *dataManager;
 
 /**
  *  初始化
@@ -62,92 +33,92 @@ typedef NS_ENUM(NSInteger, PRResponseType){
  *
  *  @param parameters 头
  */
-- (void)baidu_SetHeaderDesign:(NSDictionary *)parameters manager:(AFHTTPSessionManager *)manager;
+- (void)baidu_SetHeaderDesign:(NSDictionary *)parameters manager:(PRBaiduSessionManager *)manager;
 
 
 /**
- * GET HTTP请求（ GET JSON）
+ * GET 请求（ GET JSON）
  * 一律不加公共上行的请求
  */
-- (long)baidu_GetRequestWithUrl:(NSString *)URLString
-                         urlTag:(long)urlTag
-                        success:(void (^)(NSURLSessionDataTask *task, id response))success
-                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                         cancel:(void (^)(void))cancel;
+- (long)baidu_GetReqWithUrl:(NSString *)URLString
+                     urlTag:(long)urlTag
+                    success:(void (^)(id response))success
+                    failure:(void (^)(PRError *error))failure
+                     cancel:(void (^)(void))cancel;
 
 /**
- *  POST HTTP请求（ POST JSON）
+ *  POST 请求（ POST JSON）
  * 一律不加公共上行的请求
  */
-- (long)baidu_PostRequestWithUrl:(NSString *)URLString
-                          urlTag:(long)urlTag
-                      parameters:(id)parameters
-                         success:(void (^)(NSURLSessionDataTask *task, id response))success
-                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                          cancel:(void (^)(void))cancel;
+- (long)baidu_PostReqWithUrl:(NSString *)URLString
+                      urlTag:(long)urlTag
+                  parameters:(id)parameters
+                     success:(void (^)(id response))success
+                     failure:(void (^)(PRError *error))failure
+                      cancel:(void (^)(void))cancel;
 
 
 /**
  *  HTTP请求（ Patch JSON）
  * 一律不加公共上行的请求
  */
-- (long)baidu_PatchRequestWithUrl:(NSString *)URLString
-                          urlTag:(long)urlTag
-                      parameters:(id)parameters
-                         success:(void (^)(NSURLSessionDataTask *task, id response))success
-                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                           cancel:(void (^)(void))cancel;
+- (long)baidu_PatchReqWithUrl:(NSString *)URLString
+                       urlTag:(long)urlTag
+                   parameters:(id)parameters
+                      success:(void (^)(id response))success
+                      failure:(void (^)(PRError *error))failure
+                       cancel:(void (^)(void))cancel;
 
 
 /**
  *  HTTP请求（ Delete JSON）
  * 一律不加公共上行的请求
  */
-- (long)baidu_DeleteRequestWithUrl:(NSString *)URLString
-                          urlTag:(long)urlTag
-                      parameters:(id)parameters
-                         success:(void (^)(NSURLSessionDataTask *task, id response))success
-                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                             cancel:(void (^)(void))cancel;
+- (long)baidu_DeleteReqWithUrl:(NSString *)URLString
+                        urlTag:(long)urlTag
+                    parameters:(id)parameters
+                       success:(void (^)(id response))success
+                       failure:(void (^)(PRError *error))failure
+                        cancel:(void (^)(void))cancel;
 
 /**
  *  HTTP请求（ Head JSON）
  * 一律不加公共上行的请求
  */
-- (long)baidu_HeadRequestWithUrl:(NSString *)URLString
-                            urlTag:(long)urlTag
-                        parameters:(id)parameters
-                           success:(void (^)(NSURLSessionDataTask *task, id response))success
-                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                          cancel:(void (^)(void))cancel;
+- (long)baidu_HeadReqWithUrl:(NSString *)URLString
+                      urlTag:(long)urlTag
+                  parameters:(id)parameters
+                     success:(void (^)(id response))success
+                     failure:(void (^)(PRError *error))failure
+                      cancel:(void (^)(void))cancel;
 
 /**
- WBS 百度文件上传（无公共上行）
+ WBS 文件上传（无公共上行）
  */
-- (void)baidu_UploadRequestWithUrl:(NSString *)URLString
-                        parameters:(id)parameters
-                            urlTag:(long)urlTag
-                   appendBodyBlock:(void (^)(id <AFMultipartFormData> formData))block
-                          progress:(void (^)(NSProgress * upProgress))uploadProgress
-                           success:(void (^)(NSURLSessionDataTask *task, id response))success
-                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                            cancel:(void (^)(void))cancel;
+- (long)baidu_UploadReqWithUrl:(NSString *)URLString
+                    parameters:(id)parameters
+                        urlTag:(long)urlTag
+               appendBodyBlock:(void (^)(id <AFMultipartFormData> formData))block
+                      progress:(void (^)(NSProgress * upProgress))uploadProgress
+                       success:(void (^)(id response))success
+                       failure:(void (^)(PRError *error))failure
+                        cancel:(void (^)(void))cancel;
 
 
 /**
  WBS 文件下载（无公共上行）
  */
-- (void)baidu_downloadRequestWithUrl:(NSString *)URLString
-                          parameters:(id)parameters
-                              urlTag:(long)urlTag
-                            progress:(void (^)(NSProgress * downProgress))downloadProgress
-                             success:(void (^)(NSURLSessionDataTask *task, id response))success
-                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
-                              cancel:(void (^)(void))cancel;
+- (long)baidu_downloadReqWithUrl:(NSString *)URLString
+                      parameters:(id)parameters
+                          urlTag:(long)urlTag
+                        progress:(void (^)(NSProgress * downProgress))downloadProgress
+                         success:(void (^)(id response))success
+                         failure:(void (^)(PRError *error))failure
+                          cancel:(void (^)(void))cancel;
 
 
 /**
- *  HTTP请求（GET、POST、DELETE、PUT）
+ *  HTTP请求（GET、POST、DELETE、PUT、PATCH）
  * 一律不加公共上行的请求
  *  @param URLString    网址
  *  @param urlTag       标记
@@ -163,8 +134,8 @@ typedef NS_ENUM(NSInteger, PRResponseType){
                             method:(PRRequestType)method
                        reponseType:(PRResponseType)reponseType
                         parameters:(id)parameters
-                           success:(void (^)(NSURLSessionDataTask *task, id response))success
-                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+                           success:(void (^)(id response))success
+                           failure:(void (^)(PRError *error))failure
                             cancel:(void (^)(void))cancel;
 
 

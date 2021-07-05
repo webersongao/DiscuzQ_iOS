@@ -1,17 +1,18 @@
 //
 //  DZRootTabBarController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/7/12.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
 
 #import "DZRootTabBarController.h"
 #import "DZBaseNavigationController.h"
-#import "DZNotificationController.h"
-#import "DZRootPostTabController.h"
+#import "DZMsgNotiViewController.h"
+#import "DZRootPublishController.h"
+#import "DZHomeViewController.h"
 #import "DZDiscoverController.h"
-
 #import "DZRootTabBar.h"
 #import "DZMediaViewController.h"
 #import "DZUserViewController.h"
@@ -70,8 +71,8 @@
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *baseNaviVC = (UINavigationController *)viewController;
         UIViewController *baseVC = baseNaviVC.topViewController;
-        if ([baseVC isKindOfClass:[DZRootPostTabController class]]) {
-            if (![DZLoginModule isLogged]) {
+        if ([baseVC isKindOfClass:[DZRootPublishController class]]) {
+            if (![DZMobileCtrl sharedCtrl].isLogin) {
                 [[DZMobileCtrl sharedCtrl] PresentLoginController];
                 return NO;
             }
@@ -90,20 +91,23 @@
     
     DZHomeTestViewController *testVC = [[DZHomeTestViewController alloc] initWithNibName:@"DZHomeTest" bundle:nil];
     
+    DZHomeViewController *HomeVC = [[DZHomeViewController alloc] init];
+    DZMediaViewController *MediaVC = [[DZMediaViewController alloc] init];
     DZDiscoverController *DisVC = [[DZDiscoverController alloc] init];
-    DZMediaViewController *HomeVC = [[DZMediaViewController alloc] init];
-    DZNotificationController *MsgVC = [[DZNotificationController alloc] init];
+    DZMsgNotiViewController *MsgVC = [[DZMsgNotiViewController alloc] init];
     DZUserViewController *UserVC = [[DZUserViewController alloc] init];
     
 //    [self addChildVc:testVC title:@"霸道总裁" image:@"tabbar_homem" selectedImage:@"tabbar_homes"];
 
-    [self addChildVc:DisVC title:@"首页" image:DZQ_icon selectedImage:DZQ_icon];
+    [self addChildVc:HomeVC title:@"首页" image:DZQ_Tab_icon selectedImage:DZQ_Tab_icon];
 
-//    [self addChildVc:HomeVC title:@"短视频" image:DZQ_icon selectedImage:DZQ_icon];
+    [self addChildVc:DisVC title:@"广场" image:DZQ_Tab_icon selectedImage:DZQ_Tab_icon];
+    
+    [self addChildVc:MediaVC title:@"多媒体" image:DZQ_Tab_icon selectedImage:DZQ_Tab_icon];
+    
+    [self addChildVc:MsgVC title:@"消息" image:DZQ_Tab_icon selectedImage:DZQ_Tab_icon];
 
-    [self addChildVc:MsgVC title:@"消息" image:DZQ_icon selectedImage:DZQ_icon];
-
-    [self addChildVc:UserVC title:@"我的" image:DZQ_icon selectedImage:DZQ_icon];
+    [self addChildVc:UserVC title:@"我的" image:DZQ_Tab_icon selectedImage:DZQ_Tab_icon];
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage {
@@ -113,7 +117,7 @@
     // 设置子控制器的图片
     childVc.tabBarItem.title = title;
     childVc.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     // 设置文字的样式
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = KTitle_Color;

@@ -1,7 +1,8 @@
 //
 //  DZHtmlItem.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/27.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -28,6 +29,7 @@
     
     CGSize textSize = [DZHtmlUtils getAttributedTextHeightHtml:item.screen_html withMaxRect:maxRect];
     
+    item.lineHeight = [DZHtmlUtils singleHtmlLineHeight];
     item.frame = CGRectMake(maxRect.origin.x, maxRect.origin.y, maxRect.size.width, textSize.height);
     
     item.attributedString = [DZHtmlUtils getAttributedStringWithHtml:item.screen_html];
@@ -89,7 +91,7 @@
     NSError* error = nil;
     htmlString = checkNull(htmlString);
     CGFloat scaleWH = 100;
-    NSString *lcoalHost = [NSURL URLWithString:DZQ_BASEURL].host ?: @"iOSSDK_DomainError.com";
+    NSString *lcoalHost = [NSURL URLWithString:[DZMobileCtrl siteRootDomain]].host ?: @"iOSSDK_DomainError.com";
     NSString *styleCssString = [NSString stringWithFormat:@"$1<img src=\"$2/%@/$3\" style=\"width:%.fpx; height:%.fpx;\" alt=\"$4",lcoalHost,scaleWH,scaleWH];
         
     NSString *regexString = [NSString stringWithFormat:@"(.*?)<img src=\\\"(.*?)/%@/(.*?)\\\" alt=\\\"(.*?)",lcoalHost];

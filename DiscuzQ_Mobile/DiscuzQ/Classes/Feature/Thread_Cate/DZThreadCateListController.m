@@ -1,7 +1,8 @@
 //
 //  DZThreadCateListController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2017/5/19.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -23,8 +24,8 @@
     [super viewDidLoad];
     
     [self dl_addNotification];
+    self.title = self.dataCate.name;
     [self config_threadCateListCtrl];
-    self.title = self.dataCate.attributes.name;
     [self.contentView first_updateSuperCateData];
 }
 
@@ -38,7 +39,7 @@
 
 -(void)fastPostAction:(UIButton *)button{
     
-    [[DZMobileCtrl sharedCtrl] PushToPostTabViewController];
+    [[DZMobileCtrl sharedCtrl] PushToThreadPublishController];
 }
 
 - (void)loginedRefresh {

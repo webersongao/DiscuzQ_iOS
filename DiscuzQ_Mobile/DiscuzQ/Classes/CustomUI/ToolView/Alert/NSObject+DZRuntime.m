@@ -1,7 +1,8 @@
 //
 //  NSObject+DZRuntime.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/01/19.
 //  Copyright © 2020年 WebersonGao. All rights reserved.
 //
@@ -120,7 +121,7 @@ const void *ba_methodListKey = "ba_methodListKey";
         const char *name_s =sel_getName(method_getName(method));
         int arguments = method_getNumberOfArguments(method);
         const char* encoding = method_getTypeEncoding(method);
-        NSLog(@"方法名：%@,参数个数：%d,编码方式：%@",[NSString stringWithUTF8String:name_s],
+        KSLog(@"方法名：%@,参数个数：%d,编码方式：%@",[NSString stringWithUTF8String:name_s],
               arguments,
               [NSString stringWithUTF8String:encoding]);
         

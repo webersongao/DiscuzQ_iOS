@@ -1,7 +1,8 @@
 //
 //  DZThreadDetailController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/23.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -15,6 +16,7 @@
 
 @property (nonatomic, copy) NSString *thread_id;
 @property (nonatomic, assign) NSInteger postPage;
+@property (nonatomic, strong) DZQDataThread *dataThread;  //!< 属性注释
 @property (nonatomic, strong) DZBottomToolBar *bottomBar;  //!< 属性注释
 @property (nonatomic, strong) DZThreadDetailListView *detailView;  //!< 属性注释
 @property (nonatomic, strong) NSMutableArray *postDataArray;  //!< 评论数据
@@ -46,13 +48,11 @@
     [self.bottomBar showBottomToolBar:YES];
 }
 
-
 -(void)config_DetailController{
     
     [self.view addSubview:self.detailView];
     [self.view addSubview:self.bottomBar];
     self.postDataArray = [NSMutableArray array];
-    [self.dz_NavigationBar setNaviLogo:nil];
     [self configNaviBar:@"dz_list_more" type:NaviItemImage Direction:NaviDirectionRight];
     self.dz_NavigationBar.rightButton.alpha = 0;
     
@@ -63,11 +63,13 @@
     }];
     
     self.bottomBar.leftMainBlock = ^(UIButton *button) {
-        [DZThreadHelper thread_CommentCellAction:nil];
+        [DZThreadHelper thread_CommentCellAction:weakSelf.dataThread.attributes];
     };
     
     self.bottomBar.rightBlock = ^(UIButton *button) {
-        [DZThreadHelper thread_LikeCellAction:nil];
+        [DZThreadHelper thread_LikeCellAction:weakSelf.dataThread.relationships.firstPost.attributes block:^(BOOL boolState) {
+            button.selected = boolState;
+        }];
     };
     
 }
@@ -81,11 +83,12 @@
     [[DZNetCenter center] dzx_threadOneWithThreadId:self.thread_id completion:^(DZQDataThread * _Nonnull threadData, BOOL success) {
         [[DZMobileCtrl sharedCtrl] hideHubView];
         if (success) {
+            [weakSelf updateDetailHeaderView:threadData];
             [weakSelf loadThreadPostWithPage:weakSelf.postPage completion:^(NSArray<DZQDataPost *> *postArr, BOOL hasMore) {
-                [weakSelf updateDetailView:threadData post:postArr more:hasMore];
+                [weakSelf updateDetailPostList:postArr more:hasMore];
             }];
         }else{
-            [DZMobileCtrl showAlertError:@"数据异常,请稍后重试"];
+            [DZMobileCtrl showAlertError:KError_DataNil];
         }
     }];
 }
@@ -97,21 +100,22 @@
         if (weakSelf.postPage <= 1 && completion) {
             completion(postArr,hasMore);
         }else{
-            [weakSelf updateDetailView:nil post:postArr more:hasMore];
+            [weakSelf updateDetailPostList:postArr more:hasMore];
         }
     }];
 }
 
--(void)updateDetailView:(DZQDataThread *)dataModel post:(NSArray<DZQDataPost *> *)postArray more:(BOOL)hasMore{
+-(void)updateDetailHeaderView:(DZQDataThread *)dataModel {
+    self.dataThread = dataModel;
+    [self.detailView updateThreadHeadDetail:dataModel];
+    [self.detailView updateThreadPostDetail:nil];
+    [self.bottomBar updateDetailBottomBar:dataModel.relationships.firstPost];
+    self.title = dataModel.attributes.title.length ? dataModel.attributes.title : @"详情";
+}
+
+-(void)updateDetailPostList:(NSArray<DZQDataPost *> *)postArray more:(BOOL)hasMore{
     
-    if (self.postPage <= 1) {
-        if (dataModel) {
-            [self.detailView updateThreadHeadDetail:dataModel];
-            self.title = dataModel.attributes.title.length ? dataModel.attributes.title : @"详情";
-        }else{
-            postArray = nil;
-        }
-    }
+    
     self.detailView.mj_footer.hidden = NO;
     if (hasMore) {
         [self.detailView.mj_footer endRefreshing];
@@ -133,7 +137,7 @@
 
 -(void)rightBarBtnClick:(UIButton *)button{
     
-    [DZThreadHelper thread_MoreCellAction:nil sender:button];
+    [DZThreadHelper thread_MoreCellAction:self.dataThread sender:button];
     
 }
 #pragma mark detailListViewDelgate
@@ -143,7 +147,7 @@
     rightButton.alpha = offsetY / kToolBarHeight;
 }
 
-- (void)detaiVideoView:(DZVideoPicView *)videoView videoDidPlayClick:(DZQDataVideo *)dataVideo{
+- (void)detaiVideoView:(DZMediaPlayView *)videoView videoDidPlayClick:(DZQDataVideo *)dataVideo{
     if (self.detailVCPlayCallback) {
         self.detailVCPlayCallback(videoView);
     }
@@ -151,7 +155,7 @@
 
 -(DZThreadDetailListView *)detailView{
     if (!_detailView) {
-        _detailView = [[DZThreadDetailListView alloc] initWithFrame:KView_OutNavi_Bounds style:UITableViewStyleGrouped];
+        _detailView = [[DZThreadDetailListView alloc] initWithFrame:KView_OutNaviTab_Bounds];
         _detailView.detailDelegate = self;
     }
     return _detailView;

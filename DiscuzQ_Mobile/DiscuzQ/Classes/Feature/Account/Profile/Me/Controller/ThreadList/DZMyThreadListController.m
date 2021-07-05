@@ -1,13 +1,14 @@
 //
 //  MyTopicViewController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/5/5.
 //  Copyright (c) 2015年 WebersonGao. All rights reserved.
 //
 
 #import "DZMyThreadListController.h"
-#import "DZDiscoverListView.h"
+#import "DZHomeListView.h"
 
 @interface DZMyThreadListController ()
 
@@ -26,13 +27,13 @@
         self.page = 1;
         self.user_id = checkNull(user_id);
     }
-    return self.user_id.length ? self : nil;
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"主题列表";
-    [self configDiscoverCateCtrlAction];
+    [self configHomeCateCtrlAction];
     [self.view addSubview:self.listView];
     self.view.backgroundColor = KDebug_Color;
 }
@@ -43,7 +44,7 @@
 }
 
 
--(void)configDiscoverCateCtrlAction{
+-(void)configHomeCateCtrlAction{
     
     KWEAKSELF
     self.listView.mj_footer = [DZRefreshFooter footerWithRefreshingBlock:^{
@@ -87,15 +88,15 @@
         KSLog(@"WBS 该列表暂无数据");
     }
     [self.threadArray addObjectsFromArray:threadAray];
-    [self.listView updateDiscoverListView:self.threadArray];
+    [self.listView updateHomeListView:self.threadArray];
 }
 
 
 
--(DZDiscoverListView *)listView{
+-(DZHomeListView *)listView{
     if (!_listView) {
         _threadArray = [NSMutableArray array];
-        _listView = [[DZDiscoverListView alloc] initWithListFrame:KView_OutNavi_Bounds];
+        _listView = [[DZHomeListView alloc] initWithListFrame:KView_OutNavi_Bounds];
     }
     return _listView;
 }

@@ -225,13 +225,13 @@
     NSString *jsonPath = [path stringByAppendingPathComponent:@"info.json"];
     NSData *json = [NSData dataWithContentsOfFile:jsonPath];
     if (json.length) {
-        group = [WBEmoticonGroup yy_modelWithJSON:json];
+        group = [WBEmoticonGroup DZQ_ModelWithJSON:json];
     }
     if (!group) {
         NSString *plistPath = [path stringByAppendingPathComponent:@"Eminfo.plist"];
         NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:plistPath];
         if (plist.count) {
-            group = [WBEmoticonGroup yy_modelWithJSON:plist];
+            group = [WBEmoticonGroup DZQ_ModelWithJSON:plist];
         }
     }
     for (WBEmoticon *emoticon in group.emoticons) {
@@ -260,7 +260,7 @@
         NSString *emoticonPlistPath = [emoticonBundlePath stringByAppendingPathComponent:@"emoticons.plist"];
         NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:emoticonPlistPath];
         NSArray *packages = plist[@"packages"];
-        groups = (NSMutableArray *)[NSArray yy_modelArrayWithClass:[WBEmoticonGroup class] json:packages];
+        groups = (NSMutableArray *)[NSArray DZQ_ModelArrayWithClass:[WBEmoticonGroup class] json:packages];
         
         NSMutableDictionary *groupDic = [NSMutableDictionary new];
         for (int i = 0, max = (int)groups.count; i < max; i++) {
@@ -274,7 +274,7 @@
             NSString *path = [emoticonBundlePath stringByAppendingPathComponent:group.groupID];
             NSString *infoPlistPath = [path stringByAppendingPathComponent:@"Eminfo.plist"];
             NSDictionary *info = [NSDictionary dictionaryWithContentsOfFile:infoPlistPath];
-            [group yy_modelSetWithDictionary:info];
+            [group DZQ_ModelSetWithDictionary:info];
             if (group.emoticons.count == 0) {
                 i--;
                 max--;
@@ -282,21 +282,6 @@
             }
             groupDic[group.groupID] = group;
         }
-        
-//        NSArray<NSString *> *additionals = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[emoticonBundlePath stringByAppendingPathComponent:@"additional"] error:nil];
-//        for (NSString *path in additionals) {
-//            WBEmoticonGroup *group = groupDic[path];
-//            if (!group) continue;
-//            NSString *infoJSONPath = [[[emoticonBundlePath stringByAppendingPathComponent:@"additional"] stringByAppendingPathComponent:path] stringByAppendingPathComponent:@"info.json"];
-//            NSData *infoJSON = [NSData dataWithContentsOfFile:infoJSONPath];
-//            WBEmoticonGroup *addGroup = [WBEmoticonGroup yy_modelWithJSON:infoJSON];
-//            if (addGroup.emoticons.count) {
-//                for (WBEmoticon *emoticon in addGroup.emoticons) {
-//                    emoticon.group = group;
-//                }
-//                [((NSMutableArray *)group.emoticons) insertObjects:addGroup.emoticons atIndex:0];
-//            }
-//        }
     });
     return groups;
 }
@@ -312,7 +297,7 @@
  ^http?://[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(\/[\w-. \/\?%@&+=\u4e00-\u9fa5]*)?$
  
  链接 (例如 www.baidu.com/s?wd=test ):
- ^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+([-A-Z0-9a-z_\$\.\+!\*\(\)/,:;@&=\?~#%]*)*
+ [a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+([-A-Z0-9a-z_\$\.\+!\*\(\)/,:;@&=\?~#%]*)*
  
  邮箱 (例如 sjobs@apple.com ):
  \b([a-zA-Z0-9%_.+\-]{1,32})@([a-zA-Z0-9.\-]+?\.[a-zA-Z]{2,6})\b
@@ -320,7 +305,7 @@
  ([a-zA-Z0-9%_.+\-]+)@([a-zA-Z0-9.\-]+?\.[a-zA-Z]{2,6})
  
  电话号码 (例如 18612345678):
- ^[1-9][0-9]{4,11}$
+ [1-9][0-9]{4,11}
  
  At (例如 @王思聪 ):
  @([\x{4e00}-\x{9fa5}A-Za-z0-9_\-]+)

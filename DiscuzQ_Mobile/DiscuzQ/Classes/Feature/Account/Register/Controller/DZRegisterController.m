@@ -1,7 +1,8 @@
 //
 //  DZRegisterController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/1/11.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -23,7 +24,7 @@
     _registerView.delegate = self;
     [self.view addSubview:self.registerView];
     [self dz_bringNavigationBarToFront];
-    [_registerView.registerButton addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [_registerView.actionButton addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     KWEAKSELF;
     self.registerView.usertermsView.readTermBlock = ^ {
@@ -43,9 +44,9 @@
         return;
     }
     
-    NSString *username = self.registerView.usernameView.inputField.text;
-    NSString *password = self.registerView.passwordView.inputField.text;
-    NSString *repass = self.registerView.repassView.inputField.text;
+    NSString *username = self.registerView.firstField.inputString;
+    NSString *password = self.registerView.secendField.inputString;
+    NSString *repass = self.registerView.thirdField.inputString;
     
     if (![DataCheck isValidString:username]) {
         [MBProgressHUD showInfo:@"请输入用户名"];
@@ -69,9 +70,9 @@
 }
 
 - (void)postRegistData {
-    NSString *username = _registerView.usernameView.inputField.text;
-    NSString *password = _registerView.passwordView.inputField.text;
-    NSString *repass = _registerView.repassView.inputField.text;
+    NSString *username = _registerView.firstField.inputString;
+    NSString *password = _registerView.secendField.inputString;
+    NSString *repass = _registerView.thirdField.inputString;
     
     
     if (![repass isEqualToString:password]) {
@@ -82,7 +83,7 @@
     KWEAKSELF
     [self.HUD showLoadingMessag:@"注册中" toView:self.view];
     
-    [[DZNetCenter center] dzx_registerWithName:username password:password completion:^(DZQAuthModel *varModel, BOOL success) {
+    [[DZNetCenter center] dzx_registerWithName:username password:password completion:^(DZQAuthV1 *varModel, BOOL success) {
         [weakSelf.HUD hideAnimated:YES];
         if (!success) {
             [DZMobileCtrl showAlertError:@"注册失败"];

@@ -1,24 +1,19 @@
 //
 //  DZUserRegisterView.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/1/11.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "DZTermsLabel.h"
+#import "DZAccountScrollView.h"
 
-@class DZTextField;
+@interface DZUserRegisterView : DZAccountScrollView
 
-@interface DZUserRegisterView : UIScrollView <UITextFieldDelegate>
+@property (nonatomic, strong) DZTermsLabel *usertermsView;  //!< 属性注释
 
-@property (nonatomic, strong) DZTextField *usernameView;
-@property (nonatomic, strong) DZTextField *passwordView;
-@property (nonatomic, strong) DZTextField *repassView;
-@property (nonatomic, strong) UILabel *thridAuthTipLabl;
 
-@property (nonatomic, strong) UIButton *registerButton;
-@property (nonatomic, strong) DZTermsLabel *usertermsView;
 
 @end

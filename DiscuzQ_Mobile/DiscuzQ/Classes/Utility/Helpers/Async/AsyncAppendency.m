@@ -1,7 +1,8 @@
 //
 //  AsyncAppendency.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2017/11/19.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -13,7 +14,7 @@ dispatch_group_t asyGroup;
 
 @implementation AsyncAppendency
 
-+ (instancetype)shareInstance {
++ (instancetype)Shared {
     static AsyncAppendency *asyAppend = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

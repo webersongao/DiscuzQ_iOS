@@ -1,7 +1,8 @@
 //
 //  DZMyWalletViewController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/17.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -13,7 +14,7 @@
 
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) DZWalletCashListView *listView;  //!< 属性注释
-@property (nonatomic, strong,readonly) DZQDataCate *cateModel;  //!< 属性注释
+@property (nonatomic, strong,readonly) DZThreadCateM *cateModel;  //!< 属性注释
 @property (nonatomic, strong) NSMutableArray<DZQDataCashLog *> *cashArray;  //!< 属性注释
 
 @end
@@ -23,13 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的钱包";
-    [self configDiscoverCateCtrlAction];
+    [self configHomeCateCtrlAction];
     [self.view addSubview:self.listView];
     [self first_loadMyCashLogViewData];
     [self downLoadUserWalletInfoData];
 }
 
--(void)configDiscoverCateCtrlAction{
+-(void)configHomeCateCtrlAction{
     
     KWEAKSELF
     self.listView.mj_footer = [DZRefreshFooter footerWithRefreshingBlock:^{
@@ -45,7 +46,6 @@
 }
 
 
-#pragma mark - 数据下载
 #pragma mark - 数据下载
 - (void)downLoadUserWalletInfoData {
     

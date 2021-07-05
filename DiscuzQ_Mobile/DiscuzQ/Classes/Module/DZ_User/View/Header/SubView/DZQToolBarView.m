@@ -1,7 +1,8 @@
 //
 //  DZQToolBarView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/10.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -35,11 +36,11 @@
 }
 
 // 更新数据
--(void)updateFans:(NSInteger)fans follow:(NSInteger)follow topic:(NSInteger)topic{
+-(void)updateFans:(NSInteger)fans follow:(NSInteger)follow thread:(NSInteger)thread{
     
     [self.fansButton setTitle:checkTwoStr(@"粉丝数: ", checkInteger(fans)) forState:UIControlStateNormal];
     [self.followButton setTitle:checkTwoStr(@"关注数: ", checkInteger(follow)) forState:UIControlStateNormal];
-    [self.topicButton setTitle:checkTwoStr(@"主题数: ", checkInteger(topic)) forState:UIControlStateNormal];
+    [self.topicButton setTitle:checkTwoStr(@"主题数: ", checkInteger(thread)) forState:UIControlStateNormal];
 }
 
 -(void)configAction:(id)target fans:(SEL)fction follow:(SEL)followction topic:(SEL)topiction{
@@ -53,21 +54,21 @@
 
 -(UIButton *)fansButton{
     if (!_fansButton) {
-        _fansButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, self.width/3.0, self.height) titleStr:@"粉丝数" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
+        _fansButton = [UIButton ButtonTextWithFrame:CGRectMake(0, 0, self.width/3.0, self.height) titleStr:@"粉丝" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
     }
     return _fansButton;
 }
 
 -(UIButton *)followButton{
     if (!_followButton) {
-        _followButton = [UIButton ButtonTextWithFrame:CGRectMake(self.width/3.0, 0, self.width/3.0, self.height) titleStr:@"关注数" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
+        _followButton = [UIButton ButtonTextWithFrame:CGRectMake(self.width/3.0, 0, self.width/3.0, self.height) titleStr:@"关注" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
     }
     return _followButton;
 }
 
 -(UIButton *)topicButton{
     if (!_topicButton) {
-        _topicButton = [UIButton ButtonTextWithFrame:CGRectMake((self.width/3.0)*2, 0, self.width/3.0, self.height) titleStr:@"主题数" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
+        _topicButton = [UIButton ButtonTextWithFrame:CGRectMake((self.width/3.0)*2, 0, self.width/3.0, self.height) titleStr:@"主题" titleColor:KBlack_Color titleTouColor:KBlack_Color font:KFont(14) Radius:2.f Target:self action:nil];
     }
     return _topicButton;
 }

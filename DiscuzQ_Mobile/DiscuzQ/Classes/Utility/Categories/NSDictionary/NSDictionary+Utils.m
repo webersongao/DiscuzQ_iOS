@@ -59,6 +59,8 @@
     if([result isKindOfClass:[NSString class]])
     {
         return result;
+    }else if ([result isKindOfClass:[NSObject class]]){
+        return [NSString stringWithFormat:@"%@",result];
     }else {
         return @"";
     }
@@ -135,7 +137,6 @@
 
 +(NSDictionary *) dictionaryWithData:(NSData *) data
 {
-    
     NSError *resDictionaryError = nil;
     NSDictionary *resDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&resDictionaryError];
     if (resDictionaryError) {
@@ -164,7 +165,7 @@
     
     if (!jsonData) {
         
-//        NSLog(@"%@",error);
+//        KSLog(@"%@",error);
 
     }else{
         

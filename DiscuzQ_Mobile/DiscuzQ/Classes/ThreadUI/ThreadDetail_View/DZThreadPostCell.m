@@ -1,17 +1,18 @@
 //
 //  DZThreadPostCell.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/20.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
 
 #import "DZThreadPostCell.h"
-#import "DZPostCommentView.h"
+#import "DZPostViewContiner.h"
 
 @interface DZThreadPostCell ()
 
-@property (nonatomic, strong) DZPostCommentView *post_Content;  //!< 属性注释
+@property (nonatomic, strong) DZPostViewContiner *post_Content;  //!< 属性注释
 
 @end
 
@@ -37,7 +38,7 @@
     
     DZDPostCellStyle *postStyle = (DZDPostCellStyle *)dataPost.styleModel;
     
-    [self.post_Content updatePostComment:dataPost style:postStyle];
+    [self.post_Content updatePostContiner:dataPost style:postStyle];
     
 }
 
@@ -48,9 +49,9 @@
 }
 
 
--(DZPostCommentView *)post_Content{
+-(DZPostViewContiner *)post_Content{
     if (!_post_Content) {
-        _post_Content = [[DZPostCommentView alloc] initWithFrame:CGRectZero];
+        _post_Content = [[DZPostViewContiner alloc] initWithFrame:CGRectZero];
     }
     return _post_Content;
 }

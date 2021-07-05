@@ -1,7 +1,8 @@
 //
 //  DZUsertermsController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/3/8.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //  用户协议 服务条款
@@ -46,6 +47,7 @@
         _contentLabel.numberOfLines = 0;
         _contentLabel.font = KFont(14);
         NSString *fileName = DZ_bbs_rule;
+        _contentLabel.textColor = KContent_Color;
         NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
         _contentLabel.text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     }

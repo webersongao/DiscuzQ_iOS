@@ -1,12 +1,13 @@
 //
 //  DZShareCenter.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/9/27.
 //
 
 #import <Foundation/Foundation.h>
-#import "DZSDKShareCenter.h"
+#import "DZSDKCenter.h"
 #import "DZShareModel.h"
 
 typedef NS_ENUM(NSInteger, DQShareType)
@@ -26,7 +27,10 @@ typedef NS_ENUM(NSInteger, DQShareType)
  直接掉起 分享
  */
 +(void)shareActionWithModel:(DZShareModel *)model;
-
+/**
+ 直接掉起 分享 帖子主题
+ */
++(void)shareActionWithThreadModel:(DZQDataThread *)dataThread;
 
 /**
  (内部私用) 分享点击方法
@@ -34,7 +38,7 @@ typedef NS_ENUM(NSInteger, DQShareType)
  @param model 原始数据
  @param shareType 分享渠道
  */
-+ (void)shareButtonActionWithType:(DQShareType)shareType model:(DZShareModel *)model;
++ (void)rightButtonActionWithType:(DQShareType)shareType model:(DZShareModel *)model;
 
 
 

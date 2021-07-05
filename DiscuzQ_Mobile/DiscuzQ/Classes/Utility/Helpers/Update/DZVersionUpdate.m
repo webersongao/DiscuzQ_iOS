@@ -1,7 +1,8 @@
 //
 //  DZVersionUpdate.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/11/29.
 //  Copyright © 2018年 WebersonGao. All rights reserved.
 //
@@ -11,8 +12,7 @@
 @implementation DZVersionUpdate
 
 + (NSString *)timePath {
-    NSString *homePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *timePath = [homePath stringByAppendingString:@"/updateTime.plist"];
+    NSString *timePath = [[DZFileManager Shared].dz_DocumentPath stringByAppendingString:@"/updateTime.plist"];
     return timePath;
 }
 

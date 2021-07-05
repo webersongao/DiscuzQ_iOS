@@ -1,13 +1,13 @@
 //
 //  DZVideoSquareView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/22.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
 
 #import "DZVideoSquareView.h"
-#import "DZVideoSquareCell.h"
 
 @interface DZVideoSquareView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -18,19 +18,19 @@
 - (instancetype)initWithSquareFrame:(CGRect)frame{
     self = [super initWithSquareFrame:frame];
     if (self) {
-        [self configDiscoverSquareView];
+        [self configHomeSquareView];
     }
     return self;
 }
 
 
--(void)configDiscoverSquareView{
+-(void)configHomeSquareView{
     
     self.delegate = self;
     self.dataSource = self;
 }
 
--(void)updateDiscover:(NSArray *)dataArray{
+-(void)updateHome:(NSArray *)dataArray{
     
     
 }

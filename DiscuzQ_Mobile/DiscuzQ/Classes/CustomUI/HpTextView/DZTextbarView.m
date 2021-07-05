@@ -1,17 +1,14 @@
 //
 //  DZTextbarView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/11/23.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
 
 #import "DZTextbarView.h"
 #import "WBStatusComposeTextParser.h"
-#import "WBStatusLayout.h"
-#import <ShareSDK/ShareSDK.h>
-#import <ShareSDKConnector/ShareSDKConnector.h>
-#import <ShareSDKExtension/ShareSDK+Extension.h>
 
 @interface DZTextbarView() <YYTextViewDelegate>
 @property (nonatomic, strong) UIImageView *backgroundView;
@@ -99,11 +96,11 @@ static CGFloat btn_width = 24.0;
     [self.toolContainView addSubview:self.shareBtn];
     
     
-    if (![ShareSDK isClientInstalled:SSDKPlatformTypeWechat] && ![ShareSDK isClientInstalled:SSDKPlatformTypeQQ]) {
+//    if (![ShareSDK isClientInstalled:SSDKPlatformTypeWechat] && ![ShareSDK isClientInstalled:SSDKPlatformTypeQQ]) {
         [self.shareBtn setHidden:YES];
         self.praiseBtn.frame = CGRectMake(30, 6, 22, 22);
         self.collectionBtn.frame = CGRectMake(CGRectGetMaxX(self.praiseBtn.frame) + mm, CGRectGetMinY(self.praiseBtn.frame), CGRectGetWidth(self.praiseBtn.frame), CGRectGetHeight(self.praiseBtn.frame));
-    }
+//    }
     
     // 唤醒的时候
     self.replyContainView = [[UIView alloc] initWithFrame:CGRectMake(0, 7, 100 + 5, CGRectGetHeight(self.textView.frame))];
@@ -253,7 +250,7 @@ static CGFloat btn_width = 24.0;
         _textView.returnKeyType = UIReturnKeyDefault; //just as an example
         _textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _textView.backgroundColor = KLightGray_Color;
+        _textView.backgroundColor = KContent_Color;
         _textView.layer.masksToBounds = YES;
         _textView.layer.cornerRadius = 17;
         

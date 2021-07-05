@@ -1,7 +1,8 @@
 //
 //  DZSearchHistoryController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/7/11.
 //  Copyright © 2018年 WebersonGao. All rights reserved.
 //
@@ -10,13 +11,13 @@
 #import "UIAlertController+Extension.h"
 #import "DZBaseTableViewCell.h"
 #import "UIButton+EnlargeEdge.h"
-
-#define KHistory_CachePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"DZQ_SearchHistories.plist"]
+#import "DZCacheHelper.h"
+#import "DZCacheHelper+UserPath.h"
 
 #define kPol_RandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
 
 @interface DZSearchHistoryController ()
-@property (nonatomic, copy) NSString *searchHistoryCachePath;
+@property (nonatomic, copy) NSString *historyCachePath;
 @property (nonatomic, strong) NSMutableArray *searchHistories;
 
 @property (nonatomic, strong) NSMutableArray *hotSearches;
@@ -32,7 +33,8 @@
 {
     self = [super init];
     if (self) {
-        self.searchHistoryCachePath = KHistory_CachePath;
+        [self.dz_NavigationBar removeFromSuperview];
+        self.historyCachePath = [DZCacheHelper Shared].Path_searchHistory;
     }
     return self;
 }
@@ -43,14 +45,14 @@
     self.view.frame = KView_OutNavi_Bounds;
     self.tableView.frame = self.view.bounds;
     self.tableView.backgroundColor = KWhite_Color;
-    self.hotSearches = @[@"discuz",@"App",@"微社区",@"小程序",@"定制开发",@"应用中心",@"插件"].mutableCopy;
+    self.hotSearches = @[@"迪斯卡斯",@"微社区",@"小程序",@"定制开发",@"应用中心",@"插件"].mutableCopy;
     self.hotSearchTags = [self addAndLayoutTagsWithTagsContentView:self.hotSearchView tagTexts:self.hotSearches].mutableCopy;
     [self setHotSearchStyle];
     [self.view addSubview:self.tableView];
     UILabel *tipLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 40)];
     tipLab.textAlignment = NSTextAlignmentCenter;
     tipLab.font = [UIFont systemFontOfSize:14];
-    tipLab.textColor = KLightGray_Color;
+    tipLab.textColor = KContent_Color;
     tipLab.text = @"清空历史";
     tipLab.userInteractionEnabled = YES;
     [tipLab addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clearSearchHistory)]];
@@ -101,7 +103,7 @@
     headView.height = contentView.height + 40;
     
     UILabel *tipLab = [[UILabel alloc] initWithFrame:CGRectMake(kMargin15, 10, KScreenWidth - 30, 20)];
-    tipLab.textColor = KLightGray_Color;
+    tipLab.textColor = KContent_Color;
     tipLab.font = [UIFont systemFontOfSize:14];
     tipLab.text = @"热门搜索";
     [headView addSubview:tipLab];
@@ -155,14 +157,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (cell == nil) {
         cell = [[DZBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.textLabel.textColor = KLightGray_Color;
+        cell.textLabel.textColor = KContent_Color;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.imageView.image = [UIImage imageNamed:@"search_history"];
     }
     UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     closeBtn.size = CGSizeMake(12, 12);
     [closeBtn setEnlargeEdge:14];
-    [closeBtn setImage:[UIImage imageNamed:@"dz_type_close"] forState:UIControlStateNormal];
+    [closeBtn setImage:[UIImage imageNamed:@"type_close_gray"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(deleteSearch:) forControlEvents:UIControlEventTouchUpInside];
     cell.accessoryView = closeBtn;
     cell.textLabel.text = self.searchHistories[indexPath.row];
@@ -174,7 +176,7 @@
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 30)];
         UILabel *tipLab = [[UILabel alloc] initWithFrame:CGRectMake(kMargin15, kMargin15, KScreenWidth - 30, 15)];
         tipLab.font = [UIFont systemFontOfSize:14];
-        tipLab.textColor = KLightGray_Color;
+        tipLab.textColor = KContent_Color;
         [headView addSubview:tipLab];
         tipLab.text = @"搜索历史";
         return headView;
@@ -205,7 +207,7 @@
 - (void)saveSearchHistory:(NSString *)searchText {
     [self.searchHistories removeObject:searchText];
     [self.searchHistories insertObject:searchText atIndex:0];
-    [NSKeyedArchiver archiveRootObject:self.searchHistories toFile:self.searchHistoryCachePath];
+    [NSKeyedArchiver archiveRootObject:self.searchHistories toFile:self.historyCachePath];
     [self.tableView reloadData];
     self.tableView.tableFooterView.hidden = NO;
 }
@@ -213,7 +215,7 @@
 - (void)deleteSearch:(UIButton *)sender {
     UITableViewCell *cell = (UITableViewCell *)sender.superview;
     [self.searchHistories removeObject:cell.textLabel.text];
-    [NSKeyedArchiver archiveRootObject:self.searchHistories toFile:self.searchHistoryCachePath];
+    [NSKeyedArchiver archiveRootObject:self.searchHistories toFile:self.historyCachePath];
     [self.tableView reloadData];
     if (![DataCheck isValidArray:self.searchHistories]) {
         self.tableView.tableFooterView.hidden = YES;
@@ -223,7 +225,7 @@
 - (void)clearSearchHistory {
     [UIAlertController alertTitle:@"提示" message:@"确定清空历史记录？" controller:self doneText:@"确定" cancelText:@"取消" doneHandle:^{
         [self.searchHistories removeAllObjects];
-        [NSKeyedArchiver archiveRootObject:self.searchHistories toFile:self.searchHistoryCachePath];
+        [NSKeyedArchiver archiveRootObject:self.searchHistories toFile:self.historyCachePath];
         [self.tableView reloadData];
         self.tableView.tableFooterView.hidden = YES;
     } cancelHandle:nil];
@@ -231,7 +233,7 @@
 
 - (NSMutableArray *)searchHistories {
     if (!_searchHistories) {
-        _searchHistories = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.searchHistoryCachePath]];
+        _searchHistories = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.historyCachePath]];
     }
     return _searchHistories;
 }

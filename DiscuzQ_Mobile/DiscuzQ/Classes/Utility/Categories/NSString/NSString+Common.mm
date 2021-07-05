@@ -132,7 +132,7 @@
     return [NSDictionary dictionaryWithDictionary:pairs];
 }
 
-+(NSString *)decodeString:(NSString*)strUrl
++ (NSString *)decodeString:(NSString*)strUrl
 {
     //使用系统的decode,有问题统一在这里改.
     strUrl = [strUrl stringByReplacingOccurrencesOfString:@"+" withString:@"%20"];
@@ -140,11 +140,15 @@
     return str;
 }
 
-+(NSString *)encodeString:(NSString*)strUrl
++ (NSString *)encodeString:(NSString*)strUrl
 {
     //使用系统的encode,有问题统一在这里改.
     NSString *str = [strUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return str;
+}
+
++ (NSString *)StringValueFromObject:(id)value{
+    return [value StringValue];
 }
 
 //删除所有的空格及换行
@@ -164,10 +168,10 @@
     }
     
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize],};
-
-CGSize textSize = [string boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 0) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
-
-return textSize.width;
+    
+    CGSize textSize = [string boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 0) options:NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
+    
+    return textSize.width;
 }
 
 /**
@@ -185,9 +189,9 @@ return textSize.width;
         height = 14.0;
     }
     NSDictionary *fontDict = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]};  //指定字号
-CGRect rect = [self boundingRectWithSize:CGSizeMake(0, height)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
-               NSStringDrawingUsesFontLeading attributes:fontDict context:nil];
-return rect.size.width;
+    CGRect rect = [self boundingRectWithSize:CGSizeMake(0, height)/*计算宽度时要确定高度*/ options:NSStringDrawingUsesLineFragmentOrigin |
+                   NSStringDrawingUsesFontLeading attributes:fontDict context:nil];
+    return rect.size.width;
 }
 
 + (CGFloat)cacaulteStringHeight:(NSString *)str fontSize:(int)fontSize width:(CGFloat)width lineSpacing:(CGFloat)lineSpacing
@@ -197,11 +201,11 @@ return rect.size.width;
         return 0;
     }
     NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]};
-
-CGSize textSize = [string boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
-
-textSize.height = ceil(textSize.height);
-return textSize.height;
+    
+    CGSize textSize = [string boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+    
+    textSize.height = ceil(textSize.height);
+    return textSize.height;
 }
 
 
@@ -321,6 +325,85 @@ return textSize.height;
                                 nil];
     return [self sizeWithAttributes:attributes];
 }
+
+
+//pragma mark-- 英文字母
++(BOOL)yingwenzimu:(NSString *)str{
+    NSString *regex = @"^[A-Za-z]+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:str];
+}
+
+//pragma mark-- 用户名
++(BOOL)yonghuming:(NSString *)str{
+    
+    NSString *regex = @"^[a-zA-Z]\\w{5,15}$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:str];
+}
+
+//pragma mark-- 手机号
++(BOOL)shoujihao:(NSString *)str{
+    
+    NSString *pattern = @"^1+[345789]+\\d{9}";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    return [predicate evaluateWithObject:str];
+}
+
+//pragma mark-- 验证码
++(BOOL)yanzhengma:(NSString *)str{
+    
+    NSString *regex =@"\\d{6}";
+    NSPredicate *mobileTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [mobileTest evaluateWithObject:str];
+}
+
+//pragma mark-- 密码
++(BOOL)mima:(NSString *)str{
+    
+    NSString *regex = @"^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:str];
+}
+
+//pragma mark-- 身份证号
++(BOOL)shenfenzheng:(NSString *)str{
+    
+    NSString *regex = @"\\d{14}[[0-9],0-9xX]";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:str];
+}
+
+//pragma mark-- 邮箱
++(BOOL)youxiang:(NSString *)str{
+    
+    NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:str];
+}
+
+
+/// 是否是首页地址 http://www.baidu.com
+-(BOOL)isSiteHomeUrl{
+    NSString *regex = @"^(?=^.{3,255}$)(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:self];
+}
+
+/// 是否是域名 www.baidu.com
+-(BOOL)isSiteDomain{
+    NSString *regex = @"^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:self];
+}
+
+/// 是否是网页url http://www.tetet.com/index.html?q=1&m=test
+-(BOOL)isSitePageUrl{
+    NSString *regex = @"^(?=^.{3,255}$)(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*([\?&]\w+=\w*)*$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [predicate evaluateWithObject:self];
+}
+
 
 
 @end

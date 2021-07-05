@@ -1,7 +1,8 @@
 //
 //  UIButton+Common.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/11/6.
 //
 //
@@ -12,6 +13,15 @@
 typedef void (^YKCompletion)(UIImage * _Nullable image,NSURL * _Nullable url, NSError * _Nullable error);
 
 @interface UIButton (Common)
+
+/// 创建 图片 按钮
++ (UIButton *)ButtonImageWithFrame:(CGRect)frame normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage;
+
+/// 创建 图片 按钮
++ (UIButton *)ButtonImageWithFrame:(CGRect)frame normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage picAlpha:(CGFloat)alpha;
+
+/// 创建 图片 按钮 (点击事件)
++ (UIButton *)ButtonImageWithFrame:(CGRect)frame normalImgPath:(NSString *)normalPath touchImgPath:(NSString*)touchUpPath isBackImage:(BOOL)isBackImage  Target:(id)target action:(SEL)btnAction;
 
 /// 设置按钮的三个状态图片
 - (void)setNormalImage:(NSString *)normalImage HighlightedImage:(NSString *)highlightedImage selectedImage:(NSString *)selectedImage;
@@ -29,11 +39,26 @@ typedef void (^YKCompletion)(UIImage * _Nullable image,NSURL * _Nullable url, NS
 
 - (void)dz_setImageWithURL:(NSString *)imageURL forState:(UIControlState)state;
 
+- (void)dz_setBackImageWithURL:(NSString *)imageURL forState:(UIControlState)state;
+
+- (void)dz_setBackImageWithURL:(NSString *)imageURL forState:(UIControlState)state placeholder:(UIImage *)placeholder;
 
 - (void)dz_setOptionImageWithURL:(NSString *)imageURL forState:(UIControlState)state options:(YYWebImageOptions)options;
 
 - (void)dz_setImageWithURL:(NSString *)imageURL forState:(UIControlState)state placeholder:(UIImage *)placeholder;
 
-- (void)dz_setBlockImageWithURL:(NSString *)imageURL forState:(UIControlState)state options:(YYWebImageOptions)options completion:(YKCompletion)completion;
+- (void)dz_setBlockImageWithURL:(NSString *)imageURL forState:(UIControlState)state completion:(YKCompletion)completion;
+
+-(void)layoutItemButtonWithTitle:(NSString *)title titleH:(NSString *)titleH image:(NSString *)image imageH:(NSString *)imageH imageTitleSpace:(CGFloat)space;
+
+
+
+
+
+
+
+
+
 
 @end
+

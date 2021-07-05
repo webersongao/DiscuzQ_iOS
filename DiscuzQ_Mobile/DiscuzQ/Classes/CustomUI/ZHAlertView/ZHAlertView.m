@@ -109,8 +109,8 @@ static CGFloat kAlertHeight = 136.f;
         self.rightBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         
         self.leftBtn.titleLabel.font = self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:kButtonFont];
-        [self.leftBtn setTitleColor:[UIColor color16WithHexString:@"#31323E" alpha:1.0] forState:UIControlStateNormal];
-        [self.rightBtn setTitleColor:[UIColor color16WithHexString:@"#33C3A5" alpha:1.0] forState:UIControlStateNormal];
+        [self.leftBtn setTitleColor:KGreen_Color forState:UIControlStateNormal];
+        [self.rightBtn setTitleColor:KGreen_Color forState:UIControlStateNormal];
         
         [self.leftBtn setBackgroundImage:[UIImage imageWithColor:KColor(@"#F5F6F8", 1.0) size:CGSizeMake(kAlertWidth/2, 49)] forState:UIControlStateHighlighted];
         [self.rightBtn setBackgroundImage:[UIImage imageWithColor:KColor(@"#F5F6F8", 1.0) size:CGSizeMake(kAlertWidth/2, 49)] forState:UIControlStateHighlighted];
@@ -126,7 +126,7 @@ static CGFloat kAlertHeight = 136.f;
         titleLabel.text = title;
         titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
         titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.textColor = [UIColor color16WithHexString:@"#31323E" alpha:1.0];
+        titleLabel.textColor = KContent_Color;
         self.alertTitleLabel = titleLabel;
         [self addSubview:self.alertTitleLabel];
         [titleLabel zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
@@ -154,7 +154,7 @@ static CGFloat kAlertHeight = 136.f;
         self.contentTipButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_contentTipButton setTitle:tipText forState:UIControlStateNormal];
         [_contentTipButton setTitleColor:[UIColor color16WithHexString:@"#9A9AA7" alpha:1.0] forState:UIControlStateNormal];
-        [_contentTipButton setTitleColor:[UIColor color16WithHexString:@"#31323E" alpha:1.0] forState:UIControlStateSelected];
+        [_contentTipButton setTitleColor:KContent_Color forState:UIControlStateSelected];
         [_contentTipButton setImage:[UIImage imageNamed:@"bookShelf_style_weixuan"] forState:UIControlStateNormal];
         [_contentTipButton setImage:[UIImage imageNamed:@"bookShelf_style_xuan"] forState:UIControlStateSelected];
         _contentTipButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
@@ -222,7 +222,7 @@ static CGFloat kAlertHeight = 136.f;
     [self.rightBtn setTitle:rigthTitle forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:kButtonFont];
     self.rightBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.rightBtn setTitleColor:[UIColor color16WithHexString:@"#31323E" alpha:1.0] forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:KContent_Color forState:UIControlStateNormal];
      [self.rightBtn setBackgroundImage:[UIImage imageWithColor:KColor(@"#F5F6F8", 1.0) size:CGSizeMake(kAlertWidth, 49)] forState:UIControlStateHighlighted];
     [self.rightBtn addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.rightBtn];
@@ -232,7 +232,7 @@ static CGFloat kAlertHeight = 136.f;
     titleLabel.text = title;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont boldSystemFontOfSize:kButtonFont];
-    titleLabel.textColor = [UIColor color16WithHexString:@"#31323E" alpha:1.0];
+    titleLabel.textColor = KContent_Color;
     self.alertTitleLabel = titleLabel;
     [self addSubview:self.alertTitleLabel];
     [titleLabel zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {
@@ -299,8 +299,8 @@ static CGFloat kAlertHeight = 136.f;
     self.leftBtn.titleLabel.font = self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:kButtonFont];
     self.leftBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.rightBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.leftBtn setTitleColor:[UIColor color16WithHexString:@"#31323E" alpha:1.0] forState:UIControlStateNormal];
-    [self.rightBtn setTitleColor:[UIColor color16WithHexString:@"#33C3A5" alpha:1.0] forState:UIControlStateNormal];
+    [self.leftBtn setTitleColor:KContent_Color forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:KGreen_Color forState:UIControlStateNormal];
     
      [self.leftBtn setBackgroundImage:[UIImage imageWithColor:KColor(@"#F5F6F8", 1.0) size:CGSizeMake(kAlertWidth/2, 49)] forState:UIControlStateHighlighted];
      [self.rightBtn setBackgroundImage:[UIImage imageWithColor:KColor(@"#F5F6F8", 1.0) size:CGSizeMake(kAlertWidth/2, 49)] forState:UIControlStateHighlighted];
@@ -316,7 +316,7 @@ static CGFloat kAlertHeight = 136.f;
     titleLabel.text = title;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont boldSystemFontOfSize:kButtonFont];
-    titleLabel.textColor = [UIColor color16WithHexString:@"#31323E" alpha:1.0];
+    titleLabel.textColor = KColor(K31323E_Color, 1.0);
     self.alertTitleLabel = titleLabel;
     [self addSubview:self.alertTitleLabel];
     [titleLabel zxp_addConstraints:^(ZXPAutoLayoutMaker *layout) {

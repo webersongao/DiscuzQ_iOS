@@ -1,12 +1,14 @@
 //
 //  DZThreadListStyle.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/24.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
 
 #import "DZThreadListStyle.h"
+#import "DZHomeCellCenter.h"
 
 @implementation DZThreadListStyle
 
@@ -39,10 +41,12 @@
     
     if (dataModel.attributes.isSticky) {
         
+        threadStyle.className = [DZHomeCellCenter cellClassWithType:-1];
+        
         threadStyle.kf_HeadSize = CGSizeMake(dz_CellWidth, kToolBarHeight);
         threadStyle.kf_thread_CellHeight = threadStyle.kf_HeadSize.height;
         
-        // 文章类型(0 普通 1 长文 2 视频 3 图片)
+        // 文章类型(0 普通 1 长文 2 视频 3 图片 4 语音 5 问答帖 6 商品帖)
         NSString *summaryString = (dataModel.attributes.type == 1) ? dataModel.attributes.title : dataModel.relationships.firstPost.attributes.summary;
         threadStyle.summaryAttributeStr = [NSString attributeWithLineSpaceing:5 text:summaryString font:KFont(12.f)];
         
@@ -67,7 +71,7 @@
         threadStyle.kf_HeadSize = CGSizeMake(cellWidth, headeHeight);
         
         
-        
+        threadStyle.className = [DZHomeCellCenter cellClassWithType:dataModel.attributes.type];
         // 计算总的高度
         threadStyle.kf_thread_CellHeight = threadStyle.kf_HeadSize.height;
         

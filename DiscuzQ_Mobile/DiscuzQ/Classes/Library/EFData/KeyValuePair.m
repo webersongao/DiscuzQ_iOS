@@ -9,17 +9,17 @@
 
 
 @implementation KeyValuePair {
-
+    
 }
 - (id)initWithKey:(id)key andValue:(id)value
 {
     self = [super init];
-
+    
     if (self) {
         _key = key;
         _value = value;
     }
-
+    
     return self;
 }
 

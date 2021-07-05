@@ -1,7 +1,8 @@
 //
 //  DZDListStyle.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/6/3.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -18,15 +19,15 @@
     // 第一部分 用户基本信息
     if (isBasic) {
         
-        userStyle.kf_avatar = CGRectMake(kMargin15, kMargin5, 34, 34);
+        userStyle.kf_avatar = CGRectMake(kMargin15, kMargin13, 34, 34);
         userStyle.kf_userName = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar) + kMargin10, kMargin15, 230, 14);
         userStyle.kf_userTag = CGRectMake(CGRectGetMaxX(userStyle.kf_avatar)-15, CGRectGetMaxY(userStyle.kf_avatar)-15, 15, 15);
         userStyle.kf_time = CGRectMake(cellWidth-kMargin15 - 100, kMargin15, 100, 14);
-        userStyle.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(userStyle.kf_avatar)+kMargin5, cellWidth, 0.5);
+        userStyle.kf_bottomLine = CGRectMake(0, CGRectGetMaxY(userStyle.kf_avatar)+kMargin13, cellWidth, 0.5);
         
         userStyle.kf_grade = CGRectZero;
         
-        userStyle.kf_followBtn = CGRectMake(cellWidth-kMargin15 - 100, kMargin15, 100, 30);
+        userStyle.kf_followBtn = CGRectMake(cellWidth-kMargin15 - 80, kMargin15, 80, 30);
         userStyle.kf_postMore = CGRectZero;
         userStyle.kf_threadTag = CGRectZero;
         
@@ -96,7 +97,6 @@
 @implementation DZDGridStyle
 
 +(instancetype)DGridImageStyle:(NSArray<DZQDataAttachment *> *)dataImage cellWidth:(CGFloat)cellWidth{
-    
     
     CGFloat superWidth = cellWidth - kMargin30;
     

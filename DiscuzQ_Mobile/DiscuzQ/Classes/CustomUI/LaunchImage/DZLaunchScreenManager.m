@@ -1,7 +1,8 @@
 //
 //  DZLaunchScreenManager.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/3/28.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -14,7 +15,7 @@
 
 @implementation DZLaunchScreenManager
 
-+ (instancetype)shareInstance {
++ (instancetype)Shared {
     static DZLaunchScreenManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -46,9 +47,7 @@
     if ([DataCheck isValidString:[[[resp objectForKey:@"Variables"] objectForKey:@"openimage"] objectForKey:@"imgsrc"]]) {
         NSString *openimageStr = [[[resp objectForKey:@"Variables"] objectForKey:@"openimage"] objectForKey:@"imgsrc"];
         
-        openimageStr = [openimageStr makeDomain];
-        
-        self.launchImageView.URLString = openimageStr;
+        self.launchImageView.URLString = @"";
         // 点击广告block
         [self.launchImageView setClickedImageURLHandle:^(NSString *URLString) {
             [weakSelf pushAdViewCntroller:[[[resp objectForKey:@"Variables"] objectForKey:@"openimage"] objectForKey:@"imgurl"]];

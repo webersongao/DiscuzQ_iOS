@@ -1,7 +1,8 @@
 //
 //  DZForumCateHeader.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 17/1/17.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -26,13 +27,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self config_CateHeader];
+        [self configMyCatHeader];
         self.backgroundColor = KWhite_Color;
     }
     return self;
 }
 
-- (void)config_CateHeader {
+- (void)configMyCatHeader {
     
     [self addSubview:self.IconV];
     [self addSubview:self.titleLabel];
@@ -44,12 +45,12 @@
     
 }
 
--(void)updateCateHeader:(DZQDataCate *)dataCate{
+-(void)updateCateHeader:(DZThreadCateM *)dataCate{
     
-    self.titleLabel.text = dataCate.attributes.name;
-    self.descLabel.text = dataCate.attributes.cate_desc;
-    [self.IconV dz_setImageWithURL:dataCate.attributes.icon placeholder:KImageNamed(DZQ_icon)];
-    self.threadCountLabel.text = checkTwoStr(@"主题数：", checkInteger(dataCate.attributes.thread_count));
+    self.titleLabel.text = dataCate.name;
+    self.descLabel.text = dataCate.categorydesc;
+    [self.IconV dz_setImageWithURL:dataCate.icon placeholder:KImageNamed(DZQ_icon)];
+    self.threadCountLabel.text = checkTwoStr(@"主题数：", checkIntegerStr(dataCate.threadCount));
 }
 
 -(void)layoutCateHeader{
@@ -70,7 +71,7 @@
         _IconV.layer.cornerRadius = 8;
         _IconV.layer.masksToBounds = YES;
         _IconV.contentMode = UIViewContentModeScaleAspectFit;
-        _IconV.image = [UIImage imageNamed:@"discuz_cor_logo"];
+        _IconV.image = [UIImage imageNamed:@"dz_logo_banCircle"];
     }
     return _IconV;
 }

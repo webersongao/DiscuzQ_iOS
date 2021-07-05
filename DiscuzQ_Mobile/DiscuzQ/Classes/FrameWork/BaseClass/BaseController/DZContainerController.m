@@ -1,7 +1,8 @@
 //
 //  TTContainerController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/4/23.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -96,12 +97,13 @@
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     UIView *view = [self.tableControllers[indexPath.item] view];
     [cell.contentView addSubview:view];
+//    cell.contentView.backgroundColor = KDebug_Color;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        if ([DataCheck isValidArray:self.tableControllers] && self.tableControllers.count > 1) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(5, 0, 0, 0));
-        } else {
+//        if ([DataCheck isValidArray:self.tableControllers] && self.tableControllers.count > 1) {
+//            make.edges.mas_equalTo(UIEdgeInsetsMake(5, 0, 0, 0));
+//        } else {
             make.edges.equalTo(cell.contentView);
-        }
+//        }
     }];
     return cell;
 }
@@ -205,7 +207,7 @@
         //禁用滚动到最顶部的属性
         _collectonView.scrollsToTop = NO;
         _collectonView.bounces = NO;
-        _collectonView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _collectonView.backgroundColor = KDebug_Color;
         
         [_collectonView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([self class])];
         _collectonView.delegate = self;

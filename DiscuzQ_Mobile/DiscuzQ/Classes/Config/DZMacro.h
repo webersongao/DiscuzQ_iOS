@@ -1,7 +1,8 @@
 //
 //  DZMacro.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/12/6.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -20,13 +21,14 @@
 #define STRONGSELF __strong typeof(weakSelf) strongSelf = weakSelf;
 
 #define KScreenBounds [[UIScreen mainScreen] bounds]
-#define KWidthScale(value)  ((value)*(KScreenWidth/375))
-#define KHeightScale(value) ((value)*(KScreenHeight/667))
+#define KWidthScale(value)  ((value)*(KScreenWidth/375.0))
+#define KHeightScale(value) ((value)*(KScreenHeight/667.0))
 #define KScreenWidth [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
 
 #define kMargin5   5.0
 #define kMargin10   10.0
+#define kMargin13   13.0
 #define kMargin15   15.0
 #define kMargin20   20.0
 #define kMargin25   25.0
@@ -35,14 +37,19 @@
 #define kMargin40   40.0
 #define kMargin45   45.0
 #define kMargin50   50.0
+#define kMargin59   59.0
+#define kMargin60   60.0
 #define K_input_Height 50  /// 输入框高度
 #define kMiniBarHeight   35.0 /// 35.0
 #define kToolBarHeight   44.0
 #define KCenterBarHeight 49.0  // 常用 状态条 工具条 高度
 #define kCellHeight_50   50.0
-#define kCellHeight_54   55.0
+#define kCellHeight_54   54.0
+#define kCellHeight_55   55.0
 #define kCellHeight_60   60.0
 #define kCellHeight_65   65.0
+#define kCellHeight_70   70.0
+#define kCellHeight_80   80.0
 
 #define kHeaderHeight_80    80.0
 #define kHeaderHeight_100   100.0
@@ -65,6 +72,8 @@
 #define KContent_OringY (KNavi_ContainStatusBar_Height + 1)// vc里面内容Y坐标
 #define KView_OutNavi_Bounds   CGRectMake(0,KNavi_ContainStatusBar_Height,KScreenWidth,KScreenHeight-KNavi_ContainStatusBar_Height)
 #define KView_OutTab_Bounds   CGRectMake(0,0,KScreenWidth,KScreenHeight-KTabbar_Height)
+#define KView_OutNaviTab_Bounds   CGRectMake(0,KNavi_ContainStatusBar_Height,KScreenWidth,KScreenHeight-KTabbar_Height-KNavi_ContainStatusBar_Height)
+
 
 // tab
 #define KTabbar_Height  [PRLayouter tabbar_Height] // X: 竖屏83 横屏70
@@ -88,16 +97,21 @@
 #define KSLog( s, ... )
 #endif
 
+///  常用方法
+#define KSelect(condition, vTrue, vFalse)            ((condition) ? (vTrue) : (vFalse))
+#define KBetween(value, minValue, maxValue)          ((value) > (minValue) && (value) < (maxValue))
+#define KBetween_with(value, minValue, maxValue)     ((value) >= (minValue) && (value) <= (maxValue))
+
+
 // 国际化 字符创
 #define _(x) [LocalStringUtil localString:x]
+#define checkIntegerStr(__X__)  __X__ == 0 ? @"" : [NSString stringWithFormat:@"%ld",__X__]
 #define checkInteger(__X__)     [NSString stringWithFormat:@"%ld",__X__]
 #define checkFloat(__X__)       [NSString stringWithFormat:@"%.2f",__X__]
+#define checkStr(__X__)             [NSString stringWithFormat:@"%@",__X__]
 #define checkTwoStr(X,Y)        [NSString stringWithFormat:@"%@%@",X,Y]
 #define checkNull(__X__)        (__X__) == nil || [(__X__) isEqual:[NSNull null]] ? @"" : [NSString stringWithFormat:@"%@", (__X__)]
 #define kAPPDelegate    ((DZQDelegate *)[[UIApplication sharedApplication] delegate])
-
-#pragma mark - 网络请求超时时间
-#define TIMEOUT 30.0
 
 // 判断系统版本
 #define  iOS10   ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0)
@@ -119,6 +133,8 @@ typedef void(^backStateBlock)(id data,BOOL bSuccess);
 typedef void(^backStringBlock)(NSString * String);
 typedef void(^backArrayBlock)(NSArray * Array);
 typedef void(^backSetBlock)(NSSet * setArr);
+typedef void(^backIndexPathBlock)(NSIndexPath * indexPath);
+typedef void(^backSizeBlock)(CGSize size);
 typedef void(^backBoolBlock)(BOOL boolState);
 typedef void(^completeBoolBlock)(BOOL bSuccess);
 typedef void(^backButtonBlock)(UIButton * button);

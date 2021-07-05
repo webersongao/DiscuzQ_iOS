@@ -1,7 +1,8 @@
 //
 //  BaseConfig.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/2/1.
 //  Copyright © 2018年 WebersonGao. All rights reserved.
 //
@@ -15,49 +16,56 @@
 /*
  *  BaseUrl设置 打开 1为生产环境，注释为测试环境
  */
-  
+
 #define MACRO_PRODUCT 1
 
 
-#ifdef MACRO_PRODUCT //线上环境
+#ifdef MACRO_PRODUCT    //线上环境
 #define KDebug_Color    KWhite_Color
-#define DZQ_BASEURL      @"https://discuz.chat"
-//#define DZQ_BASEURL      @"https://www.bushcraftcn.com"
+#define DZQ_BASEURL     [DZMobileCtrl siteRootDomain]
 
 #else //测试环境
 
 #define KDebug_Color    KRandom_Color
-#define DZQ_BASEURL      @"https://discuz.chat"
-//#define DZQ_BASEURL      @"https://www.bushcraftcn.com"
+#define DZQ_BASEURL     DZQ_DefaultURL
+
 #endif
 
 
+// 默认站点网站
+#define DZQ_DefaultURL   @"https://discuz.chat"
+#define DZQ_DefaultURL_bcman   @"https://www.bcman.cn"
+#define DZQ_DefaultURL_doucha   @"https://m.doucha.com"
 
-#define DZQ_icon        @"discuz_circle_logo"
-#define DZQ_Cor_icon    @"discuz_cor_logo"
+#define DZQ_icon        @"dz_logo_circle"  // 70
+#define DZQ_Cor_icon    @"dz_logo_banCircle"  // 150
+#define DZQ_Tab_icon    @"dz_tab_logo"  // 50
+#define DZQ_Square_icon  @"dz_logo_square"  // 190
 
-#define DZ_company_Name  @"北京抖猫科技有限公司" // 公司
-#define DZ_APP_Name      @"抖猫社区"
+#define DZQ_SDKVersion   1.0  // SDK支持的api版本号
+#define DZ_APP_Name      @"迪斯卡斯"
+#define DZ_company_Name  @"天津抖猫科技有限公司" // 公司
+#define DZ_UserSignture  @"迪斯卡斯 - 彪悍的人生，不需要解释" // 默认签名
 #define DZ_Empty_image   @"empty_icon" // 无数据显示图片
-#define DZ_Logo_image    @"" // @"DZQ_logo" // 登录、注册页APP名称图片
+#define DZ_Logo_image    DZQ_Square_icon // 登录、注册页APP名称图片
 #define DZ_Main_Color    KGreen_Color // 主题色 mRGBColor(220, 130, 0)
 #define DZ_bbs_rule      checkTwoStr(@"bbsrule_", @"discuz") // 网站服务条款txt名字
-#define DZ_Navi_Logo      checkTwoStr(DZQ_BASEURL, @"/static/images/logo.png") // 网站默认Logo
-#define DZ_CopyRight      [NSString stringWithFormat:@"Copyright ©2001 - %@ doumao.cn.",KNowYear] // 版权时间
+#define DZ_Navi_icon      checkTwoStr(DZQ_BASEURL, @"/favicon.ico") // 网站默认 icon
+#define DZ_CopyRight      [NSString stringWithFormat:@"Copyright ©2001 - %@ disikasi.com.",KNowYear] // 版权时间
 
 /** App id */
-#define DZ_APPStore_id  @"1011658227"
+#define DZ_APPStore_id  @"id1566826317"
 // appStore地址
-#define DZ_StorePath @"https://itunes.apple.com/cn/app/id1011658227"
+#define DZ_StorePath @"https://itunes.apple.com/cn/app/id1566826317"
 // 版本检测
-#define DZ_VersionCheck @"https://itunes.apple.com/lookup?id=1011658227"
+#define DZ_VersionCheck @"https://itunes.apple.com/lookup?id=1566826317"
 // 版本升级
-#define DZ_AppUpdatepath @"https://itunes.apple.com/us/app/id1011658227?mt=8"
+#define DZ_AppUpdatepath @"https://itunes.apple.com/us/app/id1566826317?mt=8"
 
 // 邮箱
 #define DeveloperEmail  @"gao@bkbt.org"
 #define KdefaultAlert   @"网络异常，请稍后重试"
-#define kDeafultCover   [UIImage imageNamed:@"discuz_circle_logo"]
+#define kDeafultCover   [UIImage imageNamed:@"dz_logo_circle"]
 
 #pragma mark   /********* 第三方 *********/
 
@@ -77,9 +85,18 @@
 
 // 推送
 #define DZ_PushTOKEN      @"XGTOKEN"
-#define DZ_Push_APPID     2200197269
+#define DZ_Push_APPID     2200347269
 #define DZ_Push_APPKEY    @""
 
+
+// 友盟
+#define DZ_UMeng_AppKey      @"5f83cfc65s4846f78a96fefde"
+
+//  pod 'WHToast'
+//  pod 'JJException'
+//  pod 'JPImageresizerView'
+//  iconFont 在iOS中的应用
+//  https://www.jianshu.com/p/3b10bb95b332
 
 #endif
 

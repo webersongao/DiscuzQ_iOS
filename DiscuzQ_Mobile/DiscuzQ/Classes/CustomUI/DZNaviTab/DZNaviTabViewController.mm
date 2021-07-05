@@ -1,7 +1,8 @@
 //
 //  DZNaviTabViewController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2018/4/27.
 //
 
@@ -59,7 +60,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     float pageIndex = scrollView.contentOffset.x/self.view.frame.size.width;
-    if (pageIndex>0 && pageIndex<1) {
+    if (pageIndex > 0 && pageIndex < 1) {
         return;
     }
     int index = fabs(scrollView.contentOffset.x) / self.view.frame.size.width;
@@ -104,9 +105,10 @@
 }
 
 //7.1 加载失败页 动画
-- (void)addErrorView {
+- (void)bringErrorViewToSelfView {
     [self.errorView addErrorViewWithViewType:PRErrorViewNoNet];
     [self.view addSubview:self.errorView];
+    [self.view bringSubviewToFront:self.errorView];
 }
 
 - (void)tryAgainButtonDidClicked{

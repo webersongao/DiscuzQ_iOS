@@ -1,7 +1,8 @@
 //
 //  DZInviteCodeView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/7/28.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -11,7 +12,7 @@
 @interface DZInviteCodeView ()
 
 @property (nonatomic, copy) NSString *codeStr;  //!< 属性注释
-@property (nonatomic, strong) DZQBaseUser *userModel;  //!< 属性注释
+@property (nonatomic, strong) DZQBaseUserV1 *userModel;  //!< 属性注释
 
 @property(nonatomic,strong) UIImageView *localIconView;  // 属性注释
 @property(nonatomic,strong) UILabel *localDescLabel;  // 属性注释
@@ -23,7 +24,7 @@
 @implementation DZInviteCodeView
 
 
-- (instancetype)initWithCode:(NSString *)code user:(DZQBaseUser *)userModel
+- (instancetype)initWithCode:(NSString *)code user:(DZQBaseUserV1 *)userModel
 {
     self = [super initWithFrame:CGRectMake((KScreenWidth-300)/2.0,KScreenHeight-220-100, 300, 220)];
     if (self) {
@@ -32,7 +33,7 @@
         [self config_localInviteCodeView];
         self.backgroundColor = KDebug_Color;
     }
-    return self.codeStr.length ? self : nil;
+    return self;
 }
 
 

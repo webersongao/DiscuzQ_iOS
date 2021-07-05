@@ -1,7 +1,8 @@
 //
 //  DZWebOAuthView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/12/6.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -32,7 +33,8 @@
 }
 
 -(void)loadRequestWithCodeUrl:(NSString *)urlString{
-    [self.codeWebview dz_loadBaseWebUrl:urlString back:nil];
+    [self.codeWebview loadRequest:[NSURLRequest requestWithURL:KURLString(urlString)]];
+//    [self.codeWebview dz_loadBaseWebUrl:urlString back:nil];
 }
 - (void)tapRefreshCodeGesAction {
     self.refreshAuthCodeBlock?self.refreshAuthCodeBlock():nil;
@@ -44,13 +46,14 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.textField.frame = CGRectMake(0, kMargin10, self.width*0.65, self.height - kMargin10);
-    self.codeWebview.frame = CGRectMake(self.width * 0.7 , kMargin10, self.width * 0.3, self.height - kMargin10);
+    self.codeWebview.frame = self.bounds;
+//    self.textField.frame = CGRectMake(0, kMargin10, self.width*0.65, self.height - kMargin10);
+//    self.codeWebview.frame = CGRectMake(self.width * 0.7 , kMargin10, self.width * 0.3, self.height - kMargin10);
 }
 
 -(UITextField *)textField{
     if (!_textField) {
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(0, kMargin10, KScreenWidth * 0.48, 0)];
+//        _textField = [[UITextField alloc] initWithFrame:CGRectMake(0, kMargin10, KScreenWidth * 0.48, 0)];
         _textField.placeholder = @"请输入验证码";
         _textField.font = KFont(14);
         [_textField setTranslatesAutoresizingMaskIntoConstraints:NO];

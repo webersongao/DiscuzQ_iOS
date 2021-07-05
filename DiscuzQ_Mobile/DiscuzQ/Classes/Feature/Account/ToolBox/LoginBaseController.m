@@ -1,7 +1,8 @@
 //
 //  LoginBaseController.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2017/7/12.
 //  Copyright © 2017年 WebersonGao. All rights reserved.
 //
@@ -22,9 +23,9 @@
 }
 
 #pragma mark - 请求成功操作
-- (void)updateUserWhenSuccess:(DZQTokenModel *)tokenModel{
+- (void)updateUserWhenSuccess:(DZQTokenV1 *)tokenModel{
     
-    [[DZPushCenter shareInstance] configPush]; // 设置推送
+    [[DZPushCenter Shared] configPush]; // 设置推送
     
     [[NSNotificationCenter defaultCenter] postNotificationName:DZ_LoginedRefreshInfo_Notify object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:DZ_RefreshUserCenter_Notify object:nil]; // 获取资料

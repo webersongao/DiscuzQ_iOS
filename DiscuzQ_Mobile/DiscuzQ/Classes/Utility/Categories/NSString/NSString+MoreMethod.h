@@ -1,7 +1,8 @@
 //
 //  NSString+MoreMethod.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 16/7/12.
 //  Copyright © 2016年 WebersonGao. All rights reserved.
 //
@@ -38,9 +39,6 @@
 
 - (NSString *)formatNums;
 
-// 拼接域名
-- (NSString *)makeDomain;
-
 // 判断链接是否包含域名
 - (BOOL)isUrlContainDomain;
 
@@ -58,11 +56,10 @@
 - (NSString *)dealImg;
 
 - (NSMutableAttributedString *)getAttributeStr;
-/*
- *MD5 加密
- */
-- (NSString*)getmd5WithString;
 
+// 判断域名是否解析
 +(BOOL)resolveHost:(NSString*)hostname;
+
+- (NSString *)dz_urlAppendingParameters:(id)parameters;
 
 @end

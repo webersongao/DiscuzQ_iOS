@@ -1,7 +1,8 @@
 //
 //  DZThreadDetailSection.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/6/3.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -14,8 +15,9 @@
 
 @interface DZThreadDetailSection ()
 
-@property (nonatomic, strong) DZThreadCashPayView *rewardPayView;  //!< 付费、打赏用户列表
+@property (nonatomic, strong) DZQDataThread *dataThread;  //!< <#属性注释#>
 @property (nonatomic, strong) DZThreadToolBar *threadToolBar;  //!< 转评赞 工具条
+@property (nonatomic, strong) DZThreadCashPayView *rewardPayView;  //!< 付费、打赏用户列表
 
 @property (nonatomic, strong) UIView *grayLine;  //!< 顶部10px分割线
 @property (nonatomic, strong) UIView *bottoLine;  //!< 底部分割线
@@ -44,13 +46,13 @@
     [self.contentView addSubview:self.likeUserBar];
     [self.contentView addSubview:self.bottoLine];
     
-    [self.threadToolBar configToolBarAction:self like:nil reply:nil share:@selector(threadFavoriteAction:)];
-    
+    [self.threadToolBar configToolBarAction:self left:nil center:nil right:@selector(threadFavoriteAction:)];
 }
 
 
 -(void)updateSectionView:(DZQDataThread *)dataModel sectionLayout:(DZDSectionStyle *)layout{
     
+    self.dataThread = dataModel;
     NSArray *likeArray = dataModel.relationships.firstPost.relationships.likedUsers;
     
     [self.rewardPayView updateThreadPayView:dataModel payLayout:layout.frame_PayView];
@@ -74,9 +76,9 @@
 }
 
 -(void)threadFavoriteAction:(UIButton *)button{
-    button.selected = !button.isSelected;
-    
-    [DZThreadHelper thread_FavoriteCellAction:nil];
+    [DZThreadHelper thread_FavoriteCellAction:self.dataThread block:^(BOOL boolState) {
+        button.selected = boolState;
+    }];
 }
 
 -(DZThreadCashPayView *)rewardPayView{

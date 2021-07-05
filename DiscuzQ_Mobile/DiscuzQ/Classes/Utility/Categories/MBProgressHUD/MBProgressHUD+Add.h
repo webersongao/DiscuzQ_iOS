@@ -16,6 +16,10 @@
 
 + (void)showServerError:(NSError *)error;
 
+- (void)showLoadingView;
+
+- (void)showLoadingtoView:(UIView *)view;
+
 - (void)showLoadingMessag:(NSString *)message toView:(UIView *)view;
 
 - (void)showLoadingMessag:(NSString *)message toView:(UIView *)view blackColor:(UIColor *)blackColor;

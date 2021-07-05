@@ -1,7 +1,8 @@
 //
 //  DZThreadDetailHeader.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/5/27.
 //  Copyright © 2020 WebersonGao. All rights reserved.
 //
@@ -40,7 +41,7 @@
     [self addSubview:self.thredCoreView];
     [self addSubview:self.categoryBar];
     
-    [self.categoryBar configToolBarAction:self like:@selector(threadCategoryAction:) reply:nil share:nil];
+    [self.categoryBar configToolBarAction:self left:@selector(threadCategoryAction:) center:nil right:@selector(threadLocationAction:)];
     [self.userHeader configHeadAction:self avatar:@selector(userAvatarAction:) more:@selector(threadMoreAction:) follow:nil];
 }
 
@@ -51,14 +52,18 @@
     [DZThreadHelper thread_UserCenterCellAction:self.dataModel.relationships.user.attributes.user_id];
 }
 
+-(void)threadLocationAction:(UIButton *)button{
+    NSLog(@"WBS 跳转至 定位");
+}
+
 -(void)threadCategoryAction:(UIButton *)button{
     
-    [DZThreadHelper thread_CategoryCenterCellAction:self.dataModel.relationships.category];
+    [DZThreadHelper thread_CategoryCenterCellAction:nil];
 }
 
 -(void)threadMoreAction:(UIButton *)button{
     
-    [DZThreadHelper thread_MoreCellAction:nil sender:button];
+    [DZThreadHelper thread_MoreCellAction:self.dataModel sender:button];
 }
 
 
@@ -72,7 +77,7 @@
     
     [self.thredCoreView updateThreadContent:dataModel contentStyle:layout];
     
-    [self.categoryBar updateDetailCategoryBar:dataModel.relationships.category toolLayout:layout.frame_toolBar];
+    [self.categoryBar updateDetailBarCate:dataModel.relationships.category.attributes.name location:dataModel.attributes.location Layout:layout.frame_toolBar];
     
 }
 
@@ -86,15 +91,11 @@
 
 #pragma mark threadContentDelegate
 // 视频播放
--(void)threadContent:(DZVideoPicView *)playButton playAction:(DZQDataVideo *)dataVideo{
+-(void)threadContent:(DZMediaPlayView *)playButton playAction:(DZQDataVideo *)dataVideo{
     
     if (self.playVideoBlock) {
         self.playVideoBlock(playButton, dataVideo);
     }
-    
-//    NSString *currentUrl =  dataVideo.attributes.media_url;
-    
-    //    [[DZMediaCenter Center] Media_videoPlayWithAssetURL:currentUrl playView:playButton];
 }
 
 

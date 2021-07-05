@@ -1,7 +1,8 @@
 //
 //  UIAlertController+WKWebAlert.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/01/19.
 //  Copyright © 2020年 WebersonGao. All rights reserved.
 //
@@ -16,13 +17,13 @@
  @param action UIAlertAction
  @param buttonIndex buttonIndex
  */
-typedef void (^BAKit_AlertControllerButtonActionBlock) (UIAlertController * __nonnull alertController, UIAlertAction * __nonnull action, NSInteger buttonIndex);
+typedef void (^DQKit_AlertCtrlBtnActionBlock) (UIAlertController * __nonnull alertController, UIAlertAction * __nonnull action, NSInteger buttonIndex);
 
 #if TARGET_OS_IOS
-typedef void (^UIAlertControllerPopoverPresentationControllerBlock) (UIPopoverPresentationController * __nonnull popover);
+typedef void (^DQKit_UIAlertCtrlPopoverPresentationBlock) (UIPopoverPresentationController * __nonnull popover);
 #endif
 
-typedef void (^BAKit_AlertControllerTextFieldConfigurationActionBlock)(UITextField * _Nullable textField, NSInteger index);
+typedef void (^DQKit_AlertCtrlTextFieldConfigActionBlock)(UITextField * _Nullable textField, NSInteger index);
 
 @interface UIAlertController (WKWebAlert)
 
@@ -39,8 +40,8 @@ typedef void (^BAKit_AlertControllerTextFieldConfigurationActionBlock)(UITextFie
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wstrict-prototypes"
 
-+ (void)PAlertWithTitle:(NSString *)title message:(NSString *)message completion:(void (^)())completion;
-+ (void)PAlertWithTitle:(NSString *)title
++ (void)dz_AlertWithTitle:(NSString *)title message:(NSString *)message completion:(void (^)())completion;
++ (void)dz_AlertWithTitle:(NSString *)title
                 message:(NSString *)message
            action1Title:(NSString *)action1Title
            action2Title:(NSString *)action2Title
@@ -61,15 +62,11 @@ typedef void (^BAKit_AlertControllerTextFieldConfigurationActionBlock)(UITextFie
  @param block block
  @return UIAlertController-ActionSheet
  */
-+ (nonnull instancetype)ba_actionSheetShowInViewController:(nonnull UIViewController *)viewController
-                                                     title:(nullable NSString *)title
-                                                   message:(nullable NSString *)message
-                                          buttonTitleArray:(nullable NSArray *)buttonTitleArray
-                                     buttonTitleColorArray:(nullable NSArray <UIColor *>*)buttonTitleColorArray
++ (nonnull instancetype)dz_actionSheetShowInViewController:(nonnull UIViewController *)viewController title:(nullable NSString *)title message:(nullable NSString *)message buttonTitleArray:(nullable NSArray *)buttonTitleArray buttonTitleColorArray:(nullable NSArray <UIColor *>*)buttonTitleColorArray
 #if TARGET_OS_IOS
-                        popoverPresentationControllerBlock:(nullable UIAlertControllerPopoverPresentationControllerBlock)popoverPresentationControllerBlock
+                        popoverPresentationControllerBlock:(nullable DQKit_UIAlertCtrlPopoverPresentationBlock)popoverPresentationControllerBlock
 #endif
-                                                     block:(nullable BAKit_AlertControllerButtonActionBlock)block;
+                                                     block:(nullable DQKit_AlertCtrlBtnActionBlock)block;
 
 
 #pragma clang diagnostic pop

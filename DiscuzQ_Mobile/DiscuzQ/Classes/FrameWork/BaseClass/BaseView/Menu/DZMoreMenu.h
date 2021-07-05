@@ -1,7 +1,8 @@
 //
 //  DZMoreMenu.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2020/01/19.
 //  Copyright © 2020年 WebersonGao. All rights reserved.
 //
@@ -33,9 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
                                        buttonTitleArray:(nullable NSArray *)buttonTitleArray
                                   buttonTitleColorArray:(nullable NSArray <UIColor *>*)buttonTitleColorArray
 #if TARGET_OS_IOS
-                      popoverPresentationControllerBlock:(nullable UIAlertControllerPopoverPresentationControllerBlock)popoverPresentationControllerBlock
+                      popoverPresentationControllerBlock:(nullable DQKit_UIAlertCtrlPopoverPresentationBlock)popoverPresentationControllerBlock
 #endif
-                                                  block:(nullable BAKit_AlertControllerButtonActionBlock)block;
+                                                  block:(nullable DQKit_AlertCtrlBtnActionBlock)block;
 #pragma clang diagnostic pop
 
 -(void)showListCellPopMenu:(UIView *)sender titleArray:(NSArray *)titleArray imageArray:(NSArray *)imageArray doneBlock:(backIntegerBlock)doneBlock dismissBlock:(backNoneBlock)dismissBlock;

@@ -1,7 +1,8 @@
 //
 //  HomeCollectionView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/19.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -13,7 +14,7 @@ static NSString * const cellIdentifier = @"DZThreadCell";
 @interface HomeCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property(nonatomic,strong) UIView * bottomLine;
-@property(nonatomic,strong,readonly) NSArray <DZQDataCate *> *dataArray;
+@property(nonatomic,strong,readonly) NSArray <DZThreadCateM *> *dataArray;
 
 @end
 
@@ -42,7 +43,7 @@ static NSString * const cellIdentifier = @"DZThreadCell";
 }
 
 // 重置 列表数组数据 的唯一方法
--(void)reloadDataSource:(NSArray <DZQDataCate *>*)array{
+-(void)reloadDataSource:(NSArray <DZThreadCateM *>*)array{
     if (array && [array isKindOfClass:[NSArray class]]) {
         _dataArray = array;
     }

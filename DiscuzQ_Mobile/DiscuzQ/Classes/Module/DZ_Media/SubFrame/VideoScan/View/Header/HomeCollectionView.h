@@ -1,7 +1,8 @@
 //
 //  HomeCollectionView.h
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2019/11/19.
 //  Copyright © 2019 WebersonGao. All rights reserved.
 //
@@ -32,7 +33,7 @@
 
 
 // 重置 列表数组数据 的唯一方法
--(void)reloadDataSource:(NSArray <DZQDataCate *>*)array;
+-(void)reloadDataSource:(NSArray <DZThreadCateM *>*)array;
 
 @end
 

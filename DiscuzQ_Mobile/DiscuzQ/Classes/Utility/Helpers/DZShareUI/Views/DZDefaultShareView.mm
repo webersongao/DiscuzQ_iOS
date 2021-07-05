@@ -1,7 +1,8 @@
 //
 //  DZDefaultShareView.m
 //  DiscuzQ
-//
+//  联系作者：微信： ChinaMasker gao@btbk.org
+//  Github ：https://github.com/webersongao/DiscuzQ_iOS
 //  Created by WebersonGao on 2016/12/21.
 //  Copyright © 2016年 Weberson. All rights reserved.
 //
@@ -40,8 +41,9 @@ static DZDefaultShareView *shareView = nil;
  *  原生调起 分享页面
  */
 + (void)showDefaultShareViewFromModel:(DZShareModel *)model{
-    
-    [[self alloc] initshareViewFromNative:model];
+    if (model && [model isKindOfClass:[DZShareModel class]]) {
+        [[self alloc] initshareViewFromNative:model];
+    }
 }
 
 //初始化
@@ -51,7 +53,7 @@ static DZDefaultShareView *shareView = nil;
         shareView = [[DZDefaultShareView alloc] init];
     }
     
-    self.shareModel = model;
+    shareView.shareModel = model;
     [self initData];
     [self initDefaultShareUI];
     
@@ -60,12 +62,12 @@ static DZDefaultShareView *shareView = nil;
 - (void)initData{
     
     self.DataArray = @[@{@"title":@"微信好友",@"image":@"share_logo1",@"pressImage":@"share_logo1_press"}
-                    ,@{@"title":@"微信朋友圈",@"image":@"share_logo2",@"pressImage":@"share_logo2_press"}
-                    ,@{@"title":@"QQ好友",@"image":@"share_logo3",@"pressImage":@"share_logo3_press"}
-                    ,@{@"title":@"QQ空间",@"image":@"share_logo4",@"pressImage":@"share_logo4_press"}
-                    ,@{@"title":@"新浪微博",@"image":@"share_logo5",@"pressImage":@"share_logo5_press"}];
-
-self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
+                       ,@{@"title":@"微信朋友圈",@"image":@"share_logo2",@"pressImage":@"share_logo2_press"}
+                       ,@{@"title":@"QQ好友",@"image":@"share_logo3",@"pressImage":@"share_logo3_press"}
+                       ,@{@"title":@"QQ空间",@"image":@"share_logo4",@"pressImage":@"share_logo4_press"}
+                       ,@{@"title":@"新浪微博",@"image":@"share_logo5",@"pressImage":@"share_logo5_press"}];
+    
+    self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
 }
 
 /**
@@ -168,7 +170,7 @@ self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
 // 分享按钮 点击方法
 - (void)shareTypeClickIndex:(UIButton *)btn{
     
-    [DZShareCenter shareButtonActionWithType:(DQShareType)btn.tag model:self.shareModel];
+    [DZShareCenter rightButtonActionWithType:(DQShareType)btn.tag model:shareView.shareModel];
     
     // 消除分享View
     [self dismissShareView];
@@ -177,7 +179,7 @@ self.sharedButtonArray = [[NSMutableArray alloc]initWithCapacity:5];
 // 复制链接 按钮
 -(void)shareLinkButtonDismissShareView:(UIButton *)btn{
     
-    [DZShareCenter shareButtonActionWithType:DQShareLink model:self.shareModel];
+    [DZShareCenter rightButtonActionWithType:DQShareLink model:shareView.shareModel];
     
     [self dismissShareView];
 }
